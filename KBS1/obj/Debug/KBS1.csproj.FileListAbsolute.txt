@@ -13,3 +13,10 @@ C:\Users\Robin\Documents\windesheim\C#\SE1d3-KBS1\KBS1\obj\Debug\KBS1.csproj.Gen
 C:\Users\Robin\Documents\windesheim\C#\SE1d3-KBS1\KBS1\obj\Debug\KBS1.csproj.CoreCompileInputs.cache
 C:\Users\Robin\Documents\windesheim\C#\SE1d3-KBS1\KBS1\obj\Debug\KBS1.exe
 C:\Users\Robin\Documents\windesheim\C#\SE1d3-KBS1\KBS1\obj\Debug\KBS1.pdb
+C:\Users\Robin\Documents\windesheim\C#\SE1d3-KBS1\SE1d3-KBS1\KBS1\obj\Debug\KBS1.csprojAssemblyReference.cache
+C:\Users\Robin\Documents\windesheim\C#\SE1d3-KBS1\SE1d3-KBS1\KBS1\obj\Debug\GameWindow.g.cs
+C:\Users\Robin\Documents\windesheim\C#\SE1d3-KBS1\SE1d3-KBS1\KBS1\obj\Debug\App.g.cs
+C:\Users\Robin\Documents\windesheim\C#\SE1d3-KBS1\SE1d3-KBS1\KBS1\obj\Debug\KBS1_MarkupCompile.cache
+C:\Users\Robin\Documents\windesheim\C#\SE1d3-KBS1\SE1d3-KBS1\KBS1\obj\Debug\KBS1_MarkupCompile.lref
+C:\Users\Robin\Documents\windesheim\C#\SE1d3-KBS1\SE1d3-KBS1\KBS1\obj\Debug\KBS1.exe
+C:\Users\Robin\Documents\windesheim\C#\SE1d3-KBS1\SE1d3-KBS1\KBS1\obj\Debug\KBS1.pdb

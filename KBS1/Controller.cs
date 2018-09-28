@@ -8,5 +8,22 @@ namespace KBS1
 {
     class Controller
     {
+        public ILocatable Locatable { get; set; }
+        public GameObject Object { get; set; }
+
+        public Controller(ILocatable locatable)
+        {
+
+        }
+
+        public void Move(Vector vector)
+        {
+
+        }
+
+        public virtual void Update()
+        {
+
+        }
     }
 }
