@@ -23,5 +23,15 @@ namespace KBS1
         {
            return Math.Sqrt(Math.Pow(X - vector.X, 2) + Math.Pow(Y - vector.Y, 2));
         }
+        
+        /// <summary>
+        /// Add vector to move the GameObject
+        /// </summary>
+        /// <param name="vector"> vector that needs to be added to the current vector</param>
+        public void Add(Vector vector)
+        {
+            X += vector.X;
+            Y += vector.Y;
+        }
     }
-}
+}   

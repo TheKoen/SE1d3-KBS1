@@ -16,9 +16,13 @@ namespace KBS1
 
         }
 
+        /// <summary>
+        /// move the game object to Vector;
+        /// </summary>
+        /// <param name="vector">vector to move to</param>
         public void Move(Vector vector)
         {
-
+            Locatable.Location.Add(vector);
         }
 
         public virtual void Update()

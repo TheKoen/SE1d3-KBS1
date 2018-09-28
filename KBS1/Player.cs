@@ -8,5 +8,9 @@ namespace KBS1
 {
     class Player : GameObject
     {
+        public Controller CreateController()
+        {
+            return null;
+        } 
     }
 }
