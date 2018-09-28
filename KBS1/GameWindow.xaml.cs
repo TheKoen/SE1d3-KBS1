@@ -1,8 +1,7 @@
-﻿namespace KBS1 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class GameWindow {
+using System.Windows;
+
+namespace KBS1 {
+    public partial class GameWindow : Window {
         public GameWindow() {
             InitializeComponent();
         }
