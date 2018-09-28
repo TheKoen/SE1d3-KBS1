@@ -7,7 +7,7 @@ using System.Xml;
 
 namespace KBS1
 {
-    class Level
+    public class Level
     {
         private string Name { get; set; }
 
