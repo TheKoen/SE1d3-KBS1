@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace KBS1
 {
-    class PlayerController
+    class PlayerController : Controller
     {
+        public Player Player { get; set; }
+
+        public PlayerController(Player player, ILocatable locatable) : base(locatable)
+        {
+            Player = player;
+        }
     }
 }
