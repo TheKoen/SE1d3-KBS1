@@ -8,5 +8,9 @@ namespace KBS1
 {
     enum Difficulty
     {
+        Easy,
+        Normal,
+        Hard,
+        Extreme       
     }
 }

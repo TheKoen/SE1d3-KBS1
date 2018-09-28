@@ -8,5 +8,6 @@ namespace KBS1
 {
     interface IControllerCreator
     {
+        Controller Create();
     }
 }
