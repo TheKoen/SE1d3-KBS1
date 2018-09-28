@@ -8,5 +8,9 @@ namespace KBS1
 {
     class Collider
     {
+        public Collider()
+        {
+
+        }
     }
 }
