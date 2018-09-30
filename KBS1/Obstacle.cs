@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace KBS1
 {
-    class Obstacle : GameObject
+    abstract class Obstacle : GameObject
     {
+        public Type ObstacleType { get; private set; }
+
+        protected Obstacle(Type type)
+        {
+            ObstacleType = type;
+        }
+        
+
+
+
     }
 }

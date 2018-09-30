@@ -8,5 +8,13 @@ namespace KBS1
 {
     class ObstacleController : Controller
     {
+        public ObstacleController(ILocatable locatable) : base(locatable) { }
+
+        public Obstacle Obstacle { get; set; }
+
+        public void Update()
+        {
+
+        }
     }
 }
