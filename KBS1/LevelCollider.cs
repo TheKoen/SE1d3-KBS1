@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KBS1
+﻿namespace KBS1
 {
-    class LevelCollider : Collider
+    public class LevelCollider : Collider
     {
+        public LevelCollider() : base(0, null)
+        {
+        }
+
+        //TODO: Implement level collision
+        public override bool Collides(Collider collider)
+        {
+            return false;
+        }
     }
 }

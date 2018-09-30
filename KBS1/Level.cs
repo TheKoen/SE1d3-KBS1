@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Xml;
 
 namespace KBS1
 {
     public class Level
     {
-        private string Name { get; set; }
-
+        private string Name { get; }
         
         public Difficulty Difficulty { get; set; }
-        public Collider LevelCollider { get; set; }
+        public LevelCollider LevelCollider { get; set; }
         public SpriteRenderer Renderer { get; set; }
         public List<GameObject> Objects { get; set; }
 

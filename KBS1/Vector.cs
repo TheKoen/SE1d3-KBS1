@@ -2,7 +2,7 @@
 
 namespace KBS1
 {
-    class Vector
+    public class Vector
     {
         /// <summary>
         /// X coordinate of this Vector
@@ -23,11 +23,11 @@ namespace KBS1
         {
            return Math.Sqrt(Math.Pow(X - vector.X, 2) + Math.Pow(Y - vector.Y, 2));
         }
-        
+
         /// <summary>
-        /// Add vector to move the GameObject
+        /// Add Vector to this Vector
         /// </summary>
-        /// <param name="vector"> vector that needs to be added to the current vector</param>
+        /// <param name="vector">Vector to add to this Vector</param>
         public void Add(Vector vector)
         {
             X += vector.X;

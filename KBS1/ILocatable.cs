@@ -1,6 +1,6 @@
 ﻿namespace KBS1
 {
-    interface ILocatable
+    public interface ILocatable
     {
         /// <summary>
         /// The Vector representing the location of this object.

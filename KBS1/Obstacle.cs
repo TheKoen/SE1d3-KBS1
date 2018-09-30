@@ -1,22 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows.Controls;
 
 namespace KBS1
 {
     abstract class Obstacle : GameObject
     {
-        public Type ObstacleType { get; private set; }
+        public ObstacleType ObstacleType { get; }
 
-        protected Obstacle(Type type)
+        protected Obstacle(ObstacleType type, Canvas canvas, Vector location) : 
+            base(type.CollisionRadius, type.Sprite, canvas, location)
         {
             ObstacleType = type;
         }
-        
-
-
-
     }
 }
