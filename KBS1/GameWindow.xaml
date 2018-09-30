@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="GameWindow" Height="600" Width="800">
     <Grid>
-        <Canvas x:Name="DrawingPanel" HorizontalAlignment="Left" Height="400" Margin="-3,-1,0,0" VerticalAlignment="Top" Width="795" Background="LightGray"/>
+        <Canvas x:Name="DrawingPanel" Height="400" Margin="0,0,0,0" VerticalAlignment="Top" Width="792" Background="LightGray"/>
 
+        <local:ObjectInfoContainer HorizontalAlignment="Left" Margin="20,420,0,0" VerticalAlignment="Top" GameObjectName="Test" GameObjectDescription="Description test TESTING" />
     </Grid>
 </Window>
