@@ -1,33 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KBS1
+﻿namespace KBS1
 {
-    class Controller
+    public abstract class Controller
     {
-        public ILocatable Locatable { get; set; }
-        public GameObject Object { get; set; }
+        protected ILocatable Locatable { get; }
+        protected GameObject Object { get; }
 
-        public Controller(ILocatable locatable)
+        protected Controller(GameObject gameObject)
         {
-            Locatable = locatable;
+            this.Locatable = gameObject;
+            this.Object = gameObject;
         }
 
         /// <summary>
-        /// move the game object to Vector;
+        /// Move the GameObject in a direction;
         /// </summary>
-        /// <param name="vector">vector to move to</param>
+        /// <param name="vector">Direction to move in</param>
         public void Move(Vector vector)
         {
             Locatable.Location.Add(vector);
         }
 
-        public virtual void Update()
-        {
-
-        }
+        public abstract void Update();
     }
 }

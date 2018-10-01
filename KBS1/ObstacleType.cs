@@ -1,20 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Windows.Controls;
 
 namespace KBS1
 {
     class ObstacleType
     {
-        public List<ObstacleType> Types { get; set; }
-        public IControllerCreator Creator { get; set; }
+        public static List<ObstacleType> Types = new List<ObstacleType>();
 
-        public ObstacleInfo createController()
+        public int CollisionRadius { get; }
+        public Image Sprite { get; }
+
+        private readonly IControllerCreator Creator;
+
+        public ObstacleType(IControllerCreator creator, int collisionRadius, Image sprite)
         {
-            // please fix
-            return null;
+            Creator = creator;
+            CollisionRadius = collisionRadius;
+            Sprite = sprite;
+        }
+
+        /// <summary>
+        /// Creates a new ObstacleController for this ObstacleType
+        /// </summary>
+        /// <returns>ObstacleController for this ObstacleType</returns>
+        public Controller CreateController()
+        {
+            return Creator.Create();
         }
 
     }

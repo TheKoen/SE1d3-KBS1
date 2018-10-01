@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KBS1
+﻿namespace KBS1
 {
     class ObstacleInfo
     {
+        public string Description { get; }
+
+        public ObstacleInfo(string description)
+        {
+            Description = description;
+        }
     }
 }

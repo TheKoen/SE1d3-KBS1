@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows.Controls;
 
 namespace KBS1
 {
     class Player : GameObject
     {
-
-        public Player player;
-
-        //abstract method from abstract class GameObject to create a new Controller.
-        protected override Controller createController()
+        public Player(int radius, Image image, Canvas canvas, Vector location) : 
+            base(radius, image, canvas, location)
         {
-            return new PlayerController(player);
         }
 
-
+        //abstract method from abstract class GameObject to create a new Controller.
+        protected override Controller CreateController()
+        {
+            return new PlayerController(this);
+        }
     }
 }

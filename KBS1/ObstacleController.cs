@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KBS1
+﻿namespace KBS1
 {
-    class ObstacleController : Controller
+    abstract class ObstacleController : Controller
     {
-        public ObstacleController(ILocatable locatable) : base(locatable) { }
+        protected  Obstacle Obstacle { get; }
 
-        public Obstacle Obstacle { get; set; }
-
-        public void Update()
+        protected ObstacleController(ILocatable locatable, Obstacle obstacle) :
+            base(obstacle)
         {
-
+            this.Obstacle = obstacle;
         }
     }
 }

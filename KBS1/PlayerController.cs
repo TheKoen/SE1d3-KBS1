@@ -1,45 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 namespace KBS1
 {
     class PlayerController : Controller
     {
+        public Player Player { get; }
 
-        public Player player;
-
-        public PlayerController(Player p)
+        public PlayerController(Player player) : base(player)
         {
-            this.player = p;
+            this.Player = player;
         }
 
         //method for the player when pressed a key
         public void KeyPress(KeyEventArgs args)
         {
-            Vector vector = new Vector();
+            var vector = new Vector();
 
-            if(args.Key == Key.W)
+            switch (args.Key)
             {
-                vector.Y -= 1;
+                case Key.W:
+                    vector.Y -= 1;
+                    break;
+                case Key.D:
+                    vector.X += 1;
+                    break;
+                case Key.S:
+                    vector.Y += 1;
+                    break;
+                case Key.A:
+                    vector.X -= 1;
+                    break;
             }
-            if(args.Key == Key.D)
-            {
-                vector.X += 1;
-            }
-            if(args.Key == Key.S)
-            {
-                vector.Y += 1;
-            }
-            if(args.Key == Key.A)
-            {
-                vector.X -= 1;
-            }
-            //Controller.move(); zoiets
+
+            this.Move(vector);
         }
 
+        public override void Update()
+        {
+            
+        }
     }
 }

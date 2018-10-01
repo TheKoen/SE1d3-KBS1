@@ -1,14 +1,14 @@
 ﻿namespace KBS1
 {
-    class Collider
+    public class Collider
     {
-        private readonly int radius;
-        private readonly ILocatable locatable;
+        private int Radius { get; }
+        private ILocatable Locatable { get; }
 
         public Collider(int radius, ILocatable locatable)
         {
-            this.radius = radius;
-            this.locatable = locatable;
+            this.Radius = radius;
+            this.Locatable = locatable;
         }
 
         /// <summary>
@@ -16,12 +16,12 @@
         /// </summary>
         /// <param name="collider">Collider to check for</param>
         /// <returns>true if the Colliders collide</returns>
-        public bool Collides(Collider collider)
+        public virtual bool Collides(Collider collider)
         {
-            var current = locatable.Location;
-            var other = collider.locatable.Location;
+            var current = Locatable.Location;
+            var other = collider.Locatable.Location;
 
-            return current.Distance(other) < radius + collider.radius;
+            return current.Distance(other) < Radius + collider.Radius;
         }
     }
 }

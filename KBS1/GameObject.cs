@@ -1,35 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace KBS1
 {
-    abstract class GameObject : ILocatable
+    public abstract class GameObject : ILocatable
     {
-        public SpriteRenderer renderer;
-        public Collider collider;
-        public Controller controller;
+        public Vector Location { get; set; }
+        public SpriteRenderer Renderer { get; }
+        public Collider Collider { get; }
+        public Controller Controller { get; private set; }
 
         //When making a new GameObject, a new SpriteRenderer will be made with it.
-        public GameObject()
+        protected GameObject(int radius, Image image, Canvas canvas, Vector location)
         {
-            SpriteRenderer renderer = new SpriteRenderer();
+            this.Location = location;
+            this.Renderer = new SpriteRenderer(image, this, canvas);
+            this.Collider = new Collider(radius, this);
         }
 
         //abstract method for creating a new Controller for a GameObject depending on what kind of GameObject.
-        protected abstract Controller createController();
+        protected abstract Controller CreateController();
 
-        //method for .... canvas
-        public void Init(Canvas canvas)
+        //Initialize the controller
+        public void Init()
         {
+            this.Controller = this.CreateController();
         }
-
-
-
-
-
     }
 }
