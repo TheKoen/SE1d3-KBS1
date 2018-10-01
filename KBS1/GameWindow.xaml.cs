@@ -13,6 +13,9 @@ namespace KBS1 {
             Loop = new Gameloop(this);
             LoadLevel();
             Loop.Start();
+
+            var controller = (PlayerController) Controller.FindPlayer().Controller;
+            KeyDown += controller.KeyPress;
         }
 
         // Properties
@@ -26,7 +29,7 @@ namespace KBS1 {
         public void LoadLevel()
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load("Level.xml");
+            doc.Load("Levels/TestLevel.xml");
             Loadedlevel = new Level(doc);
         }
 

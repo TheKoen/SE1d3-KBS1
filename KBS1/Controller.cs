@@ -4,12 +4,10 @@ namespace KBS1
 {
     public abstract class Controller
     {
-        protected ILocatable Locatable { get; }
         protected GameObject Object { get; }
 
         protected Controller(GameObject gameObject)
         {
-            this.Locatable = gameObject;
             this.Object = gameObject;
         }
 
@@ -19,19 +17,19 @@ namespace KBS1
         /// <param name="vector">Direction to move in</param>
         public void Move(Vector vector)
         {
-            var newLocation = this.Locatable.Location.CopyAdd(vector);
-            if (!Object.Collider.CollidesAny(newLocation))
-            {
-                Locatable.Location.Add(vector);
-            }
+            var newLocation = Object.Location.CopyAdd(vector);
+            //if (!Object.Collider.CollidesAny(newLocation))
+            //{
+            Object.Location = newLocation;
+            //}
         }
 
         public abstract void Update();
 
-        protected GameObject FindPlayer()
+        public static GameObject FindPlayer()
         {
             var level = GameWindow.Current().Loadedlevel;
-            foreach (GameObject gameObject in level.Objects)
+            foreach (var gameObject in level.Objects)
             {
                 if (gameObject.GetType() == typeof(Player))
                 {

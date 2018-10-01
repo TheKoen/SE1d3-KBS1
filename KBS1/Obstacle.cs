@@ -2,14 +2,19 @@
 
 namespace KBS1
 {
-    public abstract class Obstacle : GameObject
+    public class Obstacle : GameObject
     {
         public ObstacleType ObstacleType { get; }
 
-        protected Obstacle(ObstacleType type, Canvas canvas, Vector location) : 
+        public Obstacle(ObstacleType type, Canvas canvas, Vector location) : 
             base(type.CollisionRadius, type.Sprite, canvas, location)
         {
             ObstacleType = type;
+        }
+
+        protected override Controller CreateController()
+        {
+            return ObstacleType.CreateController(this);
         }
     }
 }

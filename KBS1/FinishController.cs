@@ -8,7 +8,7 @@ namespace KBS1
 {
     public class FinishController : Controller
     {
-        private bool Finish { get;}
+        private bool Finish { get; }
 
         public FinishController(GameObject gameObject, bool finish) : base(gameObject) {
             this.Finish = finish;

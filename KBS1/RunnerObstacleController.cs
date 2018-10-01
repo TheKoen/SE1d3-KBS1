@@ -15,12 +15,12 @@ namespace KBS1
             var playerObject = FindPlayer();
             var player = playerObject.Location;
             // Move, eerst langste X of Y en die richting beweging
-            var xDistance = player.AxisDistance(Locatable.Location, true);
-            var yDistance = player.AxisDistance(Locatable.Location, false);
+            var xDistance = player.AxisDistance(Object.Location, true);
+            var yDistance = player.AxisDistance(Object.Location, false);
             
             if(xDistance > yDistance)
             {
-                if(player.X < Locatable.Location.X)
+                if(player.X < Object.Location.X)
                 {
                     Move(new Vector(-1, 0));
                 } else
@@ -30,7 +30,7 @@ namespace KBS1
             }
             else
             {
-                if (player.Y < Locatable.Location.Y)
+                if (player.Y < Object.Location.Y)
                 {
                     Move(new Vector(0, -1));
                 }

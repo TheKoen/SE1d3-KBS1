@@ -4,7 +4,7 @@ namespace KBS1
 {
     class PlayerController : Controller
     {
-        private const int SPEED = 1;
+        private const int SPEED = 10;
 
         public Player Player { get; }
 
@@ -14,7 +14,7 @@ namespace KBS1
         }
 
         //method for the player when pressed a key
-        public void KeyPress(KeyEventArgs args)
+        public void KeyPress(object sender, KeyEventArgs args)
         {
             var vector = new Vector();
 

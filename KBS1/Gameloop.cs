@@ -17,6 +17,11 @@ namespace KBS1
 
         public void Start()
         {
+            var level = this.Game.Loadedlevel;
+            foreach (var gameObject in level.Objects)
+            {
+                gameObject.Init();
+            }
             this.Timer.Start();
         }
 
@@ -31,6 +36,7 @@ namespace KBS1
             foreach (var gameObject in level.Objects)
             {
                 gameObject.Controller?.Update();
+                gameObject.Renderer?.Update();
             }
         }
     }

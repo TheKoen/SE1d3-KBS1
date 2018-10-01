@@ -8,6 +8,6 @@ namespace KBS1
 {
     public interface IControllerCreator
     {
-        Controller Create();
+        Controller Create(Obstacle obstacle);
     }
 }
