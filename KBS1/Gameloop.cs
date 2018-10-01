@@ -11,12 +11,17 @@ namespace KBS1
         public Gameloop(GameWindow game)
         {
             this.Game = game;
-            this.Timer = new DispatcherTimer();
+            this.Timer = new DispatcherTimer {Interval = new TimeSpan(0, 0, 0, 0, 10)};
             this.Timer.Tick += Update;
         }
 
         public void Start()
         {
+            var level = this.Game.Loadedlevel;
+            foreach (var gameObject in level.Objects)
+            {
+                gameObject.Init();
+            }
             this.Timer.Start();
         }
 
@@ -31,6 +36,7 @@ namespace KBS1
             foreach (var gameObject in level.Objects)
             {
                 gameObject.Controller?.Update();
+                gameObject.Renderer?.Update();
             }
         }
     }

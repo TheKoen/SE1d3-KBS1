@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<level name="Test Level">
+
+  <objects>
+    <start radius="24" location="0,0" />
+    <end radius="24" location="128,64" />
+    
+    <obstacle name="RunnerObstacle" radius="24" location="30,45" />
+  </objects>
+  
+</level>

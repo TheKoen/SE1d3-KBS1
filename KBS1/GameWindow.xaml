@@ -8,9 +8,9 @@
         Title="GameWindow" Height="600" Width="800">
     <Grid>
         <Canvas x:Name="DrawingPanel" HorizontalAlignment="Stretch"  Margin="0,0,0,0" VerticalAlignment="Stretch"  Background="LightGray">
-        <Canvas.LayoutTransform>
-            <ScaleTransform ScaleY="-1" />
-        </Canvas.LayoutTransform>
+            <Canvas.LayoutTransform>
+                <ScaleTransform ScaleY="-1" />
+            </Canvas.LayoutTransform>
         </Canvas>
     </Grid>
 </Window>

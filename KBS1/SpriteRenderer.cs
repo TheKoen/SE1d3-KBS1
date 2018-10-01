@@ -17,7 +17,7 @@ namespace KBS1
 
         public void Update()
         {
-            Canvas.SetTop(this.Sprite, this.Locatable.Location.Y);
+            Canvas.SetBottom(this.Sprite, this.Locatable.Location.Y);
             Canvas.SetLeft(this.Sprite, this.Locatable.Location.X);
         }
     }
