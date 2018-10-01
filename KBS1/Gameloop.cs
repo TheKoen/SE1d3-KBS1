@@ -3,7 +3,7 @@ using System.Windows.Threading;
 
 namespace KBS1
 {
-    class Gameloop
+    public class Gameloop
     {
         private GameWindow Game { get; }
         private DispatcherTimer Timer { get; }

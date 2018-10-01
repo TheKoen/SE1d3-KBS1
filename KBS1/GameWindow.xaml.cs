@@ -1,39 +1,36 @@
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Shapes;
+using System.Xml;
 
 namespace KBS1 {
     public partial class GameWindow : Window {
         public GameWindow()
         {
+            instance = this;
             InitializeComponent();
-            Ellipse cirkel = new Ellipse();
-            cirkel.Fill = Brushes.ForestGreen;
-            cirkel.Width = 150;
-            cirkel.Height = 150;
-            Canvas.SetLeft(cirkel, 50);
-            Canvas.SetTop(cirkel, 70);
-            DrawingPanel.Children.Add(cirkel);
+            
+            Loop = new Gameloop(this);
+            XmlDocument doc = new XmlDocument();
+            doc.Load("Level.xml");
+            Loadedlevel = new Level(doc);
+            Loop.Start();
         }
 
         
         /// <summary>
         /// Properties
         /// </summary>
-        public Canvas DrawPanel { get; set; }
         public Level Loadedlevel { get; set; }
-        //public SoundManager SManager { get; set; }
-        //public GameLoop Loop { get; set; }
+        public Gameloop Loop { get; set; }
+        private static GameWindow instance;
 
         /// <summary>
         /// Methods
         /// </summary>
-        public GameWindow Current()
+        public static GameWindow Current()
         {
-            return null;
+            return instance;
         }
                 
-    }
     }
 }
