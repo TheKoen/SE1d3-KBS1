@@ -42,7 +42,7 @@ namespace KBS1
                 if (childXml.LocalName == "obstacle") CreateObstacle(childXml);
             }
 
-            Objects.Add(new Player(20, LoadImage("player.png"), GameWindow.Current().DrawingPanel, new Vector(10, 10)));
+            Objects.Add(new Player(11, LoadImage("player.png"), GameWindow.Current().DrawingPanel, new Vector(10, 10)));
         }
 
         private void CreateStartPoint(XmlNode node)
