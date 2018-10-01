@@ -13,7 +13,7 @@ namespace KBS1
 
         public Controller(ILocatable locatable)
         {
-
+            Locatable = locatable;
         }
 
         /// <summary>

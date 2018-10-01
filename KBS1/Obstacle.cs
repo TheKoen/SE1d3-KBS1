@@ -14,9 +14,6 @@ namespace KBS1
         {
             ObstacleType = type;
         }
-        
-
-
-
+       
     }
 }
