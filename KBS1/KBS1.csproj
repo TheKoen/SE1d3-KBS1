@@ -54,10 +54,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Creeper.cs" />
+    <Compile Include="FinishController.cs" />
     <Compile Include="GameWindow.xaml.cs">
       <DependentUpon>GameWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RunnerObstacleController.cs" />
     <Compile Include="SpriteRenderer.cs" />
     <Compile Include="Vector.cs" />
   </ItemGroup>

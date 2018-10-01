@@ -4,6 +4,8 @@ namespace KBS1
 {
     class PlayerController : Controller
     {
+        private const int SPEED = 1;
+
         public Player Player { get; }
 
         public PlayerController(Player player) : base(player)
@@ -19,19 +21,19 @@ namespace KBS1
             switch (args.Key)
             {
                 case Key.W:
-                    vector.Y -= 1;
+                    vector.Y -= SPEED;
                     break;
                 case Key.D:
-                    vector.X += 1;
+                    vector.X += SPEED;
                     break;
                 case Key.S:
-                    vector.Y += 1;
+                    vector.Y += SPEED;
                     break;
                 case Key.A:
-                    vector.X -= 1;
+                    vector.X -= SPEED;
                     break;
             }
-
+            
             this.Move(vector);
         }
 
