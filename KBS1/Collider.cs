@@ -18,10 +18,28 @@
         /// <returns>true if the Colliders collide</returns>
         public virtual bool Collides(Collider collider)
         {
-            var current = Locatable.Location;
-            var other = collider.Locatable.Location;
+            return Collides(collider.Locatable.Location, collider.Radius);
+        }
+        
 
-            return current.Distance(other) < Radius + collider.Radius;
+        public bool Collides(Vector vector, int radius)
+        {
+            var current = Locatable.Location;
+
+            return current.Distance(vector) < Radius + radius;
+        }
+
+        public bool CollidesAny(Vector vector)
+        {
+            var level = GameWindow.Current().Loadedlevel;
+            foreach(var GameObject in level.Objects)
+            {
+                if(GameObject.Collider?.Collides(vector, Radius) == true)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

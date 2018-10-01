@@ -2,7 +2,7 @@
 
 namespace KBS1
 {
-    abstract class Obstacle : GameObject
+    public abstract class Obstacle : GameObject
     {
         public ObstacleType ObstacleType { get; }
 

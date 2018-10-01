@@ -10,9 +10,7 @@ namespace KBS1 {
             InitializeComponent();
             
             Loop = new Gameloop(this);
-            XmlDocument doc = new XmlDocument();
-            doc.Load("Level.xml");
-            Loadedlevel = new Level(doc);
+            LoadLevel();
             Loop.Start();
         }
 
@@ -31,6 +29,20 @@ namespace KBS1 {
         {
             return instance;
         }
-                
+        
+        public void LoadLevel()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load("Level.xml");
+            Loadedlevel = new Level(doc);
+        }
+
+        public void Reset()
+        {
+            Loop.Stop();
+            DrawingPanel.Children.Clear();
+            LoadLevel();
+            Loop.Start();
+        }
     }
 }

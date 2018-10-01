@@ -3,7 +3,7 @@ using System.Windows.Controls;
 
 namespace KBS1
 {
-    class ObstacleType
+    public class ObstacleType
     {
         public static List<ObstacleType> Types = new List<ObstacleType>();
 

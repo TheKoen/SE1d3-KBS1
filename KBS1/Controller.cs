@@ -1,4 +1,6 @@
-﻿namespace KBS1
+﻿using System;
+
+namespace KBS1
 {
     public abstract class Controller
     {
@@ -17,9 +19,26 @@
         /// <param name="vector">Direction to move in</param>
         public void Move(Vector vector)
         {
-            Locatable.Location.Add(vector);
+            var newLocation = this.Locatable.Location.CopyAdd(vector);
+            if (!Object.Collider.CollidesAny(newLocation))
+            {
+                Locatable.Location.Add(vector);
+            }
         }
 
         public abstract void Update();
+
+        protected GameObject FindPlayer()
+        {
+            var level = GameWindow.Current().Loadedlevel;
+            foreach (GameObject gameObject in level.Objects)
+            {
+                if (gameObject.GetType() == typeof(Player))
+                {
+                    return gameObject;
+                }
+            }
+            throw new NullReferenceException("Level does not contain a player");
+        }
     }
 }

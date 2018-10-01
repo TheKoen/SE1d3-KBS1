@@ -1,6 +1,8 @@
-﻿namespace KBS1
+﻿using System;
+
+namespace KBS1
 {
-    abstract class ObstacleController : Controller
+    public abstract class ObstacleController : Controller
     {
         protected  Obstacle Obstacle { get; }
 
@@ -9,5 +11,6 @@
         {
             this.Obstacle = obstacle;
         }
+        
     }
 }
