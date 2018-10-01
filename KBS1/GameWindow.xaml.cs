@@ -4,6 +4,7 @@ using System.Xml;
 
 namespace KBS1 {
     public partial class GameWindow : Window {
+
         public GameWindow()
         {
             instance = this;
@@ -14,22 +15,14 @@ namespace KBS1 {
             Loop.Start();
         }
 
-        
-        /// <summary>
-        /// Properties
-        /// </summary>
+        // Properties
         public Level Loadedlevel { get; set; }
         public Gameloop Loop { get; set; }
         private static GameWindow instance;
 
-        /// <summary>
-        /// Methods
-        /// </summary>
-        public static GameWindow Current()
-        {
-            return instance;
-        }
-        
+        // Methods
+        public static GameWindow Current() => instance;
+
         public void LoadLevel()
         {
             XmlDocument doc = new XmlDocument();
@@ -44,5 +37,6 @@ namespace KBS1 {
             LoadLevel();
             Loop.Start();
         }
+
     }
 }
