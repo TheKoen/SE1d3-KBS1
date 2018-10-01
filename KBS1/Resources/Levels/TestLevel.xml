@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<level name="Test Level">
+
+  <objects>
+    <start location="0,0" />
+    <end location="128,64" />
+    
+    <obstacle name="Circle" radius="24" location="30,45" />
+    <obstacle name="Rectangle" radius="18" location="65,10" />
+  </objects>
+  
+</level>
