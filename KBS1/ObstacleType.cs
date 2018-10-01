@@ -24,10 +24,7 @@ namespace KBS1
         /// Creates a new ObstacleController for this ObstacleType
         /// </summary>
         /// <returns>ObstacleController for this ObstacleType</returns>
-        public Controller CreateController(Obstacle obstacle)
-        {
-            return Creator.Create(obstacle);
-        }
+        public Controller CreateController(Obstacle obstacle) => Creator.Create(obstacle);
 
         public static ObstacleType Find(string name)
         {
@@ -35,24 +32,20 @@ namespace KBS1
             {
                 var obstacleName = obstacleType.Creator.GetType().Name;
                 if (obstacleName == name)
-                {
                     return obstacleType;
-                }
             }
             throw new NullReferenceException($"ObstacleType {name} could not be found");
         }
 
         public static void Init()
         {
-            Types.Add(new ObstacleType(new RunnerObstacle(), 24, Level.LoadImage("runner.png")));
+            Types.Add(new ObstacleType(new RunnerObstacle(), 24,
+                ResourceManager.Instance.LoadImage("runner.png")));
         }
 
         private class RunnerObstacle : IControllerCreator
         {
-            public Controller Create(Obstacle obstacle)
-            {
-                return new RunnerObstacleController(obstacle, obstacle);
-            }
+            public Controller Create(Obstacle obstacle) => new RunnerObstacleController(obstacle, obstacle);
         }
     }
 }

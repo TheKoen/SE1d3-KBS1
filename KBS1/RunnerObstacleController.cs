@@ -15,17 +15,14 @@ namespace KBS1
 
         public override void Update()
         {
-            if (wait > 0)
-            {
-                wait--;
-                return;
-            }
+            if (wait-- > 0) return;
 
             wait = 1;
 
-            // Info speler opvragen
+            // Get information from Player
             var playerObject = FindPlayer();
             var player = playerObject.Location;
+            // TODO: Translate this please
             // Move, eerst langste X of Y en die richting beweging
             var xDistance = player.AxisDistance(Object.Location, true);
             var yDistance = player.AxisDistance(Object.Location, false);
@@ -33,28 +30,21 @@ namespace KBS1
             if(xDistance > yDistance)
             {
                 if(player.X < Object.Location.X)
-                {
                     Move(new Vector(-SPEED, 0));
-                } else
-                {
+                else
                     Move(new Vector(SPEED, 0));
-                }
             }
             else
             {
                 if (player.Y < Object.Location.Y)
-                {
                     Move(new Vector(0, -SPEED));
-                }
                 else
-                {
                     Move(new Vector(0, SPEED));
-                }
             }
-            // Colliden met speler
+            // Collide with Player
             /*if (Object.Collider.Collides(playerObject.Collider))
             {
-                GameWindow.Current().Reset();
+                GameWindow.Instance.Reset();
             }*/
             // Constrain zone
         }

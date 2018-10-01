@@ -9,16 +9,16 @@ namespace KBS1
 
         public SpriteRenderer(Image sprite, ILocatable locatable, Canvas canvas)
         {
-            this.Sprite = sprite;
-            this.Locatable = locatable;
+            Sprite = sprite;
+            Locatable = locatable;
 
-            canvas.Children.Add(this.Sprite);
+            canvas.Children.Add(Sprite);
         }
 
         public void Update()
         {
-            Canvas.SetBottom(this.Sprite, this.Locatable.Location.Y);
-            Canvas.SetLeft(this.Sprite, this.Locatable.Location.X);
+            Canvas.SetBottom(Sprite, Locatable.Location.Y);
+            Canvas.SetLeft(Sprite, Locatable.Location.X);
         }
     }
 }
