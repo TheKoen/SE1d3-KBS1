@@ -2,13 +2,15 @@
 {
     public class Collider
     {
-        private int Radius { get; }
-        private ILocatable Locatable { get; }
+        protected int Radius { get; }
+        public ILocatable Locatable { get; }
+        public bool Blocking { get; set; }
 
         public Collider(int radius, ILocatable locatable)
         {
             this.Radius = radius;
             this.Locatable = locatable;
+            this.Blocking = true;
         }
 
         /// <summary>
@@ -16,28 +18,39 @@
         /// </summary>
         /// <param name="collider">Collider to check for</param>
         /// <returns>true if the Colliders collide</returns>
-        public virtual bool Collides(Collider collider)
+        public bool Collides(Collider collider)
         {
             return Collides(collider.Locatable.Location, collider.Radius);
         }
         
 
-        public bool Collides(Vector vector, int radius)
+        public virtual bool Collides(Vector vector, int radius)
         {
             var current = Locatable.Location;
 
             return current.Distance(vector) < Radius + radius;
         }
 
-        public bool CollidesAny(Vector vector)
+        public bool CollidesAny(Vector vector, bool ignoreNonBlocking)
         {
             var level = GameWindow.Current().Loadedlevel;
+            if (level.LevelCollider.Collides(vector, Radius))
+            {
+                return true;
+            }
+
             foreach(var GameObject in level.Objects)
             {
-                if(GameObject.Collider?.Collides(vector, Radius) == true)
+                if (GameObject.Collider?.Collides(vector, Radius) != true || GameObject.Collider == this)
                 {
-                    return true;
+                    continue;
                 }
+                if (ignoreNonBlocking && !GameObject.Collider.Blocking) 
+                {
+                    continue;
+                }
+
+                return true;
             }
             return false;
         }

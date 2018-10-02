@@ -5,11 +5,10 @@
         public LevelCollider() : base(0, null)
         {
         }
-
-        //TODO: Implement level collision
-        public override bool Collides(Collider collider)
+        
+        public override bool Collides(Vector location, int radius)
         {
-            return false;
+            return location.X < radius || location.X > 784 - radius || location.Y < radius || location.Y > 564 - radius;
         }
     }
 }

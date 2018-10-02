@@ -9,6 +9,8 @@ namespace KBS1
     public class RunnerObstacleController : ObstacleController
     {
         private const int SPEED = 2;
+        private const int RANGE = 300;
+
         private int wait = 0;
 
         public RunnerObstacleController(ILocatable locatable, Obstacle obstacle) : base(locatable, obstacle) { }
@@ -26,37 +28,32 @@ namespace KBS1
             // Info speler opvragen
             var playerObject = FindPlayer();
             var player = playerObject.Location;
+
+            // Kijken of de speler in range is
+            if (player.Distance(Object.Location) > RANGE)
+            {
+                return;
+            }
+
             // Move, eerst langste X of Y en die richting beweging
             var xDistance = player.AxisDistance(Object.Location, true);
             var yDistance = player.AxisDistance(Object.Location, false);
-            
+
+            bool result;
             if(xDistance > yDistance)
             {
-                if(player.X < Object.Location.X)
-                {
-                    Move(new Vector(-SPEED, 0));
-                } else
-                {
-                    Move(new Vector(SPEED, 0));
-                }
+                result = Move(player.X < Object.Location.X ? new Vector(-SPEED, 0) : new Vector(SPEED, 0));
             }
             else
             {
-                if (player.Y < Object.Location.Y)
-                {
-                    Move(new Vector(0, -SPEED));
-                }
-                else
-                {
-                    Move(new Vector(0, SPEED));
-                }
+                result = Move(player.Y < Object.Location.Y ? new Vector(0, -SPEED) : new Vector(0, SPEED));
             }
-            // Colliden met speler
-            /*if (Object.Collider.Collides(playerObject.Collider))
+            
+            // Colliden met speler -> reset
+            if (result == false)
             {
                 GameWindow.Current().Reset();
-            }*/
-            // Constrain zone
+            }
         }
     }
 }
