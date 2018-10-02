@@ -15,13 +15,16 @@ namespace KBS1
         /// Move the GameObject in a direction;
         /// </summary>
         /// <param name="vector">Direction to move in</param>
-        public void Move(Vector vector)
+        public bool Move(Vector vector)
         {
             var newLocation = Object.Location.CopyAdd(vector);
-            //if (!Object.Collider.CollidesAny(newLocation))
-            //{
-            Object.Location = newLocation;
-            //}
+            if (!Object.Collider.CollidesAny(newLocation, true))
+            {
+                Object.Location = newLocation;
+                return true;
+            }
+
+            return false;
         }
 
         public abstract void Update();

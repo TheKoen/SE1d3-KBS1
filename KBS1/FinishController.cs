@@ -10,19 +10,23 @@ namespace KBS1
     {
         private bool Finish { get; }
 
-        public FinishController(GameObject gameObject, bool finish) : base(gameObject) {
+        public FinishController(GameObject gameObject, bool finish) : base(gameObject)
+        {
             this.Finish = finish;
+            this.Object.Collider.Blocking = false;
         }
 
         public override void Update()
         {
-            if (Finish)
+            if (!Finish)
             {
-                var player = FindPlayer();
-                if (player.Collider.Collides(this.Object.Collider))
-                {
-                    GameWindow.Current().Loop.Stop();
-                }
+                return;
+            }
+
+            var player = FindPlayer();
+            if (player.Collider.Collides(this.Object.Collider))
+            {
+                GameWindow.Current().Reset();
             }
         }
     }
