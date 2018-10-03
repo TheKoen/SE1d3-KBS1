@@ -99,7 +99,7 @@ namespace KBS1
                 }  
             }
             // result if not moving/collided
-            if(result == false)
+            if (Object.Location.Distance(playerObject.Location) < (explosionRadius/2))
             {
                 wait = delayCreeper;
             }
