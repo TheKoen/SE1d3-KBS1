@@ -56,17 +56,15 @@ namespace KBS1
                     GameWindow.Current().Reset();
                 }
                 // reset timer if player is out of range and set creeper back to green.
-                else if(Object.Location.Distance(player) > explosionRadius)
+                else if(wait == 0 && Object.Location.Distance(player) > explosionRadius)
                 {
-                    var image = Level.LoadImage("creeper.png");
-                    Object.Renderer.ChangeSprite((BitmapImage)image.Source);
-                    red = true;
-                    wait = 0;
+                    GameWindow.Current().Loadedlevel.Objects.Remove(Object);
+                    Object.Renderer.Destroy();
                 }
                 return;
             } 
             
-
+            // x distance y distance from player to object
             var xDistance = player.AxisDistance(Object.Location, true);
             var yDistance = player.AxisDistance(Object.Location, false);
 
