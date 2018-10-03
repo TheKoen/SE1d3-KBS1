@@ -27,9 +27,15 @@ namespace KBS1
             if (wait > 0)
             {
                 wait--;
+                //explode if player is in range and timer is out of time
                 if (wait == 0 && Object.Location.Distance(player) < explosionRadius)
                 {
                     GameWindow.Current().Reset();
+                }
+                // reset timer if player is out of range
+                else if(Object.Location.Distance(player) > explosionRadius)
+                {
+                    wait = 0;
                 }
                 return;
             } 
