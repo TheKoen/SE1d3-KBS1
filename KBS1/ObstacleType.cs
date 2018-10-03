@@ -42,10 +42,13 @@ namespace KBS1
             }
             throw new NullReferenceException($"ObstacleType {name} could not be found");
         }
-
+        //create obstacle
         public static void Init()
         {
+            // runner
             Types.Add(new ObstacleType(new RunnerObstacle(), 24, Level.LoadImage("runner.png")));
+            // creeper
+            Types.Add(new ObstacleType(new CreeperObstacle(), 24, Level.LoadImage("creeper.png")));
             Types.Add(new ObstacleType(new ArcherObstacle(), 24, Level.LoadImage("archer.png")));
         }
 
@@ -62,6 +65,13 @@ namespace KBS1
             public Controller Create(Obstacle obstacle)
             {
                 return new ArcherObstacleController(obstacle, obstacle);
+            }
+        }
+        private class CreeperObstacle : IControllerCreator
+        {
+            public Controller Create(Obstacle obstacle)
+            {
+                return new CreeperObstacleController(obstacle, obstacle);
             }
         }
     }

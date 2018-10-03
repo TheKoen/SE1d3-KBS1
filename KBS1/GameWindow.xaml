@@ -7,10 +7,7 @@
         mc:Ignorable="d"
         Title="GameWindow" Height="600" Width="800">
     <Grid>
-        <Canvas x:Name="DrawingPanel" HorizontalAlignment="Stretch"  Margin="0,0,0,0" VerticalAlignment="Stretch"  Background="LightGray">
-            <Canvas.LayoutTransform>
-                <ScaleTransform ScaleY="-1" />
-            </Canvas.LayoutTransform>
-        </Canvas>
+        <Canvas x:Name="DrawingPanel"  Margin="0,0,0,0"  Background="LightGray"/>
+            
     </Grid>
 </Window>
