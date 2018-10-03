@@ -114,6 +114,11 @@ namespace KBS1
 
         private static Vector ParseLocation(string locationString)
         {
+            if (locationString.Equals("random"))
+            {
+                var rand = new Random();
+                return new Vector(rand.Next(1, 700), rand.Next(1, 500));
+            }
             var split = locationString.Split(',');
             return new Vector(int.Parse(split[0]), int.Parse(split[1]));
         }
