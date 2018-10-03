@@ -82,9 +82,7 @@ namespace KBS1 {
 
         public void LoadLevel()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.Load("Levels/TestLevel.xml");
-            Loadedlevel = new Level(doc);
+            Loadedlevel = new LevelPicker().PickLevel();
         }
 
         public void LoadOptions()
@@ -101,8 +99,7 @@ namespace KBS1 {
         {
             Loop.Stop();
             DrawingPanel.Children.Clear();
-            LoadLevel();
-            Loop.Start();
+            LoadHome();
         }
 
 
