@@ -7,7 +7,7 @@ namespace KBS1.Archer
     {
         private const int SPEED = 1;
         private const int RANGE = 300;
-        private static ObstacleType ARROW = new ObstacleType(new ArrowObstacle(), 5, Level.LoadImage("arrow.png"));
+        private static readonly ObstacleType ARROW = new ObstacleType(new ArrowObstacle(), 5, Level.LoadImage("arrow.png"));
 
         private int wait = 0;
     

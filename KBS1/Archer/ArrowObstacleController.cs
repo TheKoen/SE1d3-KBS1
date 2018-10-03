@@ -8,8 +8,6 @@ namespace KBS1.Archer
 {
     public class ArrowObstacleController : ObstacleController
     {
-        private const int SPEED = 2;
-
         private readonly Vector direction;
 
         private int lifetime = 500;

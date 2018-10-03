@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace KBS1
 {
@@ -31,6 +32,11 @@ namespace KBS1
         public void Destroy()
         {
             this.Canvas.Children.Remove(this.Sprite);
+        }
+
+        public void ChangeSprite(BitmapImage sprite)
+        {
+            this.Sprite.Source = sprite;
         }
     }
 }
