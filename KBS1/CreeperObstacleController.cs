@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
 namespace KBS1
@@ -16,6 +17,8 @@ namespace KBS1
         private int delayCreeper = 100;
         private int wait = 0;
         private Boolean red = false;
+        private Image imageRed = Level.LoadImage("creeper_red.png");
+        private Image imageGreen = Level.LoadImage("creeper.png");
 
         public CreeperObstacleController(ILocatable locatable, Obstacle obstacle) : base(locatable, obstacle) { }
 
@@ -37,14 +40,13 @@ namespace KBS1
                     // color chancing creeper if in explosion range
                     if (red == true)
                     {
-                        var image = Level.LoadImage("creeper_red.png");
-                        Object.Renderer.ChangeSprite((BitmapImage)image.Source);
+                        
+                        Object.Renderer.ChangeSprite((BitmapImage)imageRed.Source);
                         red = false;
                     }
                     else if (red == false)
                     {
-                        var image = Level.LoadImage("creeper.png");
-                        Object.Renderer.ChangeSprite((BitmapImage)image.Source);
+                        Object.Renderer.ChangeSprite((BitmapImage)imageGreen.Source);
                         red = true;
                     }
 
