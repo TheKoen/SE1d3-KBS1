@@ -39,15 +39,7 @@ namespace KBS1
             var xDistance = player.AxisDistance(Object.Location, true);
             var yDistance = player.AxisDistance(Object.Location, false);
 
-            bool result;
-            if(xDistance > yDistance)
-            {
-                result = Move(player.X < Object.Location.X ? new Vector(-SPEED, 0) : new Vector(SPEED, 0));
-            }
-            else
-            {
-                result = Move(player.Y < Object.Location.Y ? new Vector(0, -SPEED) : new Vector(0, SPEED));
-            }
+            var result  = xDistance > yDistance ? Move(player.X < Object.Location.X ? new Vector(-SPEED, 0) : new Vector(SPEED, 0)) : Move(player.Y < Object.Location.Y ? new Vector(0, -SPEED) : new Vector(0, SPEED));
             
             // Colliden met speler -> reset
             if (result == false)

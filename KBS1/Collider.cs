@@ -20,9 +20,13 @@
         /// <returns>true if the Colliders collide</returns>
         public bool Collides(Collider collider)
         {
-            return Collides(collider.Locatable.Location, collider.Radius);
+            return Collides(collider, true);
         }
-        
+
+        public bool Collides(Collider collider, bool increased)
+        {
+            return Collides(collider.Locatable.Location, collider.Radius + (increased ? 1 : 0));
+        }
 
         public virtual bool Collides(Vector vector, int radius)
         {
@@ -34,6 +38,11 @@
         public bool CollidesAny(Vector vector, bool ignoreNonBlocking)
         {
             var level = GameWindow.Current().Loadedlevel;
+            if (ignoreNonBlocking && !Blocking)
+            {
+                return false;
+            }
+
             if (level.LevelCollider.Collides(vector, Radius))
             {
                 return true;
