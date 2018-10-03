@@ -5,7 +5,7 @@ namespace KBS1
 {
     class PlayerController : Controller
     {
-        private const int SPEED = 2;
+        private int SPEED = 2;
 
         public Player Player { get; }
 
@@ -46,7 +46,7 @@ namespace KBS1
 
             if (Keyboard.IsKeyDown(Key.W))
             {
-                vector.Y -= speed;
+                vector.Y += speed;
             }
             if (Keyboard.IsKeyDown(Key.D))
             {
@@ -54,11 +54,24 @@ namespace KBS1
             }
             if (Keyboard.IsKeyDown(Key.S))
             {
-                vector.Y += speed;
+                vector.Y -= speed;
             }
             if (Keyboard.IsKeyDown(Key.A))
             {
                 vector.X -= speed;
+            }
+            if (Keyboard.IsKeyDown(Key.LeftShift))
+            {
+                SPEED = 10;
+            }
+            else
+            {
+                SPEED = 2;
+            }
+
+            if (Keyboard.IsKeyDown(Key.Escape))
+            {
+                
             }
 
             this.Move(vector);
