@@ -42,6 +42,11 @@ namespace KBS1
                 speed = 10;
             }
 
+            if (Keyboard.IsKeyDown(Key.Escape))
+            {
+                GameWindow.Current().PauseGame();
+            }
+
             this.Move(direction.Normalize(speed));
         }
     }
