@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Windows.Documents;
 using System.Windows.Threading;
 
 namespace KBS1
@@ -33,7 +35,7 @@ namespace KBS1
         private void Update(object sender, EventArgs args)
         {
             var level = this.Game.Loadedlevel;
-            foreach (var gameObject in level.Objects)
+            foreach (var gameObject in new List<GameObject>(level.Objects))
             {
                 gameObject.Controller?.Update();
                 gameObject.Renderer?.Update();

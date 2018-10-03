@@ -13,9 +13,6 @@ namespace KBS1 {
             Loop = new Gameloop(this);
             LoadLevel();
             Loop.Start();
-
-            var controller = (PlayerController) Controller.FindPlayer().Controller;
-            KeyDown += controller.KeyPress;
         }
 
         // Properties

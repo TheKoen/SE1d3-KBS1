@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KBS1.Archer;
+using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
 
@@ -45,6 +46,7 @@ namespace KBS1
         public static void Init()
         {
             Types.Add(new ObstacleType(new RunnerObstacle(), 24, Level.LoadImage("runner.png")));
+            Types.Add(new ObstacleType(new ArcherObstacle(), 24, Level.LoadImage("archer.png")));
         }
 
         private class RunnerObstacle : IControllerCreator
@@ -52,6 +54,14 @@ namespace KBS1
             public Controller Create(Obstacle obstacle)
             {
                 return new RunnerObstacleController(obstacle, obstacle);
+            }
+        }
+
+        private class ArcherObstacle : IControllerCreator
+        {
+            public Controller Create(Obstacle obstacle)
+            {
+                return new ArcherObstacleController(obstacle, obstacle);
             }
         }
     }

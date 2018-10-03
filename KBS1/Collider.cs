@@ -34,6 +34,10 @@
         public bool CollidesAny(Vector vector, bool ignoreNonBlocking)
         {
             var level = GameWindow.Current().Loadedlevel;
+            if (ignoreNonBlocking && !Blocking)
+            {
+                return false;
+            }
             if (level.LevelCollider.Collides(vector, Radius))
             {
                 return true;
