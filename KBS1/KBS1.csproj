@@ -72,8 +72,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ScoreTracker.cs" />
     <Compile Include="SpriteRenderer.cs" />
+    <Compile Include="TrapObstacleController.cs" />
+    <Compile Include="TreeObstacleController.cs" />
     <Compile Include="Vector.cs" />
+    <Compile Include="WallObstacleController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collider.cs" />
@@ -122,6 +126,9 @@
     <Resource Include="Resources\end.png" />
     <Resource Include="Resources\runner.png" />
     <Resource Include="Resources\start.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\trap.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

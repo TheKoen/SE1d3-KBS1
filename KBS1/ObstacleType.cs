@@ -50,7 +50,12 @@ namespace KBS1
             // creeper
             Types.Add(new ObstacleType(new CreeperObstacle(), 24, Level.LoadImage("creeper.png")));
             Types.Add(new ObstacleType(new ArcherObstacle(), 24, Level.LoadImage("archer.png")));
+            Types.Add(new ObstacleType(new TrapObstacle(), 14, Level.LoadImage("trap.png")));
+            Types.Add(new ObstacleType(new WallObstacle(), 14, Level.LoadImage("wall.png")));
+            Types.Add(new ObstacleType(new TreeObstacle(), 14, Level.LoadImage("tree.png")));
+
         }
+
 
         private class RunnerObstacle : IControllerCreator
         {
@@ -59,6 +64,28 @@ namespace KBS1
                 return new RunnerObstacleController(obstacle, obstacle);
             }
         }
+        private class TrapObstacle : IControllerCreator
+        {
+            public Controller Create(Obstacle obstacle)
+            {
+                return new TrapObstacleController(obstacle, obstacle);
+            }
+        }
+        private class WallObstacle : IControllerCreator
+        {
+            public Controller Create(Obstacle obstacle)
+            {
+                return new WallObstacleController(obstacle, obstacle);
+            }
+        }
+        private class TreeObstacle : IControllerCreator
+        {
+            public Controller Create(Obstacle obstacle)
+            {
+                return new TreeObstacleController(obstacle, obstacle);
+            }
+        }
+
 
         private class ArcherObstacle : IControllerCreator
         {
