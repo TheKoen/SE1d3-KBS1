@@ -35,26 +35,14 @@ namespace KBS1
                 direction.X = -1;
             }
 
-            var speed = count > 1 ? SPEED / 2 : SPEED;
+            var speed = SPEED;
 
-            if (Keyboard.IsKeyDown(Key.W))
+            if (Keyboard.IsKeyDown(Key.LeftShift))
             {
-                vector.Y -= speed;
-            }
-            if (Keyboard.IsKeyDown(Key.D))
-            {
-                vector.X += speed;
-            }
-            if (Keyboard.IsKeyDown(Key.S))
-            {
-                vector.Y += speed;
-            }
-            if (Keyboard.IsKeyDown(Key.A))
-            {
-                vector.X -= speed;
+                speed = 10;
             }
 
-            this.Move(vector);
+            this.Move(direction.Normalize(speed));
         }
     }
 }

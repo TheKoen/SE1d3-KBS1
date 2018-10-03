@@ -15,13 +15,6 @@ namespace KBS1 {
             };
             instance = this;
             InitializeComponent();
-            
-            Loop = new Gameloop(this);
-            LoadLevel();
-            Loop.Start();
-
-            var controller = (PlayerController) Controller.FindPlayer().Controller;
-            KeyDown += controller.KeyPress;
         }
 
         // Properties
@@ -85,9 +78,6 @@ namespace KBS1 {
             Loop = new Gameloop(this);
             LoadLevel();
             Loop.Start();
-
-            var controller = (PlayerController)Controller.FindPlayer().Controller;
-            KeyDown += controller.KeyPress;
         }
 
         public void LoadLevel()

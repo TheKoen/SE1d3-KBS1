@@ -25,7 +25,7 @@ namespace KBS1
 
         public void Update()
         {
-            Canvas.SetBottom(this.Sprite, this.Locatable.Location.Y - Size.Y);
+            Canvas.SetTop(this.Sprite, this.Locatable.Location.Y - Size.Y);
             Canvas.SetLeft(this.Sprite, this.Locatable.Location.X -Size.X);
         }
 
