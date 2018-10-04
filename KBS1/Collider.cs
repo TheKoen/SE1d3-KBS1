@@ -8,36 +8,33 @@
 
         public Collider(int radius, ILocatable locatable)
         {
-            this.Radius = radius;
-            this.Locatable = locatable;
-            this.Blocking = true;
+            Blocking = true;
+            Radius = radius;
+            Locatable = locatable;
         }
 
         /// <summary>
         /// Checks whether this Collider collides with another Collider
         /// </summary>
         /// <param name="collider">Collider to check for</param>
-        /// <returns>true if the Colliders collide</returns>
-        public bool Collides(Collider collider)
-        {
-            return Collides(collider, true);
-        }
-
-        public bool Collides(Collider collider, bool increased)
-        {
-            return Collides(collider.Locatable.Location, collider.Radius + (increased ? 1 : 0));
-        }
-
+        /// <returns>Collision status</returns>
+        public bool Collides(Collider collider) => Collides(collider.Locatable.Location, collider.Radius);
+        
+        /// <summary>
+        /// Checks whether this Collider collides with a radius
+        /// </summary>
+        /// <param name="vector">Vector representing an object</param>
+        /// <param name="radius">Radius of the object</param>
+        /// <returns>Collision status</returns>
         public virtual bool Collides(Vector vector, int radius)
         {
             var current = Locatable.Location;
-
             return current.Distance(vector) < Radius + radius;
         }
 
         public bool CollidesAny(Vector vector, bool ignoreNonBlocking)
         {
-            var level = GameWindow.Current().Loadedlevel;
+            var level = GameWindow.Instance.Loadedlevel;
             if (ignoreNonBlocking && !Blocking)
             {
                 return false;

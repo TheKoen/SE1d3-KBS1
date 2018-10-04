@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 
 namespace KBS1
 {
@@ -23,7 +17,7 @@ namespace KBS1
         {
             Ticks++;
             SecondsRunning = GetSeconds();
-            GameWindow.Current().Loadedlevel.UpdateScore(SecondsRunning);
+            GameWindow.Instance.Loadedlevel.UpdateScore(SecondsRunning);
         }
 
         private double GetSeconds()

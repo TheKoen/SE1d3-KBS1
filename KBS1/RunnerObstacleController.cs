@@ -1,31 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KBS1
+﻿namespace KBS1
 {
     public class RunnerObstacleController : ObstacleController
     {
         private const int SPEED = 2;
         private const int RANGE = 300;
 
-        private int wait = 0;
+        private int wait;
 
         public RunnerObstacleController(ILocatable locatable, Obstacle obstacle) : base(locatable, obstacle) { }
 
         public override void Update()
         {
-            if (wait > 0)
-            {
-                wait--;
-                return;
-            }
+            if (wait-- > 0) return;
 
             wait = 1;
 
-            // Info speler opvragen
+            // Get information from Player
             var playerObject = FindPlayer();
             var player = playerObject.Location;
 
@@ -42,7 +32,7 @@ namespace KBS1
             var result  = xDistance > yDistance ? Move(player.X < Object.Location.X ? new Vector(-SPEED, 0) : new Vector(SPEED, 0)) : Move(player.Y < Object.Location.Y ? new Vector(0, -SPEED) : new Vector(0, SPEED));
             
             // Colliden met speler -> reset
-            if (result == false)
+            if (Object.Collider.Collides(playerObject.Collider))
             {
                 GameWindow.Current().Lose();
             }

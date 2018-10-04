@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KBS1
+﻿namespace KBS1
 {
     public class FinishController : Controller
     {
@@ -12,19 +6,17 @@ namespace KBS1
 
         public FinishController(GameObject gameObject, bool finish) : base(gameObject)
         {
-            this.Finish = finish;
-            this.Object.Collider.Blocking = false;
+            Finish = finish;
+            Object.Collider.Blocking = false;
         }
 
         public override void Update()
         {
             if (!Finish)
-            {
                 return;
-            }
 
             var player = FindPlayer();
-            if (player.Collider.Collides(this.Object.Collider))
+            if (player.Collider.Collides(Object.Collider))
             {
                 //Shows a win text
                 GameWindow.Current().Win();

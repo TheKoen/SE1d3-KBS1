@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KBS1
+﻿namespace KBS1
 {
     public class TrapObstacleController : ObstacleController
     {
@@ -14,11 +8,8 @@ namespace KBS1
 
         public override void Update()
         {
-            //Info speler opvragen
             var playerObject = FindPlayer();
-            var player = playerObject.Location;
-
-            //Colliden met speler
+            
             if (Object.Collider.Collides(playerObject.Collider))
             {
                 GameWindow.Current().Lose();
