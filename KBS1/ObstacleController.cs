@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace KBS1
+﻿namespace KBS1
 {
     public abstract class ObstacleController : Controller
     {
@@ -9,7 +7,7 @@ namespace KBS1
         protected ObstacleController(ILocatable locatable, Obstacle obstacle) :
             base(obstacle)
         {
-            this.Obstacle = obstacle;
+            Obstacle = obstacle;
         }
         
     }

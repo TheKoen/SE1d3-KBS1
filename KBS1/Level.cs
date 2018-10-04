@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Xml;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
+using System.Xml;
 
 namespace KBS1
 {
@@ -15,26 +13,31 @@ namespace KBS1
         public LevelCollider LevelCollider { get; set; }
         public SpriteRenderer Renderer { get; set; }
         public List<GameObject> Objects { get; set; }
+        public ScoreTracker score { get; set; }
+        public Label scorelabel;
 
         /// <summary>
-        /// xmlDocument loading the gamelevel field difficulty, objects, renderer and name. 
+        /// Uses an XmlDocument to load a level and it's properties
         /// </summary>
-        /// <param name="xmlDocument">xml document for loading gamelevel</param>
+        /// <param name="xmlDocument">XML document containing a level</param>
         public Level(XmlDocument xmlDocument)
         {
             Objects = new List<GameObject>();
             ObstacleType.Init();
-            this.LevelCollider = new LevelCollider();
+            LevelCollider = new LevelCollider();
+            score = new ScoreTracker(this);
 
             var root = xmlDocument.DocumentElement;
 
-            if (!root.HasAttribute("name")) throw new XmlException("Level missing name attribute");
+            if (!root.HasAttribute("name"))
+                throw new XmlException("Level missing name attribute");
             Name = root.GetAttribute("name");
             
             var objectsXml = xmlDocument.SelectSingleNode("//level/objects");
-            if (objectsXml == null) throw new XmlException("Level missing objects node");
+            if (objectsXml == null)
+                throw new XmlException("Level missing objects node");
             // Parsing objects
-            foreach (var child in objectsXml.ChildNodes)
+            foreach (object child in objectsXml.ChildNodes)
             {
                 if (!(child is XmlNode)) continue;
                 XmlNode childXml = (XmlNode)child;
@@ -43,70 +46,84 @@ namespace KBS1
                 if (childXml.LocalName == "obstacle") CreateObstacle(childXml);
             }
 
-            Objects.Add(new Player(11, LoadImage("player.png"), GameWindow.Current().DrawingPanel, new Vector(14, 14)));
+            //label for showing score
+            scorelabel = new Label();
+            Canvas.SetBottom(scorelabel, 10);
+            Canvas.SetLeft(scorelabel, 665);
+            GameWindow.Instance.DrawingPanel.Children.Add(scorelabel);
+
+            Objects.Add(new Player(11, ResourceManager.Instance.LoadImage("player.png"),
+                GameWindow.Instance.DrawingPanel, new Vector(14, 14)));
         }
 
+        /// <summary>
+        /// Creates a start point in the level
+        /// </summary>
+        /// <param name="node">XML node representing the start point</param>
         private void CreateStartPoint(XmlNode node)
         {
             if (node.Attributes == null)
-            {
                 throw new XmlException("StartPoint node doesn't have any attributes");
-            }
 
             var radius = int.Parse(node.Attributes["radius"].InnerText);
-            var image = LoadImage("start.png");
+            var image = ResourceManager.Instance.LoadImage("start.png");
             var location = ParseLocation(node.Attributes["location"].InnerText);
 
-            Objects.Add(new FinishObject(radius, image, GameWindow.Current().DrawingPanel, location, false));
+            Objects.Add(new FinishObject(radius, image, GameWindow.Instance.DrawingPanel, location, false));
         }
 
+        /// <summary>
+        /// Creates an end point in the level
+        /// </summary>
+        /// <param name="node">XML node representing the end point</param>
         private void CreateEndPoint(XmlNode node)
         {
             if (node.Attributes == null)
-            {
                 throw new XmlException("StartPoint node doesn't have any attributes");
-            }
 
             var radius = int.Parse(node.Attributes["radius"].InnerText);
-            var image = LoadImage("end.png");
+            var image = ResourceManager.Instance.LoadImage("end.png");
             var location = ParseLocation(node.Attributes["location"].InnerText);
 
-            Objects.Add(new FinishObject(radius, image, GameWindow.Current().DrawingPanel, location, true));
+            Objects.Add(new FinishObject(radius, image, GameWindow.Instance.DrawingPanel, location, true));
         }
 
+        /// <summary>
+        /// Creates an obstacle in the level
+        /// </summary>
+        /// <param name="node">XML node representing the obstacle</param>
         private void CreateObstacle(XmlNode node)
         {
             if (node.Attributes == null)
-            {
                 throw new XmlException("StartPoint node doesn't have any attributes");
-            }
 
             var type = ObstacleType.Find(node.Attributes["name"].InnerText);
             var location = ParseLocation(node.Attributes["location"].InnerText);
 
-            Objects.Add(new Obstacle(type, GameWindow.Current().DrawingPanel, location));
+            Objects.Add(new Obstacle(type, GameWindow.Instance.DrawingPanel, location));
         }
 
-        public static Image LoadImage(string path)
-        {
-            var bitmapImage = new BitmapImage();
-            bitmapImage.BeginInit();
-            bitmapImage.UriSource = new Uri(path, UriKind.Relative);
-            bitmapImage.EndInit();
-            var image = new Image
-            {
-                Width = bitmapImage.Width,
-                Height = bitmapImage.Height,
-                Name = path.Split('.')[0],
-                Source = bitmapImage
-            };
-            return image;
-        }
+        
 
+        /// <summary>
+        /// Parses location strings used in levels
+        /// </summary>
+        /// <param name="locationString">String containing a parsable location</param>
+        /// <returns>Vector created using the parsable location</returns>
         private static Vector ParseLocation(string locationString)
         {
+            if (locationString.Equals("random"))
+            {
+                var rand = new Random();
+                return new Vector(rand.Next(1, 700), rand.Next(1, 500));
+            }
             var split = locationString.Split(',');
             return new Vector(int.Parse(split[0]), int.Parse(split[1]));
+        }
+
+        public void UpdateScore(double s)
+        {
+            scorelabel.Content = score.SecondsRunning;
         }
     }
 }

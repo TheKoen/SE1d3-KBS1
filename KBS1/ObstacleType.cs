@@ -25,10 +25,7 @@ namespace KBS1
         /// Creates a new ObstacleController for this ObstacleType
         /// </summary>
         /// <returns>ObstacleController for this ObstacleType</returns>
-        public Controller CreateController(Obstacle obstacle)
-        {
-            return Creator.Create(obstacle);
-        }
+        public Controller CreateController(Obstacle obstacle) => Creator.Create(obstacle);
 
         public static ObstacleType Find(string name)
         {
@@ -36,27 +33,54 @@ namespace KBS1
             {
                 var obstacleName = obstacleType.Creator.GetType().Name;
                 if (obstacleName == name)
-                {
                     return obstacleType;
-                }
             }
             throw new NullReferenceException($"ObstacleType {name} could not be found");
         }
         //create obstacle
         public static void Init()
         {
-            // runner
-            Types.Add(new ObstacleType(new RunnerObstacle(), 24, Level.LoadImage("runner.png")));
-            // creeper
-            Types.Add(new ObstacleType(new CreeperObstacle(), 24, Level.LoadImage("creeper.png")));
-            Types.Add(new ObstacleType(new ArcherObstacle(), 24, Level.LoadImage("archer.png")));
+            // Runner
+            Types.Add(new ObstacleType(new RunnerObstacle(), 24, ResourceManager.Instance.LoadImage("runner.png")));
+            // Creeper
+            Types.Add(new ObstacleType(new CreeperObstacle(), 24, ResourceManager.Instance.LoadImage("runner.png")));
+            // Archer
+            Types.Add(new ObstacleType(new ArcherObstacle(), 24, ResourceManager.Instance.LoadImage("archer.png")));
+            // Trap
+            Types.Add(new ObstacleType(new TrapObstacle(), 14, ResourceManager.Instance.LoadImage("trap.png")));
+            // Wall
+            Types.Add(new ObstacleType(new WallObstacle(), 14, ResourceManager.Instance.LoadImage("wall.png")));
+            // Tree
+            Types.Add(new ObstacleType(new TreeObstacle(), 14, ResourceManager.Instance.LoadImage("tree.png")));
+
+        }
+        
+        private class RunnerObstacle : IControllerCreator
+        {
+            public Controller Create(Obstacle obstacle) => new RunnerObstacleController(obstacle, obstacle);
         }
 
-        private class RunnerObstacle : IControllerCreator
+        private class TrapObstacle : IControllerCreator
         {
             public Controller Create(Obstacle obstacle)
             {
-                return new RunnerObstacleController(obstacle, obstacle);
+                return new TrapObstacleController(obstacle, obstacle);
+            }
+        }
+
+        private class WallObstacle : IControllerCreator
+        {
+            public Controller Create(Obstacle obstacle)
+            {
+                return new WallObstacleController(obstacle, obstacle);
+            }
+        }
+
+        private class TreeObstacle : IControllerCreator
+        {
+            public Controller Create(Obstacle obstacle)
+            {
+                return new TreeObstacleController(obstacle, obstacle);
             }
         }
 
@@ -67,6 +91,7 @@ namespace KBS1
                 return new ArcherObstacleController(obstacle, obstacle);
             }
         }
+
         private class CreeperObstacle : IControllerCreator
         {
             public Controller Create(Obstacle obstacle)

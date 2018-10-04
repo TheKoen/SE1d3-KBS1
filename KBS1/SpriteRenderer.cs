@@ -12,31 +12,31 @@ namespace KBS1
 
         public SpriteRenderer(Image sprite, ILocatable locatable, Canvas canvas)
         {
-            this.Canvas = canvas;
-            this.Sprite = new Image()
+            Canvas = canvas;
+            Sprite = new Image()
             {
                 Source = sprite.Source
             };
-            this.Locatable = locatable;
-            this.Size = new Vector((int) (sprite.Width / 2), (int) (sprite.Height / 2));
+            Locatable = locatable;
+            Size = new Vector((int) (sprite.Width / 2), (int) (sprite.Height / 2));
             
             canvas.Children.Add(Sprite);
         }
 
         public void Update()
         {
-            Canvas.SetTop(this.Sprite, this.Locatable.Location.Y - Size.Y);
-            Canvas.SetLeft(this.Sprite, this.Locatable.Location.X -Size.X);
+            Canvas.SetTop(Sprite, Locatable.Location.Y - Size.Y);
+            Canvas.SetLeft(Sprite, Locatable.Location.X -Size.X);
         }
 
         public void Destroy()
         {
-            this.Canvas.Children.Remove(this.Sprite);
+            Canvas.Children.Remove(Sprite);
         }
 
         public void ChangeSprite(BitmapImage sprite)
         {
-            this.Sprite.Source = sprite;
+            Sprite.Source = sprite;
         }
     }
 }

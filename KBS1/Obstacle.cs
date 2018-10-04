@@ -12,9 +12,6 @@ namespace KBS1
             ObstacleType = type;
         }
 
-        protected override Controller CreateController()
-        {
-            return ObstacleType.CreateController(this);
-        }
+        protected override Controller CreateController() => ObstacleType.CreateController(this);
     }
 }

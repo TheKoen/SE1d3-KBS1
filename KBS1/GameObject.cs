@@ -12,18 +12,20 @@ namespace KBS1
         //When making a new GameObject, a new SpriteRenderer will be made with it.
         protected GameObject(int radius, Image image, Canvas canvas, Vector location)
         {
-            this.Location = location;
-            this.Renderer = new SpriteRenderer(image, this, canvas);
-            this.Collider = new Collider(radius, this);
+            Location = location;
+            Renderer = new SpriteRenderer(image, this, canvas);
+            Collider = new Collider(radius, this);
         }
 
         //abstract method for creating a new Controller for a GameObject depending on what kind of GameObject.
         protected abstract Controller CreateController();
-
-        //Initialize the controller
+        
+        /// <summary>
+        /// Initializes the controller for the game
+        /// </summary>
         public void Init()
         {
-            this.Controller = this.CreateController();
+            Controller = CreateController();
         }
     }
 }
