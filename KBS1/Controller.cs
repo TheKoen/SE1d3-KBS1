@@ -8,36 +8,39 @@ namespace KBS1
 
         protected Controller(GameObject gameObject)
         {
-            this.Object = gameObject;
+            Object = gameObject;
         }
 
         /// <summary>
-        /// Move the GameObject in a direction;
+        /// Move the GameObject using a Vector
         /// </summary>
-        /// <param name="vector">Direction to move in</param>
+        /// <param name="vector">Movement Vector</param>
         public bool Move(Vector vector)
         {
             var newLocation = Object.Location.CopyAdd(vector);
-            if (!Object.Collider.CollidesAny(newLocation, true))
+            if (Object.Collider.CollidesAny(newLocation, true))
             {
-                Object.Location = newLocation;
-                return true;
+                return false;
             }
 
-            return false;
+            Object.Location = newLocation;
+            return true;
+
         }
 
         public abstract void Update();
 
+        /// <summary>
+        /// Gets the Player object in the current level
+        /// </summary>
+        /// <returns>The Player object</returns>
         public static GameObject FindPlayer()
         {
-            var level = GameWindow.Current().Loadedlevel;
+            var level = GameWindow.Instance.Loadedlevel;
             foreach (var gameObject in level.Objects)
             {
                 if (gameObject.GetType() == typeof(Player))
-                {
                     return gameObject;
-                }
             }
             throw new NullReferenceException("Level does not contain a player");
         }

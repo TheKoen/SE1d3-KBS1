@@ -11,10 +11,10 @@ namespace KBS1
 {
     public class CreeperObstacleController : ObstacleController
     {
-        private int speed = 1;
-        private int range = 300;
-        private int explosionRadius = 100;
-        private int delayCreeper = 100;
+        private const int speed = 1;
+        private const int range = 300;
+        private const int explosionRadius = 100;
+        private const int delayCreeper = 100;
         private int wait = 0;
         private Boolean red = false;
         private Image imageRed = Level.LoadImage("creeper_red.png");
@@ -55,7 +55,7 @@ namespace KBS1
                 //explode if player is in range and timer is out of time
                 if (wait == 0 && Object.Location.Distance(player) < explosionRadius)
                 {
-                    GameWindow.Current().Reset();
+                    GameWindow.Instance.Lose();
                 }
                 // reset timer if player is out of range and set creeper back to green.
                 else if(wait == 0 && Object.Location.Distance(player) > explosionRadius)
@@ -74,28 +74,27 @@ namespace KBS1
             {
                 return;
             }
-
-            var result = false;
+            
             if (xDistance > yDistance)
             {
                 if(player.X > Object.Location.X)
                 {
-                    result = Move(new Vector(speed, 0));
+                    Move(new Vector(speed, 0));
                 }
                 else
                 {
-                    result = Move(new Vector(-speed, 0));
+                    Move(new Vector(-speed, 0));
                 }
             }
             else
             { 
                 if (player.Y > Object.Location.Y)
                 {
-                    result = Move(new Vector(0, speed));
+                    Move(new Vector(0, speed));
                 }
                 else
                 {
-                    result = Move(new Vector(0, -speed));
+                    Move(new Vector(0, -speed));
                 }  
             }
             // result if not moving/collided
@@ -103,8 +102,6 @@ namespace KBS1
             {
                 wait = delayCreeper;
             }
-            
-
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace KBS1.Archer
 {
@@ -7,7 +6,8 @@ namespace KBS1.Archer
     {
         private const int SPEED = 1;
         private const int RANGE = 300;
-        private static readonly ObstacleType ARROW = new ObstacleType(new ArrowObstacle(), 5, Level.LoadImage("arrow.png"));
+        private static readonly ObstacleType ARROW = 
+            new ObstacleType(new ArrowObstacle(), 5, ResourceManager.Instance.LoadImage("arrow.png"));
 
         private int wait = 0;
     
@@ -43,9 +43,9 @@ namespace KBS1.Archer
 
             var vector = new Vector((PX < AX ? -DX : DX) * 2.0, (PY < AY ? -DY : DY) * 2.0);
 
-            var level = GameWindow.Current().Loadedlevel;
+            var level = GameWindow.Instance.Loadedlevel;
 
-            var arrow = new Arrow(ARROW, GameWindow.Current().DrawingPanel, Object.Location, vector);
+            var arrow = new Arrow(ARROW, GameWindow.Instance.DrawingPanel, Object.Location, vector);
             level.Objects.Add(arrow);
             arrow.Init();
             wait = 30;
@@ -57,7 +57,7 @@ namespace KBS1.Archer
 
             public Arrow(ObstacleType type, Canvas canvas, Vector location, Vector direction) : base(type, canvas, location)
             {
-                this.Direction = direction;
+                Direction = direction;
             }
         }
 

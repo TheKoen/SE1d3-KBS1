@@ -14,7 +14,7 @@ namespace KBS1.Archer
 
         public ArrowObstacleController(ILocatable locatable, Obstacle obstacle, Vector direction) : base(locatable, obstacle)
         {
-            this.Object.Collider.Blocking = false;
+            Object.Collider.Blocking = false;
             this.direction = direction;
         }
 
@@ -26,7 +26,7 @@ namespace KBS1.Archer
             }
             else
             {
-                GameWindow.Current().Loadedlevel.Objects.Remove(Object);
+                GameWindow.Instance.Loadedlevel.Objects.Remove(Object);
                 Object.Renderer.Destroy();
             }
 
@@ -36,7 +36,7 @@ namespace KBS1.Archer
             
             if (Object.Collider.Collides(player.Collider))
             {
-                GameWindow.Current().Reset();
+                GameWindow.Instance.Lose();
             }
         }
     }
