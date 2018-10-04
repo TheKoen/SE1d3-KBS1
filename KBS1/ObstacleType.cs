@@ -45,18 +45,21 @@ namespace KBS1
         //create obstacle
         public static void Init()
         {
-            // runner
+            // Runner
             Types.Add(new ObstacleType(new RunnerObstacle(), 24, Level.LoadImage("runner.png")));
-            // creeper
+            // Creeper
             Types.Add(new ObstacleType(new CreeperObstacle(), 24, Level.LoadImage("creeper.png")));
+            // Archer
             Types.Add(new ObstacleType(new ArcherObstacle(), 24, Level.LoadImage("archer.png")));
+            // Trap
             Types.Add(new ObstacleType(new TrapObstacle(), 14, Level.LoadImage("trap.png")));
+            // Wall
             Types.Add(new ObstacleType(new WallObstacle(), 14, Level.LoadImage("wall.png")));
+            // Tree
             Types.Add(new ObstacleType(new TreeObstacle(), 14, Level.LoadImage("tree.png")));
 
         }
-
-
+        
         private class RunnerObstacle : IControllerCreator
         {
             public Controller Create(Obstacle obstacle)
@@ -64,6 +67,7 @@ namespace KBS1
                 return new RunnerObstacleController(obstacle, obstacle);
             }
         }
+
         private class TrapObstacle : IControllerCreator
         {
             public Controller Create(Obstacle obstacle)
@@ -71,6 +75,7 @@ namespace KBS1
                 return new TrapObstacleController(obstacle, obstacle);
             }
         }
+
         private class WallObstacle : IControllerCreator
         {
             public Controller Create(Obstacle obstacle)
@@ -78,6 +83,7 @@ namespace KBS1
                 return new WallObstacleController(obstacle, obstacle);
             }
         }
+
         private class TreeObstacle : IControllerCreator
         {
             public Controller Create(Obstacle obstacle)
@@ -86,7 +92,6 @@ namespace KBS1
             }
         }
 
-
         private class ArcherObstacle : IControllerCreator
         {
             public Controller Create(Obstacle obstacle)
@@ -94,6 +99,7 @@ namespace KBS1
                 return new ArcherObstacleController(obstacle, obstacle);
             }
         }
+
         private class CreeperObstacle : IControllerCreator
         {
             public Controller Create(Obstacle obstacle)

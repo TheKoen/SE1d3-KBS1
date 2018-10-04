@@ -89,7 +89,7 @@ namespace KBS1 {
 
         public void LoadOptions()
         {
-            Button BackButton = new Button { Content = "Back", Width = 70, Height = 23 };
+            var BackButton = new Button { Content = "Back", Width = 70, Height = 23 };
             BackButton.Background = Brushes.LightBlue;
             Canvas.SetLeft(BackButton, 400 - BackButton.Width / 2);
             Canvas.SetTop(BackButton, 300 - BackButton.Height);
@@ -104,10 +104,5 @@ namespace KBS1 {
             LoadLevel();
             Loop.Start();
         }
-
-
-
-        
-
     }
 }

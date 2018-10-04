@@ -67,7 +67,7 @@ namespace KBS1
                 }  
             }
             // result if not moving/collided
-            if(result == false)
+            if(Object.Collider.Collides(playerObject.Collider))
             {
                 wait = delayCreeper;
                 
