@@ -17,8 +17,8 @@ namespace KBS1
         private const int delayCreeper = 100;
         private int wait = 0;
         private Boolean red = false;
-        private Image imageRed = Level.LoadImage("creeper_red.png");
-        private Image imageGreen = Level.LoadImage("creeper.png");
+        private Image imageRed = ResourceManager.Instance.LoadImage("creeper_red.png");
+        private Image imageGreen = ResourceManager.Instance.LoadImage("creeper.png");
 
         public CreeperObstacleController(ILocatable locatable, Obstacle obstacle) : base(locatable, obstacle) { }
 
@@ -60,7 +60,7 @@ namespace KBS1
                 // reset timer if player is out of range and set creeper back to green.
                 else if(wait == 0 && Object.Location.Distance(player) > explosionRadius)
                 {
-                    GameWindow.Current().Loadedlevel.Objects.Remove(Object);
+                    GameWindow.Instance.Loadedlevel.Objects.Remove(Object);
                     Object.Renderer.Destroy();
                 }
                 return;

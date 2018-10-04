@@ -43,7 +43,7 @@ namespace KBS1
             // Runner
             Types.Add(new ObstacleType(new RunnerObstacle(), 24, ResourceManager.Instance.LoadImage("runner.png")));
             // Creeper
-            Types.Add(new ObstacleType(new CreeperObstacle(), 24, ResourceManager.Instance.LoadImage("runner.png")));
+            Types.Add(new ObstacleType(new CreeperObstacle(), 24, ResourceManager.Instance.LoadImage("creeper.png")));
             // Archer
             Types.Add(new ObstacleType(new ArcherObstacle(), 24, ResourceManager.Instance.LoadImage("archer.png")));
             // Trap
