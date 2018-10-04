@@ -15,7 +15,7 @@ namespace KBS1
         /// Move the GameObject using a Vector
         /// </summary>
         /// <param name="vector">Movement Vector</param>
-        public void Move(Vector vector)
+        public bool Move(Vector vector)
         {
             var newLocation = Object.Location.CopyAdd(vector);
             if (Object.Collider.CollidesAny(newLocation, true))

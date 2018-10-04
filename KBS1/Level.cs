@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Controls;
 using System.Xml;
 
 namespace KBS1
@@ -48,7 +50,7 @@ namespace KBS1
             scorelabel = new Label();
             Canvas.SetBottom(scorelabel, 10);
             Canvas.SetLeft(scorelabel, 665);
-            GameWindow.Current().DrawingPanel.Children.Add(scorelabel);
+            GameWindow.Instance.DrawingPanel.Children.Add(scorelabel);
 
             Objects.Add(new Player(11, ResourceManager.Instance.LoadImage("player.png"),
                 GameWindow.Instance.DrawingPanel, new Vector(14, 14)));

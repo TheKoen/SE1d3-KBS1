@@ -13,14 +13,12 @@
         public override void Update()
         {
             if (!Finish)
-            {
                 return;
-            }
 
             var player = FindPlayer();
             if (player.Collider.Collides(Object.Collider))
             {
-                GameWindow.Current().Reset();
+                GameWindow.Instance.Reset();
             }
         }
     }

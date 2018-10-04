@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Windows.Documents;
 using System.Windows.Threading;
 
 namespace KBS1

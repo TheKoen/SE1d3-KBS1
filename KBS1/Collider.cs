@@ -18,7 +18,7 @@
         /// </summary>
         /// <param name="collider">Collider to check for</param>
         /// <returns>Collision status</returns>
-        public virtual bool Collides(Collider collider) => Collides(collider.Locatable.Location, collider.Radius);
+        public bool Collides(Collider collider) => Collides(collider.Locatable.Location, collider.Radius);
         
         /// <summary>
         /// Checks whether this Collider collides with a radius
@@ -26,7 +26,7 @@
         /// <param name="vector">Vector representing an object</param>
         /// <param name="radius">Radius of the object</param>
         /// <returns>Collision status</returns>
-        public bool Collides(Vector vector, int radius)
+        public virtual bool Collides(Vector vector, int radius)
         {
             var current = Locatable.Location;
             return current.Distance(vector) < Radius + radius;
@@ -34,7 +34,7 @@
 
         public bool CollidesAny(Vector vector, bool ignoreNonBlocking)
         {
-            var level = GameWindow.Current().Loadedlevel;
+            var level = GameWindow.Instance.Loadedlevel;
             if (ignoreNonBlocking && !Blocking)
             {
                 return false;

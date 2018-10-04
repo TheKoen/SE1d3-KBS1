@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KBS1
+﻿namespace KBS1
 {
     public class RunnerObstacleController : ObstacleController
     {
         private const int SPEED = 2;
         private const int RANGE = 300;
 
-        private int wait = 0;
+        private int wait;
 
         public RunnerObstacleController(ILocatable locatable, Obstacle obstacle) : base(locatable, obstacle) { }
 
@@ -40,7 +34,7 @@ namespace KBS1
             // Colliden met speler -> reset
             if (Object.Collider.Collides(playerObject.Collider))
             {
-                GameWindow.Current().Reset();
+                GameWindow.Instance.Reset();
             }
         }
     }

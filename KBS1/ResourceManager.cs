@@ -55,8 +55,7 @@ namespace KBS1
         {
             if (!xmlCache.ContainsKey(path))
             {
-
-                XmlDocument document = new XmlDocument();
+                var document = new XmlDocument();
                 var streamInfo = Application.GetResourceStream(new Uri(@"pack://application:,,,/Resources/" + path));
                 document.Load(streamInfo.Stream);
                 xmlCache.Add(path, document);
