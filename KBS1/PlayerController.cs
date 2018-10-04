@@ -22,6 +22,8 @@ namespace KBS1
             if (Keyboard.IsKeyDown(Key.S)) direction.Y = 1;
             if (Keyboard.IsKeyDown(Key.A)) direction.X = -1;
 
+            if (Keyboard.IsKeyDown(Key.Escape)) GameWindow.Instance.PauseGame();
+
             var speed = SPEED;
 
             if (Keyboard.IsKeyDown(Key.LeftShift))
