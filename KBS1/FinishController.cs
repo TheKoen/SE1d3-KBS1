@@ -26,7 +26,8 @@ namespace KBS1
             var player = FindPlayer();
             if (player.Collider.Collides(this.Object.Collider))
             {
-                GameWindow.Current().Reset();
+                //Shows a win text
+                GameWindow.Current().Win();
             }
         }
     }

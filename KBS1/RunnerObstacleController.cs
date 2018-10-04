@@ -44,7 +44,7 @@ namespace KBS1
             // Colliden met speler -> reset
             if (result == false)
             {
-                GameWindow.Current().Reset();
+                GameWindow.Current().Lose();
             }
         }
     }

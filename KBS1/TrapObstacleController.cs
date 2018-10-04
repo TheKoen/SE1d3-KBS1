@@ -21,7 +21,7 @@ namespace KBS1
             //Colliden met speler
             if (Object.Collider.Collides(playerObject.Collider))
             {
-                GameWindow.Current().Reset();
+                GameWindow.Current().Lose();
             }
         }
     }

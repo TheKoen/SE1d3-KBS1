@@ -29,7 +29,7 @@ namespace KBS1
                 wait--;
                 if (wait == 0 && Object.Location.Distance(player) < explosionRadius)
                 {
-                    GameWindow.Current().Reset();
+                    GameWindow.Current().Lose();
                 }
                 return;
             } 

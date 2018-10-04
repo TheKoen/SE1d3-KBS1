@@ -48,8 +48,8 @@ namespace KBS1
 
             //label for showing score
             scorelabel = new Label();
-            Canvas.SetBottom(scorelabel, 10);
-            Canvas.SetLeft(scorelabel, 665);
+            Canvas.SetTop(scorelabel, 10);
+            Canvas.SetLeft(scorelabel, 730);
             GameWindow.Current().DrawingPanel.Children.Add(scorelabel);
 
             Objects.Add(new Player(11, LoadImage("player.png"), GameWindow.Current().DrawingPanel, new Vector(14, 14)));
