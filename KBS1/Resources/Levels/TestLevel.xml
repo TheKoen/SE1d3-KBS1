@@ -2,10 +2,11 @@
 <level name="Test Level">
 
   <objects>
-    <start radius="24" location="0,0" />
-    <end radius="24" location="128,64" />
-    
-    <obstacle name="RunnerObstacle" radius="24" location="30,45" />
+    <start radius="17" location="10,10" />
+    <end radius="17" location="770,550" />
+
+    <obstacle name="ArcherObstacle" radius="24" location="random" />
+    <obstacle name="ArcherObstacle" radius="24" location="random" />
   </objects>
-  
+
 </level>
