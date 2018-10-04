@@ -1,10 +1,11 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 
 namespace KBS1
 {
     class PlayerController : Controller
     {
-        private const int SPEED = 2;
+        private const double SPEED = 1.5;
 
         public Player Player { get; }
 
@@ -13,31 +14,35 @@ namespace KBS1
             Player = player;
         }
 
-        //method for the player when pressed a key
-        public void KeyPress(object sender, KeyEventArgs args)
-        {
-            
-        }
-
-        // TODO: Add documentation
         public override void Update()
         {
-            var vector = new Vector();
+            var direction = new Vector();
 
-            int count = 0;
-            if (Keyboard.IsKeyDown(Key.W)) ++count;
-            if (Keyboard.IsKeyDown(Key.D)) ++count;
-            if (Keyboard.IsKeyDown(Key.S)) ++count;
-            if (Keyboard.IsKeyDown(Key.A)) ++count;
+            if (Keyboard.IsKeyDown(Key.W))
+            {
+                direction.Y = -1;
+            }
+            if (Keyboard.IsKeyDown(Key.D))
+            {
+                direction.X = 1;
+            }
+            if (Keyboard.IsKeyDown(Key.S))
+            {
+                direction.Y = 1;
+            }
+            if (Keyboard.IsKeyDown(Key.A))
+            {
+                direction.X = -1;
+            }
 
-            var speed = count > 1 ? SPEED / 2 : SPEED;
+            var speed = SPEED;
 
-            if (Keyboard.IsKeyDown(Key.W)) vector.Y -= speed;
-            if (Keyboard.IsKeyDown(Key.D)) vector.X += speed;
-            if (Keyboard.IsKeyDown(Key.S)) vector.Y += speed;
-            if (Keyboard.IsKeyDown(Key.A)) vector.X -= speed;
+            if (Keyboard.IsKeyDown(Key.LeftShift))
+            {
+                speed = 10;
+            }
 
-            Move(vector);
+            this.Move(direction.Normalize(speed));
         }
     }
 }

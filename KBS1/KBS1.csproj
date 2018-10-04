@@ -55,6 +55,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Archer\ArcherObstacleController.cs" />
+    <Compile Include="Archer\ArrowObstacleController.cs" />
+    <Compile Include="CreeperObstacleController.cs" />
     <Compile Include="FinishController.cs" />
     <Compile Include="FinishObject.cs" />
     <Compile Include="GameWindow.xaml.cs">
@@ -70,8 +73,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ScoreTracker.cs" />
     <Compile Include="SpriteRenderer.cs" />
+    <Compile Include="TrapObstacleController.cs" />
+    <Compile Include="TreeObstacleController.cs" />
     <Compile Include="Vector.cs" />
+    <Compile Include="WallObstacleController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collider.cs" />
@@ -120,6 +127,9 @@
     <Resource Include="Resources\end.png" />
     <Resource Include="Resources\runner.png" />
     <Resource Include="Resources\start.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\trap.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\player.png" />

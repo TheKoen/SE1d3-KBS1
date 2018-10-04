@@ -2,11 +2,13 @@
 {
     public class Collider
     {
-        private int Radius { get; }
-        private ILocatable Locatable { get; }
+        protected int Radius { get; }
+        public ILocatable Locatable { get; }
+        public bool Blocking { get; set; }
 
         public Collider(int radius, ILocatable locatable)
         {
+            Blocking = true;
             Radius = radius;
             Locatable = locatable;
         }
@@ -30,19 +32,31 @@
             return current.Distance(vector) < Radius + radius;
         }
 
-        // TODO: Finish documentation
-        /// <summary>
-        /// Checks whether this Collider collides with any object present in the current level
-        /// </summary>
-        /// <param name="vector"></param>
-        /// <returns>Collision status</returns>
-        public bool CollidesAny(Vector vector)
+        public bool CollidesAny(Vector vector, bool ignoreNonBlocking)
         {
-            var level = GameWindow.Instance.Loadedlevel;
+            var level = GameWindow.Current().Loadedlevel;
+            if (ignoreNonBlocking && !Blocking)
+            {
+                return false;
+            }
+
+            if (level.LevelCollider.Collides(vector, Radius))
+            {
+                return true;
+            }
+
             foreach(var GameObject in level.Objects)
             {
-                if(GameObject.Collider?.Collides(vector, Radius) == true)
-                    return true;
+                if (GameObject.Collider?.Collides(vector, Radius) != true || GameObject.Collider == this)
+                {
+                    continue;
+                }
+                if (ignoreNonBlocking && !GameObject.Collider.Blocking) 
+                {
+                    continue;
+                }
+
+                return true;
             }
             return false;
         }

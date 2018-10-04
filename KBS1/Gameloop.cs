@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Windows.Documents;
 using System.Windows.Threading;
 
 namespace KBS1
@@ -41,6 +43,7 @@ namespace KBS1
             {
                 gameObject.Controller?.Update();
                 gameObject.Renderer?.Update();
+                level.score.Update();
             }
         }
     }

@@ -9,6 +9,8 @@ namespace KBS1
     public class RunnerObstacleController : ObstacleController
     {
         private const int SPEED = 2;
+        private const int RANGE = 300;
+
         private int wait = 0;
 
         public RunnerObstacleController(ILocatable locatable, Obstacle obstacle) : base(locatable, obstacle) { }
@@ -22,31 +24,24 @@ namespace KBS1
             // Get information from Player
             var playerObject = FindPlayer();
             var player = playerObject.Location;
-            // TODO: Translate this please
+
+            // Kijken of de speler in range is
+            if (player.Distance(Object.Location) > RANGE)
+            {
+                return;
+            }
+
             // Move, eerst langste X of Y en die richting beweging
             var xDistance = player.AxisDistance(Object.Location, true);
             var yDistance = player.AxisDistance(Object.Location, false);
+
+            var result  = xDistance > yDistance ? Move(player.X < Object.Location.X ? new Vector(-SPEED, 0) : new Vector(SPEED, 0)) : Move(player.Y < Object.Location.Y ? new Vector(0, -SPEED) : new Vector(0, SPEED));
             
-            if(xDistance > yDistance)
+            // Colliden met speler -> reset
+            if (Object.Collider.Collides(playerObject.Collider))
             {
-                if(player.X < Object.Location.X)
-                    Move(new Vector(-SPEED, 0));
-                else
-                    Move(new Vector(SPEED, 0));
+                GameWindow.Current().Reset();
             }
-            else
-            {
-                if (player.Y < Object.Location.Y)
-                    Move(new Vector(0, -SPEED));
-                else
-                    Move(new Vector(0, SPEED));
-            }
-            // Collide with Player
-            /*if (Object.Collider.Collides(playerObject.Collider))
-            {
-                GameWindow.Instance.Reset();
-            }*/
-            // Constrain zone
         }
     }
 }

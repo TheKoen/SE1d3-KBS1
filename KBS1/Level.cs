@@ -11,6 +11,8 @@ namespace KBS1
         public LevelCollider LevelCollider { get; set; }
         public SpriteRenderer Renderer { get; set; }
         public List<GameObject> Objects { get; set; }
+        public ScoreTracker score { get; set; }
+        public Label scorelabel;
 
         /// <summary>
         /// Uses an XmlDocument to load a level and it's properties
@@ -20,6 +22,8 @@ namespace KBS1
         {
             Objects = new List<GameObject>();
             ObstacleType.Init();
+            LevelCollider = new LevelCollider();
+            score = new ScoreTracker(this);
 
             var root = xmlDocument.DocumentElement;
 
@@ -40,8 +44,14 @@ namespace KBS1
                 if (childXml.LocalName == "obstacle") CreateObstacle(childXml);
             }
 
+            //label for showing score
+            scorelabel = new Label();
+            Canvas.SetBottom(scorelabel, 10);
+            Canvas.SetLeft(scorelabel, 665);
+            GameWindow.Current().DrawingPanel.Children.Add(scorelabel);
+
             Objects.Add(new Player(11, ResourceManager.Instance.LoadImage("player.png"),
-                GameWindow.Instance.DrawingPanel, new Vector(10, 10)));
+                GameWindow.Instance.DrawingPanel, new Vector(14, 14)));
         }
 
         /// <summary>
@@ -100,8 +110,18 @@ namespace KBS1
         /// <returns>Vector created using the parsable location</returns>
         private static Vector ParseLocation(string locationString)
         {
+            if (locationString.Equals("random"))
+            {
+                var rand = new Random();
+                return new Vector(rand.Next(1, 700), rand.Next(1, 500));
+            }
             var split = locationString.Split(',');
             return new Vector(int.Parse(split[0]), int.Parse(split[1]));
+        }
+
+        public void UpdateScore(double s)
+        {
+            scorelabel.Content = score.SecondsRunning;
         }
     }
 }

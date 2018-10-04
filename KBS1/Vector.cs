@@ -7,16 +7,16 @@ namespace KBS1
         /// <summary>
         /// X coordinate of this Vector
         /// </summary>
-        public int X { get; set; }
+        public double X { get; set; }
 
         /// <summary>
         /// Y coordinate of this Vector
         /// </summary>
-        public int Y { get; set; }
+        public double Y { get; set; }
 
         public Vector() : this(0, 0) { }
 
-        public Vector(int X, int Y)
+        public Vector(double X, double Y)
         {
             this.X = X;
             this.Y = Y;
@@ -48,6 +48,18 @@ namespace KBS1
             var newVector = new Vector(X, Y);
             newVector.Add(vector);
             return newVector;
+        }
+
+        public Vector Normalize(double length)
+        {
+            var div = Math.Sqrt(Math.Pow(X, 2) + Math.Pow(Y, 2));
+            if (Math.Abs(div) < 0.01)
+            {
+                return this;
+            }
+            X = (X / div) * length;
+            Y = (Y / div) * length;
+            return this;
         }
     }
 }   
