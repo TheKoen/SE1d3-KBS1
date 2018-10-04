@@ -19,7 +19,7 @@
             if (player.Collider.Collides(Object.Collider))
             {
                 //Shows a win text
-                GameWindow.Current().Win();
+                GameWindow.Instance.Win();
             }
         }
     }

@@ -34,7 +34,7 @@
             // Colliden met speler -> reset
             if (Object.Collider.Collides(playerObject.Collider))
             {
-                GameWindow.Current().Lose();
+                GameWindow.Instance.Lose();
             }
         }
     }

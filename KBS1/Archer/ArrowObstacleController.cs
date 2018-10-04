@@ -36,7 +36,7 @@ namespace KBS1.Archer
             
             if (Object.Collider.Collides(player.Collider))
             {
-                GameWindow.Current().Lose();
+                GameWindow.Instance.Lose();
             }
         }
     }

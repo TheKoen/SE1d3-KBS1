@@ -26,9 +26,6 @@ namespace KBS1 {
         }
 
         // Properties
-        public Level Loadedlevel { get; set; }
-        public Gameloop Loop { get; set; }
-        private static GameWindow instance;
         private Button RetryButton;
         private Button MenuLoseButton;
         private Button MenuWinButton;
@@ -42,7 +39,6 @@ namespace KBS1 {
 
 
         // Methods
-        public static GameWindow Current() => instance;
 
         public void LoadHome()
         {
@@ -191,7 +187,7 @@ namespace KBS1 {
         // DrawingPanel.Children.Remove(RetryButton);
         public void Win()
         {
-            GameWindow.Current().Loop.Stop();
+            GameWindow.Instance.Loop.Stop();
             //creates a rectangle for when the player wins
             WinRect = new Rectangle() { Width = 500, Height = 400 };
             Canvas.SetLeft(WinRect, 400 - (WinRect.Width / 2));
@@ -226,7 +222,7 @@ namespace KBS1 {
         public void Lose()
         {
             Reset();
-            GameWindow.Current().Loop.Stop();
+            GameWindow.Instance.Loop.Stop();
             //creates a rectangle for when the player loses.
             LoseRect = new Rectangle() { Width = 500, Height = 400 };
             Canvas.SetLeft(LoseRect, 400 - (LoseRect.Width / 2));

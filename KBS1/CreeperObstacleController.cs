@@ -23,7 +23,7 @@
                 wait--;
                 if (wait == 0 && Object.Location.Distance(player) < explosionRadius)
                 {
-                    GameWindow.Current().Lose();
+                    GameWindow.Instance.Lose();
                 }
                 return;
             } 

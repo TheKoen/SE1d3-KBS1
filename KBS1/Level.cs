@@ -50,7 +50,7 @@ namespace KBS1
             scorelabel = new Label();
             Canvas.SetTop(scorelabel, 10);
             Canvas.SetLeft(scorelabel, 730);
-            GameWindow.Current().DrawingPanel.Children.Add(scorelabel);
+            GameWindow.Instance.DrawingPanel.Children.Add(scorelabel);
 
             Objects.Add(new Player(11, ResourceManager.Instance.LoadImage("player.png"),
                 GameWindow.Instance.DrawingPanel, new Vector(14, 14)));
