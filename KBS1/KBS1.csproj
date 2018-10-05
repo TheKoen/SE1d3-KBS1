@@ -64,6 +64,7 @@
       <DependentUpon>GameWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ResourceManager.cs" />
+    <Compile Include="LevelPicker.cs" />
     <Compile Include="RunnerObstacleController.cs" />
     <Compile Include="ObjectInfoContainer.xaml.cs">
       <DependentUpon>ObjectInfoContainer.xaml</DependentUpon>
