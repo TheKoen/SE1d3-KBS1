@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace KBS1
 {
@@ -7,6 +9,8 @@ namespace KBS1
         private const double SPEED = 1.5;
 
         public Player Player { get; }
+
+        private Image image = ResourceManager.Instance.LoadImage("player_sprites.png");
 
         public PlayerController(Player player) : base(player)
         {
@@ -17,10 +21,24 @@ namespace KBS1
         {
             var direction = new Vector();
 
-            if (Keyboard.IsKeyDown(Key.W)) direction.Y = -1;
-            if (Keyboard.IsKeyDown(Key.D)) direction.X = 1;
-            if (Keyboard.IsKeyDown(Key.S)) direction.Y = 1;
-            if (Keyboard.IsKeyDown(Key.A)) direction.X = -1;
+            if (Keyboard.IsKeyDown(Key.W))
+            {
+                direction.Y = -1;
+                Object.Renderer.ChangeSprite((BitmapImage)image.Source);
+            }
+                
+            if (Keyboard.IsKeyDown(Key.D))
+            {
+                direction.X = 1;
+            }
+            if (Keyboard.IsKeyDown(Key.S))
+            {
+                direction.Y = 1;
+            }
+            if (Keyboard.IsKeyDown(Key.A))
+            {
+                direction.X = -1;
+            }
 
             if (Keyboard.IsKeyDown(Key.Escape)) GameWindow.Instance.PauseGame();
 
