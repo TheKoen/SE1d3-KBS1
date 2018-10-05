@@ -1,22 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
-using System.Windows.Media;
 using System.Xml;
+using System.Windows.Media;
 
 namespace KBS1
 {
     public class Level
     {
         private string Name { get; }
-        private Brush Background { get; }
-        
+        private static double DescriptionHeight { get; set; }
+        private List<String> MadeObjects { get; set; } = new List<String>();
+
         public Difficulty Difficulty { get; set; }
         public LevelCollider LevelCollider { get; set; }
         public SpriteRenderer Renderer { get; set; }
         public List<GameObject> Objects { get; set; }
         public ScoreTracker score { get; set; }
         public Label scorelabel;
+        
+        
 
         /// <summary>
         /// Uses an XmlDocument to load a level and it's properties
@@ -28,17 +31,12 @@ namespace KBS1
             ObstacleType.Init();
             LevelCollider = new LevelCollider();
             score = new ScoreTracker(this);
-
+            DescriptionHeight = 0;
             var root = xmlDocument.DocumentElement;
 
             if (!root.HasAttribute("name"))
                 throw new XmlException("Level missing name attribute");
             Name = root.GetAttribute("name");
-            
-            if (!root.HasAttribute("background"))
-                Background = new SolidColorBrush(Colors.LightGreen);
-            else
-                Background = ResourceManager.Instance.LoadImageBrush(root.GetAttribute("background"));
             
             var objectsXml = xmlDocument.SelectSingleNode("//level/objects");
             if (objectsXml == null)
@@ -53,7 +51,6 @@ namespace KBS1
                 if (childXml.LocalName == "obstacle") CreateObstacle(childXml);
             }
 
-            GameWindow.Instance.DrawingPanel.Background = Background;
             //label for showing score
             scorelabel = new Label();
             Canvas.SetTop(scorelabel, 10);
@@ -62,6 +59,12 @@ namespace KBS1
 
             Objects.Add(new Player(11, ResourceManager.Instance.LoadImage("player.png"),
                 GameWindow.Instance.DrawingPanel, new Vector(14, 14)));
+
+            Border b1 = new Border { Height = 600, Width = 3 };
+            b1.BorderThickness = new System.Windows.Thickness(3);
+            b1.BorderBrush = new SolidColorBrush(Colors.Black);
+            Canvas.SetLeft(b1, 782);
+            GameWindow.Instance.DrawingPanel.Children.Add(b1);
         }
 
         /// <summary>
@@ -107,11 +110,35 @@ namespace KBS1
 
             var type = ObstacleType.Find(node.Attributes["name"].InnerText);
             var location = ParseLocation(node.Attributes["location"].InnerText);
-
             Objects.Add(new Obstacle(type, GameWindow.Instance.DrawingPanel, location));
+
+            var name = type.Sprite.Name;
+            var image = type.Sprite.Source;
+            if(!(name == "tree") && !(name == "wall"))
+            {
+                if (!MadeObjects.Contains(name))
+                {
+                    MadeObjects.Add(name);
+                    createDescription(name, image);
+                }
+            }
         }
 
-        
+        /// <summary>
+        /// Description aanmaken
+        /// </summary>
+        /// <param name="naam">String containing name</param>
+        /// <param name="source">ImageSource containing the source of an image</param>
+        private void createDescription(String name, ImageSource source)
+        {
+            
+            ObstacleInfo bla = new ObstacleInfo(name);
+            ObjectInfoContainer o1 = new ObjectInfoContainer { ImageSource = source, GameObjectName = name, GameObjectDescription = bla.Description };
+            Canvas.SetRight(o1, 0);
+            Canvas.SetTop(o1, DescriptionHeight);
+            GameWindow.Instance.DrawingPanel.Children.Add(o1);
+            DescriptionHeight = DescriptionHeight + 148;
+        }
 
         /// <summary>
         /// Parses location strings used in levels
