@@ -18,14 +18,27 @@ namespace KBS1
         public bool Move(Vector vector)
         {
             var newLocation = Object.Location.CopyAdd(vector);
-            if (Object.Collider.CollidesAny(newLocation, true))
+            if (!Object.Collider.CollidesAny(newLocation, true))
             {
-                return false;
+                Object.Location = newLocation;
+                return true;
+            }
+            
+            Vector newLocationHorizontal = new Vector(newLocation.X, Object.Location.Y);
+            if (!Object.Collider.CollidesAny(newLocationHorizontal, true))
+            {
+                Object.Location = newLocationHorizontal;
+                return true;
             }
 
-            Object.Location = newLocation;
-            return true;
+            Vector newLocationVertical = new Vector(Object.Location.X, newLocation.Y);
+            if (!Object.Collider.CollidesAny(newLocationVertical, true))
+            {
+                Object.Location = newLocationVertical;
+                return true;
+            }
 
+            return false;
         }
 
         public abstract void Update();

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Xml;
 
 namespace KBS1
@@ -8,6 +9,7 @@ namespace KBS1
     public class Level
     {
         private string Name { get; }
+        private Brush Background { get; }
         
         public Difficulty Difficulty { get; set; }
         public LevelCollider LevelCollider { get; set; }
@@ -33,6 +35,11 @@ namespace KBS1
                 throw new XmlException("Level missing name attribute");
             Name = root.GetAttribute("name");
             
+            if (!root.HasAttribute("background"))
+                Background = new SolidColorBrush(Colors.LightGreen);
+            else
+                Background = ResourceManager.Instance.LoadImageBrush(root.GetAttribute("background"));
+            
             var objectsXml = xmlDocument.SelectSingleNode("//level/objects");
             if (objectsXml == null)
                 throw new XmlException("Level missing objects node");
@@ -46,6 +53,7 @@ namespace KBS1
                 if (childXml.LocalName == "obstacle") CreateObstacle(childXml);
             }
 
+            GameWindow.Instance.DrawingPanel.Background = Background;
             //label for showing score
             scorelabel = new Label();
             Canvas.SetTop(scorelabel, 10);
