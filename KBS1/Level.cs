@@ -8,6 +8,7 @@ namespace KBS1
     public class Level
     {
         private string Name { get; }
+        private static int DescriptionHeight { get; set; }
         
         public Difficulty Difficulty { get; set; }
         public LevelCollider LevelCollider { get; set; }
@@ -15,6 +16,7 @@ namespace KBS1
         public List<GameObject> Objects { get; set; }
         public ScoreTracker score { get; set; }
         public Label scorelabel;
+        
 
         /// <summary>
         /// Uses an XmlDocument to load a level and it's properties
@@ -26,7 +28,7 @@ namespace KBS1
             ObstacleType.Init();
             LevelCollider = new LevelCollider();
             score = new ScoreTracker(this);
-
+            DescriptionHeight = 0;
             var root = xmlDocument.DocumentElement;
 
             if (!root.HasAttribute("name"))
@@ -98,6 +100,15 @@ namespace KBS1
                 throw new XmlException("StartPoint node doesn't have any attributes");
 
             var type = ObstacleType.Find(node.Attributes["name"].InnerText);
+            var name = type.Sprite.Name;
+            var image = type.Sprite.Source;
+            var descript = "Geen description mogelijk ";
+            ObjectInfoContainer o1 = new ObjectInfoContainer { ImageSource = image, GameObjectName = name, GameObjectDescription = descript };
+            Canvas.SetRight(o1, 0);
+            Canvas.SetTop(o1, DescriptionHeight);
+            GameWindow.Instance.DrawingPanel.Children.Add(o1);
+            DescriptionHeight = DescriptionHeight + 50;
+
             var location = ParseLocation(node.Attributes["location"].InnerText);
             // Bij elk object een Description aanmaken
             // Displayen op Speelveld (Rechts)
@@ -106,8 +117,6 @@ namespace KBS1
             // Valkuilen en muren en bomen? 
             Objects.Add(new Obstacle(type, GameWindow.Instance.DrawingPanel, location));
         }
-
-        
 
         /// <summary>
         /// Parses location strings used in levels
