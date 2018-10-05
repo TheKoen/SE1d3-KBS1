@@ -99,7 +99,11 @@ namespace KBS1
 
             var type = ObstacleType.Find(node.Attributes["name"].InnerText);
             var location = ParseLocation(node.Attributes["location"].InnerText);
-
+            // Bij elk object een Description aanmaken
+            // Displayen op Speelveld (Rechts)
+            // Checken als Description al bestaat 
+            // Y opslaan in Attribuut ++50?:
+            // Valkuilen en muren en bomen? 
             Objects.Add(new Obstacle(type, GameWindow.Instance.DrawingPanel, location));
         }
 
