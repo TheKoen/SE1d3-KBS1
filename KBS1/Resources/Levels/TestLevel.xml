@@ -1,12 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<level name="Test Level" background="creeper.png">
+<level name="Test Level">
 
   <objects>
     <start radius="17" location="10,10" />
     <end radius="17" location="770,550" />
 
-    <obstacle name="ArcherObstacle" radius="24" location="random" />
-    <obstacle name="ArcherObstacle" radius="24" location="random" />
+    <obstacle name="CreeperObstacle" radius="24" location="350, 400" />
+    <obstacle name="RunnerObstacle" radius="24" location="350, 400" />
+    <obstacle name="WallObstacle" radius="24" location="350, 400" />
+    <obstacle name="ArcherObstacle" radius="24" location="350, 400" />
+    <obstacle name="WallObstacle" radius="24" location="350, 400" />
   </objects>
 
 </level>
