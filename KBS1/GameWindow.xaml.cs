@@ -7,6 +7,8 @@ using System.Drawing.Text;
 
 namespace KBS1 {
     public partial class GameWindow : Window {
+        private LevelPicker levelPicker = new LevelPicker();
+
         private Button ResumeButton;
         private Rectangle rect;
         private Button QuitToMainMenuButton;
@@ -114,7 +116,13 @@ namespace KBS1 {
 
         private void OnNextlevelButtonClick(object sender, RoutedEventArgs e)
         {
-            //moet volgende level inladen
+            DrawingPanel.Children.Clear();
+            Loadedlevel = levelPicker.NextLevel();
+            //DrawingPanel.Children.Remove(WinRect);
+            //DrawingPanel.Children.Remove(WinLabel);
+            //DrawingPanel.Children.Remove(MenuWinButton);
+            //DrawingPanel.Children.Remove(NextLevelButton);
+            Loop.Start();
         }
 
         private void QuitToMainMenuButtonClick(object sender, RoutedEventArgs e)
@@ -129,10 +137,10 @@ namespace KBS1 {
             LoadLevel();
             Loop.Start();
         }
-
+        //
         public void LoadLevel()
         {
-            Loadedlevel = new LevelPicker().PickLevel();
+            Loadedlevel = levelPicker.PickLevel();
         }
 
         public void LoadOptions()
