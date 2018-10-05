@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Xml;
@@ -9,17 +9,16 @@ namespace KBS1
     public class Level
     {
         private string Name { get; }
+        private Brush Background { get; }
         private static double DescriptionHeight { get; set; }
-        private List<String> MadeObjects { get; set; } = new List<String>();
+        private List<string> MadeObjects { get; set; } = new List<string>();
 
         public Difficulty Difficulty { get; set; }
         public LevelCollider LevelCollider { get; set; }
         public SpriteRenderer Renderer { get; set; }
         public List<GameObject> Objects { get; set; }
-        public ScoreTracker score { get; set; }
-        public Label scorelabel;
-        
-        
+        public ScoreTracker Score { get; set; }
+        public Label Scorelabel { get; set; }
 
         /// <summary>
         /// Uses an XmlDocument to load a level and it's properties
@@ -30,9 +29,10 @@ namespace KBS1
             Objects = new List<GameObject>();
             ObstacleType.Init();
             LevelCollider = new LevelCollider();
-            score = new ScoreTracker(this);
+            Score = new ScoreTracker(this);
             DescriptionHeight = 0;
             var root = xmlDocument.DocumentElement;
+            if (root == null) throw new XmlException("Missing root node");
 
             if (!root.HasAttribute("name"))
                 throw new XmlException("Level missing name attribute");
@@ -52,17 +52,21 @@ namespace KBS1
             }
 
             //label for showing score
-            scorelabel = new Label();
-            Canvas.SetTop(scorelabel, 10);
-            Canvas.SetLeft(scorelabel, 730);
-            GameWindow.Instance.DrawingPanel.Children.Add(scorelabel);
+            Scorelabel = new Label();
+            Canvas.SetTop(Scorelabel, 10);
+            Canvas.SetLeft(Scorelabel, 730);
+            GameWindow.Instance.DrawingPanel.Children.Add(Scorelabel);
 
             Objects.Add(new Player(11, ResourceManager.Instance.LoadImage("player.png"),
                 GameWindow.Instance.DrawingPanel, new Vector(14, 14)));
 
-            Border b1 = new Border { Height = 600, Width = 3 };
-            b1.BorderThickness = new System.Windows.Thickness(3);
-            b1.BorderBrush = new SolidColorBrush(Colors.Black);
+            var b1 = new Border
+            {
+                Height = 600,
+                Width = 3,
+                BorderThickness = new System.Windows.Thickness(3),
+                BorderBrush = new SolidColorBrush(Colors.Black)
+            };
             Canvas.SetLeft(b1, 782);
             GameWindow.Instance.DrawingPanel.Children.Add(b1);
         }
@@ -114,20 +118,16 @@ namespace KBS1
 
             var name = type.Sprite.Name;
             var image = type.Sprite.Source;
-            if(!(name == "tree") && !(name == "wall"))
-            {
-                if (!MadeObjects.Contains(name))
-                {
-                    MadeObjects.Add(name);
-                    createDescription(name, image);
-                }
-            }
+            if (name == "tree" || name == "wall") return;
+            if (MadeObjects.Contains(name)) return;
+            MadeObjects.Add(name);
+            createDescription(name, image);
         }
 
         /// <summary>
         /// Description aanmaken
         /// </summary>
-        /// <param name="naam">String containing name</param>
+        /// <param name="name">String containing name</param>
         /// <param name="source">ImageSource containing the source of an image</param>
         private void createDescription(String name, ImageSource source)
         {
@@ -158,7 +158,7 @@ namespace KBS1
 
         public void UpdateScore(double s)
         {
-            scorelabel.Content = score.SecondsRunning;
+            Scorelabel.Content = Score.SecondsRunning;
         }
     }
 }
