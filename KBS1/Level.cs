@@ -2,20 +2,23 @@
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Xml;
+using System.Windows.Media;
 
 namespace KBS1
 {
     public class Level
     {
         private string Name { get; }
-        private static int DescriptionHeight { get; set; }
-        
+        private static double DescriptionHeight { get; set; }
+        private List<String> MadeObjects { get; set; } = new List<String>();
+
         public Difficulty Difficulty { get; set; }
         public LevelCollider LevelCollider { get; set; }
         public SpriteRenderer Renderer { get; set; }
         public List<GameObject> Objects { get; set; }
         public ScoreTracker score { get; set; }
         public Label scorelabel;
+        
         
 
         /// <summary>
@@ -56,6 +59,12 @@ namespace KBS1
 
             Objects.Add(new Player(11, ResourceManager.Instance.LoadImage("player.png"),
                 GameWindow.Instance.DrawingPanel, new Vector(14, 14)));
+
+            Border b1 = new Border { Height = 600, Width = 3 };
+            b1.BorderThickness = new System.Windows.Thickness(3);
+            b1.BorderBrush = new SolidColorBrush(Colors.Black);
+            Canvas.SetLeft(b1, 782);
+            GameWindow.Instance.DrawingPanel.Children.Add(b1);
         }
 
         /// <summary>
@@ -100,22 +109,35 @@ namespace KBS1
                 throw new XmlException("StartPoint node doesn't have any attributes");
 
             var type = ObstacleType.Find(node.Attributes["name"].InnerText);
+            var location = ParseLocation(node.Attributes["location"].InnerText);
+            Objects.Add(new Obstacle(type, GameWindow.Instance.DrawingPanel, location));
+
             var name = type.Sprite.Name;
             var image = type.Sprite.Source;
-            var descript = "Geen description mogelijk ";
-            ObjectInfoContainer o1 = new ObjectInfoContainer { ImageSource = image, GameObjectName = name, GameObjectDescription = descript };
+            if(!(name == "tree") && !(name == "wall"))
+            {
+                if (!MadeObjects.Contains(name))
+                {
+                    MadeObjects.Add(name);
+                    createDescription(name, image);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Description aanmaken
+        /// </summary>
+        /// <param name="naam">String containing name</param>
+        /// <param name="source">ImageSource containing the source of an image</param>
+        private void createDescription(String name, ImageSource source)
+        {
+            
+            ObstacleInfo bla = new ObstacleInfo(name);
+            ObjectInfoContainer o1 = new ObjectInfoContainer { ImageSource = source, GameObjectName = name, GameObjectDescription = bla.Description };
             Canvas.SetRight(o1, 0);
             Canvas.SetTop(o1, DescriptionHeight);
             GameWindow.Instance.DrawingPanel.Children.Add(o1);
-            DescriptionHeight = DescriptionHeight + 50;
-
-            var location = ParseLocation(node.Attributes["location"].InnerText);
-            // Bij elk object een Description aanmaken
-            // Displayen op Speelveld (Rechts)
-            // Checken als Description al bestaat 
-            // Y opslaan in Attribuut ++50?:
-            // Valkuilen en muren en bomen? 
-            Objects.Add(new Obstacle(type, GameWindow.Instance.DrawingPanel, location));
+            DescriptionHeight = DescriptionHeight + 148;
         }
 
         /// <summary>
