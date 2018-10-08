@@ -1,0 +1,16 @@
+﻿<Window x:Class="KBS1.LevelPickerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KBS1"
+        mc:Ignorable="d"
+        Title="LevelPickerWindow" Height="400" Width="400">
+    <ListView x:Name="LevelList" HorizontalAlignment="Left" Height="371" VerticalAlignment="Top" Width="390" Margin="0,0,0,-0.6" SelectionChanged="LevelList_SelectionChanged">
+        <ListView.View>
+            <GridView>
+                <GridViewColumn/>
+            </GridView>
+        </ListView.View>
+    </ListView>
+</Window>

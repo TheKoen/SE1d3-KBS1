@@ -11,15 +11,16 @@ namespace KBS1
         private string Level;
         public Level PickLevel()
         {
-            var dialog = new OpenFileDialog();
+            var dialog = new LevelPickerWindow();
 
-            var result = dialog.ShowDialog();
-            if (result == false)
+            dialog.ShowDialog();
+            var fileName = dialog.FileName;
+            if (fileName == null)
             {
-                throw new FileNotFoundException("User did not select file.");
+                throw new FileNotFoundException("You did not select file.");
             }
 
-            return LoadLevel(dialog.FileName);
+            return LoadLevel(fileName);
         }
 
         public Level LoadFirstLevel()
