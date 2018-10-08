@@ -26,8 +26,8 @@ namespace KBS1
 
             var speed = SPEED;
 
-            if (Keyboard.IsKeyDown(Key.LeftShift))
-                speed = 10;
+            //if (Keyboard.IsKeyDown(Key.LeftShift))
+            //    speed = 10;
 
             Move(direction.Normalize(speed));
         }
