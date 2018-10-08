@@ -5,7 +5,7 @@ namespace KBS1
     public class ScoreTracker
     {
         public double SecondsRunning;
-        private int Ticks;
+        public int Ticks;
         private Level level;
 
         public ScoreTracker(Level l)

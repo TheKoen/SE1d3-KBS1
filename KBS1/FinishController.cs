@@ -13,7 +13,14 @@
         public override void Update()
         {
             if (!Finish)
+            {
+                if (Object.Collider.Collides(FindPlayer().Collider) && 
+                    GameWindow.Instance.Loadedlevel.Score.Ticks < 20)
+                {
+                    GameWindow.Instance.Loadedlevel.Score.Ticks = 0;
+                }
                 return;
+            }
 
             var player = FindPlayer();
             if (player.Collider.Collides(Object.Collider))
