@@ -63,8 +63,8 @@ namespace KBS1
             var b1 = new Border
             {
                 Height = 600,
-                Width = 3,
-                BorderThickness = new System.Windows.Thickness(3),
+                Width = 5,
+                BorderThickness = new System.Windows.Thickness(5),
                 BorderBrush = new SolidColorBrush(Colors.Black)
             };
             Canvas.SetLeft(b1, 782);
@@ -144,7 +144,7 @@ namespace KBS1
             Canvas.SetTop(o1, DescriptionHeight);
 
             GameWindow.Instance.DrawingPanel.Children.Add(o1);
-            DescriptionHeight = DescriptionHeight + 148;
+            DescriptionHeight = DescriptionHeight + 140;
         }
 
         /// <summary>

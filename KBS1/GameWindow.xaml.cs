@@ -26,6 +26,7 @@ namespace KBS1 {
         // Properties
         private Button ResumeButton;
         private Button RetryButton;
+        private Button RetryButton2;
         private Button MenuLoseButton;
         private Button MenuWinButton;
         private Button NextLevelButton;
@@ -253,6 +254,13 @@ namespace KBS1 {
             Canvas.SetTop(NextLevelButton, 240);
             DrawingPanel.Children.Add(NextLevelButton);
             NextLevelButton.Click += new RoutedEventHandler(OnNextlevelButtonClick);
+
+            //creates a button to retry te level (even if you won)
+            RetryButton2 = new Button() { Content = "Retry", Width = 70, Height = 20 };
+            Canvas.SetLeft(RetryButton2, 500 - (RetryButton2.Width / 2));
+            Canvas.SetTop(RetryButton2, 280);
+            DrawingPanel.Children.Add(RetryButton2);
+            RetryButton2.Click += new RoutedEventHandler(OnRetryButtonClick);
         }
 
         public void Lose()
