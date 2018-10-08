@@ -140,6 +140,7 @@ namespace KBS1 {
             catch (Exception q)
             {
                 MessageBox.Show($"{q.Message}", "Error");
+                LoadHome();
             }
         }
 
