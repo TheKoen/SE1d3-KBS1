@@ -192,20 +192,25 @@ namespace KBS1 {
 
             ResumeButton = new Button {Name = "ResumeButton", Content = "Resume", Width = 70, Height = 23 };
             Canvas.SetLeft(ResumeButton, 500 - ResumeButton.Width / 2);
-            Canvas.SetTop(ResumeButton, 200 - ResumeButton.Height);
-            Canvas.SetZIndex(ResumeButton, 1);
+            Canvas.SetTop(ResumeButton, 150 - ResumeButton.Height);
             ResumeButton.Click += new RoutedEventHandler(OnResumeButtonClick);
+
+            RetryButton = new Button { Name = "ResumeButton", Content = "Retry", Width = 70, Height = 23 };
+            Canvas.SetLeft(RetryButton, 500 - RetryButton.Width / 2);
+            Canvas.SetTop(RetryButton, 200 - RetryButton.Height);
+            RetryButton.Click += new RoutedEventHandler(OnRetryButtonClick);
+
 
             QuitToMainMenuButton = new Button { Name = "QuitToMainMenu", Content = "Quit to main menu", Width = 110, Height = 23 };
             Canvas.SetLeft(QuitToMainMenuButton, 500 - QuitToMainMenuButton.Width / 2);
             Canvas.SetTop(QuitToMainMenuButton, 250 - QuitToMainMenuButton.Height);
-            Canvas.SetZIndex(QuitToMainMenuButton, 1);
             QuitToMainMenuButton.Click += new RoutedEventHandler(ToMainMenuButtonClick);
 
 
-            DrawingPanel.Children.Add(ResumeButton);
-            DrawingPanel.Children.Add(QuitToMainMenuButton);
             DrawingPanel.Children.Add(rect);
+            DrawingPanel.Children.Add(ResumeButton);
+            DrawingPanel.Children.Add(RetryButton);
+            DrawingPanel.Children.Add(QuitToMainMenuButton);
             
         }
 
