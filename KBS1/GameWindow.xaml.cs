@@ -9,10 +9,6 @@ namespace KBS1 {
 
         private LevelPicker levelPicker = new LevelPicker();
 
-        private Button ResumeButton;
-        private Rectangle rect;
-        private Button QuitToMainMenuButton;
-
         public Level Loadedlevel { get; set; }
         public Gameloop Loop { get; set; }
         public static GameWindow Instance { get; private set; }
@@ -28,10 +24,13 @@ namespace KBS1 {
         }
 
         // Properties
+        private Button ResumeButton;
         private Button RetryButton;
         private Button MenuLoseButton;
         private Button MenuWinButton;
         private Button NextLevelButton;
+        private Button QuitToMainMenuButton;
+        private Rectangle rect;
         private Rectangle LoseRect;
         private Rectangle WinRect;
         private Label WinLabel;
@@ -95,6 +94,7 @@ namespace KBS1 {
         {
             DrawingPanel.Children.Remove(rect);
             DrawingPanel.Children.Remove(ResumeButton);
+            DrawingPanel.Children.Remove(RetryButton);
             DrawingPanel.Children.Remove(QuitToMainMenuButton);
             Loop.Start();
         }
