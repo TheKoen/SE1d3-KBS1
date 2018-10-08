@@ -28,6 +28,11 @@ namespace KBS1
             return LoadLevel("Level1.xml");
         }
 
+        public Level LoadSelectedLevel()
+        {
+            return Level == null ? LoadFirstLevel() : LoadLevel(Level);
+        }
+
         public Level NextLevel()
         {
             

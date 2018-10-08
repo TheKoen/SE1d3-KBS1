@@ -167,7 +167,7 @@ namespace KBS1 {
         
         public void LoadLevel()
         {
-                Loadedlevel = levelPicker.LoadFirstLevel();
+            Loadedlevel = levelPicker.LoadSelectedLevel();
         }
 
         public void LoadOptions()
