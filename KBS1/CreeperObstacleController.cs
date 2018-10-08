@@ -22,22 +22,26 @@ namespace KBS1
 
         public CreeperObstacleController(ILocatable locatable, Obstacle obstacle) : base(locatable, obstacle) { }
 
+        /// <summary>
+        /// Updates the creeper movements and sprites
+        /// </summary>
         public override void Update()
         {
-            // player object
+            // player 
             var playerObject = FindPlayer();
 
             // player location
             var player = playerObject.Location;
-
+            
+            // delay for changing color creeper
             if (wait > 0)
             {
                 wait--;
 
-
+                
                 if (wait % 5 == 0)
                 {
-                    // color chancing creeper if in explosion range
+                    // color chancing creeper if in range 
                     if (red == true)
                     {
                         
@@ -57,7 +61,7 @@ namespace KBS1
                 {
                     GameWindow.Instance.Lose();
                 }
-                // reset timer if player is out of range and set creeper back to green.
+                // if player is out of range and creeper is out of time destroy creeper
                 else if(wait == 0 && Object.Location.Distance(player) > explosionRadius)
                 {
                     GameWindow.Instance.Loadedlevel.Objects.Remove(Object);
@@ -97,7 +101,7 @@ namespace KBS1
                     Move(new Vector(0, -speed));
                 }  
             }
-            // result if not moving/collided
+            // start the delay of the explostion if the distance of the player is explosionRadius/2.
             if (Object.Location.Distance(playerObject.Location) < (explosionRadius/2))
             {
                 wait = delayCreeper;
