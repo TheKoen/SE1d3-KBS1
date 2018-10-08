@@ -143,5 +143,11 @@
     <Resource Include="Resources\tree.png" />
     <Resource Include="Resources\Wall.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\playerSprites.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BackGroundMenu.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

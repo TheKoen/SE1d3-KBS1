@@ -18,6 +18,8 @@ namespace KBS1
         private SortedDictionary<string, Image> imageCache = new SortedDictionary<string, Image>();
         private SortedDictionary<string, XmlDocument> xmlCache = new SortedDictionary<string, XmlDocument>();
 
+        private const int AantalImagesPlayerSprite = 16;
+
         /// <summary>
         /// Loads and caches a Resource as an Image control
         /// </summary>
@@ -44,6 +46,53 @@ namespace KBS1
             }
 
             return imageCache[path];
+        }
+
+        public Image[] LoadImageSpritePlayer(string path)
+        {
+
+            if (!imageCache.ContainsKey(path))
+            {
+                //array with the pictures form the sprite
+                Image[] images = new Image[AantalImagesPlayerSprite];
+                // array with rect for the images.
+                Int32Rect[] rects = new Int32Rect[AantalImagesPlayerSprite];
+                int j = 0;
+                int q = 0;
+                for (int i = 0; i < AantalImagesPlayerSprite; i++)
+                {
+                    if (i % 4 != 0 || i == 0)
+                    {
+                        rects[i] = new Int32Rect(j * 64, q * 64, 64, 64);
+                        j++;
+                    }
+                    else
+                    {
+                        j = 0;
+                        q++;
+                        rects[i] = new Int32Rect(j * 64, q * 64, 64, 64);
+                        j++;
+                    }
+                }
+                for(int i = 0; i < rects.Length; i ++)
+                {
+                    var bitmapImage = new BitmapImage();
+                    bitmapImage.BeginInit();
+                    bitmapImage.UriSource = new Uri(@"pack://application:,,,/Resources/" + path);
+                    bitmapImage.SourceRect = rects[i];
+                    bitmapImage.EndInit();
+                    var image = new Image
+                    {
+                        Width = bitmapImage.Width,
+                        Height = bitmapImage.Height,
+                        Name = path.Substring(path.LastIndexOf('/') + 1).Split('.')[0],
+                        Source = bitmapImage
+                    };
+                    images[i] = image;
+                }
+                return images;
+            }
+            return null;
         }
 
         /// <summary>
