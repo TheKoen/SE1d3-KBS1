@@ -158,5 +158,8 @@
   <ItemGroup>
     <Resource Include="Resources\Levels\Levels.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Levels\leveltree.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
