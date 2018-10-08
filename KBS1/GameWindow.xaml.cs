@@ -35,6 +35,7 @@ namespace KBS1 {
         private Rectangle LoseRect;
         private Rectangle WinRect;
         private Label WinLabel;
+        private Label ScoreLabel;
         private Label LoseLabel;
 
         // Methods
@@ -167,7 +168,7 @@ namespace KBS1 {
         
         public void LoadLevel()
         {
-                Loadedlevel = levelPicker.LoadFirstLevel();
+            Loadedlevel = levelPicker.LoadSelectedLevel();
         }
 
         public void LoadOptions()
@@ -241,6 +242,13 @@ namespace KBS1 {
             Canvas.SetLeft(WinLabel, 500 - (WinLabel.Width / 2));
             Canvas.SetTop(WinLabel, 100);
             DrawingPanel.Children.Add(WinLabel);
+
+            //creates a label for showing win message.
+            ScoreLabel = new Label() { Content = $"Your score is: {Loadedlevel.Score.SecondsRunning} sec", Width = 275, Height = 50 };
+            ScoreLabel.FontSize = 25;
+            Canvas.SetLeft(ScoreLabel, 500 - (ScoreLabel.Width / 2));
+            Canvas.SetTop(ScoreLabel, 150);
+            DrawingPanel.Children.Add(ScoreLabel);
 
             //creates a button to go to main menu.
             MenuWinButton = new Button() { Content = "Main menu", Width = 70, Height = 20 };

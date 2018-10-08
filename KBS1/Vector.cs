@@ -29,7 +29,12 @@ namespace KBS1
         /// <returns>Distance between this Vector and the provided Vector</returns>
         public double Distance(Vector vector) => Math.Sqrt(Math.Pow(X - vector.X, 2) + Math.Pow(Y - vector.Y, 2));
 
-        // TODO: Add documentation
+        /// <summary>
+        /// Method to return the distance of a axis
+        /// </summary>
+        /// <param name="vector">Vector used to calculate de distance</param>
+        /// <param name="x">boolean for x or y axis</param>
+        /// <returns>a double of the distance form a specific axis</returns>
         public double AxisDistance(Vector vector, bool x) => Math.Abs( x ? X - vector.X : Y - vector.Y );
 
         /// <summary>
@@ -42,7 +47,11 @@ namespace KBS1
             Y += vector.Y;
         }
 
-        // TODO: Add documentation
+        /// <summary>
+        /// Copys the vector of the given vector
+        /// </summary>
+        /// <param name="vector">given vector to be copied</param>
+        /// <returns>A copied Vector</returns>
         public Vector CopyAdd(Vector vector)
         {
             var newVector = new Vector(X, Y);
@@ -50,6 +59,11 @@ namespace KBS1
             return newVector;
         }
 
+        /// <summary>
+        /// method used to normilize this Vector for movement 
+        /// </summary>
+        /// <param name="length"></param>
+        /// <returns>this vector</returns>
         public Vector Normalize(double length)
         {
             var div = Math.Sqrt(Math.Pow(X, 2) + Math.Pow(Y, 2));

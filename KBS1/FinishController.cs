@@ -10,6 +10,9 @@
             Object.Collider.Blocking = false;
         }
 
+        /// <summary>
+        /// Checks if the finished/collides with the finish object
+        /// </summary>
         public override void Update()
         {
             if (!Finish)

@@ -13,6 +13,9 @@ namespace KBS1
             this.level = l;
         }
 
+        /// <summary>
+        /// Method called every gameTick eddits the the score of the level
+        /// </summary>
         public void Update()
         {
             Ticks++;
@@ -20,7 +23,12 @@ namespace KBS1
             GameWindow.Instance.Loadedlevel.UpdateScore(SecondsRunning);
         }
 
-        private double GetSeconds()
+        
+        /// <summary>
+        /// calulates the seconds of the game
+        /// </summary>
+        /// <returns>seconds in double</returns>
+        public double GetSeconds()
         {
             return Math.Round(Ticks / 100.0, 2);
         }

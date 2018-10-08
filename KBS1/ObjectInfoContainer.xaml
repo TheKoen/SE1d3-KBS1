@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:KBS1"
              mc:Ignorable="d" MinHeight="142" MinWidth="200" MaxHeight="142" MaxWidth="200">
-    <Grid>
+    <Grid Background="LightGreen">
         <Border BorderBrush="Black" BorderThickness="1" Margin="0,0,0,0" Panel.ZIndex="0" />
 
         <Image x:Name="ImgIcon" Height="40" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="40" Panel.ZIndex="1" Source="Resources/unknown_object.png" />

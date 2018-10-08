@@ -9,6 +9,11 @@ namespace KBS1
     public class LevelPicker
     {
         private string Level;
+
+        /// <summary>
+        /// Picklevel creates custom dialog if you dont select a level it throws an Exception.
+        /// </summary>
+        /// <returns>level if picked</returns>
         public Level PickLevel()
         {
             var dialog = new LevelPickerWindow();
@@ -23,9 +28,22 @@ namespace KBS1
             return LoadLevel(fileName);
         }
 
+        /// <summary>
+        /// Loads first level with the name Level1.xml.
+        /// </summary>
+        /// <returns>if Level1.xml exist returns level</returns>
         public Level LoadFirstLevel()
         {
             return LoadLevel("Level1.xml");
+        }
+
+        /// <summary>
+        /// Loads the next level named Level(current+1).xml or throws exception if not available
+        /// </summary>
+        /// <returns>returns next level if available</returns>
+        public Level LoadSelectedLevel()
+        {
+            return Level == null ? LoadFirstLevel() : LoadLevel(Level);
         }
 
         public Level NextLevel()
@@ -47,6 +65,11 @@ namespace KBS1
             }
         }
 
+        /// <summary>
+        /// Load level with a specific name
+        /// </summary>
+        /// <param name="filename">name of the file</param>
+        /// <returns>Level if exists</returns>
         private Level LoadLevel(string filename)
         {
             XmlDocument doc;
