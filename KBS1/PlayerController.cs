@@ -2,17 +2,27 @@
 
 namespace KBS1
 {
+    /// <summary>
+    /// PlayerController extends the Controller
+    /// </summary>
     class PlayerController : Controller
     {
         private const double SPEED = 2.0;
 
         public Player Player { get; }
 
+        /// <summary>
+        /// extends the base class Controller
+        /// </summary>
+        /// <param name="player">sets the prop player</param>
         public PlayerController(Player player) : base(player)
         {
             Player = player;
         }
-
+        
+        /// <summary>
+        /// Controller of the player is executed every game tick.
+        /// </summary>
         public override void Update()
         {
             var direction = new Vector();
