@@ -37,6 +37,11 @@ namespace KBS1
             if (!root.HasAttribute("name"))
                 throw new XmlException("Level missing name attribute");
             Name = root.GetAttribute("name");
+
+            if (!root.HasAttribute("background"))
+                Background = new SolidColorBrush(Colors.LightGreen);
+                else
+            Background = ResourceManager.Instance.LoadImageBrush(root.GetAttribute("background"));
             
             var objectsXml = xmlDocument.SelectSingleNode("//level/objects");
             if (objectsXml == null)
@@ -51,6 +56,7 @@ namespace KBS1
                 if (childXml.LocalName == "obstacle") CreateObstacle(childXml);
             }
 
+            GameWindow.Instance.DrawingPanel.Background = Background;
             //label for showing score
             Scorelabel = new Label();
             Canvas.SetTop(Scorelabel, 10);
