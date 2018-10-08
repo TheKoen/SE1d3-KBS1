@@ -23,12 +23,12 @@ namespace KBS1
             GameWindow.Instance.Loadedlevel.UpdateScore(SecondsRunning);
         }
 
-        public double GetSeconds()
+        
         /// <summary>
         /// calulates the seconds of the game
         /// </summary>
         /// <returns>seconds in double</returns>
-        private double GetSeconds()
+        public double GetSeconds()
         {
             return Math.Round(Ticks / 100.0, 2);
         }
