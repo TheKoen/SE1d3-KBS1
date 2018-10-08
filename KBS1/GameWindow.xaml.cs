@@ -50,23 +50,32 @@ namespace KBS1 {
             Canvas.SetTop(StartButton, 300 + StartButton.Height);
             StartButton.Click += new RoutedEventHandler(OnStartButtonClick);
 
+            var SelectLevelButton = new Button
+            {
+                Content = "Select a Level", Width = 80, Height = 23, Background = Brushes.LightBlue
+            };
+            Canvas.SetLeft(SelectLevelButton, 500 - SelectLevelButton.Width/2);
+            Canvas.SetTop(SelectLevelButton, 300 + SelectLevelButton.Height + 50);
+            SelectLevelButton.Click += new RoutedEventHandler(OnSelectLevelButton);
+
             var OptionButton = new Button
             {
                 Content = "Options", Width = 70, Height = 23, Background = Brushes.LightBlue
             };
-            Canvas.SetLeft(OptionButton, 500 - StartButton.Width / 2);
-            Canvas.SetTop(OptionButton, 300 + OptionButton.Height + 50);
+            Canvas.SetLeft(OptionButton, 500 - OptionButton.Width / 2);
+            Canvas.SetTop(OptionButton, 300 + OptionButton.Height + 100);
             OptionButton.Click += new RoutedEventHandler(OnOptionButtonClick);
 
             var QuitButton = new Button
             {
                 Content = "Quit", Width = 70, Height = 23, Background = Brushes.LightBlue
             };
-            Canvas.SetLeft(QuitButton, 500 - StartButton.Width / 2);
-            Canvas.SetTop(QuitButton, 300 + QuitButton.Height + 100);
+            Canvas.SetLeft(QuitButton, 500 - QuitButton.Width / 2);
+            Canvas.SetTop(QuitButton, 300 + QuitButton.Height + 150);
             QuitButton.Click += new RoutedEventHandler(OnQuitButtonClick);
 
             DrawingPanel.Children.Add(StartButton);
+            DrawingPanel.Children.Add(SelectLevelButton);
             DrawingPanel.Children.Add(OptionButton);
             DrawingPanel.Children.Add(QuitButton);
         }
@@ -110,6 +119,13 @@ namespace KBS1 {
             //DrawingPanel.Children.Remove(MenuWinButton);
             //DrawingPanel.Children.Remove(NextLevelButton);
             Loop.Start();
+        }
+
+        private void OnSelectLevelButton(object sender, RoutedEventArgs e)
+        {
+            DrawingPanel.Children.Clear();
+            Loadedlevel = levelPicker.PickLevel();
+            LoadGame();    
         }
 
         private void ToMainMenuButtonClick(object sender, RoutedEventArgs e)
