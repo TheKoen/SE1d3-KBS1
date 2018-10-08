@@ -7,6 +7,7 @@ using System.Drawing.Text;
 
 namespace KBS1 {
     public partial class GameWindow : Window {
+
         private LevelPicker levelPicker = new LevelPicker();
 
         private Button ResumeButton;
@@ -36,9 +37,6 @@ namespace KBS1 {
         private Rectangle WinRect;
         private Label WinLabel;
         private Label LoseLabel;
-        //FontFamily[] fontFamilies;
-
-
 
         // Methods
 
@@ -109,11 +107,6 @@ namespace KBS1 {
             Reset();
         }
 
-        private void OnMenuButtonClick(object sender, RoutedEventArgs e)
-        {
-            //moet naar home menu gaan, die functie staat in branch van tom
-        }
-
         private void OnNextlevelButtonClick(object sender, RoutedEventArgs e)
         {
             DrawingPanel.Children.Clear();
@@ -137,10 +130,10 @@ namespace KBS1 {
             LoadLevel();
             Loop.Start();
         }
-        //
+        
         public void LoadLevel()
         {
-            Loadedlevel = levelPicker.PickLevel();
+            Loadedlevel = levelPicker.LoadFirstLevel();
         }
 
         public void LoadOptions()
@@ -188,9 +181,9 @@ namespace KBS1 {
         {
             Loop.Stop();
             DrawingPanel.Children.Clear();
-            LoadHome();
+            LoadGame();
         }
-        // DrawingPanel.Children.Remove(RetryButton);
+        
         public void Win()
         {
             GameWindow.Instance.Loop.Stop();
@@ -215,7 +208,7 @@ namespace KBS1 {
             Canvas.SetLeft(MenuWinButton, 400 - (MenuWinButton.Width / 2));
             Canvas.SetTop(MenuWinButton, 200);
             DrawingPanel.Children.Add(MenuWinButton);
-            MenuWinButton.Click += new RoutedEventHandler(OnMenuButtonClick);
+            MenuWinButton.Click += new RoutedEventHandler(QuitToMainMenuButtonClick);
 
             //creates a button to go to next level.
             NextLevelButton = new Button() { Content = "Next level", Width = 70, Height = 20 };
@@ -250,7 +243,7 @@ namespace KBS1 {
             Canvas.SetLeft(MenuLoseButton, 400 - (MenuLoseButton.Width / 2));
             Canvas.SetTop(MenuLoseButton, 200);
             DrawingPanel.Children.Add(MenuLoseButton);
-            MenuLoseButton.Click += new RoutedEventHandler(OnMenuButtonClick);
+            MenuLoseButton.Click += new RoutedEventHandler(QuitToMainMenuButtonClick);
 
             //creates a button so the player can start the level again.
             RetryButton = new Button() { Content = "Retry", Width = 70, Height = 20 };

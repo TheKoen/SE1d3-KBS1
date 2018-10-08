@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<level name="Test Level" background="level1_bg.png">
+
+  <objects>
+    <start radius="17" location="10,10" />
+    <end radius="17" location="770,550" />
+
+    <obstacle name="WallObstacle" radius="24" location="12, 55" />
+    <obstacle name="WallObstacle" radius="24" location="36, 55" />
+    <obstacle name="WallObstacle" radius="24" location="60, 55" />
+    <obstacle name="WallObstacle" radius="24" location="84, 55" />
+    <obstacle name="WallObstacle" radius="24" location="108, 55" />
+    <obstacle name="WallObstacle" radius="24" location="132, 55" />
+    <obstacle name="WallObstacle" radius="24" location="156, 55" />
+    <obstacle name="WallObstacle" radius="24" location="180, 55" />
+    <obstacle name="WallObstacle" radius="24" location="204, 55" />
+    <obstacle name="WallObstacle" radius="24" location="228, 55" />
+    <obstacle name="WallObstacle" radius="24" location="252, 55" />
+
+    <obstacle name="WallObstacle" radius="24" location="350, 0" />
+    <obstacle name="WallObstacle" radius="24" location="373, 0" />
+    <obstacle name="WallObstacle" radius="24" location="396, 0" />
+    <obstacle name="WallObstacle" radius="24" location="350, 24" />
+    <obstacle name="WallObstacle" radius="24" location="373, 24" />
+    <obstacle name="WallObstacle" radius="24" location="396, 24" />
+    <obstacle name="WallObstacle" radius="24" location="350, 48" />
+    <obstacle name="WallObstacle" radius="24" location="373, 48" />
+    <obstacle name="WallObstacle" radius="24" location="396, 48" />
+    <obstacle name="WallObstacle" radius="24" location="350, 72" />
+    <obstacle name="WallObstacle" radius="24" location="373, 72" />
+    <obstacle name="WallObstacle" radius="24" location="396, 72" />
+    <obstacle name="WallObstacle" radius="24" location="350, 96" />
+    <obstacle name="WallObstacle" radius="24" location="373, 96" />
+    <obstacle name="WallObstacle" radius="24" location="396, 96" />
+    <obstacle name="WallObstacle" radius="24" location="350, 120" />
+    <obstacle name="WallObstacle" radius="24" location="373, 120" />
+    <obstacle name="WallObstacle" radius="24" location="396, 120" />
+    <obstacle name="WallObstacle" radius="24" location="350, 144" />
+    <obstacle name="WallObstacle" radius="24" location="373, 144" />
+    <obstacle name="WallObstacle" radius="24" location="396, 144" />
+
+    <obstacle name="WallObstacle" radius="24" location="160, 168" />
+    <obstacle name="WallObstacle" radius="24" location="184, 168" />
+    <obstacle name="WallObstacle" radius="24" location="208, 168" />
+    <obstacle name="WallObstacle" radius="24" location="232, 168" />
+    <obstacle name="WallObstacle" radius="24" location="256, 168" />
+    <obstacle name="WallObstacle" radius="24" location="280, 168" />
+    <obstacle name="WallObstacle" radius="24" location="304, 168" />
+    <obstacle name="WallObstacle" radius="24" location="328, 168" />
+    <obstacle name="WallObstacle" radius="24" location="352, 168" />
+    <obstacle name="WallObstacle" radius="24" location="376, 168" />
+    <obstacle name="WallObstacle" radius="24" location="396, 168" />
+
+    <obstacle name="WallObstacle" radius="24" location="0, 250" />
+    <obstacle name="WallObstacle" radius="24" location="24, 250" />
+    <obstacle name="WallObstacle" radius="24" location="48, 250" />
+    <obstacle name="WallObstacle" radius="24" location="72, 250" />
+    <obstacle name="WallObstacle" radius="24" location="96, 250" />
+    <obstacle name="WallObstacle" radius="24" location="120, 250" />
+    <obstacle name="WallObstacle" radius="24" location="144, 250" />
+    <obstacle name="WallObstacle" radius="24" location="168, 250" />
+    <obstacle name="WallObstacle" radius="24" location="192, 250" />
+    <obstacle name="WallObstacle" radius="24" location="216, 250" />
+    <obstacle name="WallObstacle" radius="24" location="240, 250" />
+    <obstacle name="WallObstacle" radius="24" location="264, 250" />
+    <obstacle name="WallObstacle" radius="24" location="288, 250" />
+    <obstacle name="WallObstacle" radius="24" location="312, 250" />
+    <obstacle name="WallObstacle" radius="24" location="336, 250" />
+    <obstacle name="WallObstacle" radius="24" location="360, 250" />
+    <obstacle name="WallObstacle" radius="24" location="384, 250" />
+    <obstacle name="WallObstacle" radius="24" location="408, 250" />
+    <obstacle name="WallObstacle" radius="24" location="432, 250" />
+    <obstacle name="WallObstacle" radius="24" location="456, 250" />
+    <obstacle name="WallObstacle" radius="24" location="480, 250" />
+    <obstacle name="WallObstacle" radius="24" location="504, 250" />
+    <obstacle name="WallObstacle" radius="24" location="528, 250" />
+    <obstacle name="WallObstacle" radius="24" location="552, 250" />
+    <obstacle name="WallObstacle" radius="24" location="576, 250" />
+    <obstacle name="WallObstacle" radius="24" location="600, 250" />
+    <obstacle name="WallObstacle" radius="24" location="624, 250" />
+    <obstacle name="WallObstacle" radius="24" location="648, 250" />
+    <obstacle name="WallObstacle" radius="24" location="672, 250" />
+    <obstacle name="WallObstacle" radius="24" location="696, 250" />
+    <obstacle name="WallObstacle" radius="24" location="720, 250" />
+
+    <obstacle name="WallObstacle" radius="24" location="500, 274" />
+    <obstacle name="WallObstacle" radius="24" location="500, 297" />
+    <obstacle name="WallObstacle" radius="24" location="500, 320" />
+    <obstacle name="WallObstacle" radius="24" location="500, 343" />
+    <obstacle name="WallObstacle" radius="24" location="500, 366" />
+    <obstacle name="WallObstacle" radius="24" location="500, 389" />
+
+    <obstacle name="WallObstacle" radius="24" location="12, 350" />
+    <obstacle name="WallObstacle" radius="24" location="36, 350" />
+    <obstacle name="WallObstacle" radius="24" location="60, 350" />
+    <obstacle name="WallObstacle" radius="24" location="84, 350" />
+    <obstacle name="WallObstacle" radius="24" location="108, 350" />
+    <obstacle name="WallObstacle" radius="24" location="132, 350" />
+    <obstacle name="WallObstacle" radius="24" location="156, 350" />
+    <obstacle name="WallObstacle" radius="24" location="180, 350" />
+
+    <obstacle name="WallObstacle" radius="24" location="250, 500" />
+    <obstacle name="WallObstacle" radius="24" location="274, 500" />
+    <obstacle name="WallObstacle" radius="24" location="298, 500" />
+    <obstacle name="WallObstacle" radius="24" location="322, 500" />
+    <obstacle name="WallObstacle" radius="24" location="346, 500" />
+    <obstacle name="WallObstacle" radius="24" location="370, 500" />
+    <obstacle name="WallObstacle" radius="24" location="394, 500" />
+    <obstacle name="WallObstacle" radius="24" location="418, 500" />
+    <obstacle name="WallObstacle" radius="24" location="442, 500" />
+    <obstacle name="WallObstacle" radius="24" location="466, 500" />
+    <obstacle name="WallObstacle" radius="24" location="490, 500" />
+    <obstacle name="WallObstacle" radius="24" location="514, 500" />
+    <obstacle name="WallObstacle" radius="24" location="538, 500" />
+    <obstacle name="WallObstacle" radius="24" location="562, 500" />
+    <obstacle name="WallObstacle" radius="24" location="586, 500" />
+    <obstacle name="WallObstacle" radius="24" location="610, 500" />
+    <obstacle name="WallObstacle" radius="24" location="634, 500" />
+    <obstacle name="WallObstacle" radius="24" location="658, 500" />
+    <obstacle name="WallObstacle" radius="24" location="682, 500" />
+    <obstacle name="WallObstacle" radius="24" location="706, 500" />
+    <obstacle name="WallObstacle" radius="24" location="730, 500" />
+    <obstacle name="WallObstacle" radius="24" location="754, 500" />
+    <obstacle name="WallObstacle" radius="24" location="770, 500" />
+
+    <obstacle name="WallObstacle" radius="24" location="706, 476" />
+    <obstacle name="WallObstacle" radius="24" location="730, 476" />
+    <obstacle name="WallObstacle" radius="24" location="754, 476" />
+    <obstacle name="WallObstacle" radius="24" location="770, 476" />
+    <obstacle name="WallObstacle" radius="24" location="706, 452" />
+    <obstacle name="WallObstacle" radius="24" location="730, 452" />
+    <obstacle name="WallObstacle" radius="24" location="754, 452" />
+    <obstacle name="WallObstacle" radius="24" location="770, 452" />
+    <obstacle name="WallObstacle" radius="24" location="706, 428" />
+    <obstacle name="WallObstacle" radius="24" location="730, 428" />
+    <obstacle name="WallObstacle" radius="24" location="754, 428" />
+    <obstacle name="WallObstacle" radius="24" location="770, 428" />
+
+    <obstacle name="WallObstacle" radius="24" location="300, 476" />
+    <obstacle name="WallObstacle" radius="24" location="300, 452" />
+    <obstacle name="WallObstacle" radius="24" location="300, 428" />
+    <obstacle name="WallObstacle" radius="24" location="300, 404" />
+    <obstacle name="WallObstacle" radius="24" location="300, 380" />
+    <obstacle name="WallObstacle" radius="24" location="300, 356" />
+    <obstacle name="WallObstacle" radius="24" location="300, 332" />
+
+    <obstacle name="TrapObstacle" radius="24" location="60, 103" />
+    <obstacle name="TrapObstacle" radius="24" location="40, 160" />
+    <obstacle name="TrapObstacle" radius="24" location="700, 210" />
+
+    <obstacle name="CreeperObstacle" radius="24" location="300, 120" />
+    <obstacle name="CreeperObstacle" radius="24" location="350, 450" />
+    <obstacle name="CreeperObstacle" radius="24" location="450, 300" />
+    <obstacle name="CreeperObstacle" radius="24" location="275, 470" />
+
+    <obstacle name="RunnerObstacle" radius="24" location="742, 60" />
+    <obstacle name="RunnerObstacle" radius="24" location="30, 530" />
+
+    <obstacle name="ArcherObstacle" radius="24" location="100, 320" />
+    <obstacle name="ArcherObstacle" radius="24" location="530, 280" />
+    <obstacle name="ArcherObstacle" radius="24" location="670, 470" />
+  </objects>
+
+</level>

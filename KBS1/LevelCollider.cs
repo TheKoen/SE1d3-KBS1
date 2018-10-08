@@ -8,7 +8,7 @@
         
         public override bool Collides(Vector location, int radius)
         {
-            return Blocking && (location.X < radius || location.X > GameWindow.Instance.DrawingPanel.ActualWidth - radius ||
+            return Blocking && (location.X < radius || location.X > GameWindow.Instance.DrawingPanel.ActualWidth - radius - 200 ||
                                 location.Y < radius || location.Y > GameWindow.Instance.DrawingPanel.ActualHeight - radius);
         }
     }

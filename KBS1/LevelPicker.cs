@@ -1,11 +1,8 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
+using KBS1.Exceptions.Level;
 
 namespace KBS1
 {
@@ -19,21 +16,17 @@ namespace KBS1
             var result = dialog.ShowDialog();
             if (result == false)
             {
-                throw new ArgumentException("User did not select file.");
+                throw new FileNotFoundException("User did not select file.");
             }
-            XmlDocument doc = new XmlDocument();
-            
-            doc.Load(dialog.FileName);
-            try
-            {
-                Level = dialog.FileName;
-                return new Level(doc);
-            }
-            catch(Exception e)
-            {
-                throw new ArgumentException(e.Message);
-            }
+
+            return LoadLevel(dialog.FileName);
         }
+
+        public Level LoadFirstLevel()
+        {
+            return LoadLevel("Level1.xml");
+        }
+
         public Level NextLevel()
         {
             
@@ -43,30 +36,33 @@ namespace KBS1
                 var levelString = levelStringArray[levelStringArray.Length - 1];
                 var levelID = int.Parse(levelString.Replace("Level", "").Replace(".xml", ""));
 
-                var newLevel = $"Levels\\Level{levelID + 1}.xml";
-                XmlDocument doc = new XmlDocument();
-                try
-                {
-                    doc.Load(newLevel);
-                }
-                catch (FileNotFoundException e)
-                {
-                    throw new FileNotFoundException("There isn't a next level");
-                }
-                try
-                {
-                    Level = newLevel;
-                    return new Level(doc);
-                }
-                catch (Exception e)
-                {
-                    throw new ArgumentException(e.Message);
-                }
+                var newLevel = $"Level{levelID + 1}.xml";
 
+                return LoadLevel(newLevel);
             }
             else
             {
-                throw new ArgumentException("Current level does not exist");
+                throw new LevelLoadException("There isn't currently a level loaded");
+            }
+        }
+
+        private Level LoadLevel(string filename)
+        {
+            XmlDocument doc;
+            try
+            {
+                doc = ResourceManager.Instance.LoadXmlDocument($"Levels\\{filename}");
+            } catch (FileNotFoundException e) {
+                throw new FileNotFoundException($"Level \"{filename}\" could not be found");
+            }
+
+            try
+            {
+                var level = new Level(doc);
+                Level = filename;
+                return level;
+            } catch (Exception e) {
+                throw new LevelParseException($"Unable to parse level \"{filename}\"", e);
             }
         }
     }

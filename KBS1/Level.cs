@@ -121,7 +121,7 @@ namespace KBS1
             if (name == "tree" || name == "wall") return;
             if (MadeObjects.Contains(name)) return;
             MadeObjects.Add(name);
-            createDescription(name, image);
+            CreateDescription(name, image);
         }
 
         /// <summary>
@@ -129,13 +129,20 @@ namespace KBS1
         /// </summary>
         /// <param name="name">String containing name</param>
         /// <param name="source">ImageSource containing the source of an image</param>
-        private void createDescription(String name, ImageSource source)
+        private static void CreateDescription(string name, ImageSource source)
         {
             
-            ObstacleInfo bla = new ObstacleInfo(name);
-            ObjectInfoContainer o1 = new ObjectInfoContainer { ImageSource = source, GameObjectName = name, GameObjectDescription = bla.Description };
+            var bla = new ObstacleInfo(name);
+            var o1 = new ObjectInfoContainer
+            {
+                ImageSource = source,
+                GameObjectName = name,
+                GameObjectDescription = bla.Description
+            };
+
             Canvas.SetRight(o1, 0);
             Canvas.SetTop(o1, DescriptionHeight);
+
             GameWindow.Instance.DrawingPanel.Children.Add(o1);
             DescriptionHeight = DescriptionHeight + 148;
         }

@@ -22,7 +22,7 @@ namespace KBS1
 
         private double GetSeconds()
         {
-            return Math.Round(Ticks / 425.0, 2);
+            return Math.Round(Ticks / 100.0, 2);
         }
     }
 }

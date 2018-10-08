@@ -42,8 +42,8 @@ namespace KBS1
             {
                 gameObject.Controller?.Update();
                 gameObject.Renderer?.Update();
-                level.Score.Update();
             }
+            level.Score.Update();
         }
     }
 }

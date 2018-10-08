@@ -18,7 +18,7 @@
         /// </summary>
         /// <param name="collider">Collider to check for</param>
         /// <returns>Collision status</returns>
-        public bool Collides(Collider collider) => Collides(collider.Locatable.Location, collider.Radius);
+        public bool Collides(Collider collider) => Collides(collider.Locatable.Location, collider.Radius + 2);
         
         /// <summary>
         /// Checks whether this Collider collides with a radius

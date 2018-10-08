@@ -4,7 +4,7 @@ namespace KBS1
 {
     class PlayerController : Controller
     {
-        private const double SPEED = 1.5;
+        private const double SPEED = 2.0;
 
         public Player Player { get; }
 

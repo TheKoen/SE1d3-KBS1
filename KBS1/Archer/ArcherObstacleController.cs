@@ -5,7 +5,7 @@ namespace KBS1.Archer
     public class ArcherObstacleController : ObstacleController
     {
         private const int SPEED = 1;
-        private const int RANGE = 300;
+        private const int RANGE = 200;
         private static readonly ObstacleType ARROW = 
             new ObstacleType(new ArrowObstacle(), 5, ResourceManager.Instance.LoadImage("arrow.png"));
 

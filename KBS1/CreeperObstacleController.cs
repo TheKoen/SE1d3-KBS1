@@ -12,7 +12,7 @@ namespace KBS1
     public class CreeperObstacleController : ObstacleController
     {
         private const int speed = 1;
-        private const int range = 300;
+        private const int range = 150;
         private const int explosionRadius = 100;
         private const int delayCreeper = 100;
         private int wait = 0;

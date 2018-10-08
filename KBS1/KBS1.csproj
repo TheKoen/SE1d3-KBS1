@@ -58,6 +58,8 @@
     <Compile Include="Archer\ArcherObstacleController.cs" />
     <Compile Include="Archer\ArrowObstacleController.cs" />
     <Compile Include="CreeperObstacleController.cs" />
+    <Compile Include="Exceptions\Level\LevelLoadException.cs" />
+    <Compile Include="Exceptions\Level\LevelParseException.cs" />
     <Compile Include="FinishController.cs" />
     <Compile Include="FinishObject.cs" />
     <Compile Include="GameWindow.xaml.cs">
@@ -122,7 +124,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Levels\TestLevel.xml" />
+    <Resource Include="Resources\Levels\Level1.xml" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\end.png" />
@@ -142,6 +144,9 @@
     <Resource Include="Resources\creeper_red.png" />
     <Resource Include="Resources\tree.png" />
     <Resource Include="Resources\Wall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\level1_bg.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
