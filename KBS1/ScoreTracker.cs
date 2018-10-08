@@ -20,7 +20,7 @@ namespace KBS1
             GameWindow.Instance.Loadedlevel.UpdateScore(SecondsRunning);
         }
 
-        private double GetSeconds()
+        public double GetSeconds()
         {
             return Math.Round(Ticks / 100.0, 2);
         }
