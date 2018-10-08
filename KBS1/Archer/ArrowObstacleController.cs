@@ -33,6 +33,13 @@ namespace KBS1.Archer
             var player = FindPlayer();
 
             Move(direction);
+
+            if (GameWindow.Instance.Loadedlevel.LevelCollider.Collides(Object.Collider))
+            {
+                GameWindow.Instance.Loadedlevel.Objects.Remove(Object);
+                Object.Renderer.Destroy();
+                return;
+            }
             
             if (Object.Collider.Collides(player.Collider))
             {
