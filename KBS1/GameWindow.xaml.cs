@@ -133,12 +133,13 @@ namespace KBS1 {
             try
             {
                 Loadedlevel = levelPicker.PickLevel();
+                Loop = new Gameloop(this);
+                Loop.Start();
             }
             catch (Exception q)
             {
                 MessageBox.Show($"{q.Message}", "Error");
             }
-            LoadGame();    
         }
 
         private void ToMainMenuButtonClick(object sender, RoutedEventArgs e)
