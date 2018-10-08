@@ -3,7 +3,6 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System;
-using System.Drawing.Text;
 
 namespace KBS1 {
     public partial class GameWindow : Window {
@@ -113,7 +112,14 @@ namespace KBS1 {
         private void OnNextlevelButtonClick(object sender, RoutedEventArgs e)
         {
             DrawingPanel.Children.Clear();
-            Loadedlevel = levelPicker.NextLevel();
+            try
+            {
+                Loadedlevel = levelPicker.NextLevel();
+            }
+            catch (Exception q)
+            {
+                MessageBox.Show($"{q.Message}", "Error");
+            }
             //DrawingPanel.Children.Remove(WinRect);
             //DrawingPanel.Children.Remove(WinLabel);
             //DrawingPanel.Children.Remove(MenuWinButton);
@@ -124,7 +130,14 @@ namespace KBS1 {
         private void OnSelectLevelButton(object sender, RoutedEventArgs e)
         {
             DrawingPanel.Children.Clear();
-            Loadedlevel = levelPicker.PickLevel();
+            try
+            {
+                Loadedlevel = levelPicker.PickLevel();
+            }
+            catch (Exception q)
+            {
+                MessageBox.Show($"{q.Message}", "Error");
+            }
             LoadGame();    
         }
 
@@ -137,13 +150,21 @@ namespace KBS1 {
         public void LoadGame()
         {
             Loop = new Gameloop(this);
-            LoadLevel();
+            try {
+                LoadLevel();
+            }
+            catch (Exception q)
+            {
+                MessageBox.Show($"{q.Message}", "Error");
+                LoadHome();
+                return;
+            }
             Loop.Start();
         }
         
         public void LoadLevel()
         {
-            Loadedlevel = levelPicker.LoadFirstLevel();
+                Loadedlevel = levelPicker.LoadFirstLevel();
         }
 
         public void LoadOptions()

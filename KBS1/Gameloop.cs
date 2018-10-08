@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Threading;
 
 namespace KBS1
@@ -37,13 +38,20 @@ namespace KBS1
         
         private void Update(object sender, EventArgs args)
         {
-            var level = Game.Loadedlevel;
-            foreach (var gameObject in new List<GameObject>(level.Objects))
+            try
             {
-                gameObject.Controller?.Update();
-                gameObject.Renderer?.Update();
+                var level = Game.Loadedlevel;
+                foreach (var gameObject in new List<GameObject>(level.Objects))
+                {
+                    gameObject.Controller?.Update();
+                    gameObject.Renderer?.Update();
+                }
+                level.Score.Update();
             }
-            level.Score.Update();
+            catch (Exception e)
+            {
+                MessageBox.Show($"{e.Message}", "Error");
+            }
         }
     }
 }
