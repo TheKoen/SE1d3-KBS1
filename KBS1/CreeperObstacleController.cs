@@ -23,7 +23,7 @@ namespace KBS1
         public CreeperObstacleController(ILocatable locatable, Obstacle obstacle) : base(locatable, obstacle) { }
 
         /// <summary>
-        /// Updates the creeper movements and sprites
+        /// Updates the creeper location and sprite every gametick
         /// </summary>
         public override void Update()
         {
