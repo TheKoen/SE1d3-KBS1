@@ -46,7 +46,7 @@ namespace KBS1 {
             {
                 Content = "Start", Width = 70, Height = 23, Background = Brushes.LightBlue
             };
-            Canvas.SetLeft(StartButton, 400 - StartButton.Width/2);
+            Canvas.SetLeft(StartButton, 500 - StartButton.Width/2);
             Canvas.SetTop(StartButton, 300 + StartButton.Height);
             StartButton.Click += new RoutedEventHandler(OnStartButtonClick);
 
@@ -54,7 +54,7 @@ namespace KBS1 {
             {
                 Content = "Options", Width = 70, Height = 23, Background = Brushes.LightBlue
             };
-            Canvas.SetLeft(OptionButton, 400 - StartButton.Width / 2);
+            Canvas.SetLeft(OptionButton, 500 - StartButton.Width / 2);
             Canvas.SetTop(OptionButton, 300 + OptionButton.Height + 50);
             OptionButton.Click += new RoutedEventHandler(OnOptionButtonClick);
 
@@ -62,7 +62,7 @@ namespace KBS1 {
             {
                 Content = "Quit", Width = 70, Height = 23, Background = Brushes.LightBlue
             };
-            Canvas.SetLeft(QuitButton, 400 - StartButton.Width / 2);
+            Canvas.SetLeft(QuitButton, 500 - StartButton.Width / 2);
             Canvas.SetTop(QuitButton, 300 + QuitButton.Height + 100);
             QuitButton.Click += new RoutedEventHandler(OnQuitButtonClick);
 
@@ -82,13 +82,7 @@ namespace KBS1 {
             DrawingPanel.Children.Clear();
             LoadOptions();
         }
-
-        private void OnBackButtonClick(object sender, RoutedEventArgs e)
-        {
-            DrawingPanel.Children.Clear();
-            LoadHome();
-        }
-
+        
         private void OnResumeButtonClick(object sender, RoutedEventArgs e)
         {
             DrawingPanel.Children.Remove(rect);
@@ -118,7 +112,7 @@ namespace KBS1 {
             Loop.Start();
         }
 
-        private void QuitToMainMenuButtonClick(object sender, RoutedEventArgs e)
+        private void ToMainMenuButtonClick(object sender, RoutedEventArgs e)
         {
             DrawingPanel.Children.Clear();
             LoadHome();
@@ -142,9 +136,9 @@ namespace KBS1 {
             {
                 Content = "Back", Width = 70, Height = 23, Background = Brushes.LightBlue
             };
-            Canvas.SetLeft(BackButton, 400 - BackButton.Width / 2);
+            Canvas.SetLeft(BackButton, 500 - BackButton.Width / 2);
             Canvas.SetTop(BackButton, 300 - BackButton.Height);
-            BackButton.Click += new RoutedEventHandler(OnBackButtonClick);
+            BackButton.Click += new RoutedEventHandler(ToMainMenuButtonClick);
             DrawingPanel.Children.Add(BackButton);
         }
 
@@ -155,20 +149,20 @@ namespace KBS1 {
             rect = new Rectangle { Name = "rect", Width = 200, Height = 200 };
             rect.Stroke = new SolidColorBrush(Colors.Gray);
             rect.Fill = new SolidColorBrush(Colors.Gray);
-            Canvas.SetLeft(rect, 400 - rect.Width / 2);
+            Canvas.SetLeft(rect, 500 - rect.Width / 2);
             Canvas.SetTop(rect, 300 - rect.Height);
 
             ResumeButton = new Button {Name = "ResumeButton", Content = "Resume", Width = 70, Height = 23 };
-            Canvas.SetLeft(ResumeButton, 400 - ResumeButton.Width / 2);
+            Canvas.SetLeft(ResumeButton, 500 - ResumeButton.Width / 2);
             Canvas.SetTop(ResumeButton, 200 - ResumeButton.Height);
             Canvas.SetZIndex(ResumeButton, 1);
             ResumeButton.Click += new RoutedEventHandler(OnResumeButtonClick);
 
             QuitToMainMenuButton = new Button { Name = "QuitToMainMenu", Content = "Quit to main menu", Width = 110, Height = 23 };
-            Canvas.SetLeft(QuitToMainMenuButton, 400 - QuitToMainMenuButton.Width / 2);
+            Canvas.SetLeft(QuitToMainMenuButton, 500 - QuitToMainMenuButton.Width / 2);
             Canvas.SetTop(QuitToMainMenuButton, 250 - QuitToMainMenuButton.Height);
             Canvas.SetZIndex(QuitToMainMenuButton, 1);
-            QuitToMainMenuButton.Click += new RoutedEventHandler(QuitToMainMenuButtonClick);
+            QuitToMainMenuButton.Click += new RoutedEventHandler(ToMainMenuButtonClick);
 
 
             DrawingPanel.Children.Add(ResumeButton);
@@ -189,7 +183,7 @@ namespace KBS1 {
             GameWindow.Instance.Loop.Stop();
             //creates a rectangle for when the player wins
             WinRect = new Rectangle() { Width = 500, Height = 400 };
-            Canvas.SetLeft(WinRect, 400 - (WinRect.Width / 2));
+            Canvas.SetLeft(WinRect, 500 - (WinRect.Width / 2));
             Canvas.SetTop(WinRect, 300 - (WinRect.Height / 2));
             WinRect.Stroke = new SolidColorBrush(Colors.Green);
             WinRect.StrokeThickness = 2;
@@ -199,20 +193,20 @@ namespace KBS1 {
             //creates a label for showing win message.
             WinLabel = new Label() { Content = "You won :-)", Width = 140, Height = 50 };
             WinLabel.FontSize = 25;
-            Canvas.SetLeft(WinLabel, 400 - (WinLabel.Width / 2));
+            Canvas.SetLeft(WinLabel, 500 - (WinLabel.Width / 2));
             Canvas.SetTop(WinLabel, 100);
             DrawingPanel.Children.Add(WinLabel);
 
             //creates a button to go to main menu.
             MenuWinButton = new Button() { Content = "Main menu", Width = 70, Height = 20 };
-            Canvas.SetLeft(MenuWinButton, 400 - (MenuWinButton.Width / 2));
+            Canvas.SetLeft(MenuWinButton, 500 - (MenuWinButton.Width / 2));
             Canvas.SetTop(MenuWinButton, 200);
             DrawingPanel.Children.Add(MenuWinButton);
-            MenuWinButton.Click += new RoutedEventHandler(QuitToMainMenuButtonClick);
+            MenuWinButton.Click += new RoutedEventHandler(ToMainMenuButtonClick);
 
             //creates a button to go to next level.
             NextLevelButton = new Button() { Content = "Next level", Width = 70, Height = 20 };
-            Canvas.SetLeft(NextLevelButton, 400 - (NextLevelButton.Width / 2));
+            Canvas.SetLeft(NextLevelButton, 500 - (NextLevelButton.Width / 2));
             Canvas.SetTop(NextLevelButton, 240);
             DrawingPanel.Children.Add(NextLevelButton);
             NextLevelButton.Click += new RoutedEventHandler(OnNextlevelButtonClick);
@@ -243,7 +237,7 @@ namespace KBS1 {
             Canvas.SetLeft(MenuLoseButton, 400 - (MenuLoseButton.Width / 2));
             Canvas.SetTop(MenuLoseButton, 200);
             DrawingPanel.Children.Add(MenuLoseButton);
-            MenuLoseButton.Click += new RoutedEventHandler(QuitToMainMenuButtonClick);
+            MenuLoseButton.Click += new RoutedEventHandler(ToMainMenuButtonClick);
 
             //creates a button so the player can start the level again.
             RetryButton = new Button() { Content = "Retry", Width = 70, Height = 20 };
