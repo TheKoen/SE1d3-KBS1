@@ -1,29 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KBS1.Archer
+﻿namespace KBS1.Archer
 {
     public class ArrowObstacleController : ObstacleController
     {
-        private readonly Vector direction;
+        private readonly Vector _direction;
 
-        private int lifetime = 500;
+        private int _lifetime = 500;
 
         public ArrowObstacleController(ILocatable locatable, Obstacle obstacle, Vector direction) : base(locatable, obstacle)
         {
             Object.Collider.Blocking = false;
-            this.direction = direction;
+            _direction = direction;
         }
 
+        /// <summary>
+        /// TODO: Add proper summary
+        /// </summary>
         public override void Update()
         {
-            if (lifetime > 0)
-            {
-                lifetime--;
-            }
+            if (_lifetime > 0) _lifetime--;
             else
             {
                 GameWindow.Instance.Loadedlevel.Objects.Remove(Object);
@@ -32,7 +26,7 @@ namespace KBS1.Archer
 
             var player = FindPlayer();
 
-            Move(direction);
+            Move(_direction);
 
             if (GameWindow.Instance.Loadedlevel.LevelCollider.Collides(Object.Collider))
             {
@@ -42,9 +36,7 @@ namespace KBS1.Archer
             }
             
             if (Object.Collider.Collides(player.Collider))
-            {
                 GameWindow.Instance.Lose();
-            }
         }
     }
 }

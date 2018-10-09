@@ -7,37 +7,46 @@ namespace KBS1
 {
     public class ObstacleType
     {
-        public static List<ObstacleType> Types = new List<ObstacleType>();
+        public static readonly List<ObstacleType> Types = new List<ObstacleType>();
 
         public int CollisionRadius { get; }
         public Image Sprite { get; }
 
-        private readonly IControllerCreator Creator;
+        private readonly IControllerCreator _creator;
 
         public ObstacleType(IControllerCreator creator, int collisionRadius, Image sprite)
         {
-            Creator = creator;
+            _creator = creator;
             CollisionRadius = collisionRadius;
             Sprite = sprite;
         }
 
         /// <summary>
-        /// Creates a new ObstacleController for this ObstacleType
+        /// Creates a new <see cref="ObstacleController"/> for this <see cref="ObstacleType"/>
         /// </summary>
         /// <returns>ObstacleController for this ObstacleType</returns>
-        public Controller CreateController(Obstacle obstacle) => Creator.Create(obstacle);
+        public Controller CreateController(Obstacle obstacle) => _creator.Create(obstacle);
 
+        /// <summary>
+        /// Attempts to find an <see cref="ObstacleType"/> by it's name
+        /// </summary>
+        /// <param name="name">The name to find</param>
+        /// <returns>The found <see cref="ObstacleType"/></returns>
+        /// <exception cref="NullReferenceException"></exception>
         public static ObstacleType Find(string name)
         {
             foreach (var obstacleType in Types)
             {
-                var obstacleName = obstacleType.Creator.GetType().Name;
+                var obstacleName = obstacleType._creator.GetType().Name;
                 if (obstacleName == name)
                     return obstacleType;
             }
             throw new NullReferenceException($"ObstacleType {name} could not be found");
         }
-        //create obstacle
+        
+        /// <summary>
+        /// Initializes all <see cref="ObstacleType"/>s
+        /// </summary>
         public static void Init()
         {
             // Runner
@@ -62,42 +71,27 @@ namespace KBS1
 
         private class TrapObstacle : IControllerCreator
         {
-            public Controller Create(Obstacle obstacle)
-            {
-                return new TrapObstacleController(obstacle, obstacle);
-            }
+            public Controller Create(Obstacle obstacle) => new TrapObstacleController(obstacle, obstacle);
         }
 
         private class WallObstacle : IControllerCreator
         {
-            public Controller Create(Obstacle obstacle)
-            {
-                return new WallObstacleController(obstacle, obstacle);
-            }
+            public Controller Create(Obstacle obstacle) => new WallObstacleController(obstacle, obstacle);
         }
 
         private class TreeObstacle : IControllerCreator
         {
-            public Controller Create(Obstacle obstacle)
-            {
-                return new TreeObstacleController(obstacle, obstacle);
-            }
+            public Controller Create(Obstacle obstacle) => new TreeObstacleController(obstacle, obstacle);
         }
 
         private class ArcherObstacle : IControllerCreator
         {
-            public Controller Create(Obstacle obstacle)
-            {
-                return new ArcherObstacleController(obstacle, obstacle);
-            }
+            public Controller Create(Obstacle obstacle) => new ArcherObstacleController(obstacle, obstacle);
         }
 
         private class CreeperObstacle : IControllerCreator
         {
-            public Controller Create(Obstacle obstacle)
-            {
-                return new CreeperObstacleController(obstacle, obstacle);
-            }
+            public Controller Create(Obstacle obstacle) => new CreeperObstacleController(obstacle, obstacle);
         }
     }
 }

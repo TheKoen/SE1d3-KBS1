@@ -18,19 +18,16 @@ namespace KBS1
         /// </summary>
         public void Update()
         {
-            Ticks++;
+            ++Ticks;
             SecondsRunning = GetSeconds();
-            GameWindow.Instance.Loadedlevel.UpdateScore(SecondsRunning);
+            GameWindow.Instance.Loadedlevel.UpdateScore();
         }
 
         
         /// <summary>
-        /// calulates the seconds of the game
+        /// Calulates the elapsed amount of seconds of the game
         /// </summary>
         /// <returns>seconds in double</returns>
-        public double GetSeconds()
-        {
-            return Math.Round(Ticks / 100.0, 2);
-        }
+        public double GetSeconds() => Math.Round(Ticks / 100.0, 2);
     }
 }

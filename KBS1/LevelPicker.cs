@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.IO;
 using System.Xml;
 using KBS1.Exceptions.Level;
@@ -8,7 +7,7 @@ namespace KBS1
 {
     public class LevelPicker
     {
-        private string Level;
+        private string _level;
 
         /// <summary>
         /// Picklevel creates custom dialog if you dont select a level it throws an Exception.
@@ -32,37 +31,31 @@ namespace KBS1
         /// Loads first level with the name Level1.xml.
         /// </summary>
         /// <returns>if Level1.xml exist returns level</returns>
-        public Level LoadFirstLevel()
+        private Level LoadFirstLevel()
         {
             return LoadLevel("Level1.xml");
         }
 
         /// <summary>
+        /// TODO: Add proper summary
+        /// </summary>
+        /// <returns></returns>
+        public Level LoadSelectedLevel() => _level == null ? LoadFirstLevel() : LoadLevel(_level);
+        
+        /// <summary>
         /// Loads the next level named Level(current+1).xml or throws exception if not available
         /// </summary>
         /// <returns>returns next level if available</returns>
-        public Level LoadSelectedLevel()
-        {
-            return Level == null ? LoadFirstLevel() : LoadLevel(Level);
-        }
-
         public Level NextLevel()
         {
-            
-            if(Level != null)
-            {
-                var levelStringArray = Level.Split(Path.DirectorySeparatorChar);
-                var levelString = levelStringArray[levelStringArray.Length - 1];
-                var levelID = int.Parse(levelString.Replace("Level", "").Replace(".xml", ""));
+            if (_level == null) throw new LevelLoadException("There isn't currently a level loaded");
+            var levelStringArray = _level.Split(Path.DirectorySeparatorChar);
+            var levelString = levelStringArray[levelStringArray.Length - 1];
+            var levelId = int.Parse(levelString.Replace("Level", "").Replace(".xml", ""));
 
-                var newLevel = $"Level{levelID + 1}.xml";
+            var newLevel = $"Level{levelId + 1}.xml";
 
-                return LoadLevel(newLevel);
-            }
-            else
-            {
-                throw new LevelLoadException("There isn't currently a level loaded");
-            }
+            return LoadLevel(newLevel);
         }
 
         /// <summary>
@@ -76,14 +69,14 @@ namespace KBS1
             try
             {
                 doc = ResourceManager.Instance.LoadXmlDocument($"Levels\\{filename}");
-            } catch (FileNotFoundException e) {
+            } catch (FileNotFoundException) {
                 throw new FileNotFoundException($"Level \"{filename}\" could not be found");
             }
 
             try
             {
                 var level = new Level(doc);
-                Level = filename;
+                _level = filename;
                 return level;
             } catch (Exception e) {
                 throw new LevelParseException($"Unable to parse level \"{filename}\"", e);
