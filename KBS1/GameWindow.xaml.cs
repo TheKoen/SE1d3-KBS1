@@ -245,7 +245,7 @@ namespace KBS1 {
             Canvas.SetTop(WinLabel, 100);
             DrawingPanel.Children.Add(WinLabel);
 
-            //creates a label for showing win message.
+            //creates a label for showing score
             ScoreLabel = new Label() { Content = $"Your score is: {Loadedlevel.Score.SecondsRunning + 0.01} sec", Width = 275, Height = 50 };
             ScoreLabel.FontSize = 25;
             Canvas.SetLeft(ScoreLabel, 500 - (ScoreLabel.Width / 2));
