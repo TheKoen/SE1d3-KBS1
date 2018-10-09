@@ -39,6 +39,8 @@ namespace KBS1
             //if (Keyboard.IsKeyDown(Key.LeftShift))
             //    speed = 10;
 
+            Object.Collider.Blocking = !Keyboard.IsKeyDown(Key.NumPad0);
+
             Move(direction.Normalize(speed));
         }
     }

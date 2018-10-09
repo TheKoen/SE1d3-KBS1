@@ -22,7 +22,7 @@ namespace KBS1
             var fileName = dialog.FileName;
             if (fileName == null)
             {
-                throw new FileNotFoundException("You did not select file.");
+                throw new FileNotFoundException("You did not select level.");
             }
 
             return LoadLevel(fileName);
