@@ -26,6 +26,8 @@ namespace KBS1
         /// <param name="xmlDocument">XML document containing a level</param>
         public Level(XmlDocument xmlDocument)
         {
+            GameWindow.Instance.DrawingPanel.Background = Brushes.LightGreen;
+
             Objects = new List<GameObject>();
             ObstacleType.Init();
             LevelCollider = new LevelCollider();
@@ -39,10 +41,10 @@ namespace KBS1
             Name = root.GetAttribute("name");
 
             if (!root.HasAttribute("background"))
-                Background = new SolidColorBrush(Colors.LightGreen);
-                else
-            Background = ResourceManager.Instance.LoadImageBrush(root.GetAttribute("background"));
-            
+                Background = Brushes.LightGreen;
+            else
+                Background = ResourceManager.Instance.LoadImageBrush(root.GetAttribute("background"));
+
             var objectsXml = xmlDocument.SelectSingleNode("//level/objects");
             if (objectsXml == null)
                 throw new XmlException("Level missing objects node");
@@ -50,7 +52,7 @@ namespace KBS1
             foreach (object child in objectsXml.ChildNodes)
             {
                 if (!(child is XmlNode)) continue;
-                XmlNode childXml = (XmlNode)child;
+                XmlNode childXml = (XmlNode) child;
                 if (childXml.LocalName == "start") CreateStartPoint(childXml);
                 if (childXml.LocalName == "end") CreateEndPoint(childXml);
                 if (childXml.LocalName == "obstacle") CreateObstacle(childXml);
@@ -137,7 +139,6 @@ namespace KBS1
         /// <param name="source">ImageSource containing the source of an image</param>
         private static void CreateDescription(string name, ImageSource source)
         {
-            
             var bla = new ObstacleInfo(name);
             var o1 = new ObjectInfoContainer
             {
@@ -165,6 +166,7 @@ namespace KBS1
                 var rand = new Random();
                 return new Vector(rand.Next(1, 700), rand.Next(1, 500));
             }
+
             var split = locationString.Split(',');
             return new Vector(int.Parse(split[0]), int.Parse(split[1]));
         }

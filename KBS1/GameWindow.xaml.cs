@@ -42,6 +42,8 @@ namespace KBS1 {
 
         public void LoadHome()
         {
+            DrawingPanel.Background = Brushes.LightGreen;
+
             var StartButton = new Button
             {
                 Content = "Start", Width = 70, Height = 23, Background = Brushes.LightBlue

@@ -160,10 +160,10 @@
     <Resource Include="Resources\Levels\Levels.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Levels\Level2.xml" />
+    <Resource Include="Resources\Levels\TestLevel.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Levels\leveltree.xml" />
+    <Resource Include="Resources\Levels\Level2.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

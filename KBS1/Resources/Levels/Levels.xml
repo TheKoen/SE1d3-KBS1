@@ -1,5 +1,5 @@
 <levels>
   <level filename="Level1.xml"/>
   <level filename="Level2.xml"/>
-  <level filename="Leveltree.xml"/>
+  <level filename="TestLevel.xml"/>
 </levels>
