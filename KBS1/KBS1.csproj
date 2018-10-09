@@ -69,6 +69,18 @@
     <Compile Include="LevelPickerWindow.xaml.cs">
       <DependentUpon>LevelPickerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LoseScreen.xaml.cs">
+      <DependentUpon>LoseScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainMenuScreen.xaml.cs">
+      <DependentUpon>MainMenuScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OptionMenu.xaml.cs">
+      <DependentUpon>OptionMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PauseMenuScreen.xaml.cs">
+      <DependentUpon>PauseMenuScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ResourceManager.cs" />
     <Compile Include="LevelPicker.cs" />
     <Compile Include="RunnerObstacleController.cs" />
@@ -86,6 +98,9 @@
     <Compile Include="TreeObstacleController.cs" />
     <Compile Include="Vector.cs" />
     <Compile Include="WallObstacleController.cs" />
+    <Compile Include="WinScreen.xaml.cs">
+      <DependentUpon>WinScreen.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collider.cs" />
@@ -116,7 +131,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="LoseScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainMenuScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ObjectInfoContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OptionMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PauseMenuScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
