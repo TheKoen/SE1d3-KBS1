@@ -2,7 +2,7 @@
 <level name="Test Level">
 
   <objects>
-    <start radius="17" location="10,10" />
+    <start radius="17" location="100,150" />
     <end radius="17" location="770,550" />
   </objects>
 

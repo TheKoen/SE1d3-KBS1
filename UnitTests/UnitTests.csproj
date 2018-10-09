@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Collider_Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
