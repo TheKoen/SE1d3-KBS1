@@ -24,14 +24,14 @@ namespace KBS1
                 return true;
             }
             
-            Vector newLocationHorizontal = new Vector(newLocation.X, Object.Location.Y);
+            var newLocationHorizontal = new Vector(newLocation.X, Object.Location.Y);
             if (!Object.Collider.CollidesAny(newLocationHorizontal, true))
             {
                 Object.Location = newLocationHorizontal;
                 return true;
             }
 
-            Vector newLocationVertical = new Vector(Object.Location.X, newLocation.Y);
+            var newLocationVertical = new Vector(Object.Location.X, newLocation.Y);
             if (!Object.Collider.CollidesAny(newLocationVertical, true))
             {
                 Object.Location = newLocationVertical;
