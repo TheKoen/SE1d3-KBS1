@@ -3,3 +3,5 @@
 .vs/*
 KBS1/obj/*
 KBS1/bin/*
+UnitTests/obj/*
+UnitTests/bin/*

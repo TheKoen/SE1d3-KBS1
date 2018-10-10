@@ -23,7 +23,7 @@ namespace UnitTests
 
             var result = vector1.Distance(vector2);
 
-            Assert.AreEqual(result, expected, MAX_DELTA);
+            Assert.AreEqual(expected, result, MAX_DELTA);
         }
 
         [TestCase(0.0, 0.0, 1.0, 1.0)]
@@ -37,8 +37,8 @@ namespace UnitTests
 
             vector.Add(new Vector(dx, dy));
 
-            Assert.AreEqual(vector.X, x + dx);
-            Assert.AreEqual(vector.Y, y + dy);
+            Assert.AreEqual(x + dx, vector.X);
+            Assert.AreEqual(y + dy, vector.Y);
         }
 
         [TestCase(1.0, 1.0, 1.0)]
@@ -60,7 +60,7 @@ namespace UnitTests
             vector.Normalize(length);
             var result = Math.Sqrt(Math.Pow(vector.X, 2) + Math.Pow(vector.Y, 2));
 
-            Assert.AreEqual(result, length, MAX_DELTA);
+            Assert.AreEqual(length, result, MAX_DELTA);
         }
     }
 }

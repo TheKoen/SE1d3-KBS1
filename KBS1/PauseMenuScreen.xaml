@@ -7,10 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="1000">
     <Grid>
-        <Rectangle Fill="#FFF4F4F5" Height="200" Width="200" Margin="400,200,400,200" Stroke="Black" VerticalAlignment="Top"/>
-        <Button x:Name="ResumeButton" Content="Resume" HorizontalAlignment="Left" Margin="464,250,0,0" VerticalAlignment="Top" Width="75" Click="ResumeButton_Click"/>
-        <Button x:Name="RetryButton" Content="Retry" HorizontalAlignment="Left" Margin="464,300,0,0" VerticalAlignment="Top" Width="75" Click="RetryButton_Click"/>
-        <Button x:Name="QuitToMainMenuButton" Content="Quit to main menu" Margin="445,350,445,0" VerticalAlignment="Top" Width="110" Click="QuitToMainMenuButton_Click"/>
-
+        <Rectangle Fill="#FFF4F4F5" Height="200" Width="200" Margin="400,200,400,200" Stroke="Black" VerticalAlignment="Top" />
+        <Button x:Name="ResumeButton" Content="Resume" HorizontalAlignment="Left" Margin="464,250,0,0" VerticalAlignment="Top" Width="75" Click="ResumeButton_Click" />
+        <Button x:Name="RetryButton" Content="Retry" HorizontalAlignment="Left" Margin="464,300,0,0" VerticalAlignment="Top" Width="75" Click="RetryButton_Click" />
+        <Button x:Name="QuitToMainMenuButton" Content="Quit to main menu" Margin="445,350,445,0" VerticalAlignment="Top" Width="110" Click="QuitToMainMenuButton_Click" />
     </Grid>
 </UserControl>

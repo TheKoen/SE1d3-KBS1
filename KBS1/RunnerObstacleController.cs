@@ -2,40 +2,42 @@
 {
     public class RunnerObstacleController : ObstacleController
     {
-        private const int SPEED = 2;
-        private const int RANGE = 300;
+        private const int Speed = 2;
+        private const int Range = 300;
 
-        private int wait;
+        private int _wait;
 
         public RunnerObstacleController(ILocatable locatable, Obstacle obstacle) : base(locatable, obstacle) { }
 
+        /// <summary>
+        /// TODO: Add proper summary
+        /// </summary>
         public override void Update()
         {
-            if (wait-- > 0) return;
+            if (_wait-- > 0) return;
 
-            wait = 1;
+            _wait = 1;
 
             // Get information from Player
             var playerObject = FindPlayer();
             var player = playerObject.Location;
 
             // Kijken of de speler in range is
-            if (player.Distance(Object.Location) > RANGE)
-            {
+            if (player.Distance(Object.Location) > Range)
                 return;
-            }
 
             // Move, eerst langste X of Y en die richting beweging
             var xDistance = player.AxisDistance(Object.Location, true);
             var yDistance = player.AxisDistance(Object.Location, false);
 
-            var result  = xDistance > yDistance ? Move(player.X < Object.Location.X ? new Vector(-SPEED, 0) : new Vector(SPEED, 0)) : Move(player.Y < Object.Location.Y ? new Vector(0, -SPEED) : new Vector(0, SPEED));
+            if (xDistance > yDistance)
+                Move(player.X < Object.Location.X ? new Vector(-Speed, 0) : new Vector(Speed, 0));
+            else
+                Move(player.Y < Object.Location.Y ? new Vector(0, -Speed) : new Vector(0, Speed));
             
             // Colliden met speler -> reset
             if (Object.Collider.Collides(playerObject.Collider))
-            {
                 GameWindow.Instance.Lose();
-            }
         }
     }
 }

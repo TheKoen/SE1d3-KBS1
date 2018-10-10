@@ -21,7 +21,7 @@
                     Description = "A trap can be very deadly, so watch out where you walk";
                     break;
                 default:
-                    Description = "Geen beschrijving mogelijk";
+                    Description = "No description";
                     break;
             }
         }

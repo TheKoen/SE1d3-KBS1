@@ -4,7 +4,6 @@ namespace KBS1
 {
     public class Obstacle : GameObject
     {
-    
         public ObstacleType ObstacleType { get; }
 
         /// <summary>

@@ -2,7 +2,7 @@
 
 namespace KBS1
 {
-    class Player : GameObject
+    public class Player : GameObject
     {
         public Player(int radius, Image image, Canvas canvas, Vector location) : 
             base(radius, image, canvas, location)

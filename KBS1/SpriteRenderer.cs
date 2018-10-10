@@ -11,11 +11,11 @@ namespace KBS1
         private Canvas Canvas { get; }
 
         /// <summary>
-        /// Constructor of spriteRenderer clones the image or WPF is angry, gives location, and the canvas where it needs to be drawn on
+        /// This constructor clones the <see cref="Image"/> or WPF is angry, gives location, and the canvas it needs to be drawn on
         /// </summary>
-        /// <param name="sprite">Image that needs to be copied</param>
-        /// <param name="locatable">location of sprite</param>
-        /// <param name="canvas">canvas that needs to be drawn on</param>
+        /// <param name="sprite"><see cref="Image"/> that needs to be copied</param>
+        /// <param name="locatable"><see cref="Locatable"/> of sprite</param>
+        /// <param name="canvas"><see cref="Canvas"/> that needs to be drawn on</param>
         public SpriteRenderer(Image sprite, ILocatable locatable, Canvas canvas)
         {
             Canvas = canvas;
@@ -27,6 +27,8 @@ namespace KBS1
             Size = new Vector((int) (sprite.Width / 2), (int) (sprite.Height / 2));
             
             canvas.Children.Add(Sprite);
+
+            InstanceHelper.GetGameLoop().Subscribe(Update);
         }
 
         /// <summary>
@@ -38,17 +40,18 @@ namespace KBS1
             Canvas.SetLeft(Sprite, Locatable.Location.X -Size.X);
         }
         /// <summary>
-        /// Removes the sprite from the canvas
+        /// Removes the sprite from the <see cref="Canvas"/>
         /// </summary>
         public void Destroy()
         {
             Canvas.Children.Remove(Sprite);
+            InstanceHelper.GetGameLoop().Unsubscribe(Update);
         }
         
         /// <summary>
         /// Changes the sprite
         /// </summary>
-        /// <param name="sprite">Image that is taking the place of the old one</param>
+        /// <param name="sprite"><see cref="BitmapImage"/> that is taking the place of the old one</param>
         public void ChangeSprite(BitmapImage sprite)
         {
             Sprite.Source = sprite;
