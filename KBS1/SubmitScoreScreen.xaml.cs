@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using //System.Net.Http;
+//using System.Net.Http;
 
 namespace KBS1
 {
@@ -46,10 +46,12 @@ namespace KBS1
                 Username = TextName.Text;
                 GameWindow.Instance.Loadedlevel.Score.PublishScore(Score, Username);
                 GameWindow.Instance.DrawingPanel.Children.Remove(this);
+                /*
                 using (var client = new HttpClient)
                 var request = (HttpWebRequest)WebRequest.Create("https://koenn.me");
                 var postData = Score.ToString();
                 postData += Username;
+                */
 
 
 
