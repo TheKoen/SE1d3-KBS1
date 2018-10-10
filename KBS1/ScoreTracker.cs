@@ -35,12 +35,9 @@ namespace KBS1
             return Math.Round(Ticks / 100.0, 2);
         }
 
-        public double PublishScore()
+        public double PublishScore(double score, string name)
         {
-
-            double score = Loadedlevel.Score.SecondsRunning + 0.01;
             return score;
-
         }
     }
 }

@@ -94,6 +94,9 @@
     </Compile>
     <Compile Include="ScoreTracker.cs" />
     <Compile Include="SpriteRenderer.cs" />
+    <Compile Include="SubmitScoreScreen.xaml.cs">
+      <DependentUpon>SubmitScoreScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TrapObstacleController.cs" />
     <Compile Include="TreeObstacleController.cs" />
     <Compile Include="Vector.cs" />
@@ -148,6 +151,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PauseMenuScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubmitScoreScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
