@@ -9,6 +9,13 @@ namespace KBS1
         protected Controller(GameObject gameObject)
         {
             Object = gameObject;
+
+            InstanceHelper.GetGameLoop().Subscribe(Update);
+        }
+
+        public void Destroy()
+        {
+            InstanceHelper.GetGameLoop().Unsubscribe(Update);
         }
 
         /// <summary>

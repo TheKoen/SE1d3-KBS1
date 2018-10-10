@@ -22,6 +22,7 @@
             {
                 GameWindow.Instance.Loadedlevel.Objects.Remove(Object);
                 Object.Renderer.Destroy();
+                Object.Controller.Destroy();
             }
 
             var player = FindPlayer();
@@ -32,6 +33,7 @@
             {
                 GameWindow.Instance.Loadedlevel.Objects.Remove(Object);
                 Object.Renderer.Destroy();
+                Object.Controller.Destroy();
                 return;
             }
             

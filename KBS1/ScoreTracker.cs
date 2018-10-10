@@ -4,15 +4,12 @@ namespace KBS1
 {
     public class ScoreTracker
     {
-        public Level Loadedlevel { get; set; }
+        public double SecondsRunning { get; private set; }
+        public int Ticks { get; set; }
 
-        public double SecondsRunning;
-        public int Ticks;
-        private Level level;
-
-        public ScoreTracker(Level l)
+        public ScoreTracker()
         {
-            this.level = l;
+            InstanceHelper.GetGameLoop().Subscribe(Update);
         }
 
         /// <summary>
@@ -22,7 +19,7 @@ namespace KBS1
         {
             ++Ticks;
             SecondsRunning = GetSeconds();
-            GameWindow.Instance.Loadedlevel.UpdateScore();
+            InstanceHelper.GetCurrentLevel().UpdateScore();
         }
 
         

@@ -14,8 +14,8 @@ namespace KBS1
         private List<string> MadeObjects { get; } = new List<string>();
 
         public Difficulty Difficulty { get; set; }
-        public LevelCollider LevelCollider { get; }
-        public List<GameObject> Objects { get; }
+        public LevelCollider LevelCollider { get; set; }
+        public List<GameObject> Objects { get; set; }
         public ScoreTracker Score { get; }
         private Label Scorelabel { get; }
 
@@ -32,7 +32,7 @@ namespace KBS1
             Objects = new List<GameObject>();
             ObstacleType.Init();
             LevelCollider = new LevelCollider();
-            Score = new ScoreTracker(this);
+            Score = new ScoreTracker();
             DescriptionHeight = 0;
             
             var root = xmlDocument.DocumentElement;

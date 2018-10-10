@@ -27,6 +27,8 @@ namespace KBS1
             Size = new Vector((int) (sprite.Width / 2), (int) (sprite.Height / 2));
             
             canvas.Children.Add(Sprite);
+
+            InstanceHelper.GetGameLoop().Subscribe(Update);
         }
 
         /// <summary>
@@ -43,6 +45,7 @@ namespace KBS1
         public void Destroy()
         {
             Canvas.Children.Remove(Sprite);
+            InstanceHelper.GetGameLoop().Unsubscribe(Update);
         }
         
         /// <summary>

@@ -71,7 +71,7 @@ namespace KBS1 {
             try
             {
                 Loadedlevel = _levelPicker.PickLevel();
-                Loop = new Gameloop(this);
+                Loop = new Gameloop();
                 Loop.Start();
             }
             catch (Exception q)
@@ -86,7 +86,7 @@ namespace KBS1 {
         /// </summary>
         public void LoadGame()
         {
-            Loop = new Gameloop(this);
+            Loop = new Gameloop();
             try {
                 LoadLevel();
             }
@@ -105,6 +105,8 @@ namespace KBS1 {
         public void LoadLevel()
         {
             Loadedlevel = _levelPicker.LoadSelectedLevel();
+            foreach (var gameObject in Loadedlevel.Objects)
+                gameObject.Init();
         }
 
         /// <summary>
