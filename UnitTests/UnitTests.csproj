@@ -75,6 +75,7 @@
     <Compile Include="Util\TestGameObject.cs" />
     <Compile Include="Util\LevelUtil.cs" />
     <Compile Include="Util\TestPlayer.cs" />
+    <Compile Include="Util\TestWallObject.cs" />
     <Compile Include="VectorTest.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -3,7 +3,7 @@ using KBS1;
 
 namespace UnitTests.Util
 {
-    class TestGameObject : GameObject {
+    public class TestGameObject : GameObject {
 
         public TestGameObject(int radius, Vector location) : base(radius, null, null, location)
         {
