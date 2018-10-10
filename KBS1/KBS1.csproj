@@ -66,6 +66,7 @@
     <Compile Include="GameWindow.xaml.cs">
       <DependentUpon>GameWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InstanceHelper.cs" />
     <Compile Include="LevelPickerWindow.xaml.cs">
       <DependentUpon>LevelPickerWindow.xaml</DependentUpon>
     </Compile>
@@ -94,6 +95,9 @@
     </Compile>
     <Compile Include="ScoreTracker.cs" />
     <Compile Include="SpriteRenderer.cs" />
+    <Compile Include="SubmitScoreScreen.xaml.cs">
+      <DependentUpon>SubmitScoreScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TrapObstacleController.cs" />
     <Compile Include="TreeObstacleController.cs" />
     <Compile Include="Vector.cs" />
@@ -151,6 +155,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SubmitScoreScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WinScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -199,6 +207,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Levels\Level2.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Levels\Test\LevelTest_Valid.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

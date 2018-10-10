@@ -4,6 +4,8 @@ namespace KBS1
 {
     public class ScoreTracker
     {
+        public Level Loadedlevel { get; set; }
+
         public double SecondsRunning;
         public int Ticks;
         private Level level;
@@ -31,6 +33,11 @@ namespace KBS1
         public double GetSeconds()
         {
             return Math.Round(Ticks / 100.0, 2);
+        }
+
+        public double PublishScore(double score, string name)
+        {
+            return score;
         }
     }
 }

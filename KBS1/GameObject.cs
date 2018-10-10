@@ -13,7 +13,8 @@ namespace KBS1
         protected GameObject(int radius, Image image, Canvas canvas, Vector location)
         {
             Location = location;
-            Renderer = new SpriteRenderer(image, this, canvas);
+            if (image != null && canvas != null)
+                Renderer = new SpriteRenderer(image, this, canvas);
             Collider = new Collider(radius, this);
         }
 

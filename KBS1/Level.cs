@@ -65,8 +65,18 @@ namespace KBS1
             Canvas.SetLeft(Scorelabel, 730);
             GameWindow.Instance.DrawingPanel.Children.Add(Scorelabel);
 
-            Objects.Add(new Player(11, ResourceManager.Instance.LoadImage("player.png"),
-                GameWindow.Instance.DrawingPanel, new Vector(14, 14)));
+            //checking where start location is so the player can spawn at the start location
+            foreach (object child in objectsXml.ChildNodes)
+            {
+                if (!(child is XmlNode)) continue;
+                XmlNode childXml = (XmlNode) child;
+                if (childXml.LocalName == "start")
+                {
+                    var location = ParseLocation(childXml.Attributes["location"].InnerText);
+                    Objects.Add(new Player(11, ResourceManager.Instance.LoadImage("player.png"),
+                        GameWindow.Instance.DrawingPanel, new Vector(location.X, location.Y)));
+                }
+            }
 
             var b1 = new Border
             {
@@ -77,6 +87,14 @@ namespace KBS1
             };
             Canvas.SetLeft(b1, 782);
             GameWindow.Instance.DrawingPanel.Children.Add(b1);
+        }
+
+        /// <summary>
+        /// FOR UNIT TESTING ONLY!
+        /// Creates an empty Level.
+        /// </summary>
+        public Level()
+        {
         }
 
         /// <summary>
