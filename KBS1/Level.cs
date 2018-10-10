@@ -11,14 +11,15 @@ namespace KBS1
         private string Name { get; }
         private Brush Background { get; }
         private static double DescriptionHeight { get; set; }
-        private List<string> MadeObjects { get; set; } = new List<string>();
+        private List<string> MadeObjects { get; } = new List<string>();
 
         public Difficulty Difficulty { get; set; }
-        public LevelCollider LevelCollider { get; set; }
-        public SpriteRenderer Renderer { get; set; }
-        public List<GameObject> Objects { get; set; }
-        public ScoreTracker Score { get; set; }
-        public Label Scorelabel { get; set; }
+        public LevelCollider LevelCollider { get; }
+        public List<GameObject> Objects { get; }
+        public ScoreTracker Score { get; }
+        private Label Scorelabel { get; }
+
+        private static readonly Random Rand = new Random();
 
         /// <summary>
         /// Uses an XmlDocument to load a level and it's properties
@@ -33,6 +34,7 @@ namespace KBS1
             LevelCollider = new LevelCollider();
             Score = new ScoreTracker(this);
             DescriptionHeight = 0;
+            
             var root = xmlDocument.DocumentElement;
             if (root == null) throw new XmlException("Missing root node");
 
@@ -52,14 +54,16 @@ namespace KBS1
             foreach (object child in objectsXml.ChildNodes)
             {
                 if (!(child is XmlNode)) continue;
-                XmlNode childXml = (XmlNode) child;
+                var childXml = (XmlNode) child;
                 if (childXml.LocalName == "start") CreateStartPoint(childXml);
                 if (childXml.LocalName == "end") CreateEndPoint(childXml);
                 if (childXml.LocalName == "obstacle") CreateObstacle(childXml);
             }
 
+            // Setting level background
             GameWindow.Instance.DrawingPanel.Background = Background;
-            //label for showing score
+            
+            // Label for showing score
             Scorelabel = new Label();
             Canvas.SetTop(Scorelabel, 10);
             Canvas.SetLeft(Scorelabel, 730);
@@ -68,15 +72,15 @@ namespace KBS1
             Objects.Add(new Player(11, ResourceManager.Instance.LoadImage("player.png"),
                 GameWindow.Instance.DrawingPanel, new Vector(14, 14)));
 
-            var b1 = new Border
+            var border = new Border
             {
                 Height = 600,
                 Width = 5,
                 BorderThickness = new System.Windows.Thickness(5),
                 BorderBrush = new SolidColorBrush(Colors.Black)
             };
-            Canvas.SetLeft(b1, 782);
-            GameWindow.Instance.DrawingPanel.Children.Add(b1);
+            Canvas.SetLeft(border, 782);
+            GameWindow.Instance.DrawingPanel.Children.Add(border);
         }
 
         /// <summary>
@@ -133,24 +137,24 @@ namespace KBS1
         }
 
         /// <summary>
-        /// Description aanmaken
+        /// Creates a description
         /// </summary>
         /// <param name="name">String containing name</param>
         /// <param name="source">ImageSource containing the source of an image</param>
         private static void CreateDescription(string name, ImageSource source)
         {
-            var bla = new ObstacleInfo(name);
-            var o1 = new ObjectInfoContainer
+            var obstacleInfo = new ObstacleInfo(name);
+            var infoContainer = new ObjectInfoContainer
             {
                 ImageSource = source,
                 GameObjectName = name,
-                GameObjectDescription = bla.Description
+                GameObjectDescription = obstacleInfo.Description
             };
 
-            Canvas.SetRight(o1, 0);
-            Canvas.SetTop(o1, DescriptionHeight);
+            Canvas.SetRight(infoContainer, 0);
+            Canvas.SetTop(infoContainer, DescriptionHeight);
 
-            GameWindow.Instance.DrawingPanel.Children.Add(o1);
+            GameWindow.Instance.DrawingPanel.Children.Add(infoContainer);
             DescriptionHeight = DescriptionHeight + 140;
         }
 
@@ -163,15 +167,14 @@ namespace KBS1
         {
             if (locationString.Equals("random"))
             {
-                var rand = new Random();
-                return new Vector(rand.Next(1, 700), rand.Next(1, 500));
+                return new Vector(Rand.Next(1, 700), Rand.Next(1, 500));
             }
 
             var split = locationString.Split(',');
             return new Vector(int.Parse(split[0]), int.Parse(split[1]));
         }
 
-        public void UpdateScore(double s)
+        public void UpdateScore()
         {
             Scorelabel.Content = Score.SecondsRunning;
         }

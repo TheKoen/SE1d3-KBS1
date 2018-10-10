@@ -4,51 +4,48 @@ namespace KBS1.Archer
 {
     public class ArcherObstacleController : ObstacleController
     {
-        private const int SPEED = 1;
-        private const int RANGE = 200;
+        private const int Speed = 1;
+        private const int Range = 200;
         private static readonly ObstacleType ARROW = 
             new ObstacleType(new ArrowObstacle(), 5, ResourceManager.Instance.LoadImage("arrow.png"));
 
-        private int wait = 0;
+        private int _wait = 0;
     
         public ArcherObstacleController(ILocatable locatable, Obstacle obstacle) : base(locatable, obstacle) { }
 
+        /// <summary>
+        /// TODO: Add proper summary
+        /// </summary>
         public override void Update()
         {
-            if (wait > 0)
-            {
-                wait--;
-                return;
-            }
+            if (_wait-- > 0) return;
 
             var player = FindPlayer();
             var playerLocation = player.Location;
 
-            if (playerLocation.Distance(Object.Location) > RANGE)
-            {
+            if (playerLocation.Distance(Object.Location) > Range)
                 return;
-            }
 
             var xDistance = playerLocation.AxisDistance(Object.Location, true);
             var yDistance = playerLocation.AxisDistance(Object.Location, false);
             var distance = playerLocation.Distance(Object.Location);
 
-            var PX = playerLocation.X;
-            var PY = playerLocation.Y;
-            var AX = Object.Location.X;
-            var AY = Object.Location.Y;
+            var px = playerLocation.X;
+            var py = playerLocation.Y;
+            var ax = Object.Location.X;
+            var ay = Object.Location.Y;
             
-            var DX = xDistance / distance;
-            var DY = yDistance / distance;
+            var dx = xDistance / distance;
+            var dy = yDistance / distance;
 
-            var vector = new Vector((PX < AX ? -DX : DX) * 2.0, (PY < AY ? -DY : DY) * 2.0);
+            var vector = new Vector((px < ax ? -dx : dx) * 2.0, (py < ay ? -dy : dy) * 2.0);
 
             var level = GameWindow.Instance.Loadedlevel;
 
             var arrow = new Arrow(ARROW, GameWindow.Instance.DrawingPanel, Object.Location, vector);
             level.Objects.Add(arrow);
             arrow.Init();
-            wait = 30;
+            _wait = 30;
         }
 
         private class Arrow : Obstacle

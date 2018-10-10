@@ -1,29 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace KBS1
 {
     /// <summary>
     /// Interaction logic for WinScreen.xaml
     /// </summary>
-    public partial class WinScreen : UserControl
+    public partial class WinScreen
     {
-        public WinScreen(double Score)
+        public WinScreen(double score)
         {
             InitializeComponent();
-            ScoreLabel.Content = "Your score: " + Score;
+            ScoreLabel.Content = "Your score: " + score;
         }
 
         private void MainMenuButton_Click(object sender, RoutedEventArgs e)

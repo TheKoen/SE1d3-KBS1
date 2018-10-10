@@ -4,7 +4,7 @@ using System.Xml;
 
 namespace KBS1 {
 
-    public partial class LevelPickerWindow : Window
+    public partial class LevelPickerWindow
     {
         public string FileName { get; private set; }
 
@@ -19,10 +19,10 @@ namespace KBS1 {
                 if (levelsNode == null)
                     throw new XmlException("Levels file missing levels node");
 
-                foreach (var child in levelsNode.ChildNodes)
+                foreach (XmlNode child in levelsNode.ChildNodes)
                 {
-                    var value = ((XmlNode) child).Attributes["filename"].InnerText;
-                    var item = new ListViewItem()
+                    var value = child.Attributes["filename"].InnerText;
+                    var item = new ListViewItem
                     {
                         Content = value
                     };

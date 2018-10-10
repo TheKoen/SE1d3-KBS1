@@ -13,7 +13,10 @@ namespace KBS1
         public Gameloop(GameWindow game)
         {
             Game = game;
-            Timer = new DispatcherTimer {Interval = new TimeSpan(0, 0, 0, 0, 10)};
+            Timer = new DispatcherTimer
+            {
+                Interval = new TimeSpan(0, 0, 0, 0, 10)
+            };
             Timer.Tick += Update;
         }
 

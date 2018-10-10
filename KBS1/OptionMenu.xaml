@@ -7,7 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="1000">
     <Grid>
-        <Button x:Name="BackButton" Content="Back" Margin="460,500,460,0" VerticalAlignment="Top" Click="BackButton_Click" Width="75"/>
-
+        <Button x:Name="BackButton" Content="Back" Margin="460,500,460,0" VerticalAlignment="Top" Click="BackButton_Click" Width="75" />
     </Grid>
 </UserControl>

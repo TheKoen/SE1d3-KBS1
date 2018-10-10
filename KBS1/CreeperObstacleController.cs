@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
 namespace KBS1
 {
     public class CreeperObstacleController : ObstacleController
     {
-        private const int speed = 1;
-        private const int range = 150;
-        private const int explosionRadius = 100;
-        private const int delayCreeper = 100;
-        private int wait = 0;
-        private Boolean red = false;
-        private Image imageRed = ResourceManager.Instance.LoadImage("creeper_red.png");
-        private Image imageGreen = ResourceManager.Instance.LoadImage("creeper.png");
+        private const int Speed = 1;
+        private const int Range = 150;
+        private const int ExplosionRadius = 100;
+        private const int DelayCreeper = 100;
+        private int _wait = 0;
+        private bool _red = false;
+        private readonly Image _imageRed = ResourceManager.Instance.LoadImage("creeper_red.png");
+        private readonly Image _imageGreen = ResourceManager.Instance.LoadImage("creeper.png");
 
         public CreeperObstacleController(ILocatable locatable, Obstacle obstacle) : base(locatable, obstacle) { }
 
@@ -34,35 +28,27 @@ namespace KBS1
             var player = playerObject.Location;
             
             // delay for changing color creeper
-            if (wait > 0)
+            if (_wait-- > 0)
             {
-                wait--;
-
-                
-                if (wait % 5 == 0)
+                if (_wait % 5 == 0)
                 {
-                    // color chancing creeper if in range 
-                    if (red == true)
+                    if (_red)
                     {
-                        
-                        Object.Renderer.ChangeSprite((BitmapImage)imageRed.Source);
-                        red = false;
+                        Object.Renderer.ChangeSprite((BitmapImage) _imageRed.Source);
+                        _red = false;
                     }
-                    else if (red == false)
+                    else if (_red == false)
                     {
-                        Object.Renderer.ChangeSprite((BitmapImage)imageGreen.Source);
-                        red = true;
+                        Object.Renderer.ChangeSprite((BitmapImage) _imageGreen.Source);
+                        _red = true;
                     }
-
                 }
 
                 //explode if player is in range and timer is out of time
-                if (wait == 0 && Object.Location.Distance(player) < explosionRadius)
-                {
+                if (_wait == 0 && Object.Location.Distance(player) <= ExplosionRadius)
                     GameWindow.Instance.Lose();
-                }
                 // if player is out of range and creeper is out of time destroy creeper
-                else if(wait == 0 && Object.Location.Distance(player) > explosionRadius)
+                else if(_wait == 0 && Object.Location.Distance(player) > ExplosionRadius)
                 {
                     GameWindow.Instance.Loadedlevel.Objects.Remove(Object);
                     Object.Renderer.Destroy();
@@ -74,38 +60,17 @@ namespace KBS1
             var xDistance = player.AxisDistance(Object.Location, true);
             var yDistance = player.AxisDistance(Object.Location, false);
 
-            if (player.Distance(Object.Location) > range)
-            {
+            if (player.Distance(Object.Location) > Range)
                 return;
-            }
             
             if (xDistance > yDistance)
-            {
-                if(player.X > Object.Location.X)
-                {
-                    Move(new Vector(speed, 0));
-                }
-                else
-                {
-                    Move(new Vector(-speed, 0));
-                }
-            }
+                Move(player.X > Object.Location.X ? new Vector(Speed, 0) : new Vector(-Speed, 0));
             else
-            { 
-                if (player.Y > Object.Location.Y)
-                {
-                    Move(new Vector(0, speed));
-                }
-                else
-                {
-                    Move(new Vector(0, -speed));
-                }  
-            }
+                Move(player.Y > Object.Location.Y ? new Vector(0, Speed) : new Vector(0, -Speed));
+            
             // start the delay of the explostion if the distance of the player is explosionRadius/2.
-            if (Object.Location.Distance(playerObject.Location) < (explosionRadius/2))
-            {
-                wait = delayCreeper;
-            }
+            if (Object.Location.Distance(playerObject.Location) < ExplosionRadius / 2.0)
+                _wait = DelayCreeper;
         }
     }
 }

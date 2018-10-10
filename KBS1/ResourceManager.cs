@@ -101,6 +101,7 @@ namespace KBS1
             {
                 using (var stream = Assembly.GetManifestResourceStream(ResName))
                 {
+                    if (stream == null) throw new NullReferenceException("Could not get ResourceStream from Assembly");
                     using (var reader = new System.Resources.ResourceReader(stream))
                     {
                         _resources = reader.Cast<DictionaryEntry>().Select(entry =>
