@@ -60,6 +60,7 @@
     <Compile Include="Archer\ArcherObstacleController.cs" />
     <Compile Include="Archer\ArrowObstacleController.cs" />
     <Compile Include="CreeperObstacleController.cs" />
+    <Compile Include="ExceptionManager.cs" />
     <Compile Include="Exceptions\Level\LevelLoadException.cs" />
     <Compile Include="Exceptions\Level\LevelParseException.cs" />
     <Compile Include="Exceptions\ResourceManager\ResourceNotFoundException.cs" />

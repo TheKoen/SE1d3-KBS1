@@ -55,7 +55,7 @@ namespace KBS1
             }
             catch (Exception e)
             {
-                MessageBox.Show($"{e.Message}", "Error");
+                ExceptionManager.Catch(e);
             }
         }
     }

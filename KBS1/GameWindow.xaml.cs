@@ -70,14 +70,13 @@ namespace KBS1 {
             DrawingPanel.Children.Clear();
             try
             {
-                Loadedlevel = _levelPicker.PickLevel();
                 Loop = new Gameloop();
+                Loadedlevel = _levelPicker.PickLevel();
                 Loop.Start();
             }
             catch (Exception q)
             {
-                MessageBox.Show($"{q.Message}", "Error");
-                LoadHome();
+                ExceptionManager.Catch(q);
             }
         }
 
@@ -92,8 +91,7 @@ namespace KBS1 {
             }
             catch (Exception q)
             {
-                MessageBox.Show($"{q.Message}", "Error");
-                LoadHome();
+                ExceptionManager.Catch(q);
                 return;
             }
             Loop.Start();
