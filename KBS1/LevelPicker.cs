@@ -70,7 +70,15 @@ namespace KBS1
             {
                 doc = ResourceManager.Instance.LoadXmlDocument($"Levels\\{filename}");
             } catch (FileNotFoundException) {
-                throw new FileNotFoundException($"Level \"{filename}\" could not be found");
+                try
+                {
+                    doc = new XmlDocument();
+                    doc.Load($"levels\\{filename}");
+                }
+                catch (Exception)
+                {
+                    throw new FileNotFoundException($"Level \"{filename}\" could not be found");
+                }
             }
 
             try
