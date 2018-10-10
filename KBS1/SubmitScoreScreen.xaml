@@ -8,12 +8,12 @@
              d:DesignHeight="600" Width="1000">
     <Grid>
         <Rectangle Fill="#FF80FF00" HorizontalAlignment="Left" Height="400" Margin="345,245,0,-45" Stroke="Black" VerticalAlignment="Top" Width="300"/>
-        <Label Name="ScoreLabel" HorizontalAlignment="Left" Margin="462,274,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.611,-0.068" Width="150"/>
-        <Button Name="SubmitButton" Content="Submit" HorizontalAlignment="Left" Margin="502,405,0,0" VerticalAlignment="Top" Width="75" Click="SubmitButton_Click"/>
+        <Label Name="ScoreLabel" HorizontalAlignment="Left" Margin="462,274,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.611,-0.068" Width="150" Height="23"/>
+        <Button Name="SubmitButton" Content="Submit" HorizontalAlignment="Left" Margin="502,405,0,0" VerticalAlignment="Top" Width="75" Click="SubmitButton_ClickAsync"/>
         <Button Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="403,405,0,0" VerticalAlignment="Top" Width="75" Click="CancelButton_Click"/>
-        <Label Name="NameLabel" Content="Name:" HorizontalAlignment="Left" Margin="423,313,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.458,0.411"/>
-        <TextBox Name ="TextName" HorizontalAlignment="Left" Height="23" Margin="482,317,0,0" TextWrapping="Wrap" MaxLength="5" VerticalAlignment="Top" Width="120"/>
-        <Label Name="ErrorLabel" HorizontalAlignment="Left" Margin="482,340,0,0" VerticalAlignment="Top" Height ="22s" Width="120" Foreground="#FFEB1515"/>
+        <Label Name="NameLabel" Content="Name:" HorizontalAlignment="Left" Margin="413,314,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.458,0.411"/>
+        <TextBox Name ="TextName" HorizontalAlignment="Left" Height="23" Margin="473,317,0,0" TextWrapping="Wrap" MaxLength="45" VerticalAlignment="Top" Width="139"/>
+        <Label Name="ErrorLabel" HorizontalAlignment="Left" Margin="482,340,0,0" VerticalAlignment="Top" Height ="22" Width="120" Foreground="#FFEB1515"/>
 
     </Grid>
 </UserControl>

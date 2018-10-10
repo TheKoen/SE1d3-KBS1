@@ -8,11 +8,12 @@ namespace KBS1
 {
     public class Level
     {
-        private string Name { get; }
+        
         private Brush Background { get; }
         private static double DescriptionHeight { get; set; }
         private List<string> MadeObjects { get; set; } = new List<string>();
-
+        
+        public string Name { get; }
         public Difficulty Difficulty { get; set; }
         public LevelCollider LevelCollider { get; set; }
         public SpriteRenderer Renderer { get; set; }
