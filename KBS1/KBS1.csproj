@@ -66,6 +66,7 @@
     <Compile Include="GameWindow.xaml.cs">
       <DependentUpon>GameWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InstanceHelper.cs" />
     <Compile Include="LevelPickerWindow.xaml.cs">
       <DependentUpon>LevelPickerWindow.xaml</DependentUpon>
     </Compile>

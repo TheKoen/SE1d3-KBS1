@@ -69,7 +69,7 @@ namespace KBS1
             foreach (object child in objectsXml.ChildNodes)
             {
                 if (!(child is XmlNode)) continue;
-                XmlNode childXml = (XmlNode)child;
+                XmlNode childXml = (XmlNode) child;
                 if (childXml.LocalName == "start")
                 {
                     var location = ParseLocation(childXml.Attributes["location"].InnerText);
@@ -87,6 +87,14 @@ namespace KBS1
             };
             Canvas.SetLeft(b1, 782);
             GameWindow.Instance.DrawingPanel.Children.Add(b1);
+        }
+
+        /// <summary>
+        /// FOR UNIT TESTING ONLY!
+        /// Creates an empty Level.
+        /// </summary>
+        public Level()
+        {
         }
 
         /// <summary>

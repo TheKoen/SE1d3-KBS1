@@ -4,7 +4,7 @@ namespace KBS1
 {
     public abstract class Controller
     {
-        protected GameObject Object { get; }
+        public GameObject Object { get; }
 
         protected Controller(GameObject gameObject)
         {
@@ -49,10 +49,10 @@ namespace KBS1
         /// <returns>The Player object</returns>
         public static GameObject FindPlayer()
         {
-            var level = GameWindow.Instance.Loadedlevel;
+            var level = InstanceHelper.GetCurrentLevel();
             foreach (var gameObject in level.Objects)
             {
-                if (gameObject.GetType() == typeof(Player))
+                if (gameObject is Player)
                     return gameObject;
             }
             throw new NullReferenceException("Level does not contain a player");
