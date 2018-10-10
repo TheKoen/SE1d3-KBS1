@@ -2,7 +2,7 @@
 {
     public class Collider
     {
-        protected int Radius { get; }
+        public int Radius { get; }
         public ILocatable Locatable { get; }
         public bool Blocking { get; set; }
 

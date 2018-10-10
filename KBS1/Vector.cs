@@ -68,8 +68,8 @@ namespace KBS1
         {
             var div = Math.Sqrt(Math.Pow(X, 2) + Math.Pow(Y, 2));
             if (Math.Abs(div) < 0.01) return this;
-            X /= div * length;
-            Y /= div * length;
+            X = X / div * length;
+            Y = Y / div * length;
 
             return this;
         }

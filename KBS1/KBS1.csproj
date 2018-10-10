@@ -85,6 +85,7 @@
     <Compile Include="TrapObstacleController.cs" />
     <Compile Include="TreeObstacleController.cs" />
     <Compile Include="Vector.cs" />
+    <Compile Include="WallCollider.cs" />
     <Compile Include="WallObstacleController.cs" />
   </ItemGroup>
   <ItemGroup>

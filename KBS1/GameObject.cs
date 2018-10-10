@@ -6,7 +6,7 @@ namespace KBS1
     {
         public Vector Location { get; set; }
         public SpriteRenderer Renderer { get; }
-        public Collider Collider { get; }
+        public Collider Collider { get; set; }
         public Controller Controller { get; private set; }
 
         //When making a new GameObject, a new SpriteRenderer will be made with it.
