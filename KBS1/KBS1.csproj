@@ -81,6 +81,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="ScoreTracker.cs" />
+    <Compile Include="SoundManager.cs" />
     <Compile Include="SpriteRenderer.cs" />
     <Compile Include="TrapObstacleController.cs" />
     <Compile Include="TreeObstacleController.cs" />
@@ -161,6 +162,17 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Levels\Level2.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Sound\Sounds.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Sound\Boom.mp3" />
+    <Content Include="Resources\Sound\Boom.wav" />
+    <Content Include="Resources\Sound\BoomHeadshot.mp3" />
+    <Content Include="Resources\Sound\Ignite.mp3" />
+    <Content Include="Resources\Sound\SupermodeTellMeWhy_TMassRemix.mp3" />
+    <Content Include="Resources\Sound\TheFatRat - Unity.mp3" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

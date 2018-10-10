@@ -12,12 +12,16 @@ namespace KBS1 {
         public Level Loadedlevel { get; set; }
         public Gameloop Loop { get; set; }
         public static GameWindow Instance { get; private set; }
+
+        public SoundManager Sounds { get; private set; }
         
         public GameWindow()
         {
             Initialized += (sender, e) =>
             {
+                Sounds = new SoundManager();
                 LoadHome();
+                Sounds.Play("TheFatRat - Unity.mp3");
             };
             Instance = this;
             InitializeComponent();

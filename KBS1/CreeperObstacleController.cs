@@ -59,12 +59,14 @@ namespace KBS1
                 //explode if player is in range and timer is out of time
                 if (wait == 0 && Object.Location.Distance(player) < explosionRadius)
                 {
+                    //GameWindow.Instance.Sounds.Play();
                     GameWindow.Instance.Lose();
                 }
                 // if player is out of range and creeper is out of time destroy creeper
                 else if(wait == 0 && Object.Location.Distance(player) > explosionRadius)
                 {
                     GameWindow.Instance.Loadedlevel.Objects.Remove(Object);
+                    GameWindow.Instance.Sounds.Play("Boom.mp3"); 
                     Object.Renderer.Destroy();
                 }
                 return;
@@ -105,6 +107,7 @@ namespace KBS1
             if (Object.Location.Distance(playerObject.Location) < (explosionRadius/2))
             {
                 wait = delayCreeper;
+                GameWindow.Instance.Sounds.Play("Ignite.mp3");
             }
         }
     }
