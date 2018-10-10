@@ -40,7 +40,7 @@
         /// <returns></returns>
         public bool CollidesAny(Vector vector, bool ignoreNonBlocking)
         {
-            var level = GameWindow.Instance.Loadedlevel;
+            var level = InstanceHelper.GetCurrentLevel();
             if (ignoreNonBlocking && !Blocking)
                 return false;
 

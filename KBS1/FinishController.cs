@@ -2,7 +2,7 @@
 {
     public class FinishController : Controller
     {
-        private bool Finish { get; }
+        public bool Finish { get; }
 
         public FinishController(GameObject gameObject, bool finish) : base(gameObject)
         {
