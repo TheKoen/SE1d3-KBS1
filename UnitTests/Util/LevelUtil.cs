@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using KBS1;
+using KBS1.Collider;
+using KBS1.GameObjects;
+using KBS1.LevelComponents;
+using KBS1.Misc;
+using KBS1.Util;
 
 namespace UnitTests.Util
 {

@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <level name="Test Level">
 
   <objects>
@@ -10,7 +11,7 @@
 
     <obstacle name="RunnerObstacle" radius="24" location="410, 290" />
     <obstacle name="RunnerObstacle" radius="24" location="340, 320" />
-    
+
     <obstacle name="ArcherObstacle" radius="24" location="55, 407" />
     <obstacle name="ArcherObstacle" radius="24" location="100, 520" />
     <obstacle name="ArcherObstacle" radius="24" location="480, 403" />
@@ -77,11 +78,11 @@
     <obstacle name="WallObstacle" radius="24" location="450, 552" />
 
 
-    <obstacle name ="TreeObstacle" radius="24" location="90, 300" />
-    <obstacle name ="TreeObstacle" radius="24" location="80, 360" />
-    <obstacle name ="TreeObstacle" radius="24" location="40, 430" />
-    <obstacle name ="TreeObstacle" radius="24" location="140, 450" />
-    <obstacle name ="TreeObstacle" radius="24" location="100, 530" />
+    <obstacle name="TreeObstacle" radius="24" location="90, 300" />
+    <obstacle name="TreeObstacle" radius="24" location="80, 360" />
+    <obstacle name="TreeObstacle" radius="24" location="40, 430" />
+    <obstacle name="TreeObstacle" radius="24" location="140, 450" />
+    <obstacle name="TreeObstacle" radius="24" location="100, 530" />
 
     <obstacle name="TreeObstacle" radius="24" location="750, 230" />
     <obstacle name="TreeObstacle" radius="24" location="700, 290" />

@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="KBS1.Windows.PauseMenuScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:KBS1"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="1000">
+    <Grid>
+        <Rectangle Fill="#FFF4F4F5" Height="200" Width="200" Margin="400,200,400,200" Stroke="Black"
+                   VerticalAlignment="Top" />
+        <Button x:Name="ResumeButton" Content="Resume" HorizontalAlignment="Left" Margin="464,250,0,0"
+                VerticalAlignment="Top" Width="75" Click="ResumeButton_Click" />
+        <Button x:Name="RetryButton" Content="Retry" HorizontalAlignment="Left" Margin="464,300,0,0"
+                VerticalAlignment="Top" Width="75" Click="RetryButton_Click" />
+        <Button x:Name="QuitToMainMenuButton" Content="Quit to main menu" Margin="445,350,445,0"
+                VerticalAlignment="Top" Width="110" Click="QuitToMainMenuButton_Click" />
+    </Grid>
+</UserControl>

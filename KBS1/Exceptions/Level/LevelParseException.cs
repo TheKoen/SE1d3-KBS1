@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KBS1.Exceptions.Level {
-    class LevelParseException : Exception {
+namespace KBS1.Exceptions.Level
+{
+    class LevelParseException : Exception
+    {
         public LevelParseException()
         {
         }
