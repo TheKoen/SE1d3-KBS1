@@ -72,6 +72,7 @@ namespace KBS1 {
             {
                 Loop = new Gameloop();
                 Loadedlevel = _levelPicker.PickLevel();
+                Loadedlevel.Objects.ForEach(gameObject => gameObject.Init());
                 Loop.Start();
             }
             catch (Exception q)
