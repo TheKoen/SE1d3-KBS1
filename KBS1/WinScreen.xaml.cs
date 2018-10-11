@@ -47,9 +47,17 @@ namespace KBS1
         private void SubmitScoreButton_Click(object sender, RoutedEventArgs e)
         {
             SubmitScoreScreen sss = new SubmitScoreScreen(score);
-            Canvas.SetLeft(sss, 0);
-            Canvas.SetTop(sss, 0);
-            GameWindow.Instance.DrawingPanel.Children.Add(sss);
+            //checking if the player already submitted his score
+            if (GameWindow.Instance.Loadedlevel.IsAlreadySubmitted == false)
+            {
+                Canvas.SetLeft(sss, 0);
+                Canvas.SetTop(sss, 0);
+                GameWindow.Instance.DrawingPanel.Children.Add(sss);
+            }   else
+            {
+                //creating content for the label when the player clicks submit again
+                AlreadySubmittedLabel.Content = "You've already submitted!";
+            }
         }
     }
 }

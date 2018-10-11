@@ -12,7 +12,8 @@ namespace KBS1
         private Brush Background { get; }
         private static double DescriptionHeight { get; set; }
         private List<string> MadeObjects { get; set; } = new List<string>();
-        
+
+        public bool IsAlreadySubmitted;
         public string Name { get; }
         public Difficulty Difficulty { get; set; }
         public LevelCollider LevelCollider { get; set; }

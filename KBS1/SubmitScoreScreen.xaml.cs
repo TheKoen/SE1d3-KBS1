@@ -21,7 +21,6 @@ namespace KBS1
     /// </summary>
     public partial class SubmitScoreScreen : UserControl
     {
-
         private string Username;
         private double Score;
 
@@ -34,9 +33,12 @@ namespace KBS1
 
         private async void SubmitButton_ClickAsync(object sender, RoutedEventArgs e)
         {
+            //player submits
+            GameWindow.Instance.Loadedlevel.IsAlreadySubmitted = true;
+            //checking if the player has filled in more than 1 character
             if (TextName.Text.Length < 2)
             {
-                ErrorLabel.Content = "Fill in more characters.";
+                ErrorLabel.Content = "Fill in more characters to submit.";
             }
             else
             {
