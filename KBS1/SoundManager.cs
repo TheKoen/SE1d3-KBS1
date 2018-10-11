@@ -44,6 +44,7 @@ namespace KBS1
             }
         }
 
+
         
 
         /// <summary>
@@ -70,13 +71,45 @@ namespace KBS1
                     }   
                 }
                 throw new FileNotFoundException("No track with that name");
-                return;
+                
             }
             catch (Exception)
             {
-                throw new Exception("Error with the sound Manager");
+                new FileNotFoundException("Error with the sound ");
             }
         }
+        public void SetLoopingPlay(string trackName)
+        {
+            foreach (var item in Sounds)
+            {
+                if (item.Key == trackName)
+                {
+                    var mediaplayer = new MediaPlayer();
+                    mediaplayer.Open(new Uri(item.Value));
+                    while (!mediaplayer.HasAudio) { }
+
+                    mediaplayer.MediaEnded += (sender, e) => mediaplayer.Position = TimeSpan.Zero ;
+                    activeMediaPlayers[mediaplayers] = mediaplayer;
+                    activeMediaPlayers[mediaplayers].Play();
+                    mediaplayers++;
+                    return;
+                }
+            }
+        }
+
+        public void Stop(string trackName)
+        {
+            foreach (var item in activeMediaPlayers)
+            {
+                if(item.Source == new Uri("C:\\Users\\Robin\\Documents\\windesheim\\C#\\SE1d3-KBS1\\SE1d3-KBS1\\KBS1\\Resources\\Sound\\" + trackName))
+                {
+                    item.Stop();
+                    return;
+                }
+            }
+        }
+
     }
+    
 }
 

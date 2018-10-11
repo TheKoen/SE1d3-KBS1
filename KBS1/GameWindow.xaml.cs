@@ -21,7 +21,8 @@ namespace KBS1 {
             {
                 Sounds = new SoundManager();
                 LoadHome();
-                Sounds.Play("TheFatRat - Unity.mp3");
+                Sounds.SetLoopingPlay("TheFatRat - Unity.mp3");
+
             };
             Instance = this;
             InitializeComponent();
