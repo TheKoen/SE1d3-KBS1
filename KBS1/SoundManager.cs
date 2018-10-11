@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Xml;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace KBS1
 {
@@ -19,9 +22,11 @@ namespace KBS1
         
         private MediaPlayer[] activeMediaPlayers = new MediaPlayer[200];
         private int mediaplayers = 0;
+
+        private string path = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Sound\\";
         
         public SoundManager()
-        {
+        { 
             var sounds = ResourceManager.Instance.LoadXmlDocument("Sound/Sounds.xml");
             var root = sounds.DocumentElement;
 
@@ -40,7 +45,7 @@ namespace KBS1
             {
                 var value = ((XmlNode)child).Attributes["filename"].InnerText;
 
-                Sounds.Add(value, "C:\\Users\\Robin\\Documents\\windesheim\\C#\\SE1d3-KBS1\\SE1d3-KBS1\\KBS1\\Resources\\Sound\\" + value);             
+                Sounds.Add(value, path + value);             
             }
         }
 
@@ -60,9 +65,8 @@ namespace KBS1
                     if (item.Key == trackName)
                     {
                         var mediaplayer = new MediaPlayer();
-                        mediaplayer.Open(new Uri(item.Value));
+                        mediaplayer.Open(new Uri(item.Value, UriKind.Absolute));
                         while (!mediaplayer.HasAudio) { }
-
                         mediaplayer.MediaEnded += (sender, e) => mediaplayer.Close();
                         activeMediaPlayers[mediaplayers] = mediaplayer;
                         activeMediaPlayers[mediaplayers].Play();
@@ -85,7 +89,7 @@ namespace KBS1
                 if (item.Key == trackName)
                 {
                     var mediaplayer = new MediaPlayer();
-                    mediaplayer.Open(new Uri(item.Value));
+                    mediaplayer.Open(new Uri(item.Value, UriKind.Absolute));
                     while (!mediaplayer.HasAudio) { }
 
                     mediaplayer.MediaEnded += (sender, e) => mediaplayer.Position = TimeSpan.Zero ;
@@ -108,8 +112,8 @@ namespace KBS1
                 }
             }
         }
-
     }
-    
 }
+    
+
 
