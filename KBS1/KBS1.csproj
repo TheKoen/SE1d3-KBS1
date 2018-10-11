@@ -38,6 +38,8 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
@@ -55,30 +57,57 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Archer\ArcherObstacleController.cs" />
-    <Compile Include="Archer\ArrowObstacleController.cs" />
-    <Compile Include="CreeperObstacleController.cs" />
+    <Compile Include="Obstacles\Controllers\Archer\ArcherObstacleController.cs" />
+    <Compile Include="Obstacles\Controllers\Archer\ArrowObstacleController.cs" />
+    <Compile Include="Obstacles\Controllers\CreeperObstacleController.cs" />
+    <Compile Include="Util\ExceptionManager.cs" />
     <Compile Include="Exceptions\Level\LevelLoadException.cs" />
     <Compile Include="Exceptions\Level\LevelParseException.cs" />
     <Compile Include="Exceptions\ResourceManager\ResourceNotFoundException.cs" />
-    <Compile Include="FinishController.cs" />
-    <Compile Include="FinishObject.cs" />
+    <Compile Include="Controller\FinishController.cs" />
+    <Compile Include="GameObjects\FinishObject.cs" />
     <Compile Include="GameWindow.xaml.cs">
       <DependentUpon>GameWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LevelPickerWindow.xaml.cs">
+    <Compile Include="Util\InstanceHelper.cs" />
+    <Compile Include="Windows\LevelPickerWindow.xaml.cs">
       <DependentUpon>LevelPickerWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ResourceManager.cs" />
-    <Compile Include="LevelPicker.cs" />
-    <Compile Include="RunnerObstacleController.cs" />
-    <Compile Include="ObjectInfoContainer.xaml.cs">
+    <Compile Include="Windows\LoseScreen.xaml.cs">
+      <DependentUpon>LoseScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MainMenuScreen.xaml.cs">
+      <DependentUpon>MainMenuScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\OptionMenu.xaml.cs">
+      <DependentUpon>OptionMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PauseMenuScreen.xaml.cs">
+      <DependentUpon>PauseMenuScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Util\ResourceManager.cs" />
+    <Compile Include="LevelComponents\LevelPicker.cs" />
+    <Compile Include="Obstacles\Controllers\RunnerObstacleController.cs" />
+    <Compile Include="Windows\ObjectInfoContainer.xaml.cs">
       <DependentUpon>ObjectInfoContainer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\ScoreTracker.cs" />
+    <Compile Include="Misc\SpriteRenderer.cs" />
+    <Compile Include="Windows\SubmitScoreScreen.xaml.cs">
+      <DependentUpon>SubmitScoreScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Obstacles\Controllers\TrapObstacleController.cs" />
+    <Compile Include="Obstacles\Controllers\TreeObstacleController.cs" />
+    <Compile Include="Misc\Vector.cs" />
+    <Compile Include="Collider\WallCollider.cs" />
+    <Compile Include="Obstacles\Controllers\WallObstacleController.cs" />
+    <Compile Include="Windows\WinScreen.xaml.cs">
+      <DependentUpon>WinScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="ScoreTracker.cs" />
     <Compile Include="SoundManager.cs" />
@@ -89,21 +118,21 @@
     <Compile Include="WallObstacleController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Collider.cs" />
-    <Compile Include="Controller.cs" />
-    <Compile Include="Difficulty.cs" />
-    <Compile Include="Gameloop.cs" />
-    <Compile Include="GameObject.cs" />
-    <Compile Include="IControllerCreator.cs" />
-    <Compile Include="ILocatable.cs" />
-    <Compile Include="Level.cs" />
-    <Compile Include="LevelCollider.cs" />
-    <Compile Include="Obstacle.cs" />
-    <Compile Include="ObstacleController.cs" />
-    <Compile Include="ObstacleInfo.cs" />
-    <Compile Include="ObstacleType.cs" />
-    <Compile Include="Player.cs" />
-    <Compile Include="PlayerController.cs" />
+    <Compile Include="Collider\Collider.cs" />
+    <Compile Include="Controller\Controller.cs" />
+    <Compile Include="LevelComponents\Difficulty.cs" />
+    <Compile Include="LevelComponents\Gameloop.cs" />
+    <Compile Include="GameObjects\GameObject.cs" />
+    <Compile Include="Misc\IControllerCreator.cs" />
+    <Compile Include="Misc\ILocatable.cs" />
+    <Compile Include="LevelComponents\Level.cs" />
+    <Compile Include="Collider\LevelCollider.cs" />
+    <Compile Include="Obstacles\Obstacle.cs" />
+    <Compile Include="Obstacles\ObstacleController.cs" />
+    <Compile Include="Obstacles\ObstacleInfo.cs" />
+    <Compile Include="Obstacles\ObstacleType.cs" />
+    <Compile Include="Player\Player.cs" />
+    <Compile Include="Player\PlayerController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -113,11 +142,35 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="GameWindow.xaml" />
-    <Page Include="LevelPickerWindow.xaml">
+    <Page Include="Windows\LevelPickerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ObjectInfoContainer.xaml">
+    <Page Include="Windows\LoseScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\MainMenuScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ObjectInfoContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\OptionMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\PauseMenuScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SubmitScoreScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WinScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -161,8 +214,15 @@
     <Resource Include="Resources\Levels\Levels.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Levels\TestLevel.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Resources\Levels\Level2.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Levels\Test\LevelTest_Valid.xml" />
+  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\Sound\Sounds.xml" />
   </ItemGroup>

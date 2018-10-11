@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<level name="Test Level">
+
+  <objects>
+    <start radius="17" location="700,500" />
+    <end radius="17" location="770,550" />
+  </objects>
+
+</level>
