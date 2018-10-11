@@ -1,4 +1,6 @@
-﻿using KBS1;
+﻿using KBS1.Collider;
+using KBS1.GameObjects;
+using KBS1.Misc;
 using NUnit.Framework;
 using UnitTests.Util;
 
@@ -72,7 +74,7 @@ namespace UnitTests
         {
             var object1 = new TestWallObject(r1, new Vector(x1, y1));
             var object2 = new TestGameObject(r2, new Vector(x2, y2));
-            LevelUtil.CreateLevel(new GameObject[] { object1, object2 });
+            LevelUtil.CreateLevel(new GameObject[] {object1, object2});
 
             var result = object1.Collider.CollidesAny(object1.Location, true);
 

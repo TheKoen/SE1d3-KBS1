@@ -1,5 +1,8 @@
 ﻿using System;
 using KBS1;
+using KBS1.Controller;
+using KBS1.GameObjects;
+using KBS1.Misc;
 using NUnit.Framework;
 using UnitTests.Util;
 
@@ -8,7 +11,6 @@ namespace UnitTests
     [TestFixture]
     public class ControllerTest
     {
-
         [TestCase(true)]
         [TestCase(false)]
         public void Controller_FindPlayer(bool hasPlayer)

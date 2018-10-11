@@ -1,4 +1,7 @@
 ﻿using KBS1;
+using KBS1.Controller;
+using KBS1.Misc;
+using KBS1.Player;
 
 namespace UnitTests.Util
 {

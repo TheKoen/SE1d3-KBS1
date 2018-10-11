@@ -1,25 +1,24 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Shapes;
 using System;
+using KBS1.LevelComponents;
+using KBS1.Util;
+using KBS1.Windows;
 
-namespace KBS1 {
+namespace KBS1
+{
     public partial class GameWindow
     {
-
         private readonly LevelPicker _levelPicker = new LevelPicker();
 
         public Level Loadedlevel { get; set; }
         public Gameloop Loop { get; set; }
         public static GameWindow Instance { get; private set; }
-        
+
         public GameWindow()
         {
-            Initialized += (sender, e) =>
-            {
-                LoadHome();
-            };
+            Initialized += (sender, e) => { LoadHome(); };
             Instance = this;
             InitializeComponent();
         }
@@ -59,6 +58,7 @@ namespace KBS1 {
             {
                 MessageBox.Show($"{q.Message}", "Error");
             }
+
             Loop.Start();
         }
 
@@ -70,14 +70,14 @@ namespace KBS1 {
             DrawingPanel.Children.Clear();
             try
             {
-                Loadedlevel = _levelPicker.PickLevel();
                 Loop = new Gameloop();
+                Loadedlevel = _levelPicker.PickLevel();
+                Loadedlevel.Objects.ForEach(gameObject => gameObject.Init());
                 Loop.Start();
             }
             catch (Exception q)
             {
-                MessageBox.Show($"{q.Message}", "Error");
-                LoadHome();
+                ExceptionManager.Catch(q);
             }
         }
 
@@ -87,18 +87,19 @@ namespace KBS1 {
         public void LoadGame()
         {
             Loop = new Gameloop();
-            try {
+            try
+            {
                 LoadLevel();
             }
             catch (Exception q)
             {
-                MessageBox.Show($"{q.Message}", "Error");
-                LoadHome();
+                ExceptionManager.Catch(q);
                 return;
             }
+
             Loop.Start();
         }
-        
+
         /// <summary>
         /// Makes the user pick a level
         /// </summary>
@@ -141,7 +142,7 @@ namespace KBS1 {
             DrawingPanel.Children.Clear();
             LoadGame();
         }
-        
+
         /// <summary>
         /// Shows the win screen
         /// </summary>
