@@ -149,7 +149,7 @@
     <obstacle name="TrapObstacle" radius="24" location="40, 160" />
     <obstacle name="TrapObstacle" radius="24" location="700, 210" />
 
-    <obstacle name="CreeperObstacle" radius="24" location="300, 120" />
+    <obstacle name="CreeperObstacle" radius="24" location="310, 120" />
     <obstacle name="CreeperObstacle" radius="24" location="350, 450" />
     <obstacle name="CreeperObstacle" radius="24" location="450, 300" />
     <obstacle name="CreeperObstacle" radius="24" location="275, 470" />
