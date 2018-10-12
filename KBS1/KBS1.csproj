@@ -109,13 +109,7 @@
     <Compile Include="Windows\WinScreen.xaml.cs">
       <DependentUpon>WinScreen.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ScoreTracker.cs" />
-    <Compile Include="SoundManager.cs" />
-    <Compile Include="SpriteRenderer.cs" />
-    <Compile Include="TrapObstacleController.cs" />
-    <Compile Include="TreeObstacleController.cs" />
-    <Compile Include="Vector.cs" />
-    <Compile Include="WallObstacleController.cs" />
+    <Compile Include="Util\SoundManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collider\Collider.cs" />

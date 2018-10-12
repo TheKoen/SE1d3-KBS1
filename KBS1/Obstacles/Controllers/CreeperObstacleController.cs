@@ -50,13 +50,19 @@ namespace KBS1.Obstacles.Controllers
 
                 //explode if player is in range and timer is out of time
                 if (_wait == 0 && Object.Location.Distance(player) <= ExplosionRadius)
+                {
+                    GameWindow.Instance.Sounds.Play("Boom.mp3");
                     GameWindow.Instance.Lose();
+                }
+                    
                 // if player is out of range and creeper is out of time destroy creeper
                 else if (_wait == 0 && Object.Location.Distance(player) > ExplosionRadius)
                 {
                     GameWindow.Instance.Loadedlevel.Objects.Remove(Object);
+                    GameWindow.Instance.Sounds.Play("Boom.mp3");
                     Object.Renderer.Destroy();
                     Object.Controller.Destroy();
+
                 }
 
                 return;
@@ -76,7 +82,11 @@ namespace KBS1.Obstacles.Controllers
 
             // start the delay of the explostion if the distance of the player is explosionRadius/2.
             if (Object.Location.Distance(playerObject.Location) < ExplosionRadius / 2.0)
+            {
+                GameWindow.Instance.Sounds.Play("Ignite.mp3");
                 _wait = DelayCreeper;
+            }
+                
         }
     }
 }

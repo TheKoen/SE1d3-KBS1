@@ -44,6 +44,7 @@ namespace KBS1.Obstacles.Controllers.Archer
             {
                 GameWindow.Instance.Sounds.Play("BoomHeadshot.mp3");
                 GameWindow.Instance.Lose();
+            }
         }
     }
 }
