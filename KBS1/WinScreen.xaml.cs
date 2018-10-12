@@ -25,7 +25,7 @@ namespace KBS1
         {
             InitializeComponent();
             this.score = Score;
-            ScoreLabel.Content = "Your score: " + Score;
+            ScoreLabel.Content = "Your score: " + Score;          
         }
 
         private void MainMenuButton_Click(object sender, RoutedEventArgs e)
