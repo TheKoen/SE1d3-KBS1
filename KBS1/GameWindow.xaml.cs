@@ -29,6 +29,7 @@ namespace KBS1
         private WinScreen _screenWin;
         private LoseScreen _screenLose;
         private OptionMenu _screenOptionMenu;
+        private LevelEditor _windowLevelEditor;
 
         // Methods
 
@@ -166,6 +167,20 @@ namespace KBS1
             Canvas.SetLeft(_screenLose, 0);
             Canvas.SetTop(_screenLose, 0);
             DrawingPanel.Children.Add(_screenLose);
+        }
+
+        /// <summary>
+        /// Shows the level editor
+        /// </summary>
+        public void ShowLevelEditor()
+        {
+            if (_windowLevelEditor == null || !_windowLevelEditor.IsLoaded)
+            {
+                _windowLevelEditor = new LevelEditor();
+                _windowLevelEditor.Show();
+            }
+            else if (_windowLevelEditor.IsLoaded)
+                _windowLevelEditor.Focus();
         }
     }
 }
