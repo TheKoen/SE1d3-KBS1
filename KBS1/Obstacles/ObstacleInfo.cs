@@ -9,16 +9,16 @@
             switch (type)
             {
                 case "runner":
-                    Description = "";
+                    Description = "A runner will run try to catch you.";
                     break;
                 case "bomb":
-                    Description = "";
+                    Description = "A bomber will try to bomb you.";
                     break;
                 case "turret":
-                    Description = "";
+                    Description = "A turret shoots bullets";
                     break;
                 case "trap":
-                    Description = "";
+                    Description = "A  trap ";
                     break;
                 default:
                     Description = "";

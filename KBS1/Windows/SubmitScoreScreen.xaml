@@ -12,9 +12,9 @@
         <Label Name="ScoreLabel" HorizontalAlignment="Left" Margin="428,223,0,0" VerticalAlignment="Top"
                RenderTransformOrigin="-0.611,-0.068" Width="170" Height="46" Foreground="#FF085463" FontSize="18" FontWeight="Bold" />
         <Button Name="SubmitButton" Content="Submit" HorizontalAlignment="Left" Margin="512,385,0,0"
-                VerticalAlignment="Top" Width="75" Click="SubmitButton_ClickAsync" RenderTransformOrigin="0.469,-0.406" BorderBrush="#FF085463" Background="#3F085463" />
+                VerticalAlignment="Top" Width="75" Click="SubmitButton_ClickAsync" RenderTransformOrigin="0.469,-0.406" BorderBrush="#FF085463" Background="#3F085463" IsDefault="True" />
         <Button Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="417,385,0,0"
-                VerticalAlignment="Top" Width="75" Click="CancelButton_Click" BorderBrush="#FF085463" Background="#3F085463" />
+                VerticalAlignment="Top" Width="75" Click="CancelButton_Click" BorderBrush="#FF085463" Background="#3F085463" IsCancel="True" />
         <Label Name="NameLabel" Content="Name:" HorizontalAlignment="Left" Margin="400,274,0,0" VerticalAlignment="Top"
                RenderTransformOrigin="0.458,0.411" Foreground="#FF085463" FontWeight="Bold" />
         <TextBox Name="TextName" HorizontalAlignment="Left" Height="23" Margin="455,277,0,0" TextWrapping="Wrap"
