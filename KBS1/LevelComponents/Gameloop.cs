@@ -15,7 +15,7 @@ namespace KBS1.LevelComponents
         {
             Timer = new DispatcherTimer
             {
-                Interval = new TimeSpan(0, 0, 0, 0, 10)
+                Interval = new TimeSpan(0, 0, 0, 0, 9)
             };
             Timer.Tick += Update;
         }

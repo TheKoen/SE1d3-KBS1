@@ -245,5 +245,8 @@
   <ItemGroup>
     <Resource Include="Resources\Sound\Sounds.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Configuration.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

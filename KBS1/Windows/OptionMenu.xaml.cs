@@ -1,9 +1,9 @@
 ﻿using KBS1.Exceptions.ResourceManager;
+using KBS1.Util;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using System.Resources;
 using System.Windows;
 using System.Windows.Input;
 using System.Xml;
@@ -33,7 +33,8 @@ namespace KBS1.Windows
             }
             catch (FileNotFoundException)
             {
-                throw new FileNotFoundException("Configuration file could not be found");
+                var doc = ResourceManager.Instance.LoadXmlDocument(Path);
+                doc.Save(System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\" + Path);
             }
 
             Initialized += (Sender, args) =>
@@ -166,7 +167,6 @@ namespace KBS1.Windows
                 GameWindow.Instance.LoadOptions();
 
             }
-            else if (messageBoxResult == MessageBoxResult.No) ;
         }
     }
 }
