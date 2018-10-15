@@ -2,14 +2,14 @@
 <level name="Level 2">
 
   <objects>
-    <start radius="17" location="10,10" />
+    <start radius="17" location="15,15" />
     <end radius="17" location="770,550" />
 
     <obstacle name="CreeperObstacle" radius="24" location="200, 50" />
     <obstacle name="CreeperObstacle" radius="24" location="350, 50" />
 
-    <obstacle name="RunnerObstacle" radius="24" location="410, 290" />
-    <obstacle name="RunnerObstacle" radius="24" location="340, 320" />
+    <obstacle name="RunnerObstacle" radius="24" location="380, 300" />
+    <obstacle name="RunnerObstacle" radius="24" location="300, 300" />
 
     <obstacle name="ArcherObstacle" radius="24" location="55, 407" />
     <obstacle name="ArcherObstacle" radius="24" location="100, 520" />
