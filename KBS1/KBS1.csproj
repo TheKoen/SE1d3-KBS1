@@ -238,7 +238,10 @@
   <ItemGroup>
     <Resource Include="Resources\playerflipped.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\playerwalk.png" />
+    <Resource Include="Resources\playerwalkflipped.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Sound\Sounds.xml" />
   </ItemGroup>
