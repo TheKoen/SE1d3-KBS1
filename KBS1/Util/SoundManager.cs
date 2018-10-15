@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Threading;
 using System.Windows.Media;
 using System.Xml;
 
@@ -11,6 +12,8 @@ namespace KBS1.Util
     {
         private readonly Dictionary<string, MediaPlayer> Sounds = new Dictionary<string, MediaPlayer>();
         private readonly string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Sound\\";
+
+        private int timeout = 0;
         
         public SoundManager()
         { 
@@ -34,7 +37,17 @@ namespace KBS1.Util
 
                 var mediaplayer = new MediaPlayer();
                 mediaplayer.Open(new Uri(path + value, UriKind.Absolute));
-                while (!mediaplayer.HasAudio) { }
+                while (!mediaplayer.HasAudio && timeout < 500)
+                {
+                    timeout++;
+                    if (timeout >= 500)
+                    {
+                        throw new FileNotFoundException($"Sound {value} could not be found!");
+                    }
+                    Thread.Sleep(10);
+                }
+
+                timeout = 0;
 
                 mediaplayer.MediaEnded += (sender, e) =>
                 {
