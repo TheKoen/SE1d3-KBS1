@@ -17,8 +17,9 @@ namespace KBS1.LevelComponents
     {
         private Brush Background { get; }
         private static double DescriptionHeight { get; set; }
-        private List<string> MadeObjects { get; } = new List<string>();
+        private List<string> MadeObjects { get; set; } = new List<string>();
 
+        public bool IsAlreadySubmitted;
         public string Name { get; }
         public Difficulty Difficulty { get; set; }
         public LevelCollider LevelCollider { get; set; }
@@ -35,7 +36,7 @@ namespace KBS1.LevelComponents
         /// <param name="xmlDocument">XML document containing a level</param>
         public Level(XmlDocument xmlDocument)
         {
-            GameWindow.Instance.DrawingPanel.Background = Brushes.LightGreen;
+            GameWindow.Instance.DrawingPanel.Background = Brushes.DimGray;
 
             Objects = new List<GameObject>();
             ObstacleType.Init();
@@ -51,7 +52,7 @@ namespace KBS1.LevelComponents
             Name = root.GetAttribute("name");
 
             if (!root.HasAttribute("background"))
-                Background = Brushes.LightGreen;
+                Background = Brushes.DimGray;
             else
                 Background = ResourceManager.Instance.LoadImageBrush(root.GetAttribute("background"));
 

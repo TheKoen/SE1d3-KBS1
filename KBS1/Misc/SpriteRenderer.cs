@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using KBS1.Util;
 
@@ -8,7 +9,7 @@ namespace KBS1.Misc
     {
         private Image Sprite { get; }
         private ILocatable Locatable { get; }
-        private Vector Size { get; }
+        private Vector Size { get; set; }
         private Canvas Canvas { get; }
 
         /// <summary>
@@ -57,6 +58,12 @@ namespace KBS1.Misc
         public void ChangeSprite(BitmapImage sprite)
         {
             Sprite.Source = sprite;
+            Size = new Vector((int)(sprite.Width / 2), (int)(sprite.Height / 2));
+        }
+
+        public void Rotate(double angle)
+        {
+            Sprite.RenderTransform = new RotateTransform(angle, Size.X, Size.Y);
         }
     }
 }

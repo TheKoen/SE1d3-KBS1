@@ -3,8 +3,10 @@
 <level name="Test Level">
 
   <objects>
-    <start radius="17" location="700,500" />
+    <start radius="17" location="50,50" />
     <end radius="17" location="770,550" />
+
+    <obstacle name="ArcherObstacle" radius="24" location="275, 470" />
   </objects>
 
 </level>

@@ -4,7 +4,7 @@ namespace KBS1.Obstacles.Controllers
 {
     public class RunnerObstacleController : ObstacleController
     {
-        private const int Speed = 2;
+        private const double Speed = 2.0;
         private const int Range = 300;
 
         private int _wait;
