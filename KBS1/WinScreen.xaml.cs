@@ -8,12 +8,12 @@ namespace KBS1
     /// </summary>
     public partial class WinScreen
     {
-        private double _score;
+        private double score;
         public WinScreen(double score)
         {
             InitializeComponent();
-            this.score = Score;
-            ScoreLabel.Content = "Your score: " + Score;          
+            this.score = score;
+            ScoreLabel.Content = "Your score: " + score;          
         }
 
         private void MainMenuButton_Click(object sender, RoutedEventArgs e)
