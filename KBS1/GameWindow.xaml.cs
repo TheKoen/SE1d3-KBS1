@@ -5,11 +5,13 @@ using System;
 using KBS1.LevelComponents;
 using KBS1.Util;
 using KBS1.Windows;
+using System.Windows.Input;
 
 namespace KBS1
 {
     public partial class GameWindow
     {
+        public static bool keyDown = false;
         private readonly LevelPicker _levelPicker = new LevelPicker();
 
         public Level Loadedlevel { get; set; }
@@ -29,7 +31,15 @@ namespace KBS1
             };
             Instance = this;
             InitializeComponent();
+            
         }
+        // check if keyinput exists
+        public void onKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            keyDown = true;
+        }
+
+
 
         // Properties
         private PauseMenuScreen _screenPauseMenu;

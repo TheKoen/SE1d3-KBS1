@@ -11,7 +11,8 @@ using KBS1.Util;
 using KBS1.Windows;
 
 namespace KBS1.LevelComponents
-{
+{ 
+
     public class Level
     {
         private Brush Background { get; }
@@ -27,6 +28,7 @@ namespace KBS1.LevelComponents
 
         private static readonly Random Rand = new Random();
 
+        public event EventHandler Initialized; 
         /// <summary>
         /// Uses an XmlDocument to load a level and it's properties
         /// </summary>
@@ -97,7 +99,11 @@ namespace KBS1.LevelComponents
             };
             Canvas.SetLeft(border, 782);
             GameWindow.Instance.DrawingPanel.Children.Add(border);
+
+            //Initialized(this, EventArgs.Empty);
+            Initialized?.Invoke(this, EventArgs.Empty);
         }
+
 
         /// <summary>
         /// FOR UNIT TESTING ONLY!
@@ -105,6 +111,11 @@ namespace KBS1.LevelComponents
         /// </summary>
         public Level()
         {
+        }
+
+        public void SubscribeInitialized(EventHandler source)
+        {
+            Initialized += source;
         }
 
         /// <summary>

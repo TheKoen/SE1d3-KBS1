@@ -1,6 +1,7 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using KBS1.Misc;
+using KBS1.Player;
 using KBS1.Util;
 
 namespace KBS1.Obstacles.Controllers
@@ -18,6 +19,12 @@ namespace KBS1.Obstacles.Controllers
 
         public CreeperObstacleController(ILocatable locatable, Obstacle obstacle) : base(locatable, obstacle)
         {
+            InstanceHelper.GetCurrentLevel().SubscribeInitialized(Initialized);
+        }
+
+        public void Initialized(object sender, System.EventArgs e)
+        {
+            ((PlayerController)FindPlayer().Controller).Subscribe(MinecraftMode);
         }
 
         /// <summary>
@@ -87,6 +94,11 @@ namespace KBS1.Obstacles.Controllers
                 _wait = DelayCreeper;
             }
                 
+        }
+
+        public void MinecraftMode(object sender, System.EventArgs e)
+        {
+            throw new System.Exception("Minecraftmode active");
         }
     }
 }
