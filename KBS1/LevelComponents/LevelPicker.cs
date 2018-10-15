@@ -53,7 +53,7 @@ namespace KBS1.LevelComponents
         /// <returns>if Level1.xml exist returns level</returns>
         private Level LoadFirstLevel()
         {
-            return LoadLevel("Level1.xml");
+            return LoadLevel("#Level1.xml");
         }
 
         /// <summary>
@@ -71,9 +71,9 @@ namespace KBS1.LevelComponents
             if (_level == null) throw new LevelLoadException("There isn't currently a level loaded");
             var levelStringArray = _level.Split(Path.DirectorySeparatorChar);
             var levelString = levelStringArray[levelStringArray.Length - 1];
-            var levelId = int.Parse(levelString.Replace("Level", "").Replace(".xml", ""));
+            var levelId = int.Parse(levelString.Replace("#Level", "").Replace(".xml", ""));
 
-            var newLevel = $"Level{levelId + 1}.xml";
+            var newLevel = $"#Level{levelId + 1}.xml";
 
             return LoadLevel(newLevel);
         }
@@ -89,7 +89,7 @@ namespace KBS1.LevelComponents
             try
             {
                 if (!filename.StartsWith("#")) throw new Exception();
-                doc = ResourceManager.Instance.LoadXmlDocument($"#Levels\\{filename}");
+                doc = ResourceManager.Instance.LoadXmlDocument($"#Levels\\{filename.Substring(1)}");
             } catch (Exception) {
                 try
                 {
@@ -123,7 +123,7 @@ namespace KBS1.LevelComponents
             try
             {
                 if (filename.StartsWith("#")) throw new Exception();
-                doc = ResourceManager.Instance.LoadXmlDocument($"#Levels\\{filename}");
+                doc = ResourceManager.Instance.LoadXmlDocument($"#Levels\\{filename.Substring(1)}");
             } catch (Exception) {
                 try
                 {
