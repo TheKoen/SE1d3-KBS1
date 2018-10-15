@@ -58,7 +58,7 @@ namespace KBS1
         {
             ObstacleType.Init();
 
-            DrawingPanel.Background = Brushes.DimGray;
+            DrawingPanel.Background = ResourceManager.Instance.LoadImageBrush("#menu_bg.jpg");
             _screenMainMenu = new MainMenuScreen();
             Canvas.SetTop(_screenMainMenu, 0);
             Canvas.SetLeft(_screenMainMenu, 0);
