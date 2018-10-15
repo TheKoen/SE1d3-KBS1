@@ -1,5 +1,10 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using KBS1.Misc;
+using KBS1.Util;
+using KBS1.Windows;
 
 namespace KBS1.Player
 {
@@ -7,9 +12,17 @@ namespace KBS1.Player
     {
         private const double Speed = 2.0;
 
-        public KBS1.Player.Player Player { get; }
+        private readonly Image right = ResourceManager.Instance.LoadImage("#player.png");
+        private readonly Image left = ResourceManager.Instance.LoadImage("#playerflipped.png");
+        private readonly Image rightwalk = ResourceManager.Instance.LoadImage("#playerwalk.png");
+        private readonly Image leftwalk = ResourceManager.Instance.LoadImage("#playerwalkflipped.png");
 
-        public PlayerController(KBS1.Player.Player player) : base(player)
+        public Player Player { get; }
+
+        private bool walk;
+        private int step;
+
+        public PlayerController(Player player) : base(player)
         {
             Player = player;
         }
@@ -21,15 +34,28 @@ namespace KBS1.Player
         {
             var direction = new Vector();
 
-            if (Keyboard.IsKeyDown(Key.Escape)) GameWindow.Instance.PauseGame();
+            if (Keyboard.IsKeyDown(OptionMenu.Pause)) GameWindow.Instance.PauseGame();
+            if (Keyboard.IsKeyDown(OptionMenu.Retry)) GameWindow.Instance.Reset();
 
-            if (Keyboard.IsKeyDown(Key.W)) direction.Y = -1;
-            if (Keyboard.IsKeyDown(Key.D)) direction.X = 1;
-            if (Keyboard.IsKeyDown(Key.S)) direction.Y = 1;
-            if (Keyboard.IsKeyDown(Key.A)) direction.X = -1;
+            if (Keyboard.IsKeyDown(OptionMenu.Up)) direction.Y = -1;
+            if (Keyboard.IsKeyDown(OptionMenu.Right)) direction.X = 1;
+            if (Keyboard.IsKeyDown(OptionMenu.Down)) direction.Y = 1;
+            if (Keyboard.IsKeyDown(OptionMenu.Left)) direction.X = -1;
 
-            //if (Keyboard.IsKeyDown(Key.LeftShift))
-            //    speed = 10;
+            if (step < 10)
+            {
+                step++;
+                if (step == 10)
+                {
+                    step = 0;
+                    walk = !walk;
+                }
+            }
+
+            if (Math.Abs(direction.X - 1) < 0.01)
+                Object.Renderer.ChangeSprite(walk ? (BitmapImage) rightwalk.Source : (BitmapImage) right.Source);
+            else if (Math.Abs(direction.X) > 0.01 || Math.Abs(direction.Y) > 0.01)
+                Object.Renderer.ChangeSprite(walk ? (BitmapImage) leftwalk.Source : (BitmapImage) left.Source);
 
             // Lets the player noclip when NumPad 0 is pressed
             Object.Collider.Blocking = !Keyboard.IsKeyDown(Key.NumPad0);

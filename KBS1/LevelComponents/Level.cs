@@ -11,13 +11,15 @@ using KBS1.Util;
 using KBS1.Windows;
 
 namespace KBS1.LevelComponents
-{
+{ 
+
     public class Level
     {
         private Brush Background { get; }
         private static double DescriptionHeight { get; set; }
-        private List<string> MadeObjects { get; } = new List<string>();
+        private List<string> MadeObjects { get; set; } = new List<string>();
 
+        public bool IsAlreadySubmitted;
         public string Name { get; }
         public Difficulty Difficulty { get; set; }
         public LevelCollider LevelCollider { get; set; }
@@ -27,13 +29,14 @@ namespace KBS1.LevelComponents
 
         private static readonly Random Rand = new Random();
 
+        public event EventHandler Initialized; 
         /// <summary>
         /// Uses an XmlDocument to load a level and it's properties
         /// </summary>
         /// <param name="xmlDocument">XML document containing a level</param>
         public Level(XmlDocument xmlDocument)
         {
-            GameWindow.Instance.DrawingPanel.Background = Brushes.LightGreen;
+            GameWindow.Instance.DrawingPanel.Background = Brushes.DimGray;
 
             Objects = new List<GameObject>();
 //            ObstacleType.Init();
@@ -49,7 +52,7 @@ namespace KBS1.LevelComponents
             Name = root.GetAttribute("name");
 
             if (!root.HasAttribute("background"))
-                Background = Brushes.LightGreen;
+                Background = Brushes.DimGray;
             else
                 Background = ResourceManager.Instance.LoadImageBrush(root.GetAttribute("background"));
 
@@ -99,12 +102,18 @@ namespace KBS1.LevelComponents
             GameWindow.Instance.DrawingPanel.Children.Add(border);
         }
 
+
         /// <summary>
         /// FOR UNIT TESTING ONLY!
         /// Creates an empty Level.
         /// </summary>
         public Level()
         {
+        }
+
+        public void SubscribeInitialized(EventHandler source)
+        {
+            Initialized += source;
         }
 
         /// <summary>

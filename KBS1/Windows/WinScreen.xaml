@@ -7,16 +7,13 @@
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="1000">
     <Grid>
-        <Rectangle Fill="#FF80FF00" Width="250" Height="250" Margin="375,180,375,170" Stroke="Black" />
-        <Label x:Name="WinLabel" Content="Congratulations! You Won!" Margin="425,212,423,0" VerticalAlignment="Top" />
-        <Label x:Name="ScoreLabel" HorizontalAlignment="Left" Margin="454,255,0,0" VerticalAlignment="Top" />
-        <Button x:Name="MainMenuButton" Content="Main menu" Margin="465,317,460,0" VerticalAlignment="Top"
-                Click="MainMenuButton_Click" />
-        <Button x:Name="NextLevelButton" Content="Next Level" HorizontalAlignment="Left" Margin="465,352,0,0"
-                VerticalAlignment="Top" Width="75" Click="NextLevelButton_Click" />
-        <Button x:Name="RetryButton" Content="Retry" HorizontalAlignment="Left" Margin="465,387,0,0"
-                VerticalAlignment="Top" Width="75" Click="RetryButton_Click" />
-        <Button x:Name="SubmitScoreButton" Content="Submit score" HorizontalAlignment="Left" Margin="465,282,0,0"
-                VerticalAlignment="Top" Width="75" Click="SubmitScoreButton_Click" />
+        <Rectangle Fill="#FF26A2D9" Width="250" Height="275" Margin="375,180,375,170" Stroke="Black"/>
+        <Label x:Name="WinLabel" Content="Congratulations! You Won!" Margin="388,195,384,0" VerticalAlignment="Top" FontSize="18" Foreground="#FF085463"/>
+        <Label x:Name="ScoreLabel" HorizontalAlignment="Left" Margin="447,230,0,0" VerticalAlignment="Top" Height="31" Width="114" Foreground="#FF085463" FontSize="14" FontWeight="Bold"/>
+        <Button x:Name="MainMenuButton" Content="Main menu" Margin="465,392,460,0" VerticalAlignment="Top" Click="MainMenuButton_Click" BorderBrush="#FF085463" Background="#3F085463"/>
+        <Button x:Name="NextLevelButton" Content="Next Level" HorizontalAlignment="Left" Margin="465,292,0,0" VerticalAlignment="Top" Width="75" Click="NextLevelButton_Click" BorderBrush="#FF085463" OpacityMask="Black" Background="#3F085463"/>
+        <Button x:Name="RetryButton" Content="Retry level" HorizontalAlignment="Left" Margin="465,325,0,0" VerticalAlignment="Top" Width="75" Click="RetryButton_Click" BorderBrush="#FF085463" Background="#3F085463"/>
+        <Button x:Name="SubmitScoreButton" Content="Submit score" HorizontalAlignment="Left" Margin="465,359,0,0" VerticalAlignment="Top" Width="75" Click="SubmitScoreButton_Click" RenderTransformOrigin="0.523,0.99" BorderBrush="#FF085463" Background="#3F085463"/>
+        <Label x:Name="AlreadySubmittedLabel" Content="" HorizontalAlignment="Left" Margin="427,253,0,0" VerticalAlignment="Top" Width="160" Foreground="#FFF71313" FontWeight="Bold"/>
     </Grid>
 </UserControl>

@@ -8,11 +8,12 @@ namespace KBS1.Obstacles.Controllers.Archer
 
         private int _lifetime = 500;
 
-        public ArrowObstacleController(ILocatable locatable, Obstacle obstacle, Vector direction) : base(locatable,
+        public ArrowObstacleController(ILocatable locatable, Obstacle obstacle, Vector direction, double angle) : base(locatable,
             obstacle)
         {
             Object.Collider.Blocking = false;
             _direction = direction;
+            Object.Renderer.Rotate(angle);
         }
 
         /// <summary>
@@ -41,7 +42,9 @@ namespace KBS1.Obstacles.Controllers.Archer
             }
 
             if (Object.Collider.Collides(player.Collider))
+            {
                 GameWindow.Instance.Lose();
+            }
         }
     }
 }

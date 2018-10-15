@@ -57,6 +57,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Kbs1Events.cs" />
     <Compile Include="Misc\EditorObjectRepresentation.cs" />
     <Compile Include="Obstacles\Controllers\Archer\ArcherObstacleController.cs" />
     <Compile Include="Obstacles\Controllers\Archer\ArrowObstacleController.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="Windows\WinScreen.xaml.cs">
       <DependentUpon>WinScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Util\SoundManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collider\Collider.cs" />
@@ -192,7 +194,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\end.png" />
-    <Resource Include="Resources\runner.png" />
     <Resource Include="Resources\start.png" />
   </ItemGroup>
   <ItemGroup>
@@ -224,6 +225,34 @@
   <ItemGroup>
     <Resource Include="Resources\Levels\Test\LevelTest_Valid.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\bomb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\bombexplode.png" />
+    <Resource Include="Resources\bombwalk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\runner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\explosion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\turret.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\gray-bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\playerflipped.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\playerwalk.png" />
+    <Resource Include="Resources\playerwalkflipped.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Sound\Sounds.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

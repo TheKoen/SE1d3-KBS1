@@ -14,7 +14,7 @@ namespace KBS1.GameObjects
         protected GameObject(int radius, Image image, Canvas canvas, Vector location)
         {
             Location = location;
-            if (image != null && canvas != null)
+            if (image != null || canvas != null)
                 Renderer = new SpriteRenderer(image, this, canvas);
             Collider = new Collider.Collider(radius, this);
         }

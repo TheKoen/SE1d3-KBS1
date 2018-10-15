@@ -4,7 +4,7 @@ namespace KBS1.Obstacles.Controllers
 {
     public class RunnerObstacleController : ObstacleController
     {
-        private const int Speed = 2;
+        private const double Speed = 2.0;
         private const int Range = 300;
 
         private int _wait;
@@ -38,6 +38,8 @@ namespace KBS1.Obstacles.Controllers
                 Move(player.X < Object.Location.X ? new Vector(-Speed, 0) : new Vector(Speed, 0));
             else
                 Move(player.Y < Object.Location.Y ? new Vector(0, -Speed) : new Vector(0, Speed));
+
+            GameWindow.Instance.Sounds.Play("robot-walk.mp3");
 
             // Colliden met speler -> reset
             if (Object.Collider.Collides(playerObject.Collider))

@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 using KBS1.Misc;
 using KBS1.Util;
 
@@ -23,13 +24,19 @@ namespace KBS1.Obstacles.Controllers.Archer
         /// </summary>
         public override void Update()
         {
-            if (_wait-- > 0) return;
-
             var player = FindPlayer();
             var playerLocation = player.Location;
 
             if (playerLocation.Distance(Object.Location) > Range)
                 return;
+
+            var xDiff = playerLocation.X - Object.Location.X;
+            var yDiff = playerLocation.Y - Object.Location.Y;
+            var angle = Math.Atan2(yDiff, xDiff) * 180.0 / Math.PI;
+
+            Object.Renderer.Rotate(angle);
+
+            if (_wait-- > 0) return;
 
             var xDistance = playerLocation.AxisDistance(Object.Location, true);
             var yDistance = playerLocation.AxisDistance(Object.Location, false);
@@ -47,20 +54,24 @@ namespace KBS1.Obstacles.Controllers.Archer
 
             var level = GameWindow.Instance.Loadedlevel;
 
-            var arrow = new Arrow(ARROW, GameWindow.Instance.DrawingPanel, Object.Location, vector);
+            var arrow = new Arrow(ARROW, GameWindow.Instance.DrawingPanel, Object.Location, vector, angle);
             level.Objects.Add(arrow);
             arrow.Init();
             _wait = 30;
+
+            GameWindow.Instance.Sounds.Play("laser.mp3");
         }
 
         private class Arrow : Obstacle
         {
             public Vector Direction { get; }
+            public readonly double angle;
 
-            public Arrow(ObstacleType type, Canvas canvas, Vector location, Vector direction) : base(type, canvas,
+            public Arrow(ObstacleType type, Canvas canvas, Vector location, Vector direction, double angle) : base(type, canvas,
                 location)
             {
                 Direction = direction;
+                this.angle = angle;
             }
         }
 
@@ -68,7 +79,7 @@ namespace KBS1.Obstacles.Controllers.Archer
         {
             public Controller.Controller Create(Obstacle obstacle)
             {
-                return new ArrowObstacleController(obstacle, obstacle, ((Arrow) obstacle).Direction);
+                return new ArrowObstacleController(obstacle, obstacle, ((Arrow) obstacle).Direction, ((Arrow)obstacle).angle);
             }
         }
     }
