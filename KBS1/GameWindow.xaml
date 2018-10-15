@@ -9,6 +9,7 @@
         Title="GameWindow" Height="600" Width="1000">
 
     <Grid>
-        <Canvas x:Name="DrawingPanel" Margin="0,0,0,0" Background="DimGray" />
+        <Canvas x:Name="DrawingPanel" Margin="0,0,0,0">
+        </Canvas>
     </Grid>
 </Window>

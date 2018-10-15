@@ -5,7 +5,7 @@ namespace KBS1.Util
 {
     public class ExceptionManager
     {
-        public static bool Debug = true;
+        public static bool Debug = false;
 
         public static void Catch(Exception exception)
         {
@@ -13,11 +13,9 @@ namespace KBS1.Util
             {
                 throw exception;
             }
-            else
-            {
-                MessageBox.Show($"{exception.Message}", "Error");
-                GameWindow.Instance.LoadHome();
-            }
+
+            MessageBox.Show($"{exception.Message}", "Error");
+            GameWindow.Instance.LoadHome();
         }
     }
 }

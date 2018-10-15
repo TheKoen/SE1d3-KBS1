@@ -26,7 +26,14 @@ namespace KBS1.LevelComponents
                 throw new FileNotFoundException("You did not select level.");
             }
 
-            return LoadLevel("#" + fileName);
+            try
+            {
+                return LoadLevel("#" + fileName);
+            }
+            catch (Exception)
+            {
+                return LoadLevel(fileName);
+            }
         }
 
         /// <summary>

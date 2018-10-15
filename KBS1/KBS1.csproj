@@ -57,7 +57,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Kbs1Events.cs" />
     <Compile Include="Misc\EditorObjectRepresentation.cs" />
     <Compile Include="Obstacles\Controllers\Archer\ArcherObstacleController.cs" />
     <Compile Include="Obstacles\Controllers\Archer\ArrowObstacleController.cs" />
@@ -263,6 +262,9 @@
     <Resource Include="Resources\Sound\laser.mp3" />
     <Resource Include="Resources\Sound\lose.mp3" />
     <Resource Include="Resources\Sound\robot-walk.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\menu_bg.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
