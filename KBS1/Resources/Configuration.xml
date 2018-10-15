@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <player>
   <buttons>
-    <MoveUp Key="Up" />
-    <MoveDown Key="Down" />
-    <MoveLeft Key="Left" />
-    <MoveRight Key="Right" />
-    <Pause Key="Space" />
+    <MoveUp Key="W" />
+    <MoveDown Key="S" />
+    <MoveLeft Key="A" />
+    <MoveRight Key="D" />
+    <Pause Key="Escape" />
     <Retry Key="R" />
   </buttons>
 </player>
