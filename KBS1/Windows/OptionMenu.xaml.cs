@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using System.Resources;
 using System.Windows;
 using System.Windows.Input;
 using System.Xml;
+using KBS1.Util;
 
 namespace KBS1.Windows
 {

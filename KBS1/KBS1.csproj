@@ -57,9 +57,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Kbs1Events.cs" />
     <Compile Include="Misc\EditorObjectRepresentation.cs" />
-    <Compile Include="Kbs1Events.cs" />
     <Compile Include="Obstacles\Controllers\Archer\ArcherObstacleController.cs" />
     <Compile Include="Obstacles\Controllers\Archer\ArrowObstacleController.cs" />
     <Compile Include="Obstacles\Controllers\CreeperObstacleController.cs" />
