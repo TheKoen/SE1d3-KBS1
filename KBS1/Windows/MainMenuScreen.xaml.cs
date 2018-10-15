@@ -33,5 +33,16 @@ namespace KBS1.Windows
         {
             GameWindow.Instance.SelectLevel();
         }
+
+        private void CoffeeButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (CoffeeLabel.Content.ToString() == "") {
+                CoffeeLabel.Content = "m";
+            }
+            else
+            {
+                CoffeeLabel.Content = "";
+            }
+        }
     }
 }
