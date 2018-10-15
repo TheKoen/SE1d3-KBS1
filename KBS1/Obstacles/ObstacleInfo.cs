@@ -9,19 +9,19 @@
             switch (type)
             {
                 case "runner":
-                    Description = "A runner is fast as fuck";
+                    Description = "";
                     break;
-                case "creeper":
-                    Description = "Watch out! A creeper can explode. It ain't very fast tho";
+                case "bomb":
+                    Description = "";
                     break;
-                case "archer":
-                    Description = "An archer can shoot sum arrows, but no worries, it's aim is sh*t";
+                case "turret":
+                    Description = "";
                     break;
                 case "trap":
-                    Description = "A trap can be very deadly, so watch out where you walk";
+                    Description = "";
                     break;
                 default:
-                    Description = "No description";
+                    Description = "";
                     break;
             }
         }

@@ -33,7 +33,7 @@ namespace KBS1.LevelComponents
         /// <param name="xmlDocument">XML document containing a level</param>
         public Level(XmlDocument xmlDocument)
         {
-            GameWindow.Instance.DrawingPanel.Background = Brushes.LightGreen;
+            GameWindow.Instance.DrawingPanel.Background = Brushes.DimGray;
 
             Objects = new List<GameObject>();
             ObstacleType.Init();
@@ -49,7 +49,7 @@ namespace KBS1.LevelComponents
             Name = root.GetAttribute("name");
 
             if (!root.HasAttribute("background"))
-                Background = Brushes.LightGreen;
+                Background = Brushes.DimGray;
             else
                 Background = ResourceManager.Instance.LoadImageBrush(root.GetAttribute("background"));
 

@@ -37,7 +37,7 @@ namespace KBS1
         /// </summary>
         public void LoadHome()
         {
-            DrawingPanel.Background = Brushes.LightGreen;
+            DrawingPanel.Background = Brushes.DimGray;
             _screenMainMenu = new MainMenuScreen();
             Canvas.SetTop(_screenMainMenu, 0);
             Canvas.SetLeft(_screenMainMenu, 0);

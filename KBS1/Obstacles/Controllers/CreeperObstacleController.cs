@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using KBS1.Misc;
 using KBS1.Util;
@@ -11,9 +12,9 @@ namespace KBS1.Obstacles.Controllers
         private const int Range = 150;
         private const int ExplosionRadius = 100;
         private const int DelayCreeper = 100;
-        private int _wait = 0;
-        private bool _red = false;
-        private int step = 0;
+        private int _wait;
+        private bool _red;
+        private int step;
         private bool walkSprite;
         private readonly Image idle = ResourceManager.Instance.LoadImage("bomb.png");
         private readonly Image walk = ResourceManager.Instance.LoadImage("bombwalk.png");
