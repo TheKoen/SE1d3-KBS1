@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<level name="Test Level" background="level1_bg.png">
+<level name="Test Level" background="gray-bg.png">
 
   <objects>
-    <start radius="17" location="10,10" />
-    <end radius="17" location="770,550" />
+    <start radius="17" location="25,22" />
+    <end radius="17" location="760,540" />
 
     <obstacle name="WallObstacle" radius="24" location="12, 55" />
     <obstacle name="WallObstacle" radius="24" location="36, 55" />

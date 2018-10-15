@@ -46,7 +46,7 @@ namespace UnitTests
         }
 
         [TestCase(2, 1.0, 1.0, 2, true)]
-        [TestCase(2, 6.0, 0.0, 2, false)]
+        [TestCase(2, 9.0, 0.0, 2, false)]
         [TestCase(2, 5.0, 0.0, 2, true)]
         [TestCase(2, 0.0, 0.0, 2, true)]
         [TestCase(1, 1.0, 1.0, 1, true)]

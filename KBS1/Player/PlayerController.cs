@@ -1,5 +1,9 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using KBS1.Misc;
+using KBS1.Util;
 
 namespace KBS1.Player
 {
@@ -7,9 +11,12 @@ namespace KBS1.Player
     {
         private const double Speed = 2.0;
 
-        public KBS1.Player.Player Player { get; }
+        private readonly Image right = ResourceManager.Instance.LoadImage("player.png");
+        private readonly Image left = ResourceManager.Instance.LoadImage("playerflipped.png");
 
-        public PlayerController(KBS1.Player.Player player) : base(player)
+        public Player Player { get; }
+
+        public PlayerController(Player player) : base(player)
         {
             Player = player;
         }
@@ -28,8 +35,10 @@ namespace KBS1.Player
             if (Keyboard.IsKeyDown(Key.S)) direction.Y = 1;
             if (Keyboard.IsKeyDown(Key.A)) direction.X = -1;
 
-            //if (Keyboard.IsKeyDown(Key.LeftShift))
-            //    speed = 10;
+            if (Math.Abs(direction.X - 1) < 0.01)
+                Object.Renderer.ChangeSprite((BitmapImage) right.Source);
+            else if (Math.Abs(direction.X - (-1)) < 0.01)
+                Object.Renderer.ChangeSprite((BitmapImage) left.Source);
 
             // Lets the player noclip when NumPad 0 is pressed
             Object.Collider.Blocking = !Keyboard.IsKeyDown(Key.NumPad0);
