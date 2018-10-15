@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System;
 using KBS1.LevelComponents;
+using KBS1.Obstacles;
 using KBS1.Util;
 using KBS1.Windows;
 
@@ -38,6 +39,8 @@ namespace KBS1
         /// </summary>
         public void LoadHome()
         {
+            ObstacleType.Init();
+            
             DrawingPanel.Background = Brushes.LightGreen;
             _screenMainMenu = new MainMenuScreen();
             Canvas.SetTop(_screenMainMenu, 0);

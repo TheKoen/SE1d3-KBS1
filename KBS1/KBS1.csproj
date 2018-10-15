@@ -57,6 +57,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Misc\EditorObjectRepresentation.cs" />
     <Compile Include="Obstacles\Controllers\Archer\ArcherObstacleController.cs" />
     <Compile Include="Obstacles\Controllers\Archer\ArrowObstacleController.cs" />
     <Compile Include="Obstacles\Controllers\CreeperObstacleController.cs" />
@@ -81,6 +82,9 @@
     </Compile>
     <Compile Include="Windows\MainMenuScreen.xaml.cs">
       <DependentUpon>MainMenuScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\NumericUpDownControl.xaml.cs">
+      <DependentUpon>NumericUpDownControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\OptionMenu.xaml.cs">
       <DependentUpon>OptionMenu.xaml</DependentUpon>
@@ -151,6 +155,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\NumericUpDownControl.xaml" />
     <Page Include="Windows\ObjectInfoContainer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

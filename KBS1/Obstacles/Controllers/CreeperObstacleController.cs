@@ -13,8 +13,8 @@ namespace KBS1.Obstacles.Controllers
         private const int DelayCreeper = 100;
         private int _wait = 0;
         private bool _red = false;
-        private readonly Image _imageRed = ResourceManager.Instance.LoadImage("creeper_red.png");
-        private readonly Image _imageGreen = ResourceManager.Instance.LoadImage("creeper.png");
+        private readonly Image _imageRed = ResourceManager.Instance.LoadImage("#creeper_red.png");
+        private readonly Image _imageGreen = ResourceManager.Instance.LoadImage("#creeper.png");
 
         public CreeperObstacleController(ILocatable locatable, Obstacle obstacle) : base(locatable, obstacle)
         {

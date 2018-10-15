@@ -15,7 +15,7 @@ namespace KBS1.Windows
         {
             Initialized += (sender, e) =>
             {
-                var levels = ResourceManager.Instance.LoadXmlDocument("Levels/Levels.xml");
+                var levels = ResourceManager.Instance.LoadXmlDocument("#Levels/Levels.xml");
                 var root = levels.DocumentElement;
                 if (root == null) throw new XmlException("Missing root node");
 
