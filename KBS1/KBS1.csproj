@@ -58,6 +58,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Kbs1Events.cs" />
+    <Compile Include="Misc\EditorObjectRepresentation.cs" />
+    <Compile Include="Kbs1Events.cs" />
     <Compile Include="Obstacles\Controllers\Archer\ArcherObstacleController.cs" />
     <Compile Include="Obstacles\Controllers\Archer\ArrowObstacleController.cs" />
     <Compile Include="Obstacles\Controllers\CreeperObstacleController.cs" />
@@ -71,6 +73,9 @@
       <DependentUpon>GameWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Util\InstanceHelper.cs" />
+    <Compile Include="Windows\LevelEditor.xaml.cs">
+      <DependentUpon>LevelEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\LevelPickerWindow.xaml.cs">
       <DependentUpon>LevelPickerWindow.xaml</DependentUpon>
     </Compile>
@@ -79,6 +84,9 @@
     </Compile>
     <Compile Include="Windows\MainMenuScreen.xaml.cs">
       <DependentUpon>MainMenuScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\NumericUpDownControl.xaml.cs">
+      <DependentUpon>NumericUpDownControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\OptionMenu.xaml.cs">
       <DependentUpon>OptionMenu.xaml</DependentUpon>
@@ -137,6 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="GameWindow.xaml" />
+    <Page Include="Windows\LevelEditor.xaml" />
     <Page Include="Windows\LevelPickerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -149,6 +158,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\NumericUpDownControl.xaml" />
     <Page Include="Windows\ObjectInfoContainer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -247,6 +257,35 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Configuration.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\bomb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\bombexplode.png" />
+    <Resource Include="Resources\bombwalk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\runner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\explosion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\turret.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\gray-bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\playerflipped.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\playerwalk.png" />
+    <Resource Include="Resources\playerwalkflipped.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Sound\Sounds.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

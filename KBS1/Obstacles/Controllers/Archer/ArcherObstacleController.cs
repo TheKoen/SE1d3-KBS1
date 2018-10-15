@@ -11,7 +11,7 @@ namespace KBS1.Obstacles.Controllers.Archer
         private const int Range = 200;
 
         private static readonly ObstacleType ARROW =
-            new ObstacleType(new ArrowObstacle(), 5, ResourceManager.Instance.LoadImage("arrow.png"));
+            new ObstacleType(new ArrowObstacle(), 5, ResourceManager.Instance.LoadImage("#arrow.png"));
 
         private int _wait = 0;
 

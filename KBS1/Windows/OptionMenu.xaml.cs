@@ -1,9 +1,9 @@
 ﻿using KBS1.Exceptions.ResourceManager;
-using KBS1.Util;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Resources;
 using System.Windows;
 using System.Windows.Input;
 using System.Xml;

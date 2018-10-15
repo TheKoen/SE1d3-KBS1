@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System;
 using KBS1.LevelComponents;
+using KBS1.Obstacles;
 using KBS1.Util;
 using KBS1.Windows;
 using System.Windows.Input;
@@ -48,6 +49,7 @@ namespace KBS1
         private WinScreen _screenWin;
         private LoseScreen _screenLose;
         private OptionMenu _screenOptionMenu;
+        private LevelEditor _windowLevelEditor;
 
         // Methods
 
@@ -56,6 +58,8 @@ namespace KBS1
         /// </summary>
         public void LoadHome()
         {
+            ObstacleType.Init();
+            
             DrawingPanel.Background = Brushes.DimGray;
             _screenMainMenu = new MainMenuScreen();
             Canvas.SetTop(_screenMainMenu, 0);
@@ -184,6 +188,20 @@ namespace KBS1
             Canvas.SetLeft(_screenLose, 0);
             Canvas.SetTop(_screenLose, 0);
             DrawingPanel.Children.Add(_screenLose);
+        }
+
+        /// <summary>
+        /// Shows the level editor
+        /// </summary>
+        public void ShowLevelEditor()
+        {
+            if (_windowLevelEditor == null || !_windowLevelEditor.IsLoaded)
+            {
+                _windowLevelEditor = new LevelEditor();
+                _windowLevelEditor.Show();
+            }
+            else if (_windowLevelEditor.IsLoaded)
+                _windowLevelEditor.Focus();
         }
     }
 }

@@ -39,7 +39,7 @@ namespace KBS1.LevelComponents
             GameWindow.Instance.DrawingPanel.Background = Brushes.DimGray;
 
             Objects = new List<GameObject>();
-            ObstacleType.Init();
+//            ObstacleType.Init();
             LevelCollider = new LevelCollider();
             Score = new ScoreTracker();
             DescriptionHeight = 0;
@@ -86,7 +86,7 @@ namespace KBS1.LevelComponents
                 if (childXml.LocalName == "start")
                 {
                     var location = ParseLocation(childXml.Attributes["location"].InnerText);
-                    Objects.Add(new Player.Player(11, ResourceManager.Instance.LoadImage("player.png"),
+                    Objects.Add(new Player.Player(11, ResourceManager.Instance.LoadImage("#player.png"),
                         GameWindow.Instance.DrawingPanel, new Vector(location.X, location.Y)));
                 }
             }
@@ -126,7 +126,7 @@ namespace KBS1.LevelComponents
                 throw new XmlException("StartPoint node doesn't have any attributes");
 
             var radius = int.Parse(node.Attributes["radius"].InnerText);
-            var image = ResourceManager.Instance.LoadImage("start.png");
+            var image = ResourceManager.Instance.LoadImage("#start.png");
             var location = ParseLocation(node.Attributes["location"].InnerText);
 
             Objects.Add(new FinishObject(radius, image, GameWindow.Instance.DrawingPanel, location, false));
@@ -142,7 +142,7 @@ namespace KBS1.LevelComponents
                 throw new XmlException("StartPoint node doesn't have any attributes");
 
             var radius = int.Parse(node.Attributes["radius"].InnerText);
-            var image = ResourceManager.Instance.LoadImage("end.png");
+            var image = ResourceManager.Instance.LoadImage("#end.png");
             var location = ParseLocation(node.Attributes["location"].InnerText);
 
             Objects.Add(new FinishObject(radius, image, GameWindow.Instance.DrawingPanel, location, true));
@@ -196,7 +196,7 @@ namespace KBS1.LevelComponents
         /// </summary>
         /// <param name="locationString">String containing a parsable location</param>
         /// <returns>Vector created using the parsable location</returns>
-        private static Vector ParseLocation(string locationString)
+        public static Vector ParseLocation(string locationString)
         {
             if (locationString.Equals("random"))
             {

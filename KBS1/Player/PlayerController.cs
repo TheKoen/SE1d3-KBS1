@@ -12,10 +12,10 @@ namespace KBS1.Player
     {
         private const double Speed = 2.0;
 
-        private readonly Image right = ResourceManager.Instance.LoadImage("player.png");
-        private readonly Image left = ResourceManager.Instance.LoadImage("playerflipped.png");
-        private readonly Image rightwalk = ResourceManager.Instance.LoadImage("playerwalk.png");
-        private readonly Image leftwalk = ResourceManager.Instance.LoadImage("playerwalkflipped.png");
+        private readonly Image right = ResourceManager.Instance.LoadImage("#player.png");
+        private readonly Image left = ResourceManager.Instance.LoadImage("#playerflipped.png");
+        private readonly Image rightwalk = ResourceManager.Instance.LoadImage("#playerwalk.png");
+        private readonly Image leftwalk = ResourceManager.Instance.LoadImage("#playerwalkflipped.png");
 
         public Player Player { get; }
 
