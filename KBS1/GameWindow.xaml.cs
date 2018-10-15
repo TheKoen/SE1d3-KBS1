@@ -5,23 +5,40 @@ using System;
 using KBS1.LevelComponents;
 using KBS1.Util;
 using KBS1.Windows;
+using System.Windows.Input;
 
 namespace KBS1
 {
     public partial class GameWindow
     {
+        public static bool keyDown = false;
         private readonly LevelPicker _levelPicker = new LevelPicker();
 
         public Level Loadedlevel { get; set; }
         public Gameloop Loop { get; set; }
         public static GameWindow Instance { get; private set; }
 
+        public SoundManager Sounds { get; private set; }
+        
         public GameWindow()
         {
-            Initialized += (sender, e) => { LoadHome(); };
+            Initialized += (sender, e) =>
+            {
+                Sounds = new SoundManager();
+                LoadHome();
+
+            };
             Instance = this;
             InitializeComponent();
+            
         }
+        // check if keyinput exists
+        public void onKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            keyDown = true;
+        }
+
+
 
         // Properties
         private PauseMenuScreen _screenPauseMenu;
@@ -72,7 +89,6 @@ namespace KBS1
             {
                 Loop = new Gameloop();
                 Loadedlevel = _levelPicker.PickLevel();
-                Loadedlevel.Objects.ForEach(gameObject => gameObject.Init());
                 Loop.Start();
             }
             catch (Exception q)
@@ -106,8 +122,6 @@ namespace KBS1
         public void LoadLevel()
         {
             Loadedlevel = _levelPicker.LoadSelectedLevel();
-            foreach (var gameObject in Loadedlevel.Objects)
-                gameObject.Init();
         }
 
         /// <summary>
@@ -160,6 +174,8 @@ namespace KBS1
         /// </summary>
         public void Lose()
         {
+            Sounds.Play("lose.mp3");
+
             Reset();
             Loop.Stop();
             _screenLose = new LoseScreen();

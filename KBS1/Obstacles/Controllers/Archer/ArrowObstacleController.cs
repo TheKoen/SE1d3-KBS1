@@ -42,7 +42,9 @@ namespace KBS1.Obstacles.Controllers.Archer
             }
 
             if (Object.Collider.Collides(player.Collider))
+            {
                 GameWindow.Instance.Lose();
+            }
         }
     }
 }

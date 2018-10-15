@@ -39,6 +39,8 @@ namespace KBS1.Obstacles.Controllers
             else
                 Move(player.Y < Object.Location.Y ? new Vector(0, -Speed) : new Vector(0, Speed));
 
+            GameWindow.Instance.Sounds.Play("robot-walk.mp3");
+
             // Colliden met speler -> reset
             if (Object.Collider.Collides(playerObject.Collider))
                 GameWindow.Instance.Lose();

@@ -80,6 +80,7 @@ namespace KBS1.LevelComponents
             try
             {
                 var level = new Level(doc);
+                level.Objects.ForEach(gameObject => gameObject.Init());
                 _level = filename;
                 return level;
             }

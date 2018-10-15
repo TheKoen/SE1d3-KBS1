@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using KBS1.Misc;
+using KBS1.Player;
 using KBS1.Util;
 
 namespace KBS1.Obstacles.Controllers
@@ -56,17 +57,22 @@ namespace KBS1.Obstacles.Controllers
                 if (_wait < 16)
                 {
                     Object.Renderer.ChangeSprite((BitmapImage) explosion.Source);
+                    GameWindow.Instance.Sounds.Play("explode.mp3");
                 }
 
                 //explode if player is in range and timer is out of time
                 if (_wait == 0 && Object.Location.Distance(player) <= ExplosionRadius)
+                {
                     GameWindow.Instance.Lose();
+                }
+                    
                 // if player is out of range and creeper is out of time destroy creeper
                 else if (_wait == 0 && Object.Location.Distance(player) > ExplosionRadius)
                 {
                     GameWindow.Instance.Loadedlevel.Objects.Remove(Object);
                     Object.Renderer.Destroy();
                     Object.Controller.Destroy();
+
                 }
 
                 return;
@@ -101,7 +107,10 @@ namespace KBS1.Obstacles.Controllers
 
             // start the delay of the explostion if the distance of the player is explosionRadius/2.
             if (Object.Location.Distance(playerObject.Location) < ExplosionRadius / 2.0)
+            {
                 _wait = DelayCreeper;
+            }
+                
         }
     }
 }
