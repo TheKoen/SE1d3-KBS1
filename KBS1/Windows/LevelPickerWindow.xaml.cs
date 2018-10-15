@@ -22,7 +22,7 @@ namespace KBS1.Windows
                 var levelsNode = levels.SelectSingleNode("//levels");
                 if (levelsNode == null)
                     throw new XmlException("Levels file missing levels node");
-                
+
                 LevelList.Items.Add(new ListViewItem {Content = "--- Base Levels ---", IsEnabled = false});
 
                 foreach (XmlNode child in levelsNode.ChildNodes)
@@ -34,10 +34,10 @@ namespace KBS1.Windows
                     };
                     LevelList.Items.Add(item);
                 }
-                
+
                 LevelList.Items.Add(new ListViewItem {Content = "", IsEnabled = false});
                 LevelList.Items.Add(new ListViewItem {Content = "--- Custom Levels ---", IsEnabled = false});
-                
+
                 if (!Directory.Exists("levels")) return;
                 var ioLevelNames = Directory.GetFiles("levels");
                 var ioXml = ioLevelNames.Where(f => f.EndsWith(".xml"))

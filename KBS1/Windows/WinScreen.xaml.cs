@@ -9,11 +9,12 @@ namespace KBS1.Windows
     public partial class WinScreen
     {
         private double Score;
+
         public WinScreen(double score)
         {
             InitializeComponent();
             this.Score = score;
-            ScoreLabel.Content = "Your score: " + Score;          
+            ScoreLabel.Content = "Your score: " + Score;
         }
 
         private void MainMenuButton_Click(object sender, RoutedEventArgs e)
@@ -41,7 +42,8 @@ namespace KBS1.Windows
                 Canvas.SetLeft(sss, 0);
                 Canvas.SetTop(sss, 0);
                 GameWindow.Instance.DrawingPanel.Children.Add(sss);
-            }   else
+            }
+            else
             {
                 //creating content for the label when the player clicks submit again
                 AlreadySubmittedLabel.Content = "You've already submitted!";

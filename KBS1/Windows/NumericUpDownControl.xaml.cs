@@ -10,7 +10,7 @@ namespace KBS1.Windows
         public delegate void ValueChangedEventHandler(object source, PropertyChangedEventArgs e);
 
         public event ValueChangedEventHandler ValueChanged;
-        
+
         private int _value;
         private int _minValue = int.MinValue;
         private int _maxValue = int.MaxValue;
@@ -23,7 +23,7 @@ namespace KBS1.Windows
                 if (value < MinValue) _value = MinValue;
                 else if (value > MaxValue) _value = MaxValue;
                 else _value = value;
-                
+
                 TextBoxValue.Text = _value.ToString();
                 ValueChanged?.Invoke(this, new PropertyChangedEventArgs("Value"));
             }
@@ -59,11 +59,11 @@ namespace KBS1.Windows
 
         private int VerifyValue(string value) =>
             int.TryParse(value, out var output) ? output : Value;
-        
-        
+
+
         private void TextBoxValue_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            Value = VerifyValue(((TextBox)sender).Text);
+            Value = VerifyValue(((TextBox) sender).Text);
         }
 
         private void ButtonUp_OnClick(object sender, RoutedEventArgs e)

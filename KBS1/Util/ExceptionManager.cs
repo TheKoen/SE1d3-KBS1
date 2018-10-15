@@ -5,7 +5,7 @@ namespace KBS1.Util
 {
     public class ExceptionManager
     {
-        public static bool Debug = false;
+        public static bool Debug = true;
 
         public static void Catch(Exception exception)
         {

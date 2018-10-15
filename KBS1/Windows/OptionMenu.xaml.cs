@@ -33,8 +33,7 @@ namespace KBS1.Windows
             }
             catch (FileNotFoundException)
             {
-                var doc = ResourceManager.Instance.LoadXmlDocument(Path);
-                doc.Save(System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\" + Path);
+                ResourceExtractor.Extract(Path, Path);
             }
 
             Initialized += (Sender, args) =>
@@ -59,7 +58,7 @@ namespace KBS1.Windows
         private void MoveUpOnKeyUpHandler(object sender, KeyEventArgs e)
         {
             TBMoveUp.Text = GetKeyName(e.Key);
-            
+
             Up = e.Key;
         }
 
@@ -80,11 +79,13 @@ namespace KBS1.Windows
             TBMoveRight.Text = GetKeyName(e.Key);
             Right = e.Key;
         }
+
         private void PauseOnKeyUpHandler(object sender, KeyEventArgs e)
         {
             TBPause.Text = GetKeyName(e.Key);
             Pause = e.Key;
         }
+
         private void RetryOnKeyUpHandler(object sender, KeyEventArgs e)
         {
             TBRetry.Text = GetKeyName(e.Key);
@@ -117,7 +118,7 @@ namespace KBS1.Windows
         public void LoadXmlConfiguration(string Path)
         {
             var document = new XmlDocument();
-            var streamInfo = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) +"\\"+ Path;
+            var streamInfo = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\" + Path;
             if (streamInfo != null) document.Load(streamInfo);
             else throw new ResourceNotFoundException(Path);
 
@@ -125,7 +126,7 @@ namespace KBS1.Windows
             foreach (object child in objectsXml.ChildNodes)
             {
                 if (!(child is XmlNode)) continue;
-                var childXml = (XmlNode)child;
+                var childXml = (XmlNode) child;
                 if (childXml.LocalName == "MoveUp") Key.TryParse(childXml.Attributes["Key"].InnerText, out Up);
                 if (childXml.LocalName == "MoveDown") Key.TryParse(childXml.Attributes["Key"].InnerText, out Down);
                 if (childXml.LocalName == "MoveLeft") Key.TryParse(childXml.Attributes["Key"].InnerText, out Left);
@@ -133,7 +134,6 @@ namespace KBS1.Windows
                 if (childXml.LocalName == "Pause") Key.TryParse(childXml.Attributes["Key"].InnerText, out Pause);
                 if (childXml.LocalName == "Retry") Key.TryParse(childXml.Attributes["Key"].InnerText, out Retry);
             }
-            
         }
 
         public void SaveChanges(Key Up, Key Down, Key Left, Key Right, Key Pause, Key Retry, String Path)
@@ -144,7 +144,7 @@ namespace KBS1.Windows
 
             var bNodes = document.SelectSingleNode("//player/buttons");
 
-            foreach(XmlNode bNode in bNodes.ChildNodes)
+            foreach (XmlNode bNode in bNodes.ChildNodes)
             {
                 if (bNode.LocalName == "MoveUp") bNode.Attributes["Key"].Value = Up.ToString();
                 if (bNode.LocalName == "MoveDown") bNode.Attributes["Key"].Value = Down.ToString();
@@ -159,13 +159,13 @@ namespace KBS1.Windows
 
         private void SetToDefault_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure?", "Delete Confirmation", System.Windows.MessageBoxButton.YesNo);
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure?", "Delete Confirmation",
+                System.Windows.MessageBoxButton.YesNo);
             if (messageBoxResult == MessageBoxResult.Yes)
             {
                 SaveChanges(Key.W, Key.S, Key.A, Key.D, Key.Escape, Key.R, Path);
                 GameWindow.Instance.DrawingPanel.Children.Clear();
                 GameWindow.Instance.LoadOptions();
-
             }
         }
     }

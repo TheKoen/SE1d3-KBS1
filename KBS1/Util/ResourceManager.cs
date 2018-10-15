@@ -44,7 +44,8 @@ namespace KBS1.Util
         {
             if (_imageCache.ContainsKey(path)) return _imageCache[path];
             if (path.StartsWith("#"))
-                if (!ResourceExists(path.Substring(1))) throw new ResourceNotFoundException(path);
+                if (!ResourceExists(path.Substring(1)))
+                    throw new ResourceNotFoundException(path);
             var bitmapImage = new BitmapImage();
             bitmapImage.BeginInit();
             if (path.StartsWith("#"))
@@ -56,12 +57,13 @@ namespace KBS1.Util
             {
                 bitmapImage.StreamSource = File.OpenRead(path);
             }
+
             bitmapImage.EndInit();
             var image = new Image
             {
                 Width = bitmapImage.Width,
                 Height = bitmapImage.Height,
-                Name = path.Substring(path.LastIndexOf('/') + 1).Split('.')[0].Replace("#",  ""),
+                Name = path.Substring(path.LastIndexOf('/') + 1).Split('.')[0].Replace("#", ""),
                 Source = bitmapImage
             };
             _imageCache.Add(path, image);
@@ -90,6 +92,7 @@ namespace KBS1.Util
                 var stream = File.OpenRead(path);
                 document.Load(stream);
             }
+
             _xmlCache.Add(path, document);
 
             return _xmlCache[path];
@@ -104,7 +107,8 @@ namespace KBS1.Util
         {
             if (_imgBrushCache.ContainsKey(path)) return _imgBrushCache[path];
             if (path.StartsWith("#"))
-                if (!ResourceExists(path.Substring(1))) throw new ResourceNotFoundException(path);
+                if (!ResourceExists(path.Substring(1)))
+                    throw new ResourceNotFoundException(path);
             var brush = new ImageBrush();
             var bitmapImage = new BitmapImage();
             bitmapImage.BeginInit();
@@ -117,11 +121,17 @@ namespace KBS1.Util
             {
                 bitmapImage.StreamSource = File.OpenRead(path);
             }
+
             bitmapImage.EndInit();
             brush.ImageSource = bitmapImage;
             _imgBrushCache.Add(path, brush);
 
             return _imgBrushCache[path];
+        }
+
+        public Stream LoadStream(string path)
+        {
+            return Assembly.GetManifestResourceStream("KBS1.chimes.wav");
         }
 
         /// <summary>

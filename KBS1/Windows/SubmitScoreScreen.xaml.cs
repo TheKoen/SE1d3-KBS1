@@ -23,8 +23,6 @@ namespace KBS1.Windows
 
         private async void SubmitButton_ClickAsync(object sender, RoutedEventArgs e)
         {
-            
-            
             //checking if the player has filled in more than 1 character
             if (TextName.Text.Length < 2)
             {
@@ -35,11 +33,15 @@ namespace KBS1.Windows
                 //player submits
                 GameWindow.Instance.Loadedlevel.IsAlreadySubmitted = true;
                 //showing message for player with "submitted"
-                System.Windows.MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("You submitted your score successfully! \nDo you want to see the highscores?", "Your score: " + Score, System.Windows.MessageBoxButton.YesNo, System.Windows.MessageBoxImage.Asterisk);
+                System.Windows.MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show(
+                    "You submitted your score successfully! \nDo you want to see the highscores?",
+                    "Your score: " + Score, System.Windows.MessageBoxButton.YesNo,
+                    System.Windows.MessageBoxImage.Asterisk);
                 if (messageBoxResult.ToString() == "Yes")
                 {
                     System.Diagnostics.Process.Start("https://kbs.koenn.me/highscores.php");
                 }
+
                 //get the input from player
                 Username = TextName.Text;
                 GameWindow.Instance.Loadedlevel.Score.PublishScore(Score, Username);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Threading;
 using System.Windows.Media;
 using System.Xml;
 
@@ -11,9 +12,14 @@ namespace KBS1.Util
     {
         private readonly Dictionary<string, MediaPlayer> Sounds = new Dictionary<string, MediaPlayer>();
         private readonly string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Sound\\";
-        
+
+        private int timeout = 0;
+
         public SoundManager()
-        { 
+        {
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+
             var sounds = ResourceManager.Instance.LoadXmlDocument("#Sound/Sounds.xml");
             var root = sounds.DocumentElement;
 
@@ -27,14 +33,27 @@ namespace KBS1.Util
             {
                 throw new XmlException("Levels file missing levels node");
             }
- 
+
             foreach (var child in soundsNode.ChildNodes)
             {
-                var value = ((XmlNode)child).Attributes["filename"].InnerText;
+                var value = ((XmlNode) child).Attributes["filename"].InnerText;
+
+                ResourceExtractor.Extract("Sound/" + value, "Sound\\" + value);
 
                 var mediaplayer = new MediaPlayer();
                 mediaplayer.Open(new Uri(path + value, UriKind.Absolute));
-                while (!mediaplayer.HasAudio) { }
+                while (!mediaplayer.HasAudio && timeout < 500)
+                {
+                    timeout++;
+                    if (timeout >= 500)
+                    {
+                        throw new FileNotFoundException($"Sound {value} could not be found!");
+                    }
+
+                    Thread.Sleep(10);
+                }
+
+                timeout = 0;
 
                 mediaplayer.MediaEnded += (sender, e) =>
                 {
@@ -44,7 +63,7 @@ namespace KBS1.Util
                 Sounds.Add(value, mediaplayer);
             }
         }
-        
+
         /// <summary>
         /// Plays the sound with the specific name 
         /// </summary>
@@ -60,6 +79,7 @@ namespace KBS1.Util
                 throw new FileNotFoundException("Sound could not be found!");
             }
         }
+
         public void SetLoopingPlay(string trackName)
         {
             if (Sounds.TryGetValue(trackName, out var player))
@@ -86,6 +106,3 @@ namespace KBS1.Util
         }
     }
 }
-    
-
-
