@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
@@ -16,8 +17,7 @@ namespace KBS1.Player
         private readonly Image left = ResourceManager.Instance.LoadImage("playerflipped.png");
 
         public Player Player { get; }
-
-        public PlayerController(Player player) : base(player)
+        
         //minecraft mode
         private int minecraftMode = 0;
         public static bool minecraftModeActivated = false;
@@ -29,7 +29,7 @@ namespace KBS1.Player
         }
 
 
-        public PlayerController(KBS1.Player.Player player) : base(player)
+        public PlayerController(Player player) : base(player)
         {
             Player = player;
         }
