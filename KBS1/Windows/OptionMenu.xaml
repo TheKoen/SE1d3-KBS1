@@ -9,18 +9,19 @@
     <Grid>
         <Button x:Name="BackButton" Content="Save" Margin="460,500,460,0" VerticalAlignment="Top"
                 Click="BackButton_Click" Width="75" />
-        <Label x:Name="MoveControls" Content="Move controls" HorizontalAlignment="Left" Margin="146,96,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="MoveUp" Content="Move Up" HorizontalAlignment="Left" Margin="84,168,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="MoveDown" Content="Move Down" HorizontalAlignment="Left" Margin="84,227,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="MoveLeft" Content="Move Left" HorizontalAlignment="Left" Margin="84,279,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="MoveRight" Content="Move right" HorizontalAlignment="Left" Margin="84,331,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TBMoveUp" HorizontalAlignment="Left" Height="23" Margin="168,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewKeyUp="MoveUpOnKeyUpHandler"/>
-        <TextBox x:Name="TBMoveDown" HorizontalAlignment="Left" Height="23" Margin="168,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewKeyUp="MoveDownOnKeyUpHandler"/>
-        <TextBox x:Name="TBMoveLeft" HorizontalAlignment="Left" Height="23" Margin="168,279,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewKeyUp="MoveLeftOnKeyUpHandler"/>
-        <TextBox x:Name="TBMoveRight" HorizontalAlignment="Left" Height="23" Margin="168,331,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewKeyUp="MoveRightOnKeyUpHandler"/>
-        <Label x:Name="LabelPause" Content="Pause Button" HorizontalAlignment="Left" Margin="79,410,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TBPause" HorizontalAlignment="Left" Height="23" Margin="168,413,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewKeyUp="PauseOnKeyUpHandler" />
-        <Label x:Name="LabelRetry" Content="Reset Button" HorizontalAlignment="Left" Margin="79,374,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TBRetry" HorizontalAlignment="Left" Height="23" Margin="168,378,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" PreviewKeyUp="RetryOnKeyUpHandler"/>
+        <Label x:Name="MoveControls" Content="Move controls" HorizontalAlignment="Left" Margin="452,40,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="MoveUp" Content="Move Up" HorizontalAlignment="Left" Margin="367,117,0,0" VerticalAlignment="Top" Height="29" Width="69"/>
+        <Label x:Name="MoveDown" Content="Move Down" HorizontalAlignment="Left" Margin="367,164,0,0" VerticalAlignment="Top" Height="29" Width="87"/>
+        <Label x:Name="MoveLeft" Content="Move Left" HorizontalAlignment="Left" Margin="367,208,0,0" VerticalAlignment="Top" RenderTransformOrigin="5.762,-2.192" Height="29" Width="74"/>
+        <Label x:Name="MoveRight" Content="Move right" HorizontalAlignment="Left" Margin="367,255,0,0" VerticalAlignment="Top" Height="29" Width="81"/>
+        <TextBox x:Name="TBMoveUp" HorizontalAlignment="Left" Height="26" Margin="489,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" PreviewKeyUp="MoveUpOnKeyUpHandler"/>
+        <TextBox x:Name="TBMoveDown" HorizontalAlignment="Left" Height="26" Margin="489,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" PreviewKeyUp="MoveDownOnKeyUpHandler"/>
+        <TextBox x:Name="TBMoveLeft" HorizontalAlignment="Left" Height="26" Margin="489,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" PreviewKeyUp="MoveLeftOnKeyUpHandler"/>
+        <TextBox x:Name="TBMoveRight" HorizontalAlignment="Left" Height="26" Margin="489,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" PreviewKeyUp="MoveRightOnKeyUpHandler"/>
+        <Label x:Name="LabelPause" Content="Pause Button" HorizontalAlignment="Left" Margin="367,346,0,0" VerticalAlignment="Top" Height="29" Width="93"/>
+        <TextBox x:Name="TBPause" HorizontalAlignment="Left" Height="26" Margin="489,346,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" PreviewKeyUp="PauseOnKeyUpHandler" />
+        <Label x:Name="LabelRetry" Content="Reset Button" HorizontalAlignment="Left" Margin="369,299,0,0" VerticalAlignment="Top" Height="29" Width="91"/>
+        <TextBox x:Name="TBRetry" HorizontalAlignment="Left" Height="26" Margin="489,299,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="142" PreviewKeyUp="RetryOnKeyUpHandler"/>
+        <Button x:Name="SetToDefault" Content="Set to default" HorizontalAlignment="Left" Margin="462,395,0,0" VerticalAlignment="Top" Width="76" Click="SetToDefault_Click"/>
     </Grid>
 </UserControl>

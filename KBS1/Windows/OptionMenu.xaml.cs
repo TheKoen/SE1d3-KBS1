@@ -1,5 +1,12 @@
-﻿using System.Windows;
+﻿using KBS1.Exceptions.ResourceManager;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
+using System.Resources;
+using System.Windows;
 using System.Windows.Input;
+using System.Xml;
 
 namespace KBS1.Windows
 {
@@ -14,9 +21,21 @@ namespace KBS1.Windows
         public static Key Right = Key.D;
         public static Key Pause = Key.Escape;
         public static Key Retry = Key.R;
+        public string Path = "Configuration.xml";
+
+        private readonly SortedDictionary<string, XmlDocument> _xmlCache = new SortedDictionary<string, XmlDocument>();
 
         public OptionMenu()
         {
+            try
+            {
+                LoadXmlConfiguration(Path);
+            }
+            catch (FileNotFoundException)
+            {
+                throw new FileNotFoundException("Configuration file could not be found");
+            }
+
             Initialized += (Sender, args) =>
             {
                 TBMoveUp.Text = GetKeyName(Up);
@@ -31,6 +50,7 @@ namespace KBS1.Windows
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
+            SaveChanges(Up, Down, Left, Right, Pause, Retry, Path);
             GameWindow.Instance.DrawingPanel.Children.Clear();
             GameWindow.Instance.LoadHome();
         }
@@ -91,6 +111,62 @@ namespace KBS1.Windows
                 default:
                     return k.ToString().ToUpper();
             }
+        }
+
+        public void LoadXmlConfiguration(string Path)
+        {
+            var document = new XmlDocument();
+            var streamInfo = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) +"\\"+ Path;
+            if (streamInfo != null) document.Load(streamInfo);
+            else throw new ResourceNotFoundException(Path);
+
+            var objectsXml = document.SelectSingleNode("//player/buttons");
+            foreach (object child in objectsXml.ChildNodes)
+            {
+                if (!(child is XmlNode)) continue;
+                var childXml = (XmlNode)child;
+                if (childXml.LocalName == "MoveUp") Key.TryParse(childXml.Attributes["Key"].InnerText, out Up);
+                if (childXml.LocalName == "MoveDown") Key.TryParse(childXml.Attributes["Key"].InnerText, out Down);
+                if (childXml.LocalName == "MoveLeft") Key.TryParse(childXml.Attributes["Key"].InnerText, out Left);
+                if (childXml.LocalName == "MoveRight") Key.TryParse(childXml.Attributes["Key"].InnerText, out Right);
+                if (childXml.LocalName == "Pause") Key.TryParse(childXml.Attributes["Key"].InnerText, out Pause);
+                if (childXml.LocalName == "Retry") Key.TryParse(childXml.Attributes["Key"].InnerText, out Retry);
+            }
+            
+        }
+
+        public void SaveChanges(Key Up, Key Down, Key Left, Key Right, Key Pause, Key Retry, String Path)
+        {
+            var document = new XmlDocument();
+            var streamInfo = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\" + Path;
+            if (streamInfo != null) document.Load(streamInfo);
+
+            var bNodes = document.SelectSingleNode("//player/buttons");
+
+            foreach(XmlNode bNode in bNodes.ChildNodes)
+            {
+                if (bNode.LocalName == "MoveUp") bNode.Attributes["Key"].Value = Up.ToString();
+                if (bNode.LocalName == "MoveDown") bNode.Attributes["Key"].Value = Down.ToString();
+                if (bNode.LocalName == "MoveLeft") bNode.Attributes["Key"].Value = Left.ToString();
+                if (bNode.LocalName == "MoveRight") bNode.Attributes["Key"].Value = Right.ToString();
+                if (bNode.LocalName == "Pause") bNode.Attributes["Key"].Value = Pause.ToString();
+                if (bNode.LocalName == "Retry") bNode.Attributes["Key"].Value = Retry.ToString();
+            }
+
+            document.Save(streamInfo);
+        }
+
+        private void SetToDefault_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure?", "Delete Confirmation", System.Windows.MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                SaveChanges(Key.W, Key.S, Key.A, Key.D, Key.Escape, Key.R, Path);
+                GameWindow.Instance.DrawingPanel.Children.Clear();
+                GameWindow.Instance.LoadOptions();
+
+            }
+            else if (messageBoxResult == MessageBoxResult.No) ;
         }
     }
 }
