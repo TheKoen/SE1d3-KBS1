@@ -210,6 +210,8 @@ namespace KBS1.Windows
                 (int)_startLoc.X, (int)_startLoc.Y,
                 (int)_endLoc.X, (int)_endLoc.Y,
                 obstaclesString);
+            if (!Directory.Exists("levels"))
+                Directory.CreateDirectory("levels");
             var writer = File.CreateText($"levels\\{fileName}");
             writer.Write(root);
             writer.Flush();
