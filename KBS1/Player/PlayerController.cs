@@ -4,6 +4,7 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using KBS1.Misc;
 using KBS1.Util;
+using KBS1.Windows;
 
 namespace KBS1.Player
 {
@@ -28,12 +29,13 @@ namespace KBS1.Player
         {
             var direction = new Vector();
 
-            if (Keyboard.IsKeyDown(Key.Escape)) GameWindow.Instance.PauseGame();
+            if (Keyboard.IsKeyDown(OptionMenu.Pause)) GameWindow.Instance.PauseGame();
+            if (Keyboard.IsKeyDown(OptionMenu.Retry)) GameWindow.Instance.Reset();
 
-            if (Keyboard.IsKeyDown(Key.W)) direction.Y = -1;
-            if (Keyboard.IsKeyDown(Key.D)) direction.X = 1;
-            if (Keyboard.IsKeyDown(Key.S)) direction.Y = 1;
-            if (Keyboard.IsKeyDown(Key.A)) direction.X = -1;
+            if (Keyboard.IsKeyDown(OptionMenu.Up)) direction.Y = -1;
+            if (Keyboard.IsKeyDown(OptionMenu.Right)) direction.X = 1;
+            if (Keyboard.IsKeyDown(OptionMenu.Down)) direction.Y = 1;
+            if (Keyboard.IsKeyDown(OptionMenu.Left)) direction.X = -1;
 
             if (Math.Abs(direction.X - 1) < 0.01)
                 Object.Renderer.ChangeSprite((BitmapImage) right.Source);
