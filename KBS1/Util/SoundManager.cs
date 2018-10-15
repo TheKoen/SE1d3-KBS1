@@ -14,7 +14,7 @@ namespace KBS1.Util
         
         public SoundManager()
         { 
-            var sounds = ResourceManager.Instance.LoadXmlDocument("Sound/Sounds.xml");
+            var sounds = ResourceManager.Instance.LoadXmlDocument("#Sound/Sounds.xml");
             var root = sounds.DocumentElement;
 
             if (root == null)
