@@ -25,7 +25,8 @@ namespace KBS1
             Initialized += (sender, e) =>
             {
                 Sounds = new SoundManager();
-                
+                LoadOptions();
+                DrawingPanel.Children.Clear();
                 LoadHome();
 
             };
