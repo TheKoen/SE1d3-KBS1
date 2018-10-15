@@ -86,11 +86,22 @@ namespace KBS1.LevelComponents
         private Level LoadLevel(string filename)
         {
             XmlDocument doc;
-            try
+
+            if (filename.StartsWith("#"))
             {
-                if (!filename.StartsWith("#")) throw new Exception();
-                doc = ResourceManager.Instance.LoadXmlDocument($"#Levels\\{filename.Substring(1)}");
-            } catch (Exception) {
+                try
+                {
+                    doc = ResourceManager.Instance.LoadXmlDocument($"#Levels\\{filename.Substring(1)}");
+                }
+                catch (Exception e)
+                {
+                    if (e is XmlException) throw new XmlException("The format of the XML document is invalid");
+                    if (e is IOException) throw new FileNotFoundException($"Level \"{filename}\" could not be found");
+                    throw e;
+                }
+            }
+            else
+            {
                 try
                 {
                     doc = new XmlDocument();
@@ -103,7 +114,7 @@ namespace KBS1.LevelComponents
                     throw e;
                 }
             }
-
+            
             try
             {
                 var level = new Level(doc);
