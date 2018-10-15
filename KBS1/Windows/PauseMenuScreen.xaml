@@ -10,10 +10,13 @@
         <Rectangle Fill="#FF26A2D9" Height="200" Width="200" Margin="400,200,400,200" Stroke="#FF085463"
                    VerticalAlignment="Top" />
         <Button x:Name="ResumeButton" Content="Resume" HorizontalAlignment="Left" Margin="464,245,0,0"
-                VerticalAlignment="Top" Width="75" Click="ResumeButton_Click" Background="#3F085463" BorderBrush="#FF085463" />
+                VerticalAlignment="Top" Width="75" Click="ResumeButton_Click" Background="#3F085463"
+                BorderBrush="#FF085463" />
         <Button x:Name="RetryButton" Content="Retry" HorizontalAlignment="Left" Margin="464,294,0,0"
-                VerticalAlignment="Top" Width="75" Click="RetryButton_Click" Background="#3F085463" BorderBrush="#FF085463" />
+                VerticalAlignment="Top" Width="75" Click="RetryButton_Click" Background="#3F085463"
+                BorderBrush="#FF085463" />
         <Button x:Name="QuitToMainMenuButton" Content="Quit to main menu" Margin="444,343,446,0"
-                VerticalAlignment="Top" Width="110" Click="QuitToMainMenuButton_Click" Background="#3F085463" BorderBrush="#FF085463" />
+                VerticalAlignment="Top" Width="110" Click="QuitToMainMenuButton_Click" Background="#3F085463"
+                BorderBrush="#FF085463" />
     </Grid>
 </UserControl>

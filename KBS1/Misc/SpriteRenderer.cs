@@ -58,7 +58,7 @@ namespace KBS1.Misc
         public void ChangeSprite(BitmapImage sprite)
         {
             Sprite.Source = sprite;
-            Size = new Vector((int)(sprite.Width / 2), (int)(sprite.Height / 2));
+            Size = new Vector((int) (sprite.Width / 2), (int) (sprite.Height / 2));
         }
 
         public void Rotate(double angle)

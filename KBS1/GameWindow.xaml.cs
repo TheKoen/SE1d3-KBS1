@@ -20,7 +20,7 @@ namespace KBS1
         public static GameWindow Instance { get; private set; }
 
         public SoundManager Sounds { get; private set; }
-        
+
         public GameWindow()
         {
             Initialized += (sender, e) =>
@@ -29,18 +29,16 @@ namespace KBS1
                 LoadOptions();
                 DrawingPanel.Children.Clear();
                 LoadHome();
-
             };
             Instance = this;
             InitializeComponent();
-            
         }
+
         // check if keyinput exists
         public void onKeyDownHandler(object sender, KeyEventArgs e)
         {
             keyDown = true;
         }
-
 
 
         // Properties
@@ -59,7 +57,7 @@ namespace KBS1
         public void LoadHome()
         {
             ObstacleType.Init();
-            
+
             DrawingPanel.Background = Brushes.DimGray;
             _screenMainMenu = new MainMenuScreen();
             Canvas.SetTop(_screenMainMenu, 0);

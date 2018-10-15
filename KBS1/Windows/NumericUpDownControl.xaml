@@ -13,7 +13,7 @@
             <ColumnDefinition Width="0" MinWidth="16" />
             <ColumnDefinition Width="0" MinWidth="16" />
         </Grid.ColumnDefinitions>
-        
+
         <TextBox x:Name="TextBoxValue" Grid.Column="0" Text="0" TextChanged="TextBoxValue_OnTextChanged" />
         <Button x:Name="ButtonUp" FontFamily="Marlett" Content="5" Grid.Column="1" Click="ButtonUp_OnClick" />
         <Button x:Name="ButtonDown" FontFamily="Marlett" Content="6" Grid.Column="2" Click="ButtonDown_OnClick" />

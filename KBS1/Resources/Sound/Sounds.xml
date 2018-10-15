@@ -1,6 +1,6 @@
 ﻿<sounds>
-  <sound filename="explode.mp3"/>
-  <sound filename="laser.mp3"/>
-  <sound filename="robot-walk.mp3"/>
-  <sound filename="lose.mp3"/>
+  <sound filename="explode.mp3" />
+  <sound filename="laser.mp3" />
+  <sound filename="robot-walk.mp3" />
+  <sound filename="lose.mp3" />
 </sounds>

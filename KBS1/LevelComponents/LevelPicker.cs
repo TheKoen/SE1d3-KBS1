@@ -26,7 +26,7 @@ namespace KBS1.LevelComponents
                 throw new FileNotFoundException("You did not select level.");
             }
 
-            return LoadLevel(fileName);
+            return LoadLevel("#" + fileName);
         }
 
         /// <summary>
@@ -95,9 +95,15 @@ namespace KBS1.LevelComponents
                 }
                 catch (Exception e)
                 {
-                    if (e is XmlException) throw new XmlException("The format of the XML document is invalid");
-                    if (e is IOException) throw new FileNotFoundException($"Level \"{filename}\" could not be found");
-                    throw e;
+                    switch (e)
+                    {
+                        case XmlException _:
+                            throw new XmlException("The format of the XML document is invalid");
+                        case IOException _:
+                            throw new FileNotFoundException($"Level \"{filename}\" could not be found");
+                        default:
+                            throw;
+                    }
                 }
             }
             else
@@ -109,12 +115,18 @@ namespace KBS1.LevelComponents
                 }
                 catch (Exception e)
                 {
-                    if (e is XmlException) throw new XmlException("The format of the XML document is invalid");
-                    if (e is IOException) throw new FileNotFoundException($"Level \"{filename}\" could not be found");
-                    throw e;
+                    switch (e)
+                    {
+                        case XmlException _:
+                            throw new XmlException("The format of the XML document is invalid");
+                        case IOException _:
+                            throw new FileNotFoundException($"Level \"{filename}\" could not be found");
+                        default:
+                            throw;
+                    }
                 }
             }
-            
+
             try
             {
                 var level = new Level(doc);
@@ -128,14 +140,16 @@ namespace KBS1.LevelComponents
             }
         }
 
-        private XmlDocument LoadDocument(string filename)
+        private static XmlDocument LoadDocument(string filename)
         {
             XmlDocument doc;
             try
             {
                 if (filename.StartsWith("#")) throw new Exception();
                 doc = ResourceManager.Instance.LoadXmlDocument($"#Levels\\{filename.Substring(1)}");
-            } catch (Exception) {
+            }
+            catch (Exception)
+            {
                 try
                 {
                     doc = new XmlDocument();
@@ -143,9 +157,15 @@ namespace KBS1.LevelComponents
                 }
                 catch (Exception e)
                 {
-                    if (e is XmlException) throw new XmlException("The format of the XML document is invalid");
-                    if (e is IOException) throw new FileNotFoundException($"Level \"{filename}\" could not be found");
-                    throw e;
+                    switch (e)
+                    {
+                        case XmlException _:
+                            throw new XmlException("The format of the XML document is invalid");
+                        case IOException _:
+                            throw new FileNotFoundException($"Level \"{filename}\" could not be found");
+                        default:
+                            throw;
+                    }
                 }
             }
 

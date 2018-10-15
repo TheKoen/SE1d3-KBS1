@@ -20,7 +20,7 @@ namespace KBS1.Windows
     public partial class LevelEditor : Window
     {
         private const string XmlRootTemplate =
-@"<?xml version=""1.0"" encoding=""utf-8""?>
+            @"<?xml version=""1.0"" encoding=""utf-8""?>
 
 <level name=""{0}"" {1}>
 
@@ -36,7 +36,7 @@ namespace KBS1.Windows
         private const string XmlObstacleTemplate =
             @"        <obstacle name=""{0}"" radius=""24"" location=""{1:d}, {2:d}"" />
 ";
-        
+
         private readonly List<ObjectListItem> _objectList = new List<ObjectListItem>
         {
             new ObjectListItem("WallObstacle", "Wall", "#wall.png"),
@@ -48,13 +48,13 @@ namespace KBS1.Windows
             new ObjectListItem("ArcherObstacle", "Turret", "#turret.png"),
             new ObjectListItem("TrapObstacle", "Trap", "#trap.png")
         };
-        
+
         private readonly List<EditorObjectRepresentation> _editorObjects = new List<EditorObjectRepresentation>();
 
         private string _background = null;
         private Vector _startLoc = null;
         private Vector _endLoc = null;
-        
+
         public LevelEditor()
         {
             InitializeComponent();
@@ -70,11 +70,11 @@ namespace KBS1.Windows
         private void DrawGrid()
         {
             EditorCanvasGrid.Children.Clear();
-            
+
             var width = NumericGridWidth.Value;
             var height = NumericGridHeight.Value;
-            var columns = (int)Math.Floor(EditorCanvas.ActualWidth / width);
-            var rows = (int)Math.Floor(EditorCanvas.ActualHeight / height);
+            var columns = (int) Math.Floor(EditorCanvas.ActualWidth / width);
+            var rows = (int) Math.Floor(EditorCanvas.ActualHeight / height);
 
             for (var y = 0; y < rows; ++y)
             {
@@ -95,12 +95,12 @@ namespace KBS1.Windows
         private void DrawObjects()
         {
             EditorCanvasObjects.Children.Clear();
-        
+
             foreach (var o in _editorObjects)
             {
                 var reslocation = (from i in _objectList
-                    where i.Id == o.Id
-                    select i.Img)
+                        where i.Id == o.Id
+                        select i.Img)
                     .First();
                 var image = new Image {Source = new BitmapImage(reslocation)};
                 Canvas.SetTop(image, o.Location.Y - image.Source.Height / 2.0);
@@ -147,24 +147,26 @@ namespace KBS1.Windows
 
                 _editorObjects.Add(new EditorObjectRepresentation(
                     Level.ParseLocation(childXml.Attributes["location"].InnerText),
-                    childXml.LocalName == "start" || childXml.LocalName == "end" ?
-                        childXml.LocalName : childXml.Attributes["name"].InnerText
-                    ));
+                    childXml.LocalName == "start" || childXml.LocalName == "end"
+                        ? childXml.LocalName
+                        : childXml.Attributes["name"].InnerText
+                ));
             }
-            
+
             DrawObjects();
         }
-        
-        
+
+
         private void ButtonNewLevel_OnClick(object sender, RoutedEventArgs e)
         {
             if (_editorObjects.Count != 0)
             {
-                var result = MessageBox.Show("Are you sure you want to discard this level?", "New Level", MessageBoxButton.YesNo,
+                var result = MessageBox.Show("Are you sure you want to discard this level?", "New Level",
+                    MessageBoxButton.YesNo,
                     MessageBoxImage.Warning, MessageBoxResult.No);
                 if (result == MessageBoxResult.No) return;
             }
-            
+
             _editorObjects.Clear();
             EditorCanvas.Background = new SolidColorBrush(Colors.LightGreen);
             _background = null;
@@ -173,7 +175,7 @@ namespace KBS1.Windows
             TextBoxLevelName.Text = "";
             DrawObjects();
         }
-        
+
         private void ButtonSaveLevel_OnClick(object sender, RoutedEventArgs e)
         {
             if (TextBoxLevelName.Text.Trim() == "")
@@ -193,7 +195,7 @@ namespace KBS1.Windows
                 MessageBox.Show("Please create an end object", "Save", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            
+
             var fileName = TextBoxLevelName.Text.Trim().ToLower().Replace(" ", "_") + ".xml";
             if (File.Exists($"levels\\{fileName}"))
             {
@@ -207,13 +209,17 @@ namespace KBS1.Windows
                 select o;
             var obstaclesString = "";
             obstacles.ToList()
-                .ForEach(o => obstaclesString += string.Format(XmlObstacleTemplate, o.Id, (int)o.Location.X, (int)o.Location.Y));
+                .ForEach(o =>
+                    obstaclesString +=
+                        string.Format(XmlObstacleTemplate, o.Id, (int) o.Location.X, (int) o.Location.Y));
 
             var root = string.Format(XmlRootTemplate,
-                TextBoxLevelName.Text.Trim().StartsWith("custom_") ? TextBoxLevelName.Text.Trim() : "custom_" + TextBoxLevelName.Text.Trim(),
+                TextBoxLevelName.Text.Trim().StartsWith("custom_")
+                    ? TextBoxLevelName.Text.Trim()
+                    : "custom_" + TextBoxLevelName.Text.Trim(),
                 _background == null ? "" : $"background=\"{_background}\"",
-                (int)_startLoc.X, (int)_startLoc.Y,
-                (int)_endLoc.X, (int)_endLoc.Y,
+                (int) _startLoc.X, (int) _startLoc.Y,
+                (int) _endLoc.X, (int) _endLoc.Y,
                 obstaclesString);
             if (!Directory.Exists("levels"))
                 Directory.CreateDirectory("levels");
@@ -225,18 +231,19 @@ namespace KBS1.Windows
             MessageBox.Show($"Level saved as \"levels\\{fileName}\"", "Save", MessageBoxButton.OK,
                 MessageBoxImage.Information);
         }
-        
+
         private void ButtonLoadLevel_OnClick(object sender, RoutedEventArgs e)
         {
             if (_editorObjects.Count != 0)
             {
-                var result = MessageBox.Show("Are you sure you want to discard this level?", "New Level", MessageBoxButton.YesNo,
+                var result = MessageBox.Show("Are you sure you want to discard this level?", "New Level",
+                    MessageBoxButton.YesNo,
                     MessageBoxImage.Warning, MessageBoxResult.No);
                 if (result == MessageBoxResult.No) return;
             }
-            
+
             _editorObjects.Clear();
-            
+
             var levelPicker = new LevelPicker();
             XmlDocument level;
             try
@@ -248,10 +255,10 @@ namespace KBS1.Windows
                 MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            
+
             ParseLevel(level);
         }
-        
+
         private void EditorCanvas_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             var pos = e.GetPosition(EditorCanvasObjects);
@@ -264,8 +271,10 @@ namespace KBS1.Windows
                     if (_endLoc != null && ((ObjectListItem) ComboBoxObjects.SelectedItem).Id == "end") return;
                     if (CheckBoxEnforceGrid.IsChecked ?? false)
                         vector = new Vector(
-                            (int)(vector.X / NumericGridWidth.Value) * NumericGridWidth.Value + NumericGridWidth.Value / 2.0,
-                            (int)(vector.Y / NumericGridHeight.Value) * NumericGridHeight.Value + NumericGridHeight.Value / 2.0);
+                            (int) (vector.X / NumericGridWidth.Value) * NumericGridWidth.Value +
+                            NumericGridWidth.Value / 2.0,
+                            (int) (vector.Y / NumericGridHeight.Value) * NumericGridHeight.Value +
+                            NumericGridHeight.Value / 2.0);
                     _editorObjects.Add(new EditorObjectRepresentation(
                         vector,
                         ((ObjectListItem) ComboBoxObjects.SelectedItem).Id
@@ -275,7 +284,7 @@ namespace KBS1.Windows
                     if (((ObjectListItem) ComboBoxObjects.SelectedItem).Id == "end")
                         _endLoc = vector;
                     break;
-                
+
                 case MouseButton.Right:
                     EditorObjectRepresentation removable = null;
                     foreach (var o in _editorObjects)
@@ -298,12 +307,13 @@ namespace KBS1.Windows
                             _endLoc = null;
                         _editorObjects.Remove(removable);
                     }
+
                     break;
             }
-            
+
             DrawObjects();
         }
-        
+
         private void ButtonSetBackground_OnClick(object sender, RoutedEventArgs e)
         {
             try
@@ -317,7 +327,7 @@ namespace KBS1.Windows
                     "Background", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
-        
+
 
         private class ObjectListItem
         {
@@ -332,7 +342,7 @@ namespace KBS1.Windows
                 Id = id;
                 Name = name;
                 ImageBrush = ResourceManager.Instance.LoadImageBrush(img);
-                Img = ((BitmapImage)ImageBrush.ImageSource).UriSource;
+                Img = ((BitmapImage) ImageBrush.ImageSource).UriSource;
                 ImgUri = img;
             }
         }

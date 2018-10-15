@@ -65,14 +65,13 @@ namespace KBS1.Obstacles.Controllers
                 {
                     GameWindow.Instance.Lose();
                 }
-                    
+
                 // if player is out of range and creeper is out of time destroy creeper
                 else if (_wait == 0 && Object.Location.Distance(player) > ExplosionRadius)
                 {
                     GameWindow.Instance.Loadedlevel.Objects.Remove(Object);
                     Object.Renderer.Destroy();
                     Object.Controller.Destroy();
-
                 }
 
                 return;
@@ -110,7 +109,6 @@ namespace KBS1.Obstacles.Controllers
             {
                 _wait = DelayCreeper;
             }
-                
         }
     }
 }

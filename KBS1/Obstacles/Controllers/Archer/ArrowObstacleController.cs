@@ -8,7 +8,8 @@ namespace KBS1.Obstacles.Controllers.Archer
 
         private int _lifetime = 500;
 
-        public ArrowObstacleController(ILocatable locatable, Obstacle obstacle, Vector direction, double angle) : base(locatable,
+        public ArrowObstacleController(ILocatable locatable, Obstacle obstacle, Vector direction, double angle) : base(
+            locatable,
             obstacle)
         {
             Object.Collider.Blocking = false;

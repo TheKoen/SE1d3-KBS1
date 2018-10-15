@@ -67,7 +67,8 @@ namespace KBS1.Obstacles.Controllers.Archer
             public Vector Direction { get; }
             public readonly double angle;
 
-            public Arrow(ObstacleType type, Canvas canvas, Vector location, Vector direction, double angle) : base(type, canvas,
+            public Arrow(ObstacleType type, Canvas canvas, Vector location, Vector direction, double angle) : base(type,
+                canvas,
                 location)
             {
                 Direction = direction;
@@ -79,7 +80,8 @@ namespace KBS1.Obstacles.Controllers.Archer
         {
             public Controller.Controller Create(Obstacle obstacle)
             {
-                return new ArrowObstacleController(obstacle, obstacle, ((Arrow) obstacle).Direction, ((Arrow)obstacle).angle);
+                return new ArrowObstacleController(obstacle, obstacle, ((Arrow) obstacle).Direction,
+                    ((Arrow) obstacle).angle);
             }
         }
     }

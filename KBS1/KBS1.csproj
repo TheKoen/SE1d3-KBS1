@@ -72,6 +72,7 @@
       <DependentUpon>GameWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Util\InstanceHelper.cs" />
+    <Compile Include="Util\ResourceExtractor.cs" />
     <Compile Include="Windows\LevelEditor.xaml.cs">
       <DependentUpon>LevelEditor.xaml</DependentUpon>
     </Compile>
@@ -184,7 +185,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -256,6 +257,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Configuration.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Sound\explode.mp3" />
+    <Resource Include="Resources\Sound\laser.mp3" />
+    <Resource Include="Resources\Sound\lose.mp3" />
+    <Resource Include="Resources\Sound\robot-walk.mp3" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
