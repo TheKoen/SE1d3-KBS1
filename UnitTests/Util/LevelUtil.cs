@@ -22,7 +22,6 @@ namespace UnitTests.Util
                 LevelCollider = new LevelCollider()
             };
             InstanceHelper.SetupForUnitTesting(level);
-            objects.ForEach(gameObject => gameObject.Init());
             return level;
         }
 

@@ -43,7 +43,6 @@ namespace KBS1.Obstacles.Controllers.Archer
 
             if (Object.Collider.Collides(player.Collider))
             {
-                GameWindow.Instance.Sounds.Play("BoomHeadshot.mp3");
                 GameWindow.Instance.Lose();
             }
         }

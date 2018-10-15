@@ -24,12 +24,6 @@ namespace KBS1.Obstacles.Controllers
 
         public CreeperObstacleController(ILocatable locatable, Obstacle obstacle) : base(locatable, obstacle)
         {
-            InstanceHelper.GetCurrentLevel().SubscribeInitialized(Initialized);
-        }
-
-        public void Initialized(object sender, System.EventArgs e)
-        {
-            ((PlayerController)FindPlayer().Controller).Subscribe(MinecraftMode);
         }
 
         /// <summary>
@@ -63,12 +57,12 @@ namespace KBS1.Obstacles.Controllers
                 if (_wait < 16)
                 {
                     Object.Renderer.ChangeSprite((BitmapImage) explosion.Source);
+                    GameWindow.Instance.Sounds.Play("explode.mp3");
                 }
 
                 //explode if player is in range and timer is out of time
                 if (_wait == 0 && Object.Location.Distance(player) <= ExplosionRadius)
                 {
-                    GameWindow.Instance.Sounds.Play("Boom.mp3");
                     GameWindow.Instance.Lose();
                 }
                     
@@ -76,7 +70,6 @@ namespace KBS1.Obstacles.Controllers
                 else if (_wait == 0 && Object.Location.Distance(player) > ExplosionRadius)
                 {
                     GameWindow.Instance.Loadedlevel.Objects.Remove(Object);
-                    GameWindow.Instance.Sounds.Play("Boom.mp3");
                     Object.Renderer.Destroy();
                     Object.Controller.Destroy();
 
@@ -115,15 +108,9 @@ namespace KBS1.Obstacles.Controllers
             // start the delay of the explostion if the distance of the player is explosionRadius/2.
             if (Object.Location.Distance(playerObject.Location) < ExplosionRadius / 2.0)
             {
-                GameWindow.Instance.Sounds.Play("Ignite.mp3");
                 _wait = DelayCreeper;
             }
                 
-        }
-
-        public void MinecraftMode(object sender, System.EventArgs e)
-        {
-            throw new System.Exception("Minecraftmode active");
         }
     }
 }

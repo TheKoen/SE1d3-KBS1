@@ -58,6 +58,8 @@ namespace KBS1.Obstacles.Controllers.Archer
             level.Objects.Add(arrow);
             arrow.Init();
             _wait = 30;
+
+            GameWindow.Instance.Sounds.Play("laser.mp3");
         }
 
         private class Arrow : Obstacle

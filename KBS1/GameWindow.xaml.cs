@@ -26,7 +26,6 @@ namespace KBS1
             {
                 Sounds = new SoundManager();
                 LoadHome();
-                Sounds.SetLoopingPlay("TheFatRat - Unity.mp3");
 
             };
             Instance = this;
@@ -90,7 +89,6 @@ namespace KBS1
             {
                 Loop = new Gameloop();
                 Loadedlevel = _levelPicker.PickLevel();
-                Loadedlevel.Objects.ForEach(gameObject => gameObject.Init());
                 Loop.Start();
             }
             catch (Exception q)
@@ -124,8 +122,6 @@ namespace KBS1
         public void LoadLevel()
         {
             Loadedlevel = _levelPicker.LoadSelectedLevel();
-            foreach (var gameObject in Loadedlevel.Objects)
-                gameObject.Init();
         }
 
         /// <summary>
@@ -178,6 +174,8 @@ namespace KBS1
         /// </summary>
         public void Lose()
         {
+            Sounds.Play("lose.mp3");
+
             Reset();
             Loop.Stop();
             _screenLose = new LoseScreen();

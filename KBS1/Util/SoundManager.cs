@@ -1,30 +1,16 @@
-﻿using KBS1.Util;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows.Media;
 using System.Xml;
-using static System.Net.Mime.MediaTypeNames;
 
-namespace KBS1
+namespace KBS1.Util
 {
-    /// <summary>
-    /// Can not play more sounds than 200
-    /// </summary>
     public class SoundManager
     {
-        Dictionary<string, string> Sounds = new Dictionary<string, string>();
-        
-        private MediaPlayer[] activeMediaPlayers = new MediaPlayer[200];
-        private int mediaplayers = 0;
-
-        private string path = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Sound\\";
+        private readonly Dictionary<string, MediaPlayer> Sounds = new Dictionary<string, MediaPlayer>();
+        private readonly string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Sound\\";
         
         public SoundManager()
         { 
@@ -46,71 +32,56 @@ namespace KBS1
             {
                 var value = ((XmlNode)child).Attributes["filename"].InnerText;
 
-                Sounds.Add(value, path + value);             
+                var mediaplayer = new MediaPlayer();
+                mediaplayer.Open(new Uri(path + value, UriKind.Absolute));
+                while (!mediaplayer.HasAudio) { }
+
+                mediaplayer.MediaEnded += (sender, e) =>
+                {
+                    mediaplayer.Stop();
+                    mediaplayer.Position = TimeSpan.Zero;
+                };
+                Sounds.Add(value, mediaplayer);
             }
         }
-
-
         
-
         /// <summary>
         /// Plays the sound with the specific name 
         /// </summary>
         /// <param name="trackName"></param>
         public void Play(string trackName)
         {
-            try
+            if (Sounds.TryGetValue(trackName, out var player))
             {
-                foreach (var item in Sounds)
-                {
-                    if (item.Key == trackName)
-                    {
-                        var mediaplayer = new MediaPlayer();
-                        mediaplayer.Open(new Uri(item.Value, UriKind.Absolute));
-                        while (!mediaplayer.HasAudio) { }
-                        mediaplayer.MediaEnded += (sender, e) => mediaplayer.Close();
-                        activeMediaPlayers[mediaplayers] = mediaplayer;
-                        activeMediaPlayers[mediaplayers].Play();
-                        mediaplayers++;
-                        return;
-                    }   
-                }
-                throw new FileNotFoundException("No track with that name");
-                
+                player.Play();
             }
-            catch (Exception)
+            else
             {
-                new FileNotFoundException("Error with the sound ");
+                throw new FileNotFoundException("Sound could not be found!");
             }
         }
         public void SetLoopingPlay(string trackName)
         {
-            foreach (var item in Sounds)
+            if (Sounds.TryGetValue(trackName, out var player))
             {
-                if (item.Key == trackName)
-                {
-                    var mediaplayer = new MediaPlayer();
-                    mediaplayer.Open(new Uri(item.Value, UriKind.Absolute));
-                    while (!mediaplayer.HasAudio) { }
-
-                    mediaplayer.MediaEnded += (sender, e) => mediaplayer.Position = TimeSpan.Zero ;
-                    activeMediaPlayers[mediaplayers] = mediaplayer;
-                    activeMediaPlayers[mediaplayers].Play();
-                    mediaplayers++;
-                    return;
-                }
+                player.MediaEnded += (sender, e) => player.Play();
+                player.Play();
+            }
+            else
+            {
+                throw new FileNotFoundException("Sound could not be found!");
             }
         }
 
         public void Stop(string trackName)
         {
-            foreach (var item in activeMediaPlayers)
+            if (Sounds.TryGetValue(trackName, out var player))
             {
-                if(item.Source == new Uri("C:\\Users\\Robin\\Documents\\windesheim\\C#\\SE1d3-KBS1\\SE1d3-KBS1\\KBS1\\Resources\\Sound\\" + trackName))
-                {
-                    item.Stop();
-                    return;
-                }
+                player.Stop();
+            }
+            else
+            {
+                throw new FileNotFoundException("Sound could not be found!");
             }
         }
     }

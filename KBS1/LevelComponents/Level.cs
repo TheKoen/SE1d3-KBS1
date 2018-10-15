@@ -100,9 +100,6 @@ namespace KBS1.LevelComponents
             };
             Canvas.SetLeft(border, 782);
             GameWindow.Instance.DrawingPanel.Children.Add(border);
-
-            //Initialized(this, EventArgs.Empty);
-            Initialized?.Invoke(this, EventArgs.Empty);
         }
 
 
