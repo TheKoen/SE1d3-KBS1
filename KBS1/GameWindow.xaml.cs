@@ -133,6 +133,7 @@ namespace KBS1
         /// </summary>
         public void LoadOptions()
         {
+            DrawingPanel.Background = Brushes.DimGray;
             _screenOptionMenu = new OptionMenu();
             Canvas.SetLeft(_screenOptionMenu, 0);
             Canvas.SetTop(_screenOptionMenu, 0);
