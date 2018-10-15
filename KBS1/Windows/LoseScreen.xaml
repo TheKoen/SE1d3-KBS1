@@ -7,13 +7,13 @@
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="1000">
     <Grid>
-        <Rectangle Fill="#FFF73737" Height="250" Width="250" Margin="375,180,375,170" Stroke="Black"
+        <Rectangle Fill="#FF26A2D9" Height="250" Width="250" Margin="375,180,375,170" Stroke="#FF085463"
                    VerticalAlignment="Top" />
-        <Label x:Name="LossLabel" Content="You have lost!" HorizontalAlignment="Left" Margin="460,223,0,0"
-               VerticalAlignment="Top" />
+        <Label x:Name="LossLabel" Content="You have lost!" HorizontalAlignment="Left" Margin="445,223,0,0"
+               VerticalAlignment="Top" Width="128" Height="41" Foreground="#FF085463" FontSize="18" />
         <Button x:Name="RetryButton" Content="Retry" HorizontalAlignment="Left" Margin="468,313,0,0"
-                VerticalAlignment="Top" Width="75" Click="RetryButton_Click" />
+                VerticalAlignment="Top" Width="75" Click="RetryButton_Click" Background="#3F085463" BorderBrush="#FF085463" />
         <Button x:Name="BackToMainMenuButton" Content="Main menu" HorizontalAlignment="Left" Margin="468,361,0,0"
-                VerticalAlignment="Top" Width="75" Click="BackToMainMenuButton_Click" />
+                VerticalAlignment="Top" Width="75" Click="BackToMainMenuButton_Click" Background="#3F085463" BorderBrush="#FF085463" />
     </Grid>
 </UserControl>

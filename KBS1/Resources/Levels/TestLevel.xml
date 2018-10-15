@@ -4,7 +4,7 @@
 
   <objects>
     <start radius="17" location="50,50" />
-    <end radius="17" location="770,550" />
+    <end radius="17" location="100,100" />
 
     <obstacle name="ArcherObstacle" radius="24" location="275, 470" />
   </objects>
