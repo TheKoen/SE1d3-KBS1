@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Resources;
 using System.Xml;
 using KBS1.Exceptions.ResourceManager;
 
@@ -41,16 +43,25 @@ namespace KBS1.Util
         public Image LoadImage(string path)
         {
             if (_imageCache.ContainsKey(path)) return _imageCache[path];
-            if (!ResourceExists(path)) throw new ResourceNotFoundException(path);
+            if (path.StartsWith("#"))
+                if (!ResourceExists(path.Substring(1))) throw new ResourceNotFoundException(path);
             var bitmapImage = new BitmapImage();
             bitmapImage.BeginInit();
-            bitmapImage.UriSource = new Uri(@"pack://application:,,,/Resources/" + path);
+            if (path.StartsWith("#"))
+            {
+                var path2 = path.Substring(1);
+                bitmapImage.UriSource = new Uri(@"pack://application:,,,/Resources/" + path2);
+            }
+            else
+            {
+                bitmapImage.StreamSource = File.OpenRead(path);
+            }
             bitmapImage.EndInit();
             var image = new Image
             {
                 Width = bitmapImage.Width,
                 Height = bitmapImage.Height,
-                Name = path.Substring(path.LastIndexOf('/') + 1).Split('.')[0],
+                Name = path.Substring(path.LastIndexOf('/') + 1).Split('.')[0].Replace("#",  ""),
                 Source = bitmapImage
             };
             _imageCache.Add(path, image);
@@ -67,9 +78,18 @@ namespace KBS1.Util
         {
             if (_xmlCache.ContainsKey(path)) return _xmlCache[path];
             var document = new XmlDocument();
-            var streamInfo = Application.GetResourceStream(new Uri(@"pack://application:,,,/Resources/" + path));
-            if (streamInfo != null) document.Load(streamInfo.Stream);
-            else throw new ResourceNotFoundException(path);
+            if (path.StartsWith("#"))
+            {
+                var path2 = path.Substring(1);
+                var streamInfo = Application.GetResourceStream(new Uri(@"pack://application:,,,/Resources/" + path2));
+                if (streamInfo != null) document.Load(streamInfo.Stream);
+                else throw new ResourceNotFoundException(path);
+            }
+            else
+            {
+                var stream = File.OpenRead(path);
+                document.Load(stream);
+            }
             _xmlCache.Add(path, document);
 
             return _xmlCache[path];
@@ -83,11 +103,20 @@ namespace KBS1.Util
         public ImageBrush LoadImageBrush(string path)
         {
             if (_imgBrushCache.ContainsKey(path)) return _imgBrushCache[path];
-            if (!ResourceExists(path)) throw new ResourceNotFoundException(path);
+            if (path.StartsWith("#"))
+                if (!ResourceExists(path.Substring(1))) throw new ResourceNotFoundException(path);
             var brush = new ImageBrush();
             var bitmapImage = new BitmapImage();
             bitmapImage.BeginInit();
-            bitmapImage.UriSource = new Uri(@"pack://application:,,,/Resources/" + path);
+            if (path.StartsWith("#"))
+            {
+                var path2 = path.Substring(1);
+                bitmapImage.UriSource = new Uri(@"pack://application:,,,/Resources/" + path2);
+            }
+            else
+            {
+                bitmapImage.StreamSource = File.OpenRead(path);
+            }
             bitmapImage.EndInit();
             brush.ImageSource = bitmapImage;
             _imgBrushCache.Add(path, brush);

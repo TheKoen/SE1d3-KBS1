@@ -33,5 +33,10 @@ namespace KBS1.Windows
         {
             GameWindow.Instance.SelectLevel();
         }
+
+        private void LevelEditorButton_Click(object sender, RoutedEventArgs e)
+        {
+            GameWindow.Instance.ShowLevelEditor();
+        }
     }
 }

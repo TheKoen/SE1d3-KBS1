@@ -1,0 +1,95 @@
+<Window x:Class="KBS1.Windows.LevelEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:KBS1.Windows"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        Title="Level Editor" Height="600" Width="1000">
+    <Window.Resources>
+        <Style x:Key="LabelTitleStyle" TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+        
+        <Style x:Key="StackPanelCollectionStyle" TargetType="{x:Type StackPanel}">
+            <Setter Property="Margin" Value="0,0,0,10"></Setter>
+        </Style>
+        
+        <Style x:Key="ButtonFileStyle" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="48" />
+            <Setter Property="Height" Value="20"></Setter>
+            <Setter Property="Margin" Value="5,0,5,0"></Setter>
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <Canvas x:Name="EditorCanvas" Margin="0,0,200,0" Background="LightGreen"
+                MouseDown="EditorCanvas_OnMouseDown">
+            <Canvas x:Name="EditorCanvasGrid" ZIndex="5" />
+            <Canvas x:Name="EditorCanvasObjects" ZIndex="10" />
+        </Canvas>
+        
+        <Border BorderBrush="Black" BorderThickness="4,0,0,0"  HorizontalAlignment="Right" Width="200">
+            <Grid ZIndex="999">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                
+                <StackPanel Grid.Row="0" Style="{StaticResource StackPanelCollectionStyle}">
+                    <Label Content="Grid" Style="{StaticResource LabelTitleStyle}" />
+                    <CheckBox x:Name="CheckBoxEnforceGrid" IsChecked="True" Content="Enforce Grid" />
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Grid Width" />
+                        <local:NumericUpDownControl x:Name="NumericGridWidth" Value="25"
+                                                    MinValue="16" MaxValue="100" StepSize="3" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Grid Height" />
+                        <local:NumericUpDownControl x:Name="NumericGridHeight" Value="25"
+                                                    MinValue="16" MaxValue="100" StepSize="3" />
+                    </StackPanel>
+                </StackPanel>
+                
+                <StackPanel Grid.Row="1" Style="{StaticResource StackPanelCollectionStyle}">
+                    <Label Content="Objects" Style="{StaticResource LabelTitleStyle}" />
+                    <ComboBox x:Name="ComboBoxObjects" Width="180">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <WrapPanel Margin="0,5,0,5">
+                                    <Image Width="25" Height="25" Stretch="Uniform" Source="{Binding Img}"
+                                           VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                    <Label Content="{Binding Name}"
+                                           VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </WrapPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+                
+                <StackPanel Grid.Row="2" Style="{StaticResource StackPanelCollectionStyle}">
+                    <Label Content="File" Style="{StaticResource LabelTitleStyle}" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button x:Name="ButtonNewLevel" Content="New" Style="{StaticResource ButtonFileStyle}"
+                                Click="ButtonNewLevel_OnClick" />
+                        <Button x:Name="ButtonSaveLevel" Content="Save" Style="{StaticResource ButtonFileStyle}"
+                                Click="ButtonSaveLevel_OnClick" />
+                        <Button x:Name="ButtonLoadLevel" Content="Load" Style="{StaticResource ButtonFileStyle}"
+                                Click="ButtonLoadLevel_OnClick" />
+                    </StackPanel>
+                    <Label Content="Level Name" />
+                    <TextBox x:Name="TextBoxLevelName" Width="160" Height="20" HorizontalAlignment="Center" />
+                    <Label Content="Background" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBox x:Name="TextBoxBackground" Width="100" Height="20" />
+                        <Button x:Name="ButtonSetBackground" Content="Use" Style="{StaticResource ButtonFileStyle}"
+                                Click="ButtonSetBackground_OnClick" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

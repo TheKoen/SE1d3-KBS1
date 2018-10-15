@@ -17,10 +17,10 @@ namespace KBS1.Obstacles.Controllers
         private bool _red;
         private int step;
         private bool walkSprite;
-        private readonly Image idle = ResourceManager.Instance.LoadImage("bomb.png");
-        private readonly Image walk = ResourceManager.Instance.LoadImage("bombwalk.png");
-        private readonly Image explode = ResourceManager.Instance.LoadImage("bombexplode.png");
-        private readonly Image explosion = ResourceManager.Instance.LoadImage("explosion.png");
+        private readonly Image idle = ResourceManager.Instance.LoadImage("#bomb.png");
+        private readonly Image walk = ResourceManager.Instance.LoadImage("#bombwalk.png");
+        private readonly Image explode = ResourceManager.Instance.LoadImage("#bombexplode.png");
+        private readonly Image explosion = ResourceManager.Instance.LoadImage("#explosion.png");
 
         public CreeperObstacleController(ILocatable locatable, Obstacle obstacle) : base(locatable, obstacle)
         {

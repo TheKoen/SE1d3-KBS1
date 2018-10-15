@@ -58,6 +58,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Kbs1Events.cs" />
+    <Compile Include="Misc\EditorObjectRepresentation.cs" />
     <Compile Include="Obstacles\Controllers\Archer\ArcherObstacleController.cs" />
     <Compile Include="Obstacles\Controllers\Archer\ArrowObstacleController.cs" />
     <Compile Include="Obstacles\Controllers\CreeperObstacleController.cs" />
@@ -71,6 +72,9 @@
       <DependentUpon>GameWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Util\InstanceHelper.cs" />
+    <Compile Include="Windows\LevelEditor.xaml.cs">
+      <DependentUpon>LevelEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\LevelPickerWindow.xaml.cs">
       <DependentUpon>LevelPickerWindow.xaml</DependentUpon>
     </Compile>
@@ -79,6 +83,9 @@
     </Compile>
     <Compile Include="Windows\MainMenuScreen.xaml.cs">
       <DependentUpon>MainMenuScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\NumericUpDownControl.xaml.cs">
+      <DependentUpon>NumericUpDownControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\OptionMenu.xaml.cs">
       <DependentUpon>OptionMenu.xaml</DependentUpon>
@@ -137,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="GameWindow.xaml" />
+    <Page Include="Windows\LevelEditor.xaml" />
     <Page Include="Windows\LevelPickerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -149,6 +157,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\NumericUpDownControl.xaml" />
     <Page Include="Windows\ObjectInfoContainer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

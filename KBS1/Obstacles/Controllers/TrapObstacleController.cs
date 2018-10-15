@@ -8,7 +8,7 @@ namespace KBS1.Obstacles.Controllers
 {
     public class TrapObstacleController : ObstacleController
     {
-        private readonly Image explosion = ResourceManager.Instance.LoadImage("explosion.png");
+        private readonly Image explosion = ResourceManager.Instance.LoadImage("#explosion.png");
         private bool lost = false;
 
         public TrapObstacleController(ILocatable locatable, Obstacle obstacle) : base(locatable, obstacle)
