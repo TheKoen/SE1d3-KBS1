@@ -27,10 +27,7 @@
 
             var player = FindPlayer();
             if (player.Collider.Collides(Object.Collider))
-            {
-                //Shows a win text
                 GameWindow.Instance.Win();
-            }
         }
     }
 }

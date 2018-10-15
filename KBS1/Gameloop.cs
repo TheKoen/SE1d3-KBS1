@@ -5,15 +5,19 @@ using System.Windows.Threading;
 
 namespace KBS1
 {
+    public delegate void Update();
+
     public class Gameloop
     {
-        private GameWindow Game { get; }
         private DispatcherTimer Timer { get; }
+        private event Update UpdateEvent;
 
-        public Gameloop(GameWindow game)
+        public Gameloop()
         {
-            Game = game;
-            Timer = new DispatcherTimer {Interval = new TimeSpan(0, 0, 0, 0, 10)};
+            Timer = new DispatcherTimer
+            {
+                Interval = new TimeSpan(0, 0, 0, 0, 10)
+            };
             Timer.Tick += Update;
         }
 
@@ -22,9 +26,6 @@ namespace KBS1
         /// </summary>
         public void Start()
         {
-            var level = Game.Loadedlevel;
-            foreach (var gameObject in level.Objects)
-                gameObject.Init();
             Timer.Start();
         }
 
@@ -35,22 +36,26 @@ namespace KBS1
         {
             Timer.Stop();
         }
+
+        public void Subscribe(Update updateEvent)
+        {
+            UpdateEvent += updateEvent;
+        }
+
+        public void Unsubscribe(Update updateEvent)
+        {
+            UpdateEvent -= updateEvent;
+        }
         
         private void Update(object sender, EventArgs args)
         {
             try
             {
-                var level = Game.Loadedlevel;
-                foreach (var gameObject in new List<GameObject>(level.Objects))
-                {
-                    gameObject.Controller?.Update();
-                    gameObject.Renderer?.Update();
-                }
-                level.Score.Update();
+                UpdateEvent?.Invoke();
             }
             catch (Exception e)
             {
-                MessageBox.Show($"{e.Message}", "Error");
+                ExceptionManager.Catch(e);
             }
         }
     }

@@ -59,8 +59,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColliderTest.cs" />
+    <Compile Include="ControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Collider_Test.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -71,6 +71,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Util\TestController.cs" />
+    <Compile Include="Util\TestGameObject.cs" />
+    <Compile Include="Util\LevelUtil.cs" />
+    <Compile Include="Util\TestPlayer.cs" />
+    <Compile Include="Util\TestWallObject.cs" />
     <Compile Include="VectorTest.cs" />
   </ItemGroup>
   <ItemGroup>

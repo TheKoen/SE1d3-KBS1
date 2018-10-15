@@ -60,6 +60,7 @@
     <Compile Include="Archer\ArcherObstacleController.cs" />
     <Compile Include="Archer\ArrowObstacleController.cs" />
     <Compile Include="CreeperObstacleController.cs" />
+    <Compile Include="ExceptionManager.cs" />
     <Compile Include="Exceptions\Level\LevelLoadException.cs" />
     <Compile Include="Exceptions\Level\LevelParseException.cs" />
     <Compile Include="Exceptions\ResourceManager\ResourceNotFoundException.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="GameWindow.xaml.cs">
       <DependentUpon>GameWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InstanceHelper.cs" />
     <Compile Include="LevelPickerWindow.xaml.cs">
       <DependentUpon>LevelPickerWindow.xaml</DependentUpon>
     </Compile>
@@ -102,6 +104,7 @@
     <Compile Include="TrapObstacleController.cs" />
     <Compile Include="TreeObstacleController.cs" />
     <Compile Include="Vector.cs" />
+    <Compile Include="WallCollider.cs" />
     <Compile Include="WallObstacleController.cs" />
     <Compile Include="WinScreen.xaml.cs">
       <DependentUpon>WinScreen.xaml</DependentUpon>

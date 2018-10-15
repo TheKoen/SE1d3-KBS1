@@ -5,9 +5,10 @@ using System.Windows.Shapes;
 using System;
 
 namespace KBS1 {
-    public partial class GameWindow : Window {
+    public partial class GameWindow
+    {
 
-        private LevelPicker levelPicker = new LevelPicker();
+        private readonly LevelPicker _levelPicker = new LevelPicker();
 
         public Level Loadedlevel { get; set; }
         public Gameloop Loop { get; set; }
@@ -24,29 +25,35 @@ namespace KBS1 {
         }
 
         // Properties
-        private PauseMenuScreen p1;
-        private MainMenuScreen m1;
-        private WinScreen w;
-        private LoseScreen l;
-        private OptionMenu o1;
+        private PauseMenuScreen _screenPauseMenu;
+        private MainMenuScreen _screenMainMenu;
+        private WinScreen _screenWin;
+        private LoseScreen _screenLose;
+        private OptionMenu _screenOptionMenu;
 
         // Methods
 
+        /// <summary>
+        /// Loads the main menu screen
+        /// </summary>
         public void LoadHome()
         {
             DrawingPanel.Background = Brushes.LightGreen;
-            m1 = new MainMenuScreen();
-            Canvas.SetTop(m1, 0);
-            Canvas.SetLeft(m1, 0);
-            DrawingPanel.Children.Add(m1);
+            _screenMainMenu = new MainMenuScreen();
+            Canvas.SetTop(_screenMainMenu, 0);
+            Canvas.SetLeft(_screenMainMenu, 0);
+            DrawingPanel.Children.Add(_screenMainMenu);
         }
 
+        /// <summary>
+        /// Starts playing the next level
+        /// </summary>
         public void NextLevel()
         {
             DrawingPanel.Children.Clear();
             try
             {
-                Loadedlevel = levelPicker.NextLevel();
+                Loadedlevel = _levelPicker.NextLevel();
             }
             catch (Exception q)
             {
@@ -55,59 +62,78 @@ namespace KBS1 {
             Loop.Start();
         }
 
+        /// <summary>
+        /// Makes the user pick a level and plays it
+        /// </summary>
         public void SelectLevel()
         {
             DrawingPanel.Children.Clear();
             try
             {
-                Loadedlevel = levelPicker.PickLevel();
-                Loop = new Gameloop(this);
+                Loop = new Gameloop();
+                Loadedlevel = _levelPicker.PickLevel();
+                Loadedlevel.Objects.ForEach(gameObject => gameObject.Init());
                 Loop.Start();
             }
             catch (Exception q)
             {
-                MessageBox.Show($"{q.Message}", "Error");
-                LoadHome();
+                ExceptionManager.Catch(q);
             }
         }
 
+        /// <summary>
+        /// Loads the selected level
+        /// </summary>
         public void LoadGame()
         {
-            Loop = new Gameloop(this);
+            Loop = new Gameloop();
             try {
                 LoadLevel();
             }
             catch (Exception q)
             {
-                MessageBox.Show($"{q.Message}", "Error");
-                LoadHome();
+                ExceptionManager.Catch(q);
                 return;
             }
             Loop.Start();
         }
         
+        /// <summary>
+        /// Makes the user pick a level
+        /// </summary>
         public void LoadLevel()
         {
-            Loadedlevel = levelPicker.LoadSelectedLevel();
+            Loadedlevel = _levelPicker.LoadSelectedLevel();
+            foreach (var gameObject in Loadedlevel.Objects)
+                gameObject.Init();
         }
 
+        /// <summary>
+        /// Loads the options screen
+        /// </summary>
         public void LoadOptions()
         {
-            o1 = new OptionMenu();
-            Canvas.SetLeft(o1, 0);
-            Canvas.SetTop(o1, 0);
-            DrawingPanel.Children.Add(o1);
+            _screenOptionMenu = new OptionMenu();
+            Canvas.SetLeft(_screenOptionMenu, 0);
+            Canvas.SetTop(_screenOptionMenu, 0);
+            DrawingPanel.Children.Add(_screenOptionMenu);
         }
 
+        /// <summary>
+        /// Pauses the game and shows the pause menu screen
+        /// </summary>
         public void PauseGame()
         {
             Loop.Stop();
-            p1 = new PauseMenuScreen();
-            Canvas.SetTop(p1, 0);
-            Canvas.SetLeft(p1, 0);
-            DrawingPanel.Children.Add(p1);
+            _screenPauseMenu = new PauseMenuScreen();
+            Canvas.SetTop(_screenPauseMenu, 0);
+            Canvas.SetLeft(_screenPauseMenu, 0);
+            DrawingPanel.Children.Add(_screenPauseMenu);
         }
 
+        /// <summary>
+        /// Resets the current level
+        /// </summary>
         public void Reset()
         {
             Loop.Stop();
@@ -115,23 +141,29 @@ namespace KBS1 {
             LoadGame();
         }
         
+        /// <summary>
+        /// Shows the win screen
+        /// </summary>
         public void Win()
         {
-            GameWindow.Instance.Loop.Stop();
-            w = new WinScreen(Loadedlevel.Score.SecondsRunning + 0.01);
-            Canvas.SetLeft(w, 0);
-            Canvas.SetTop(w, 0);
-            DrawingPanel.Children.Add(w);
+            Loop.Stop();
+            _screenWin = new WinScreen(Loadedlevel.Score.SecondsRunning + 0.01);
+            Canvas.SetLeft(_screenWin, 0);
+            Canvas.SetTop(_screenWin, 0);
+            DrawingPanel.Children.Add(_screenWin);
         }
 
+        /// <summary>
+        /// Shows the lose screen
+        /// </summary>
         public void Lose()
         {
             Reset();
-            GameWindow.Instance.Loop.Stop();
-            l = new LoseScreen();
-            Canvas.SetLeft(l, 0);
-            Canvas.SetTop(l, 0);
-            DrawingPanel.Children.Add(l);
+            Loop.Stop();
+            _screenLose = new LoseScreen();
+            Canvas.SetLeft(_screenLose, 0);
+            Canvas.SetTop(_screenLose, 0);
+            DrawingPanel.Children.Add(_screenLose);
         }
     }
 }
