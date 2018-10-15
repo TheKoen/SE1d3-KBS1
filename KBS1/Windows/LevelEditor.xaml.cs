@@ -44,8 +44,8 @@ namespace KBS1.Windows
             new ObjectListItem("end", "Finish", "#end.png"),
             new ObjectListItem("TreeObstacle", "Tree", "#tree.png"),
             new ObjectListItem("RunnerObstacle", "Runner", "#runner.png"),
-            new ObjectListItem("CreeperObstacle", "Creeper", "#creeper.png"),
-            new ObjectListItem("ArcherObstacle", "Archer", "#archer.png"),
+            new ObjectListItem("CreeperObstacle", "Bomb", "#bomb.png"),
+            new ObjectListItem("ArcherObstacle", "Turret", "#turret.png"),
             new ObjectListItem("TrapObstacle", "Trap", "#trap.png")
         };
         
@@ -139,7 +139,12 @@ namespace KBS1.Windows
             {
                 if (!(child is XmlNode)) continue;
                 var childXml = (XmlNode) child;
-                
+
+                if (childXml.LocalName == "start")
+                    _startLoc = Level.ParseLocation(childXml.Attributes["location"].InnerText);
+                if (childXml.LocalName == "end")
+                    _endLoc = Level.ParseLocation(childXml.Attributes["location"].InnerText);
+
                 _editorObjects.Add(new EditorObjectRepresentation(
                     Level.ParseLocation(childXml.Attributes["location"].InnerText),
                     childXml.LocalName == "start" || childXml.LocalName == "end" ?
@@ -205,7 +210,7 @@ namespace KBS1.Windows
                 .ForEach(o => obstaclesString += string.Format(XmlObstacleTemplate, o.Id, (int)o.Location.X, (int)o.Location.Y));
 
             var root = string.Format(XmlRootTemplate,
-                "custom_" + TextBoxLevelName.Text.Trim(),
+                TextBoxLevelName.Text.Trim().StartsWith("custom_") ? TextBoxLevelName.Text.Trim() : "custom_" + TextBoxLevelName.Text.Trim(),
                 _background == null ? "" : $"background=\"{_background}\"",
                 (int)_startLoc.X, (int)_startLoc.Y,
                 (int)_endLoc.X, (int)_endLoc.Y,
