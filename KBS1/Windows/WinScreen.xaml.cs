@@ -8,13 +8,12 @@ namespace KBS1.Windows
     /// </summary>
     public partial class WinScreen
     {
-        private double _score;
-
+        private double score;
         public WinScreen(double score)
         {
             InitializeComponent();
-            _score = score;
-            ScoreLabel.Content = "Your score: " + score;
+            this.score = score;
+            ScoreLabel.Content = "Your score: " + score;          
         }
 
         private void MainMenuButton_Click(object sender, RoutedEventArgs e)
@@ -35,10 +34,18 @@ namespace KBS1.Windows
 
         private void SubmitScoreButton_Click(object sender, RoutedEventArgs e)
         {
-            var sss = new SubmitScoreScreen(_score);
-            Canvas.SetLeft(sss, 0);
-            Canvas.SetTop(sss, 0);
-            GameWindow.Instance.DrawingPanel.Children.Add(sss);
+            SubmitScoreScreen sss = new SubmitScoreScreen(score);
+            //checking if the player already submitted his score
+            if (GameWindow.Instance.Loadedlevel.IsAlreadySubmitted == false)
+            {
+                Canvas.SetLeft(sss, 0);
+                Canvas.SetTop(sss, 0);
+                GameWindow.Instance.DrawingPanel.Children.Add(sss);
+            }   else
+            {
+                //creating content for the label when the player clicks submit again
+                AlreadySubmittedLabel.Content = "You've already submitted!";
+            }
         }
     }
 }
