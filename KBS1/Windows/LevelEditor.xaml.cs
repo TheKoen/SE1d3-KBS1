@@ -117,7 +117,8 @@ namespace KBS1.Windows
 
             if (!root.HasAttribute("name"))
                 throw new XmlException("Level missing name attribute");
-            TextBoxLevelName.Text = root.GetAttribute("name");
+            TextBoxLevelName.Text =
+                (root.GetAttribute("name").StartsWith("custom_") ? "" : "custom_") + root.GetAttribute("name");
 
             if (!root.HasAttribute("background"))
             {
@@ -200,7 +201,9 @@ namespace KBS1.Windows
                 return;
             }
 
-            var fileName = TextBoxLevelName.Text.Trim().ToLower().Replace(" ", "_") + ".xml";
+            if (!TextBoxLevelName.Text.Trim().StartsWith("custom_"))
+                TextBoxLevelName.Text = "custom_" + TextBoxLevelName.Text.Trim();
+            var fileName = TextBoxLevelName.Text.ToLower().Replace(" ", "_") + ".xml";
             if (File.Exists($"levels\\{fileName}"))
             {
                 var result = MessageBox.Show($"File \"{fileName}\" already exists! Do you want to replace it?", "Save",
@@ -218,9 +221,9 @@ namespace KBS1.Windows
                         string.Format(XmlObstacleTemplate, o.Id, (int) o.Location.X, (int) o.Location.Y));
 
             var root = string.Format(XmlRootTemplate,
-                TextBoxLevelName.Text.Trim().StartsWith("custom_")
-                    ? TextBoxLevelName.Text.Trim()
-                    : "custom_" + TextBoxLevelName.Text.Trim(),
+                TextBoxLevelName.Text.StartsWith("custom_")
+                    ? TextBoxLevelName.Text
+                    : "custom_" + TextBoxLevelName.Text,
                 _background == null ? "" : $"background=\"{_background}\"",
                 (int) _startLoc.X, (int) _startLoc.Y,
                 (int) _endLoc.X, (int) _endLoc.Y,
