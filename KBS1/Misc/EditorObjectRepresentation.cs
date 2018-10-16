@@ -4,11 +4,13 @@ namespace KBS1.Misc
     {
         public Vector Location { get; set; }
         public string Id { get; set; }
+        public int ZIndex { get; set; }
 
-        public EditorObjectRepresentation(Vector location, string id)
+        public EditorObjectRepresentation(Vector location, string id, int zIndex)
         {
             Location = location;
             Id = id;
+            ZIndex = zIndex;
         }
     }
 }

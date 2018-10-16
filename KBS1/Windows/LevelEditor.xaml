@@ -68,6 +68,12 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
+                    
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Z-Index" />
+                        <local:NumericUpDownControl x:Name="NumericZIndex" Value="20" 
+                                                    MinValue="0" MaxValue="100" StepSize="1"/>
+                    </StackPanel>
                 </StackPanel>
 
                 <StackPanel Grid.Row="2" Style="{StaticResource StackPanelCollectionStyle}">

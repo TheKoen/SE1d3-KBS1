@@ -106,6 +106,7 @@ namespace KBS1.Windows
                 var image = new Image {Source = new BitmapImage(reslocation)};
                 Canvas.SetTop(image, o.Location.Y - image.Source.Height / 2.0);
                 Canvas.SetLeft(image, o.Location.X - image.Source.Width / 2.0);
+                Panel.SetZIndex(image, o.ZIndex);
                 EditorCanvasObjects.Children.Add(image);
             }
         }
@@ -151,7 +152,8 @@ namespace KBS1.Windows
                     Level.ParseLocation(childXml.Attributes["location"].InnerText),
                     childXml.LocalName == "start" || childXml.LocalName == "end"
                         ? childXml.LocalName
-                        : childXml.Attributes["name"].InnerText
+                        : childXml.Attributes["name"].InnerText,
+                    20
                 ));
             }
 
@@ -213,6 +215,7 @@ namespace KBS1.Windows
 
             var obstacles = from o in _editorObjects
                 where o.Id != "start" && o.Id != "end"
+                orderby o.ZIndex
                 select o;
             var obstaclesString = "";
             obstacles.ToList()
@@ -284,13 +287,18 @@ namespace KBS1.Windows
                             NumericGridWidth.Value / 2.0,
                             (int) (vector.Y / NumericGridHeight.Value) * NumericGridHeight.Value +
                             NumericGridHeight.Value / 2.0);
-                    _editorObjects.Add(new EditorObjectRepresentation(
+
+                    var newObject = new EditorObjectRepresentation(
                         vector,
-                        ((ObjectListItem) ComboBoxObjects.SelectedItem).Id
-                    ));
-                    if (((ObjectListItem) ComboBoxObjects.SelectedItem).Id == "start")
+                        ((ObjectListItem) ComboBoxObjects.SelectedItem).Id,
+                        NumericZIndex.Value
+                    );
+                    if (newObject.Id == "start" || newObject.Id == "end")
+                        newObject.ZIndex = 101;
+                    _editorObjects.Add(newObject);
+                    if (newObject.Id == "start")
                         _startLoc = vector;
-                    if (((ObjectListItem) ComboBoxObjects.SelectedItem).Id == "end")
+                    if (newObject.Id == "end")
                         _endLoc = vector;
                     _changesMade = true;
                     break;
@@ -351,10 +359,10 @@ namespace KBS1.Windows
 
         private class ObjectListItem
         {
-            public string Id { get; set; }
-            public string Name { get; set; }
-            public string ImgUri { get; set; }
-            public Uri Img { get; set; }
+            public string Id { get; private set; }
+            public string Name { get; private set; }
+            public string ImgUri { get; private set; }
+            public Uri Img { get; private set; }
             public ImageBrush ImageBrush { get; private set; }
 
             public ObjectListItem(string id, string name, string img)
