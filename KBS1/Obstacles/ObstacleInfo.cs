@@ -9,16 +9,16 @@
             switch (type)
             {
                 case "runner":
-                    Description = "";
+                    Description = "A runner will chase you. Quickly run away!";
                     break;
                 case "bomb":
-                    Description = "";
+                    Description = "The bomb will go near you and explode. Get down!";
                     break;
                 case "turret":
-                    Description = "";
+                    Description = "Dodge the bullets from the turret as they rapidly shoot them towards you!";
                     break;
                 case "trap":
-                    Description = "";
+                    Description = "Watch out! Traps are dangerous and you rather not step in one.";
                     break;
                 default:
                     Description = "";

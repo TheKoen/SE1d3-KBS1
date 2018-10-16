@@ -51,6 +51,7 @@ namespace KBS1.Windows
 
         private readonly List<EditorObjectRepresentation> _editorObjects = new List<EditorObjectRepresentation>();
 
+        private bool _changesMade = false;
         private string _background = null;
         private Vector _startLoc = null;
         private Vector _endLoc = null;
@@ -120,7 +121,7 @@ namespace KBS1.Windows
 
             if (!root.HasAttribute("background"))
             {
-                EditorCanvas.Background = Brushes.LightGreen;
+                EditorCanvas.Background = Brushes.DimGray;
                 _background = null;
             }
             else
@@ -153,13 +154,15 @@ namespace KBS1.Windows
                 ));
             }
 
+            _changesMade = false;
+            
             DrawObjects();
         }
 
 
         private void ButtonNewLevel_OnClick(object sender, RoutedEventArgs e)
         {
-            if (_editorObjects.Count != 0)
+            if (_changesMade)
             {
                 var result = MessageBox.Show("Are you sure you want to discard this level?", "New Level",
                     MessageBoxButton.YesNo,
@@ -168,7 +171,8 @@ namespace KBS1.Windows
             }
 
             _editorObjects.Clear();
-            EditorCanvas.Background = new SolidColorBrush(Colors.LightGreen);
+            EditorCanvas.Background = new SolidColorBrush(Colors.DimGray);
+            _changesMade = false;
             _background = null;
             _startLoc = null;
             _endLoc = null;
@@ -228,13 +232,15 @@ namespace KBS1.Windows
             writer.Flush();
             writer.Close();
 
+            _changesMade = false;
+
             MessageBox.Show($"Level saved as \"levels\\{fileName}\"", "Save", MessageBoxButton.OK,
                 MessageBoxImage.Information);
         }
 
         private void ButtonLoadLevel_OnClick(object sender, RoutedEventArgs e)
         {
-            if (_editorObjects.Count != 0)
+            if (_changesMade)
             {
                 var result = MessageBox.Show("Are you sure you want to discard this level?", "New Level",
                     MessageBoxButton.YesNo,
@@ -283,6 +289,7 @@ namespace KBS1.Windows
                         _startLoc = vector;
                     if (((ObjectListItem) ComboBoxObjects.SelectedItem).Id == "end")
                         _endLoc = vector;
+                    _changesMade = true;
                     break;
 
                 case MouseButton.Right:
@@ -308,6 +315,7 @@ namespace KBS1.Windows
                         _editorObjects.Remove(removable);
                     }
 
+                    _changesMade = true;
                     break;
             }
 
@@ -316,10 +324,19 @@ namespace KBS1.Windows
 
         private void ButtonSetBackground_OnClick(object sender, RoutedEventArgs e)
         {
+            if (TextBoxBackground.Text == "")
+            {
+                EditorCanvas.Background = new SolidColorBrush(Colors.DimGray);
+                _background = null;
+                _changesMade = true;
+                return;
+            }
+            
             try
             {
                 EditorCanvas.Background = ResourceManager.Instance.LoadImageBrush(TextBoxBackground.Text.Trim());
                 _background = TextBoxBackground.Text.Trim();
+                _changesMade = true;
             }
             catch (FileNotFoundException)
             {
