@@ -36,11 +36,11 @@ namespace KBS1.Collider
         }
 
         /// <summary>
-        /// TODO: Add proper summary
+        /// Checks whether this Collider collides with anything
         /// </summary>
-        /// <param name="vector"></param>
-        /// <param name="ignoreNonBlocking"></param>
-        /// <returns></returns>
+        /// <param name="vector">Vector representing an object</param>
+        /// <param name="ignoreNonBlocking">bool if hits non blocking objects</param>
+        /// <returns>bool collided</returns>
         public bool CollidesAny(Vector vector, bool ignoreNonBlocking)
         {
             var level = InstanceHelper.GetCurrentLevel();

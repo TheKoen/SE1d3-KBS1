@@ -13,7 +13,7 @@ namespace KBS1.Controller
         }
 
         /// <summary>
-        /// Checks if the finished/collides with the finish object
+        /// Checks if the finished/collides with the finish object. Called every gametick
         /// </summary>
         public override void Update()
         {

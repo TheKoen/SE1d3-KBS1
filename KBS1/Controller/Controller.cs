@@ -9,6 +9,10 @@ namespace KBS1.Controller
     {
         public GameObject Object { get; }
 
+        /// <summary>
+        /// Create Controller 
+        /// </summary>
+        /// <param name="gameObject">Object from the Controller</param>
         protected Controller(GameObject gameObject)
         {
             Object = gameObject;
@@ -16,6 +20,9 @@ namespace KBS1.Controller
             InstanceHelper.GetGameLoop().Subscribe(Update);
         }
 
+        /// <summary>
+        /// Destroy the object Controller and unsubsribe from GameLoop
+        /// </summary>
         public void Destroy()
         {
             InstanceHelper.GetGameLoop().Unsubscribe(Update);
@@ -50,7 +57,9 @@ namespace KBS1.Controller
 
             return false;
         }
-
+        /// <summary>
+        /// Update called every gameTick
+        /// </summary>
         public abstract void Update();
 
         /// <summary>

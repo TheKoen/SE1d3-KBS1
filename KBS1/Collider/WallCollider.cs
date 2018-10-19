@@ -10,6 +10,12 @@ namespace KBS1.Collider
         {
         }
 
+        /// <summary>
+        /// Collider of a wall object
+        /// </summary>
+        /// <param name="vector">Vector representing an object</param>
+        /// <param name="radius">radius player</param>
+        /// <returns>bool Collided</returns>
         public override bool Collides(Vector vector, int radius)
         {
             var playerSizeHorizontal = radius * 2.0;

@@ -71,9 +71,9 @@ namespace KBS1.LevelComponents
         }
 
         /// <summary>
-        /// TODO: Add proper summary
+        /// Loads selected level 
         /// </summary>
-        /// <returns></returns>
+        /// <returns>level</returns>
         public Level LoadSelectedLevel() => _level == null ? LoadFirstLevel() : LoadLevel(_level);
 
         /// <summary>

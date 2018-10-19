@@ -10,7 +10,14 @@ namespace KBS1.GameObjects
         public Collider.Collider Collider { get; set; }
         public Controller.Controller Controller { get; private set; }
 
-        //When making a new GameObject, a new SpriteRenderer will be made with it.
+        
+        /// <summary>
+        /// When making a new GameObject, a new SpriteRenderer en Collider wil be made.
+        /// </summary>
+        /// <param name="radius">radius gameobject</param>
+        /// <param name="image">image gameobject</param>
+        /// <param name="canvas">canvas gameobject is drawn on</param>
+        /// <param name="location">location of the gameobject</param>
         protected GameObject(int radius, Image image, Canvas canvas, Vector location)
         {
             Location = location;
@@ -19,7 +26,9 @@ namespace KBS1.GameObjects
             Collider = new Collider.Collider(radius, this);
         }
 
-        //abstract method for creating a new Controller for a GameObject depending on what kind of GameObject.
+        /// <summary>
+        /// abstract method for creating a new Controller for a GameObject depending on what kind of GameObject.
+        /// </summary>
         protected abstract Controller.Controller CreateController();
 
         /// <summary>
