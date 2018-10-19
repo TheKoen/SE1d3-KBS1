@@ -12,7 +12,7 @@ namespace KBS1.GameObjects
 
         
         /// <summary>
-        /// When making a new GameObject, a new SpriteRenderer en Collider wil be made.
+        /// When making a new GameObject, a new SpriteRenderer and Collider wil be made.
         /// </summary>
         /// <param name="radius">radius gameobject</param>
         /// <param name="image">image gameobject</param>
