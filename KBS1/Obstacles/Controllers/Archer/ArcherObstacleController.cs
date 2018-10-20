@@ -20,7 +20,7 @@ namespace KBS1.Obstacles.Controllers.Archer
         }
 
         /// <summary>
-        ///     TODO: Add proper summary
+        ///     Updates this controller
         /// </summary>
         public override void Update()
         {

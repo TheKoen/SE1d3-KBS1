@@ -36,7 +36,7 @@ namespace KBS1.Windows
         private void SubmitScoreButton_Click(object sender, RoutedEventArgs e)
         {
             var sss = new SubmitScoreScreen(Score);
-            //checking if the player already submitted his score
+            // checking if the player already submitted his score
             if (GameWindow.Instance.Loadedlevel.IsAlreadySubmitted == false)
             {
                 Canvas.SetLeft(sss, 0);
@@ -45,7 +45,7 @@ namespace KBS1.Windows
             }
             else
             {
-                //creating content for the label when the player clicks submit again
+                // creating content for the label when the player clicks submit again
                 AlreadySubmittedLabel.Content = "You've already submitted!";
             }
         }

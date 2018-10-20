@@ -29,7 +29,6 @@ namespace KBS1.LevelComponents
             GameWindow.Instance.DrawingPanel.Background = Brushes.DimGray;
 
             Objects = new List<GameObject>();
-//            ObstacleType.Init();
             LevelCollider = new LevelCollider();
             Score = new ScoreTracker();
             DescriptionHeight = 0;
@@ -68,7 +67,7 @@ namespace KBS1.LevelComponents
             Canvas.SetLeft(Scorelabel, 730);
             GameWindow.Instance.DrawingPanel.Children.Add(Scorelabel);
 
-            //checking where start location is so the player can spawn at the start location
+            // Checking where start location is so the player can spawn at the start location
             foreach (var child in objectsXml.ChildNodes)
             {
                 if (!(child is XmlNode)) continue;
@@ -206,6 +205,9 @@ namespace KBS1.LevelComponents
             return new Vector(int.Parse(split[0]), int.Parse(split[1]));
         }
 
+        /// <summary>
+        /// Updates the Scorelabel's Content property
+        /// </summary>
         public void UpdateScore()
         {
             Scorelabel.Content = Score.SecondsRunning;

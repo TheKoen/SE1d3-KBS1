@@ -58,7 +58,7 @@ namespace KBS1.Obstacles.Controllers
                     GameWindow.Instance.Sounds.Play("explode.mp3");
                 }
 
-                //explode if player is in range and timer is out of time
+                // explode if player is in range and timer is out of time
                 if (_wait == 0 && Object.Location.Distance(player) <= ExplosionRadius)
                 {
                     GameWindow.Instance.Lose();

@@ -1,4 +1,7 @@
-﻿using System;
+﻿#undef DEBUG
+//#define DEBUG
+
+using System;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
@@ -57,9 +60,11 @@ namespace KBS1.Player
             else if (Math.Abs(direction.X) > 0.01 || Math.Abs(direction.Y) > 0.01)
                 Object.Renderer.ChangeSprite(walk ? (BitmapImage) leftwalk.Source : (BitmapImage) left.Source);
 
+#if DEBUG
             // Lets the player noclip when NumPad 0 is pressed
             Object.Collider.Blocking = !Keyboard.IsKeyDown(Key.NumPad0);
-
+#endif
+            
             Move(direction.Normalize(Speed));
         }
     }

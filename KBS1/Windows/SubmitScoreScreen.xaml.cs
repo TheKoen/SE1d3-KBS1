@@ -24,28 +24,28 @@ namespace KBS1.Windows
 
         private async void SubmitButton_ClickAsync(object sender, RoutedEventArgs e)
         {
-            //checking if the player has filled in more than 1 character
+            // checking if the player has filled in more than 1 character
             if (TextName.Text.Length < 2)
             {
                 ErrorLabel.Content = "Please fill in more characters to submit.";
             }
             else
             {
-                //player submits
+                // player submits
                 GameWindow.Instance.Loadedlevel.IsAlreadySubmitted = true;
-                //showing message for player with "submitted"
+                // showing message for player with "submitted"
                 var messageBoxResult = MessageBox.Show(
                     "You submitted your score successfully! \nDo you want to see the highscores?",
                     "Your score: " + Score, MessageBoxButton.YesNo,
                     MessageBoxImage.Asterisk);
                 if (messageBoxResult.ToString() == "Yes") Process.Start("https://kbs.koenn.me/highscores.php");
 
-                //get the input from player
+                // get the input from player
                 Username = TextName.Text;
                 GameWindow.Instance.Loadedlevel.Score.PublishScore(Score, Username);
                 GameWindow.Instance.DrawingPanel.Children.Remove(this);
 
-                //creating new httpclient and send data with it
+                // creating new httpclient and send data with it
                 using (var client = new HttpClient())
                 {
                     var values = new Dictionary<string, string>

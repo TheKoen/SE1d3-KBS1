@@ -14,7 +14,7 @@ namespace KBS1.Obstacles.Controllers
         }
 
         /// <summary>
-        ///     TODO: Add proper summary
+        ///     Updates this controller
         /// </summary>
         public override void Update()
         {
@@ -26,11 +26,11 @@ namespace KBS1.Obstacles.Controllers
             var playerObject = FindPlayer();
             var player = playerObject.Location;
 
-            // Kijken of de speler in range is
+            // Check if player is in range
             if (player.Distance(Object.Location) > Range)
                 return;
 
-            // Move, eerst langste X of Y en die richting beweging
+            // Calculates the longest axial distance, then moves in that direction
             var xDistance = player.AxisDistance(Object.Location, true);
             var yDistance = player.AxisDistance(Object.Location, false);
 
@@ -41,7 +41,7 @@ namespace KBS1.Obstacles.Controllers
 
             GameWindow.Instance.Sounds.Play("robot-walk.mp3");
 
-            // Colliden met speler -> reset
+            // Resetting on Player collision
             if (Object.Collider.Collides(playerObject.Collider))
                 GameWindow.Instance.Lose();
         }

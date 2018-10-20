@@ -62,6 +62,10 @@ namespace KBS1.Misc
             Size = new Vector((int) (sprite.Width / 2), (int) (sprite.Height / 2));
         }
 
+        /// <summary>
+        ///     Rotates the sprite
+        /// </summary>
+        /// <param name="angle"></param>
         public void Rotate(double angle)
         {
             Sprite.RenderTransform = new RotateTransform(angle, Size.X, Size.Y);

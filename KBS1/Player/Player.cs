@@ -11,7 +11,6 @@ namespace KBS1.Player
         {
         }
 
-        //abstract method from abstract class GameObject to create a new Controller.
         /// <summary>
         ///     Initializes the controller for the Player object
         /// </summary>

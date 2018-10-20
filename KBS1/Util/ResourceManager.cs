@@ -130,11 +130,6 @@ namespace KBS1.Util
             return _imgBrushCache[path];
         }
 
-        public Stream LoadStream(string path)
-        {
-            return Assembly.GetManifestResourceStream("KBS1.chimes.wav");
-        }
-
         /// <summary>
         ///     Checks if a resource exists
         /// </summary>

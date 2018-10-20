@@ -18,6 +18,7 @@ namespace KBS1.Windows
 {
     public partial class LevelEditor : Window
     {
+        // Acts as the template for the XML level file
         private const string XmlRootTemplate =
             @"<?xml version=""1.0"" encoding=""utf-8""?>
 
@@ -32,12 +33,14 @@ namespace KBS1.Windows
 
 </level>";
 
+        // Acts as the template for the obstacle tag in the XML level file
         private const string XmlObstacleTemplate =
             @"        <obstacle name=""{0}"" radius=""24"" location=""{1:d}, {2:d}"" />
 ";
 
         private readonly List<EditorObjectRepresentation> _editorObjects = new List<EditorObjectRepresentation>();
 
+        // List of placable objects, will show up in the ComboBox for object selection
         private readonly List<ObjectListItem> _objectList = new List<ObjectListItem>
         {
             new ObjectListItem("WallObstacle", "Wall", "#wall.png"),
@@ -68,6 +71,9 @@ namespace KBS1.Windows
         }
 
 
+        /// <summary>
+        ///     Draws the grid on the back of the editor window
+        /// </summary>
         private void DrawGrid()
         {
             EditorCanvasGrid.Children.Clear();
@@ -91,6 +97,9 @@ namespace KBS1.Windows
             }
         }
 
+        /// <summary>
+        /// Draws all the object present in the current level
+        /// </summary>
         private void DrawObjects()
         {
             EditorCanvasObjects.Children.Clear();
@@ -109,6 +118,10 @@ namespace KBS1.Windows
             }
         }
 
+        /// <summary>
+        ///     Parses an XML level document for use in the editor window
+        /// </summary>
+        /// <param name="doc">The <see cref="XmlDocument" /> to load</param>
         private void ParseLevel(XmlDocument doc)
         {
             var root = doc.DocumentElement;
@@ -201,6 +214,7 @@ namespace KBS1.Windows
                 return;
             }
 
+            // Asks to replace existing file
             if (!TextBoxLevelName.Text.Trim().StartsWith("custom_"))
                 TextBoxLevelName.Text = "custom_" + TextBoxLevelName.Text.Trim();
             var fileName = TextBoxLevelName.Text.ToLower().Replace(" ", "_") + ".xml";
@@ -211,6 +225,7 @@ namespace KBS1.Windows
                 if (result != MessageBoxResult.Yes) return;
             }
 
+            // Creating a string of obstacle XML tags
             var obstacles = from o in _editorObjects
                 where o.Id != "start" && o.Id != "end"
                 orderby o.ZIndex
@@ -221,6 +236,7 @@ namespace KBS1.Windows
                     obstaclesString +=
                         string.Format(XmlObstacleTemplate, o.Id, (int) o.Location.X, (int) o.Location.Y));
 
+            // Generating the root XML level file contents
             var root = string.Format(XmlRootTemplate,
                 TextBoxLevelName.Text.StartsWith("custom_")
                     ? TextBoxLevelName.Text
@@ -229,6 +245,7 @@ namespace KBS1.Windows
                 (int) _startLoc.X, (int) _startLoc.Y,
                 (int) _endLoc.X, (int) _endLoc.Y,
                 obstaclesString);
+            // Creating the "levels" directory and saving the level there
             if (!Directory.Exists("levels"))
                 Directory.CreateDirectory("levels");
             var writer = File.CreateText($"levels\\{fileName}");
@@ -276,9 +293,11 @@ namespace KBS1.Windows
 
             switch (e.ChangedButton)
             {
+                // Left-click creates objects
                 case MouseButton.Left:
                     if (_startLoc != null && ((ObjectListItem) ComboBoxObjects.SelectedItem).Id == "start") return;
                     if (_endLoc != null && ((ObjectListItem) ComboBoxObjects.SelectedItem).Id == "end") return;
+                    // Aligning placed objects to grid
                     if (CheckBoxEnforceGrid.IsChecked ?? false)
                         vector = new Vector(
                             (int) (vector.X / NumericGridWidth.Value) * NumericGridWidth.Value +
@@ -286,6 +305,7 @@ namespace KBS1.Windows
                             (int) (vector.Y / NumericGridHeight.Value) * NumericGridHeight.Value +
                             NumericGridHeight.Value / 2.0);
 
+                    // Creates the representation object and sets some variables
                     var newObject = new EditorObjectRepresentation(
                         vector,
                         ((ObjectListItem) ComboBoxObjects.SelectedItem).Id,
@@ -301,7 +321,9 @@ namespace KBS1.Windows
                     _changesMade = true;
                     break;
 
+                // Right-click removes objects
                 case MouseButton.Right:
+                    // Finding the newest object to remove
                     EditorObjectRepresentation removable = null;
                     foreach (var o in _editorObjects)
                     {
@@ -317,6 +339,7 @@ namespace KBS1.Windows
 
                     if (removable != null)
                     {
+                        // Checking for start or end object
                         if (removable.Id == "start")
                             _startLoc = null;
                         if (removable.Id == "end")
