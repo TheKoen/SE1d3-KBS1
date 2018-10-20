@@ -5,14 +5,8 @@ namespace KBS1.GameObjects
 {
     public abstract class GameObject : ILocatable
     {
-        public Vector Location { get; set; }
-        public SpriteRenderer Renderer { get; }
-        public Collider.Collider Collider { get; set; }
-        public Controller.Controller Controller { get; private set; }
-
-        
         /// <summary>
-        /// When making a new GameObject, a new SpriteRenderer and Collider wil be made.
+        ///     When making a new GameObject, a new SpriteRenderer and Collider wil be made.
         /// </summary>
         /// <param name="radius">radius gameobject</param>
         /// <param name="image">image gameobject</param>
@@ -26,13 +20,18 @@ namespace KBS1.GameObjects
             Collider = new Collider.Collider(radius, this);
         }
 
+        public SpriteRenderer Renderer { get; }
+        public Collider.Collider Collider { get; set; }
+        public Controller.Controller Controller { get; private set; }
+        public Vector Location { get; set; }
+
         /// <summary>
-        /// abstract method for creating a new Controller for a GameObject depending on what kind of GameObject.
+        ///     abstract method for creating a new Controller for a GameObject depending on what kind of GameObject.
         /// </summary>
         protected abstract Controller.Controller CreateController();
 
         /// <summary>
-        /// Initializes the controller for the game
+        ///     Initializes the controller for the game
         /// </summary>
         public void Init()
         {

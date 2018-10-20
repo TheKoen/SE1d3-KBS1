@@ -1,8 +1,6 @@
-﻿using System;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using KBS1.Misc;
-using KBS1.Player;
 using KBS1.Util;
 
 namespace KBS1.Obstacles.Controllers
@@ -13,21 +11,21 @@ namespace KBS1.Obstacles.Controllers
         private const int Range = 150;
         private const int ExplosionRadius = 100;
         private const int DelayCreeper = 100;
-        private int _wait;
-        private bool _red;
-        private int step;
-        private bool walkSprite;
-        private readonly Image idle = ResourceManager.Instance.LoadImage("#bomb.png");
-        private readonly Image walk = ResourceManager.Instance.LoadImage("#bombwalk.png");
         private readonly Image explode = ResourceManager.Instance.LoadImage("#bombexplode.png");
         private readonly Image explosion = ResourceManager.Instance.LoadImage("#explosion.png");
+        private readonly Image idle = ResourceManager.Instance.LoadImage("#bomb.png");
+        private readonly Image walk = ResourceManager.Instance.LoadImage("#bombwalk.png");
+        private bool _red;
+        private int _wait;
+        private int step;
+        private bool walkSprite;
 
         public CreeperObstacleController(ILocatable locatable, Obstacle obstacle) : base(locatable, obstacle)
         {
         }
 
         /// <summary>
-        /// Updates the creeper location and sprite every gametick
+        ///     Updates the creeper location and sprite every gametick
         /// </summary>
         public override void Update()
         {
@@ -105,10 +103,7 @@ namespace KBS1.Obstacles.Controllers
                 Object.Renderer.ChangeSprite((BitmapImage) idle.Source);
 
             // start the delay of the explostion if the distance of the player is explosionRadius/2.
-            if (Object.Location.Distance(playerObject.Location) < ExplosionRadius / 2.0)
-            {
-                _wait = DelayCreeper;
-            }
+            if (Object.Location.Distance(playerObject.Location) < ExplosionRadius / 2.0) _wait = DelayCreeper;
         }
     }
 }

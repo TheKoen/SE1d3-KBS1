@@ -18,11 +18,14 @@ namespace KBS1.Obstacles.Controllers.Archer
         }
 
         /// <summary>
-        /// TODO: Add proper summary
+        ///     TODO: Add proper summary
         /// </summary>
         public override void Update()
         {
-            if (_lifetime > 0) _lifetime--;
+            if (_lifetime > 0)
+            {
+                _lifetime--;
+            }
             else
             {
                 GameWindow.Instance.Loadedlevel.Objects.Remove(Object);
@@ -42,10 +45,7 @@ namespace KBS1.Obstacles.Controllers.Archer
                 return;
             }
 
-            if (Object.Collider.Collides(player.Collider))
-            {
-                GameWindow.Instance.Lose();
-            }
+            if (Object.Collider.Collides(player.Collider)) GameWindow.Instance.Lose();
         }
     }
 }

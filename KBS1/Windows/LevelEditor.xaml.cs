@@ -11,7 +11,6 @@ using System.Windows.Shapes;
 using System.Xml;
 using KBS1.LevelComponents;
 using KBS1.Misc;
-using KBS1.Obstacles;
 using KBS1.Util;
 using Vector = KBS1.Misc.Vector;
 
@@ -37,6 +36,8 @@ namespace KBS1.Windows
             @"        <obstacle name=""{0}"" radius=""24"" location=""{1:d}, {2:d}"" />
 ";
 
+        private readonly List<EditorObjectRepresentation> _editorObjects = new List<EditorObjectRepresentation>();
+
         private readonly List<ObjectListItem> _objectList = new List<ObjectListItem>
         {
             new ObjectListItem("WallObstacle", "Wall", "#wall.png"),
@@ -49,12 +50,11 @@ namespace KBS1.Windows
             new ObjectListItem("TrapObstacle", "Trap", "#trap.png")
         };
 
-        private readonly List<EditorObjectRepresentation> _editorObjects = new List<EditorObjectRepresentation>();
+        private string _background;
 
-        private bool _changesMade = false;
-        private string _background = null;
-        private Vector _startLoc = null;
-        private Vector _endLoc = null;
+        private bool _changesMade;
+        private Vector _endLoc;
+        private Vector _startLoc;
 
         public LevelEditor()
         {
@@ -78,18 +78,16 @@ namespace KBS1.Windows
             var rows = (int) Math.Floor(EditorCanvas.ActualHeight / height);
 
             for (var y = 0; y < rows; ++y)
+            for (var x = 0; x < columns; ++x)
             {
-                for (var x = 0; x < columns; ++x)
-                {
-                    var rect = new Rectangle();
-                    rect.Width = width;
-                    rect.Height = height;
-                    rect.Stroke = new SolidColorBrush(Colors.Gray);
-                    rect.StrokeThickness = 1;
-                    Canvas.SetTop(rect, y * height);
-                    Canvas.SetLeft(rect, x * width);
-                    EditorCanvasGrid.Children.Add(rect);
-                }
+                var rect = new Rectangle();
+                rect.Width = width;
+                rect.Height = height;
+                rect.Stroke = new SolidColorBrush(Colors.Gray);
+                rect.StrokeThickness = 1;
+                Canvas.SetTop(rect, y * height);
+                Canvas.SetLeft(rect, x * width);
+                EditorCanvasGrid.Children.Add(rect);
             }
         }
 
@@ -136,7 +134,7 @@ namespace KBS1.Windows
             _startLoc = null;
             _endLoc = null;
             // Parsing objects
-            foreach (object child in objectsXml.ChildNodes)
+            foreach (var child in objectsXml.ChildNodes)
             {
                 if (!(child is XmlNode)) continue;
                 var childXml = (XmlNode) child;
@@ -155,7 +153,7 @@ namespace KBS1.Windows
             }
 
             _changesMade = false;
-            
+
             DrawObjects();
         }
 
@@ -331,7 +329,7 @@ namespace KBS1.Windows
                 _changesMade = true;
                 return;
             }
-            
+
             try
             {
                 EditorCanvas.Background = ResourceManager.Instance.LoadImageBrush(TextBoxBackground.Text.Trim());
@@ -348,12 +346,6 @@ namespace KBS1.Windows
 
         private class ObjectListItem
         {
-            public string Id { get; set; }
-            public string Name { get; set; }
-            public string ImgUri { get; set; }
-            public Uri Img { get; set; }
-            public ImageBrush ImageBrush { get; private set; }
-
             public ObjectListItem(string id, string name, string img)
             {
                 Id = id;
@@ -362,6 +354,12 @@ namespace KBS1.Windows
                 Img = ((BitmapImage) ImageBrush.ImageSource).UriSource;
                 ImgUri = img;
             }
+
+            public string Id { get; }
+            public string Name { get; }
+            public string ImgUri { get; }
+            public Uri Img { get; }
+            public ImageBrush ImageBrush { get; }
         }
     }
 }

@@ -9,10 +9,7 @@ namespace KBS1.Util
 
         public static void Catch(Exception exception)
         {
-            if (Debug)
-            {
-                throw exception;
-            }
+            if (Debug) throw exception;
 
             MessageBox.Show($"{exception.Message}", "Error");
             GameWindow.Instance.LoadHome();

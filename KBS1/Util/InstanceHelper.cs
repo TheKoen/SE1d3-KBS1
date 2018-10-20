@@ -4,7 +4,7 @@ namespace KBS1.Util
 {
     public class InstanceHelper
     {
-        private static bool UnitTesting = false;
+        private static bool UnitTesting;
         private static Level Level;
         public static Gameloop Loop;
 

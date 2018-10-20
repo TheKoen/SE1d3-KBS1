@@ -1,17 +1,17 @@
-﻿using KBS1.Exceptions.ResourceManager;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
 using System.Xml;
+using KBS1.Exceptions.ResourceManager;
 using KBS1.Util;
 
 namespace KBS1.Windows
 {
     /// <summary>
-    /// Interaction logic for OptionMenu.xaml
+    ///     Interaction logic for OptionMenu.xaml
     /// </summary>
     public partial class OptionMenu
     {
@@ -21,9 +21,9 @@ namespace KBS1.Windows
         public static Key Right = Key.D;
         public static Key Pause = Key.Escape;
         public static Key Retry = Key.R;
-        public string Path = "Configuration.xml";
 
         private readonly SortedDictionary<string, XmlDocument> _xmlCache = new SortedDictionary<string, XmlDocument>();
+        public string Path = "Configuration.xml";
 
         public OptionMenu()
         {
@@ -123,20 +123,20 @@ namespace KBS1.Windows
             else throw new ResourceNotFoundException(Path);
 
             var objectsXml = document.SelectSingleNode("//player/buttons");
-            foreach (object child in objectsXml.ChildNodes)
+            foreach (var child in objectsXml.ChildNodes)
             {
                 if (!(child is XmlNode)) continue;
                 var childXml = (XmlNode) child;
-                if (childXml.LocalName == "MoveUp") Key.TryParse(childXml.Attributes["Key"].InnerText, out Up);
-                if (childXml.LocalName == "MoveDown") Key.TryParse(childXml.Attributes["Key"].InnerText, out Down);
-                if (childXml.LocalName == "MoveLeft") Key.TryParse(childXml.Attributes["Key"].InnerText, out Left);
-                if (childXml.LocalName == "MoveRight") Key.TryParse(childXml.Attributes["Key"].InnerText, out Right);
-                if (childXml.LocalName == "Pause") Key.TryParse(childXml.Attributes["Key"].InnerText, out Pause);
-                if (childXml.LocalName == "Retry") Key.TryParse(childXml.Attributes["Key"].InnerText, out Retry);
+                if (childXml.LocalName == "MoveUp") Enum.TryParse(childXml.Attributes["Key"].InnerText, out Up);
+                if (childXml.LocalName == "MoveDown") Enum.TryParse(childXml.Attributes["Key"].InnerText, out Down);
+                if (childXml.LocalName == "MoveLeft") Enum.TryParse(childXml.Attributes["Key"].InnerText, out Left);
+                if (childXml.LocalName == "MoveRight") Enum.TryParse(childXml.Attributes["Key"].InnerText, out Right);
+                if (childXml.LocalName == "Pause") Enum.TryParse(childXml.Attributes["Key"].InnerText, out Pause);
+                if (childXml.LocalName == "Retry") Enum.TryParse(childXml.Attributes["Key"].InnerText, out Retry);
             }
         }
 
-        public void SaveChanges(Key Up, Key Down, Key Left, Key Right, Key Pause, Key Retry, String Path)
+        public void SaveChanges(Key Up, Key Down, Key Left, Key Right, Key Pause, Key Retry, string Path)
         {
             var document = new XmlDocument();
             var streamInfo = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\" + Path;
@@ -159,8 +159,8 @@ namespace KBS1.Windows
 
         private void SetToDefault_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure?", "Delete Confirmation",
-                System.Windows.MessageBoxButton.YesNo);
+            var messageBoxResult = MessageBox.Show("Are you sure?", "Delete Confirmation",
+                MessageBoxButton.YesNo);
             if (messageBoxResult == MessageBoxResult.Yes)
             {
                 SaveChanges(Key.W, Key.S, Key.A, Key.D, Key.Escape, Key.R, Path);

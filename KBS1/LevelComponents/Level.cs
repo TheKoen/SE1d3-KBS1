@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Xml;
@@ -9,29 +10,18 @@ using KBS1.Misc;
 using KBS1.Obstacles;
 using KBS1.Util;
 using KBS1.Windows;
+using Vector = KBS1.Misc.Vector;
 
 namespace KBS1.LevelComponents
 {
     public class Level
     {
-        private Brush Background { get; }
-        private static double DescriptionHeight { get; set; }
-        private List<string> MadeObjects { get; set; } = new List<string>();
-
-        public bool IsAlreadySubmitted;
-        public string Name { get; }
-        public Difficulty Difficulty { get; set; }
-        public LevelCollider LevelCollider { get; set; }
-        public List<GameObject> Objects { get; set; }
-        public ScoreTracker Score { get; }
-        private Label Scorelabel { get; }
-
         private static readonly Random Rand = new Random();
 
-        public event EventHandler Initialized;
+        public bool IsAlreadySubmitted;
 
         /// <summary>
-        /// Uses an XmlDocument to load a level and it's properties
+        ///     Uses an XmlDocument to load a level and it's properties
         /// </summary>
         /// <param name="xmlDocument">XML document containing a level</param>
         public Level(XmlDocument xmlDocument)
@@ -60,7 +50,7 @@ namespace KBS1.LevelComponents
             if (objectsXml == null)
                 throw new XmlException("Level missing objects node");
             // Parsing objects
-            foreach (object child in objectsXml.ChildNodes)
+            foreach (var child in objectsXml.ChildNodes)
             {
                 if (!(child is XmlNode)) continue;
                 var childXml = (XmlNode) child;
@@ -79,10 +69,10 @@ namespace KBS1.LevelComponents
             GameWindow.Instance.DrawingPanel.Children.Add(Scorelabel);
 
             //checking where start location is so the player can spawn at the start location
-            foreach (object child in objectsXml.ChildNodes)
+            foreach (var child in objectsXml.ChildNodes)
             {
                 if (!(child is XmlNode)) continue;
-                XmlNode childXml = (XmlNode) child;
+                var childXml = (XmlNode) child;
                 if (childXml.LocalName == "start")
                 {
                     var location = ParseLocation(childXml.Attributes["location"].InnerText);
@@ -95,7 +85,7 @@ namespace KBS1.LevelComponents
             {
                 Height = 600,
                 Width = 5,
-                BorderThickness = new System.Windows.Thickness(5),
+                BorderThickness = new Thickness(5),
                 BorderBrush = new SolidColorBrush(Colors.Black)
             };
             Canvas.SetLeft(border, 782);
@@ -104,12 +94,24 @@ namespace KBS1.LevelComponents
 
 
         /// <summary>
-        /// FOR UNIT TESTING ONLY!
-        /// Creates an empty Level.
+        ///     FOR UNIT TESTING ONLY!
+        ///     Creates an empty Level.
         /// </summary>
         public Level()
         {
         }
+
+        private Brush Background { get; }
+        private static double DescriptionHeight { get; set; }
+        private List<string> MadeObjects { get; } = new List<string>();
+        public string Name { get; }
+        public Difficulty Difficulty { get; set; }
+        public LevelCollider LevelCollider { get; set; }
+        public List<GameObject> Objects { get; set; }
+        public ScoreTracker Score { get; }
+        private Label Scorelabel { get; }
+
+        public event EventHandler Initialized;
 
         public void SubscribeInitialized(EventHandler source)
         {
@@ -117,7 +119,7 @@ namespace KBS1.LevelComponents
         }
 
         /// <summary>
-        /// Creates a start point in the level
+        ///     Creates a start point in the level
         /// </summary>
         /// <param name="node">XML node representing the start point</param>
         private void CreateStartPoint(XmlNode node)
@@ -133,7 +135,7 @@ namespace KBS1.LevelComponents
         }
 
         /// <summary>
-        /// Creates an end point in the level
+        ///     Creates an end point in the level
         /// </summary>
         /// <param name="node">XML node representing the end point</param>
         private void CreateEndPoint(XmlNode node)
@@ -149,7 +151,7 @@ namespace KBS1.LevelComponents
         }
 
         /// <summary>
-        /// Creates an obstacle in the level
+        ///     Creates an obstacle in the level
         /// </summary>
         /// <param name="node">XML node representing the obstacle</param>
         private void CreateObstacle(XmlNode node)
@@ -170,7 +172,7 @@ namespace KBS1.LevelComponents
         }
 
         /// <summary>
-        /// Creates a description
+        ///     Creates a description
         /// </summary>
         /// <param name="name">String containing name</param>
         /// <param name="source">ImageSource containing the source of an image</param>
@@ -192,16 +194,13 @@ namespace KBS1.LevelComponents
         }
 
         /// <summary>
-        /// Parses location strings used in levels
+        ///     Parses location strings used in levels
         /// </summary>
         /// <param name="locationString">String containing a parsable location</param>
         /// <returns>Vector created using the parsable location</returns>
         public static Vector ParseLocation(string locationString)
         {
-            if (locationString.Equals("random"))
-            {
-                return new Vector(Rand.Next(1, 700), Rand.Next(1, 500));
-            }
+            if (locationString.Equals("random")) return new Vector(Rand.Next(1, 700), Rand.Next(1, 500));
 
             var split = locationString.Split(',');
             return new Vector(int.Parse(split[0]), int.Parse(split[1]));

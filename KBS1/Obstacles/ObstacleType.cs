@@ -12,9 +12,6 @@ namespace KBS1.Obstacles
     {
         public static readonly List<ObstacleType> Types = new List<ObstacleType>();
 
-        public int CollisionRadius { get; }
-        public Image Sprite { get; }
-
         private readonly IControllerCreator _creator;
 
         public ObstacleType(IControllerCreator creator, int collisionRadius, Image sprite)
@@ -24,17 +21,23 @@ namespace KBS1.Obstacles
             Sprite = sprite;
         }
 
-        /// <summary>
-        /// Creates a new <see cref="ObstacleController"/> for this <see cref="ObstacleType"/>
-        /// </summary>
-        /// <returns>ObstacleController for this ObstacleType</returns>
-        public Controller.Controller CreateController(Obstacle obstacle) => _creator.Create(obstacle);
+        public int CollisionRadius { get; }
+        public Image Sprite { get; }
 
         /// <summary>
-        /// Attempts to find an <see cref="ObstacleType"/> by it's name
+        ///     Creates a new <see cref="ObstacleController" /> for this <see cref="ObstacleType" />
+        /// </summary>
+        /// <returns>ObstacleController for this ObstacleType</returns>
+        public Controller.Controller CreateController(Obstacle obstacle)
+        {
+            return _creator.Create(obstacle);
+        }
+
+        /// <summary>
+        ///     Attempts to find an <see cref="ObstacleType" /> by it's name
         /// </summary>
         /// <param name="name">The name to find</param>
-        /// <returns>The found <see cref="ObstacleType"/></returns>
+        /// <returns>The found <see cref="ObstacleType" /></returns>
         /// <exception cref="NullReferenceException"></exception>
         public static ObstacleType Find(string name)
         {
@@ -49,7 +52,7 @@ namespace KBS1.Obstacles
         }
 
         /// <summary>
-        /// Initializes all <see cref="ObstacleType"/>s
+        ///     Initializes all <see cref="ObstacleType" />s
         /// </summary>
         public static void Init()
         {
@@ -69,32 +72,50 @@ namespace KBS1.Obstacles
 
         private class RunnerObstacle : IControllerCreator
         {
-            public Controller.Controller Create(Obstacle obstacle) => new RunnerObstacleController(obstacle, obstacle);
+            public Controller.Controller Create(Obstacle obstacle)
+            {
+                return new RunnerObstacleController(obstacle, obstacle);
+            }
         }
 
         private class TrapObstacle : IControllerCreator
         {
-            public Controller.Controller Create(Obstacle obstacle) => new TrapObstacleController(obstacle, obstacle);
+            public Controller.Controller Create(Obstacle obstacle)
+            {
+                return new TrapObstacleController(obstacle, obstacle);
+            }
         }
 
         private class WallObstacle : IControllerCreator
         {
-            public Controller.Controller Create(Obstacle obstacle) => new WallObstacleController(obstacle, obstacle);
+            public Controller.Controller Create(Obstacle obstacle)
+            {
+                return new WallObstacleController(obstacle, obstacle);
+            }
         }
 
         private class TreeObstacle : IControllerCreator
         {
-            public Controller.Controller Create(Obstacle obstacle) => new TreeObstacleController(obstacle, obstacle);
+            public Controller.Controller Create(Obstacle obstacle)
+            {
+                return new TreeObstacleController(obstacle, obstacle);
+            }
         }
 
         private class ArcherObstacle : IControllerCreator
         {
-            public Controller.Controller Create(Obstacle obstacle) => new ArcherObstacleController(obstacle, obstacle);
+            public Controller.Controller Create(Obstacle obstacle)
+            {
+                return new ArcherObstacleController(obstacle, obstacle);
+            }
         }
 
         private class CreeperObstacle : IControllerCreator
         {
-            public Controller.Controller Create(Obstacle obstacle) => new CreeperObstacleController(obstacle, obstacle);
+            public Controller.Controller Create(Obstacle obstacle)
+            {
+                return new CreeperObstacleController(obstacle, obstacle);
+            }
         }
     }
 }

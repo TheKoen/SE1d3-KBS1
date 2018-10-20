@@ -2,8 +2,6 @@
 {
     public class ObstacleInfo
     {
-        public string Description { get; }
-
         public ObstacleInfo(string type)
         {
             switch (type)
@@ -25,5 +23,7 @@
                     break;
             }
         }
+
+        public string Description { get; }
     }
 }

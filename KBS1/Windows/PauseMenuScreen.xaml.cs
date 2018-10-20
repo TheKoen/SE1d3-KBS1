@@ -3,7 +3,7 @@
 namespace KBS1.Windows
 {
     /// <summary>
-    /// Interaction logic for PauseMenuScreen.xaml
+    ///     Interaction logic for PauseMenuScreen.xaml
     /// </summary>
     public partial class PauseMenuScreen
     {

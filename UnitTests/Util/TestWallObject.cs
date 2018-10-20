@@ -1,5 +1,4 @@
-﻿using KBS1;
-using KBS1.Collider;
+﻿using KBS1.Collider;
 using KBS1.Misc;
 
 namespace UnitTests.Util

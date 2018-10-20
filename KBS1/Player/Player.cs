@@ -13,9 +13,12 @@ namespace KBS1.Player
 
         //abstract method from abstract class GameObject to create a new Controller.
         /// <summary>
-        /// Initializes the controller for the Player object
+        ///     Initializes the controller for the Player object
         /// </summary>
         /// <returns>The controller for the Player object</returns>
-        protected override Controller.Controller CreateController() => new PlayerController(this);
+        protected override Controller.Controller CreateController()
+        {
+            return new PlayerController(this);
+        }
     }
 }

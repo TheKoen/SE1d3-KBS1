@@ -13,14 +13,14 @@ namespace KBS1.Obstacles.Controllers.Archer
         private static readonly ObstacleType ARROW =
             new ObstacleType(new ArrowObstacle(), 5, ResourceManager.Instance.LoadImage("#arrow.png"));
 
-        private int _wait = 0;
+        private int _wait;
 
         public ArcherObstacleController(ILocatable locatable, Obstacle obstacle) : base(locatable, obstacle)
         {
         }
 
         /// <summary>
-        /// TODO: Add proper summary
+        ///     TODO: Add proper summary
         /// </summary>
         public override void Update()
         {
@@ -64,7 +64,6 @@ namespace KBS1.Obstacles.Controllers.Archer
 
         private class Arrow : Obstacle
         {
-            public Vector Direction { get; }
             public readonly double angle;
 
             public Arrow(ObstacleType type, Canvas canvas, Vector location, Vector direction, double angle) : base(type,
@@ -74,6 +73,8 @@ namespace KBS1.Obstacles.Controllers.Archer
                 Direction = direction;
                 this.angle = angle;
             }
+
+            public Vector Direction { get; }
         }
 
         public class ArrowObstacle : IControllerCreator

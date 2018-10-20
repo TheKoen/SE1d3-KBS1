@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KBS1.Exceptions.Level
 {
-    class LevelParseException : Exception
+    internal class LevelParseException : Exception
     {
         public LevelParseException()
         {

@@ -10,10 +10,10 @@ namespace KBS1.Util
 {
     public class SoundManager
     {
-        private readonly Dictionary<string, MediaPlayer> Sounds = new Dictionary<string, MediaPlayer>();
         private readonly string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Sound\\";
+        private readonly Dictionary<string, MediaPlayer> Sounds = new Dictionary<string, MediaPlayer>();
 
-        private int timeout = 0;
+        private readonly int timeout;
 
         public SoundManager()
         {
@@ -23,16 +23,10 @@ namespace KBS1.Util
             var sounds = ResourceManager.Instance.LoadXmlDocument("#Sound/Sounds.xml");
             var root = sounds.DocumentElement;
 
-            if (root == null)
-            {
-                throw new XmlException("Missing root note");
-            }
+            if (root == null) throw new XmlException("Missing root note");
 
             var soundsNode = sounds.SelectSingleNode("//sounds");
-            if (soundsNode == null)
-            {
-                throw new XmlException("Levels file missing levels node");
-            }
+            if (soundsNode == null) throw new XmlException("Levels file missing levels node");
 
             foreach (var child in soundsNode.ChildNodes)
             {
@@ -45,10 +39,7 @@ namespace KBS1.Util
                 while (!mediaplayer.HasAudio && timeout < 500)
                 {
                     timeout++;
-                    if (timeout >= 500)
-                    {
-                        throw new FileNotFoundException($"Sound {value} could not be found!");
-                    }
+                    if (timeout >= 500) throw new FileNotFoundException($"Sound {value} could not be found!");
 
                     Thread.Sleep(10);
                 }
@@ -65,19 +56,15 @@ namespace KBS1.Util
         }
 
         /// <summary>
-        /// Plays the sound with the specific name 
+        ///     Plays the sound with the specific name
         /// </summary>
         /// <param name="trackName"></param>
         public void Play(string trackName)
         {
             if (Sounds.TryGetValue(trackName, out var player))
-            {
                 player.Play();
-            }
             else
-            {
                 throw new FileNotFoundException("Sound could not be found!");
-            }
         }
 
         public void SetLoopingPlay(string trackName)
@@ -96,13 +83,9 @@ namespace KBS1.Util
         public void Stop(string trackName)
         {
             if (Sounds.TryGetValue(trackName, out var player))
-            {
                 player.Stop();
-            }
             else
-            {
                 throw new FileNotFoundException("Sound could not be found!");
-            }
         }
     }
 }

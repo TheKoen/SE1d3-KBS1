@@ -14,7 +14,7 @@ namespace KBS1.Obstacles.Controllers
         }
 
         /// <summary>
-        /// TODO: Add proper summary
+        ///     TODO: Add proper summary
         /// </summary>
         public override void Update()
         {

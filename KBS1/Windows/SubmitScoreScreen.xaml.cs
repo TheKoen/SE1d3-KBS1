@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Windows;
 using System.Windows.Controls;
@@ -7,12 +8,12 @@ using System.Windows.Controls;
 namespace KBS1.Windows
 {
     /// <summary>
-    /// Interaction logic for SubmitScoreScreen.xaml
+    ///     Interaction logic for SubmitScoreScreen.xaml
     /// </summary>
     public partial class SubmitScoreScreen : UserControl
     {
+        private readonly double Score;
         private string Username;
-        private double Score;
 
         public SubmitScoreScreen(double s)
         {
@@ -33,14 +34,11 @@ namespace KBS1.Windows
                 //player submits
                 GameWindow.Instance.Loadedlevel.IsAlreadySubmitted = true;
                 //showing message for player with "submitted"
-                System.Windows.MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show(
+                var messageBoxResult = MessageBox.Show(
                     "You submitted your score successfully! \nDo you want to see the highscores?",
-                    "Your score: " + Score, System.Windows.MessageBoxButton.YesNo,
-                    System.Windows.MessageBoxImage.Asterisk);
-                if (messageBoxResult.ToString() == "Yes")
-                {
-                    System.Diagnostics.Process.Start("https://kbs.koenn.me/highscores.php");
-                }
+                    "Your score: " + Score, MessageBoxButton.YesNo,
+                    MessageBoxImage.Asterisk);
+                if (messageBoxResult.ToString() == "Yes") Process.Start("https://kbs.koenn.me/highscores.php");
 
                 //get the input from player
                 Username = TextName.Text;

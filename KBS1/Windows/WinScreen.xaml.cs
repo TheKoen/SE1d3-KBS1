@@ -4,16 +4,16 @@ using System.Windows.Controls;
 namespace KBS1.Windows
 {
     /// <summary>
-    /// Interaction logic for WinScreen.xaml
+    ///     Interaction logic for WinScreen.xaml
     /// </summary>
     public partial class WinScreen
     {
-        private double Score;
+        private readonly double Score;
 
         public WinScreen(double score)
         {
             InitializeComponent();
-            this.Score = score;
+            Score = score;
             ScoreLabel.Content = "Your score: " + Score;
         }
 
@@ -35,7 +35,7 @@ namespace KBS1.Windows
 
         private void SubmitScoreButton_Click(object sender, RoutedEventArgs e)
         {
-            SubmitScoreScreen sss = new SubmitScoreScreen(Score);
+            var sss = new SubmitScoreScreen(Score);
             //checking if the player already submitted his score
             if (GameWindow.Instance.Loadedlevel.IsAlreadySubmitted == false)
             {

@@ -2,7 +2,7 @@
 
 namespace KBS1.Obstacles.Controllers
 {
-    class TreeObstacleController : ObstacleController
+    internal class TreeObstacleController : ObstacleController
     {
         public TreeObstacleController(ILocatable locatable, Obstacle obstacle) : base(locatable, obstacle)
         {

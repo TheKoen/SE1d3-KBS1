@@ -7,10 +7,8 @@ namespace KBS1.Controller
 {
     public abstract class Controller
     {
-        public GameObject Object { get; }
-
         /// <summary>
-        /// Create Controller 
+        ///     Create Controller
         /// </summary>
         /// <param name="gameObject">Object from the Controller</param>
         protected Controller(GameObject gameObject)
@@ -20,8 +18,10 @@ namespace KBS1.Controller
             InstanceHelper.GetGameLoop().Subscribe(Update);
         }
 
+        public GameObject Object { get; }
+
         /// <summary>
-        /// Destroy the object Controller and unsubsribe from GameLoop
+        ///     Destroy the object Controller and unsubsribe from GameLoop
         /// </summary>
         public void Destroy()
         {
@@ -29,7 +29,7 @@ namespace KBS1.Controller
         }
 
         /// <summary>
-        /// Move the GameObject using a Vector
+        ///     Move the GameObject using a Vector
         /// </summary>
         /// <param name="vector">Movement Vector</param>
         public bool Move(Vector vector)
@@ -57,23 +57,22 @@ namespace KBS1.Controller
 
             return false;
         }
+
         /// <summary>
-        /// Update called every gameTick
+        ///     Update called every gameTick
         /// </summary>
         public abstract void Update();
 
         /// <summary>
-        /// Gets the Player object in the current level
+        ///     Gets the Player object in the current level
         /// </summary>
         /// <returns>The Player object</returns>
         public static GameObject FindPlayer()
         {
             var level = InstanceHelper.GetCurrentLevel();
             foreach (var gameObject in level.Objects)
-            {
                 if (gameObject is Player.Player)
                     return gameObject;
-            }
 
             throw new NullReferenceException("Level does not contain a player");
         }

@@ -5,16 +5,16 @@ namespace KBS1.Misc
 {
     public class ScoreTracker
     {
-        public double SecondsRunning { get; private set; }
-        public int Ticks { get; set; }
-
         public ScoreTracker()
         {
             InstanceHelper.GetGameLoop().Subscribe(Update);
         }
 
+        public double SecondsRunning { get; private set; }
+        public int Ticks { get; set; }
+
         /// <summary>
-        /// Method called every gameTick eddits the the score of the level
+        ///     Method called every gameTick eddits the the score of the level
         /// </summary>
         public void Update()
         {
@@ -25,7 +25,7 @@ namespace KBS1.Misc
 
 
         /// <summary>
-        /// Calulates the elapsed amount of seconds of the game
+        ///     Calulates the elapsed amount of seconds of the game
         /// </summary>
         /// <returns>seconds in double</returns>
         public double GetSeconds()

@@ -1,4 +1,3 @@
-using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,11 +8,16 @@ namespace KBS1.Windows
     {
         public delegate void ValueChangedEventHandler(object source, PropertyChangedEventArgs e);
 
-        public event ValueChangedEventHandler ValueChanged;
+        private int _maxValue = int.MaxValue;
+        private int _minValue = int.MinValue;
 
         private int _value;
-        private int _minValue = int.MinValue;
-        private int _maxValue = int.MaxValue;
+
+
+        public NumericUpDownControl()
+        {
+            InitializeComponent();
+        }
 
         public int Value
         {
@@ -51,14 +55,12 @@ namespace KBS1.Windows
 
         public int StepSize { get; set; } = 1;
 
+        public event ValueChangedEventHandler ValueChanged;
 
-        public NumericUpDownControl()
+        private int VerifyValue(string value)
         {
-            InitializeComponent();
+            return int.TryParse(value, out var output) ? output : Value;
         }
-
-        private int VerifyValue(string value) =>
-            int.TryParse(value, out var output) ? output : Value;
 
 
         private void TextBoxValue_OnTextChanged(object sender, TextChangedEventArgs e)

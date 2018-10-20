@@ -7,8 +7,9 @@ namespace KBS1.Collider
         public LevelCollider() : base(0, null)
         {
         }
+
         /// <summary>
-        /// Checks if player colides with the level
+        ///     Checks if player colides with the level
         /// </summary>
         /// <param name="location">location player</param>
         /// <param name="radius">radius</param>

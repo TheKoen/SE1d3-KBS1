@@ -1,5 +1,4 @@
 ﻿using System;
-using KBS1;
 using KBS1.Controller;
 using KBS1.GameObjects;
 using KBS1.Misc;
@@ -18,16 +17,15 @@ namespace UnitTests
             var player = new TestPlayer(new Vector(20, 20));
             LevelUtil.CreateLevel(hasPlayer ? new GameObject[] {player} : new GameObject[] { });
 
-            void Action() => Controller.FindPlayer();
+            void Action()
+            {
+                Controller.FindPlayer();
+            }
 
             if (!hasPlayer)
-            {
                 Assert.Catch<NullReferenceException>(Action);
-            }
             else
-            {
                 Assert.DoesNotThrow(Action);
-            }
         }
     }
 }

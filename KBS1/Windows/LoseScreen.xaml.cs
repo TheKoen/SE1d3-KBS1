@@ -3,7 +3,7 @@
 namespace KBS1.Windows
 {
     /// <summary>
-    /// Interaction logic for LoseScreen.xaml
+    ///     Interaction logic for LoseScreen.xaml
     /// </summary>
     public partial class LoseScreen
     {

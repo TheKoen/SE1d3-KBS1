@@ -12,7 +12,7 @@ namespace KBS1.LevelComponents
         private string _level;
 
         /// <summary>
-        /// Picklevel creates custom dialog if you dont select a level it throws an Exception.
+        ///     Picklevel creates custom dialog if you dont select a level it throws an Exception.
         /// </summary>
         /// <returns>level if picked</returns>
         public Level PickLevel()
@@ -21,10 +21,7 @@ namespace KBS1.LevelComponents
 
             dialog.ShowDialog();
             var fileName = dialog.FileName;
-            if (fileName == null)
-            {
-                throw new FileNotFoundException("You did not select level.");
-            }
+            if (fileName == null) throw new FileNotFoundException("You did not select level.");
 
             try
             {
@@ -37,19 +34,16 @@ namespace KBS1.LevelComponents
         }
 
         /// <summary>
-        /// PickDocument creates custom dialog if you dont select a level it throws an Exception.
+        ///     PickDocument creates custom dialog if you dont select a level it throws an Exception.
         /// </summary>
-        /// <returns><see cref="XmlDocument"/> if picked</returns>
+        /// <returns><see cref="XmlDocument" /> if picked</returns>
         public XmlDocument PickDocument()
         {
             var dialog = new LevelPickerWindow();
 
             dialog.ShowDialog();
             var fileName = dialog.FileName;
-            if (fileName == null)
-            {
-                throw new FileNotFoundException("You did not select level.");
-            }
+            if (fileName == null) throw new FileNotFoundException("You did not select level.");
 
             try
             {
@@ -62,7 +56,7 @@ namespace KBS1.LevelComponents
         }
 
         /// <summary>
-        /// Loads first level with the name Level1.xml.
+        ///     Loads first level with the name Level1.xml.
         /// </summary>
         /// <returns>if Level1.xml exist returns level</returns>
         private Level LoadFirstLevel()
@@ -71,13 +65,16 @@ namespace KBS1.LevelComponents
         }
 
         /// <summary>
-        /// Loads selected level 
+        ///     Loads selected level
         /// </summary>
         /// <returns>level</returns>
-        public Level LoadSelectedLevel() => _level == null ? LoadFirstLevel() : LoadLevel(_level);
+        public Level LoadSelectedLevel()
+        {
+            return _level == null ? LoadFirstLevel() : LoadLevel(_level);
+        }
 
         /// <summary>
-        /// Loads the next level named Level(current+1).xml or throws exception if not available
+        ///     Loads the next level named Level(current+1).xml or throws exception if not available
         /// </summary>
         /// <returns>returns next level if available</returns>
         public Level NextLevel()
@@ -93,7 +90,7 @@ namespace KBS1.LevelComponents
         }
 
         /// <summary>
-        /// Load level with a specific name
+        ///     Load level with a specific name
         /// </summary>
         /// <param name="filename">name of the file</param>
         /// <returns>Level if exists</returns>
@@ -102,7 +99,6 @@ namespace KBS1.LevelComponents
             XmlDocument doc;
 
             if (filename.StartsWith("#"))
-            {
                 try
                 {
                     doc = ResourceManager.Instance.LoadXmlDocument($"#Levels\\{filename.Substring(1)}");
@@ -119,9 +115,7 @@ namespace KBS1.LevelComponents
                             throw;
                     }
                 }
-            }
             else
-            {
                 try
                 {
                     doc = new XmlDocument();
@@ -139,7 +133,6 @@ namespace KBS1.LevelComponents
                             throw;
                     }
                 }
-            }
 
             try
             {
@@ -158,7 +151,6 @@ namespace KBS1.LevelComponents
         {
             XmlDocument doc;
             if (filename.StartsWith("#"))
-            {
                 try
                 {
                     doc = ResourceManager.Instance.LoadXmlDocument($"#Levels\\{filename.Substring(1)}");
@@ -175,9 +167,7 @@ namespace KBS1.LevelComponents
                             throw;
                     }
                 }
-            }
             else
-            {
                 try
                 {
                     doc = new XmlDocument();
@@ -195,7 +185,6 @@ namespace KBS1.LevelComponents
                             throw;
                     }
                 }
-            }
 
             return doc;
         }

@@ -9,14 +9,14 @@ namespace KBS1.Obstacles.Controllers
     public class TrapObstacleController : ObstacleController
     {
         private readonly Image explosion = ResourceManager.Instance.LoadImage("#explosion.png");
-        private bool lost = false;
+        private bool lost;
 
         public TrapObstacleController(ILocatable locatable, Obstacle obstacle) : base(locatable, obstacle)
         {
         }
 
         /// <summary>
-        /// Methode called every gametick Checks if <see cref="Player"/> collides with the TrapObstacle.
+        ///     Methode called every gametick Checks if <see cref="Player" /> collides with the TrapObstacle.
         /// </summary>
         public override void Update()
         {

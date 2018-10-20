@@ -5,10 +5,15 @@ using System.Windows.Media;
 namespace KBS1.Windows
 {
     /// <summary>
-    /// Interaction logic for ObjectInfoContainer.xaml
+    ///     Interaction logic for ObjectInfoContainer.xaml
     /// </summary>
     public partial class ObjectInfoContainer
     {
+        public ObjectInfoContainer()
+        {
+            InitializeComponent();
+        }
+
         public ImageSource ImageSource
         {
             get => ImgIcon.Source;
@@ -25,12 +30,6 @@ namespace KBS1.Windows
         {
             get => TxbDescription.Text;
             set => TxbDescription.Text = value;
-        }
-
-
-        public ObjectInfoContainer()
-        {
-            InitializeComponent();
         }
 
         public static string FirstCharToUpper(string input)

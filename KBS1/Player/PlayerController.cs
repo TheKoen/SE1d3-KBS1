@@ -8,27 +8,27 @@ using KBS1.Windows;
 
 namespace KBS1.Player
 {
-    class PlayerController : Controller.Controller
+    internal class PlayerController : Controller.Controller
     {
         private const double Speed = 2.0;
-
-        private readonly Image right = ResourceManager.Instance.LoadImage("#player.png");
         private readonly Image left = ResourceManager.Instance.LoadImage("#playerflipped.png");
-        private readonly Image rightwalk = ResourceManager.Instance.LoadImage("#playerwalk.png");
         private readonly Image leftwalk = ResourceManager.Instance.LoadImage("#playerwalkflipped.png");
 
-        public Player Player { get; }
+        private readonly Image right = ResourceManager.Instance.LoadImage("#player.png");
+        private readonly Image rightwalk = ResourceManager.Instance.LoadImage("#playerwalk.png");
+        private int step;
 
         private bool walk;
-        private int step;
 
         public PlayerController(Player player) : base(player)
         {
             Player = player;
         }
 
+        public Player Player { get; }
+
         /// <summary>
-        /// Controller of the <see cref="Player"/> is executed every game tick
+        ///     Controller of the <see cref="Player" /> is executed every game tick
         /// </summary>
         public override void Update()
         {

@@ -3,7 +3,7 @@ using KBS1.Misc;
 
 namespace KBS1.Obstacles.Controllers
 {
-    class WallObstacleController : ObstacleController
+    internal class WallObstacleController : ObstacleController
     {
         public WallObstacleController(ILocatable locatable, Obstacle obstacle) : base(locatable, obstacle)
         {

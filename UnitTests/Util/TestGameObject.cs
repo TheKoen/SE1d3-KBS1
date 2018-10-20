@@ -1,6 +1,4 @@
-﻿using System.Windows.Controls;
-using KBS1;
-using KBS1.Controller;
+﻿using KBS1.Controller;
 using KBS1.GameObjects;
 using KBS1.Misc;
 

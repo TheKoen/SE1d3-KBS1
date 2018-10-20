@@ -11,7 +11,7 @@ namespace KBS1.Collider
         }
 
         /// <summary>
-        /// Collider of a wall object
+        ///     Collider of a wall object
         /// </summary>
         /// <param name="vector">Vector representing an object</param>
         /// <param name="radius">radius player</param>

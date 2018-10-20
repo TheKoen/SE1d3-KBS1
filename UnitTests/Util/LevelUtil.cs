@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using KBS1;
 using KBS1.Collider;
 using KBS1.GameObjects;
 using KBS1.LevelComponents;
@@ -34,9 +33,7 @@ namespace UnitTests.Util
         {
             var objects = new List<GameObject>();
             for (var i = 0; i < objectCount; i++)
-            {
                 objects.Add(new TestGameObject(radius, new Vector(Random.Next(1, 780), Random.Next(1, 600))));
-            }
 
             return CreateLevel(objects);
         }

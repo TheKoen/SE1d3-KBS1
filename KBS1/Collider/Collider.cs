@@ -5,10 +5,6 @@ namespace KBS1.Collider
 {
     public class Collider
     {
-        public int Radius { get; }
-        public ILocatable Locatable { get; }
-        public bool Blocking { get; set; }
-
         public Collider(int radius, ILocatable locatable)
         {
             Blocking = true;
@@ -16,15 +12,22 @@ namespace KBS1.Collider
             Locatable = locatable;
         }
 
+        public int Radius { get; }
+        public ILocatable Locatable { get; }
+        public bool Blocking { get; set; }
+
         /// <summary>
-        /// Checks whether this Collider collides with another Collider
+        ///     Checks whether this Collider collides with another Collider
         /// </summary>
         /// <param name="collider">Collider to check for</param>
         /// <returns>Collision status</returns>
-        public bool Collides(Collider collider) => Collides(collider.Locatable.Location, collider.Radius + 2);
+        public bool Collides(Collider collider)
+        {
+            return Collides(collider.Locatable.Location, collider.Radius + 2);
+        }
 
         /// <summary>
-        /// Checks whether this Collider collides with a radius
+        ///     Checks whether this Collider collides with a radius
         /// </summary>
         /// <param name="vector">Vector representing an object</param>
         /// <param name="radius">Radius of the object</param>
@@ -36,7 +39,7 @@ namespace KBS1.Collider
         }
 
         /// <summary>
-        /// Checks whether this Collider collides with anything
+        ///     Checks whether this Collider collides with anything
         /// </summary>
         /// <param name="vector">Vector representing an object</param>
         /// <param name="ignoreNonBlocking">bool if hits non blocking objects</param>

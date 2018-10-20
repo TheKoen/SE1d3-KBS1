@@ -9,8 +9,6 @@ namespace KBS1.Windows
 {
     public partial class LevelPickerWindow
     {
-        public string FileName { get; private set; }
-
         public LevelPickerWindow()
         {
             Initialized += (sender, e) =>
@@ -54,6 +52,8 @@ namespace KBS1.Windows
 
             InitializeComponent();
         }
+
+        public string FileName { get; private set; }
 
         private void LevelList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

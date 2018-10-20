@@ -6,18 +6,21 @@ namespace KBS1.GameObjects
 {
     public class FinishObject : GameObject
     {
-        private bool Finish { get; }
-
         public FinishObject(int radius, Image image, Canvas canvas, Vector location, bool finish) :
             base(radius, image, canvas, location)
         {
             Finish = finish;
         }
 
+        private bool Finish { get; }
+
         /// <summary>
-        /// Creates a controller for this FinishObject
+        ///     Creates a controller for this FinishObject
         /// </summary>
         /// <returns>Controller for this FinishObject</returns>
-        protected override Controller.Controller CreateController() => new FinishController(this, Finish);
+        protected override Controller.Controller CreateController()
+        {
+            return new FinishController(this, Finish);
+        }
     }
 }

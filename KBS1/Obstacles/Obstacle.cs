@@ -6,10 +6,8 @@ namespace KBS1.Obstacles
 {
     public class Obstacle : GameObject
     {
-        public ObstacleType ObstacleType { get; }
-
         /// <summary>
-        /// Obstacle that needs to be created
+        ///     Obstacle that needs to be created
         /// </summary>
         /// <param name="type">what type of obstacle</param>
         /// <param name="canvas">Canvas that where its dawn on</param>
@@ -20,10 +18,15 @@ namespace KBS1.Obstacles
             ObstacleType = type;
         }
 
+        public ObstacleType ObstacleType { get; }
+
         /// <summary>
-        /// Creates a controller of a Obstacle
+        ///     Creates a controller of a Obstacle
         /// </summary>
         /// <returns>Controller of a Obstacle</returns>
-        protected override Controller.Controller CreateController() => ObstacleType.CreateController(this);
+        protected override Controller.Controller CreateController()
+        {
+            return ObstacleType.CreateController(this);
+        }
     }
 }

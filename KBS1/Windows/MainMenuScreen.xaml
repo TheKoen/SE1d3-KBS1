@@ -7,17 +7,19 @@
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="994" MinWidth="944" MinHeight="600">
     <UserControl.Background>
-        <ImageBrush ImageSource="/KBS1;component/Resources/bg.jpg"/>
+        <ImageBrush ImageSource="/KBS1;component/Resources/bg.jpg" />
     </UserControl.Background>
     <Grid>
         <Button x:Name="StartButton" Content="Start" Margin="463,300,462,0" VerticalAlignment="Top" Height="25"
                 Width="75" Click="StartButton_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" />
         <Button x:Name="SelectLevel" Content="Select a Level" Margin="463,350,462,0" VerticalAlignment="Top"
-                Height="25" Width="75" Click="SelectLevel_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" />
+                Height="25" Width="75" Click="SelectLevel_Click" Background="{x:Null}" BorderBrush="{x:Null}"
+                Foreground="White" />
         <Button x:Name="OptionButton" Content="Options" Margin="463,400,462,0" VerticalAlignment="Top" Height="25"
                 Width="75" Click="OptionButton_Click" Foreground="White" BorderBrush="{x:Null}" Background="{x:Null}" />
         <Button x:Name="LevelEditorButton" Content="Level Editor" Margin="463,450,462,0" VerticalAlignment="Top"
-                Height="25" Width="75" Click="LevelEditorButton_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFF9F9F9" />
+                Height="25" Width="75" Click="LevelEditorButton_Click" Background="{x:Null}" BorderBrush="{x:Null}"
+                Foreground="#FFF9F9F9" />
         <Button x:Name="QuitButton" Content="Quit" Margin="463,502,456,0" VerticalAlignment="Top" Height="25"
                 Width="75" Click="QuitButton_Click" Foreground="White" Background="{x:Null}" BorderBrush="{x:Null}" />
     </Grid>

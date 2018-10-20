@@ -1,12 +1,11 @@
 ﻿using System;
-using KBS1;
 using KBS1.Misc;
 using NUnit.Framework;
 
 namespace UnitTests
 {
     [TestFixture]
-    class VectorTest
+    internal class VectorTest
     {
         private const double MAX_DELTA = 0.01;
 

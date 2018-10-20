@@ -8,11 +8,8 @@ namespace KBS1.LevelComponents
 
     public class Gameloop
     {
-        private DispatcherTimer Timer { get; }
-        private event Update UpdateEvent;
-
         /// <summary>
-        /// Gameloop is used to recall methodes every gametick
+        ///     Gameloop is used to recall methodes every gametick
         /// </summary>
         public Gameloop()
         {
@@ -23,8 +20,11 @@ namespace KBS1.LevelComponents
             Timer.Tick += Update;
         }
 
+        private DispatcherTimer Timer { get; }
+        private event Update UpdateEvent;
+
         /// <summary>
-        /// Starts the game loop
+        ///     Starts the game loop
         /// </summary>
         public void Start()
         {
@@ -32,7 +32,7 @@ namespace KBS1.LevelComponents
         }
 
         /// <summary>
-        /// Stops the game loop
+        ///     Stops the game loop
         /// </summary>
         public void Stop()
         {
@@ -40,24 +40,25 @@ namespace KBS1.LevelComponents
         }
 
         /// <summary>
-        /// Subscribe to the gametick
+        ///     Subscribe to the gametick
         /// </summary>
         /// <param name="updateEvent"></param>
         public void Subscribe(Update updateEvent)
         {
             UpdateEvent += updateEvent;
         }
+
         /// <summary>
-        /// Unsubscribe to the gametick
+        ///     Unsubscribe to the gametick
         /// </summary>
         /// <param name="updateEvent"></param>
         public void Unsubscribe(Update updateEvent)
         {
             UpdateEvent -= updateEvent;
         }
-        
+
         /// <summary>
-        /// calling the event UpdateEvent
+        ///     calling the event UpdateEvent
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>

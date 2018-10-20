@@ -3,7 +3,7 @@
 namespace KBS1.Windows
 {
     /// <summary>
-    /// Interaction logic for MainMenuScreen.xaml
+    ///     Interaction logic for MainMenuScreen.xaml
     /// </summary>
     public partial class MainMenuScreen
     {

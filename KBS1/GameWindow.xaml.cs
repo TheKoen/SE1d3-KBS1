@@ -1,25 +1,28 @@
+using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
-using System;
 using KBS1.LevelComponents;
 using KBS1.Obstacles;
 using KBS1.Util;
 using KBS1.Windows;
-using System.Windows.Input;
 
 namespace KBS1
 {
     public partial class GameWindow
     {
-        public static bool keyDown = false;
+        public static bool keyDown;
         private readonly LevelPicker _levelPicker = new LevelPicker();
+        private LoseScreen _screenLose;
+        private MainMenuScreen _screenMainMenu;
+        private OptionMenu _screenOptionMenu;
 
-        public Level Loadedlevel { get; set; }
-        public Gameloop Loop { get; set; }
-        public static GameWindow Instance { get; private set; }
 
-        public SoundManager Sounds { get; private set; }
+        // Properties
+        private PauseMenuScreen _screenPauseMenu;
+        private WinScreen _screenWin;
+        private LevelEditor _windowLevelEditor;
 
         public GameWindow()
         {
@@ -34,25 +37,22 @@ namespace KBS1
             InitializeComponent();
         }
 
+        public Level Loadedlevel { get; set; }
+        public Gameloop Loop { get; set; }
+        public static GameWindow Instance { get; private set; }
+
+        public SoundManager Sounds { get; private set; }
+
         // check if keyinput exists
         public void onKeyDownHandler(object sender, KeyEventArgs e)
         {
             keyDown = true;
         }
 
-
-        // Properties
-        private PauseMenuScreen _screenPauseMenu;
-        private MainMenuScreen _screenMainMenu;
-        private WinScreen _screenWin;
-        private LoseScreen _screenLose;
-        private OptionMenu _screenOptionMenu;
-        private LevelEditor _windowLevelEditor;
-
         // Methods
 
         /// <summary>
-        /// Loads the main menu screen
+        ///     Loads the main menu screen
         /// </summary>
         public void LoadHome()
         {
@@ -66,7 +66,7 @@ namespace KBS1
         }
 
         /// <summary>
-        /// Starts playing the next level
+        ///     Starts playing the next level
         /// </summary>
         public void NextLevel()
         {
@@ -84,7 +84,7 @@ namespace KBS1
         }
 
         /// <summary>
-        /// Makes the user pick a level and plays it
+        ///     Makes the user pick a level and plays it
         /// </summary>
         public void SelectLevel()
         {
@@ -102,7 +102,7 @@ namespace KBS1
         }
 
         /// <summary>
-        /// Loads the selected level
+        ///     Loads the selected level
         /// </summary>
         public void LoadGame()
         {
@@ -121,7 +121,7 @@ namespace KBS1
         }
 
         /// <summary>
-        /// Makes the user pick a level
+        ///     Makes the user pick a level
         /// </summary>
         public void LoadLevel()
         {
@@ -129,7 +129,7 @@ namespace KBS1
         }
 
         /// <summary>
-        /// Loads the options screen
+        ///     Loads the options screen
         /// </summary>
         public void LoadOptions()
         {
@@ -141,7 +141,7 @@ namespace KBS1
         }
 
         /// <summary>
-        /// Pauses the game and shows the pause menu screen
+        ///     Pauses the game and shows the pause menu screen
         /// </summary>
         public void PauseGame()
         {
@@ -153,7 +153,7 @@ namespace KBS1
         }
 
         /// <summary>
-        /// Resets the current level
+        ///     Resets the current level
         /// </summary>
         public void Reset()
         {
@@ -163,7 +163,7 @@ namespace KBS1
         }
 
         /// <summary>
-        /// Shows the win screen
+        ///     Shows the win screen
         /// </summary>
         public void Win()
         {
@@ -175,7 +175,7 @@ namespace KBS1
         }
 
         /// <summary>
-        /// Shows the lose screen
+        ///     Shows the lose screen
         /// </summary>
         public void Lose()
         {
@@ -190,7 +190,7 @@ namespace KBS1
         }
 
         /// <summary>
-        /// Shows the level editor
+        ///     Shows the level editor
         /// </summary>
         public void ShowLevelEditor()
         {
@@ -200,7 +200,9 @@ namespace KBS1
                 _windowLevelEditor.Show();
             }
             else if (_windowLevelEditor.IsLoaded)
+            {
                 _windowLevelEditor.Focus();
+            }
         }
     }
 }
