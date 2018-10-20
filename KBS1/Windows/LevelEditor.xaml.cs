@@ -104,6 +104,7 @@ namespace KBS1.Windows
                 var image = new Image {Source = new BitmapImage(reslocation)};
                 Canvas.SetTop(image, o.Location.Y - image.Source.Height / 2.0);
                 Canvas.SetLeft(image, o.Location.X - image.Source.Width / 2.0);
+                Panel.SetZIndex(image, o.ZIndex);
                 EditorCanvasObjects.Children.Add(image);
             }
         }
@@ -115,7 +116,8 @@ namespace KBS1.Windows
 
             if (!root.HasAttribute("name"))
                 throw new XmlException("Level missing name attribute");
-            TextBoxLevelName.Text = root.GetAttribute("name");
+            TextBoxLevelName.Text =
+                (root.GetAttribute("name").StartsWith("custom_") ? "" : "custom_") + root.GetAttribute("name");
 
             if (!root.HasAttribute("background"))
             {
@@ -148,7 +150,8 @@ namespace KBS1.Windows
                     Level.ParseLocation(childXml.Attributes["location"].InnerText),
                     childXml.LocalName == "start" || childXml.LocalName == "end"
                         ? childXml.LocalName
-                        : childXml.Attributes["name"].InnerText
+                        : childXml.Attributes["name"].InnerText,
+                    20
                 ));
             }
 
@@ -198,7 +201,9 @@ namespace KBS1.Windows
                 return;
             }
 
-            var fileName = TextBoxLevelName.Text.Trim().ToLower().Replace(" ", "_") + ".xml";
+            if (!TextBoxLevelName.Text.Trim().StartsWith("custom_"))
+                TextBoxLevelName.Text = "custom_" + TextBoxLevelName.Text.Trim();
+            var fileName = TextBoxLevelName.Text.ToLower().Replace(" ", "_") + ".xml";
             if (File.Exists($"levels\\{fileName}"))
             {
                 var result = MessageBox.Show($"File \"{fileName}\" already exists! Do you want to replace it?", "Save",
@@ -208,6 +213,7 @@ namespace KBS1.Windows
 
             var obstacles = from o in _editorObjects
                 where o.Id != "start" && o.Id != "end"
+                orderby o.ZIndex
                 select o;
             var obstaclesString = "";
             obstacles.ToList()
@@ -216,9 +222,9 @@ namespace KBS1.Windows
                         string.Format(XmlObstacleTemplate, o.Id, (int) o.Location.X, (int) o.Location.Y));
 
             var root = string.Format(XmlRootTemplate,
-                TextBoxLevelName.Text.Trim().StartsWith("custom_")
-                    ? TextBoxLevelName.Text.Trim()
-                    : "custom_" + TextBoxLevelName.Text.Trim(),
+                TextBoxLevelName.Text.StartsWith("custom_")
+                    ? TextBoxLevelName.Text
+                    : "custom_" + TextBoxLevelName.Text,
                 _background == null ? "" : $"background=\"{_background}\"",
                 (int) _startLoc.X, (int) _startLoc.Y,
                 (int) _endLoc.X, (int) _endLoc.Y,
@@ -279,13 +285,18 @@ namespace KBS1.Windows
                             NumericGridWidth.Value / 2.0,
                             (int) (vector.Y / NumericGridHeight.Value) * NumericGridHeight.Value +
                             NumericGridHeight.Value / 2.0);
-                    _editorObjects.Add(new EditorObjectRepresentation(
+
+                    var newObject = new EditorObjectRepresentation(
                         vector,
-                        ((ObjectListItem) ComboBoxObjects.SelectedItem).Id
-                    ));
-                    if (((ObjectListItem) ComboBoxObjects.SelectedItem).Id == "start")
+                        ((ObjectListItem) ComboBoxObjects.SelectedItem).Id,
+                        NumericZIndex.Value
+                    );
+                    if (newObject.Id == "start" || newObject.Id == "end")
+                        newObject.ZIndex = 101;
+                    _editorObjects.Add(newObject);
+                    if (newObject.Id == "start")
                         _startLoc = vector;
-                    if (((ObjectListItem) ComboBoxObjects.SelectedItem).Id == "end")
+                    if (newObject.Id == "end")
                         _endLoc = vector;
                     _changesMade = true;
                     break;
